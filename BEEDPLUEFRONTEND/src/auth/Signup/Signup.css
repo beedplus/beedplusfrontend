@@ -120,7 +120,6 @@
     outline: none;
 }
 
-
 .confirmPassword {
     width: 70%;
     height: 2.3em;
@@ -138,7 +137,6 @@
     border-radius: none;
     outline: none;
 }
-
 
 .next {
     width: 100%;
@@ -172,6 +170,43 @@
     justify-content: center;
     align-items: center;
 }
+
+.Sign{
+    color: #DE9B4A;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.15px;
+}
+
+.BsPerson {
+    margin-right:  10px;
+}
+.RiMailLine {
+    margin-right:  10px;
+}
+.GoEye{
+    margin-right:  10px;
+}
+
+.last{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 
 

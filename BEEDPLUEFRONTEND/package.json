@@ -12,8 +12,14 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-router-dom": "^6.21.3"
     "zustand": "^4.5.0"
+=======
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.21.3",
+    "react-toastify": "^10.0.4"
+>>>>>>> a319c12e98356b1ecb0cbb4e40cdaacf5a646e9c
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
