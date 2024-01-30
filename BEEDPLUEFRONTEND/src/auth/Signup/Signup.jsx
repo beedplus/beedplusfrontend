@@ -1,8 +1,9 @@
 import "./Signup.css";
 import image from "../../assets/beed.svg"
-
+import { useState } from "react";
 
 export default function Signup() {
+
     return (
         <div className='Signup'>
             <div className='form-div'>
