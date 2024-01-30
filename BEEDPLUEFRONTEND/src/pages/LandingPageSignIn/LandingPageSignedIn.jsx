@@ -8,8 +8,12 @@ export default function LandingPageSignedIn() {
       <div className='EnterChallence'>
          <EnterChallence/>
       </div>
-      
-      
+      <div className='LatestCampaigns'>
+        <h3> LATEST CAMPAIGNS </h3>
+      </div>
+      <div className='Waterpourme'>
+
+      </div>
     </div>
   )
 }
