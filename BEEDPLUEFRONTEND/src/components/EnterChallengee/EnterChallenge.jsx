@@ -1,4 +1,4 @@
-import "./EnterChallence.css"
+import "./EnterChallenge.css"
 import enter from "../../assets/image123.svg"
 
 export default function EnterChallence() {
