@@ -1,4 +1,4 @@
-import "./SocialComponents.css"
+import "./SocialComponents.scss"
 import facebook from "../../assets/Group 29.svg"
 import x from "../../assets/Group 30.svg"
 import instram from "../../assets/Group 31.png"

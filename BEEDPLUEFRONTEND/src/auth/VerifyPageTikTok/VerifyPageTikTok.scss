@@ -1,0 +1,86 @@
+*{
+    position: relative;
+}
+.verify-page {
+    background: url(../../assets/MacBookAir.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;    
+    justify-content: center;
+    align-items: center;
+    .white-icon-image{
+        position: relative;
+        left: 30px;
+        top: 56px;
+    }
+    .form-holder{
+        top:170px;
+        background-color: #FFFFFF;
+        color: #000;
+        width:362px;
+        height:232.33px;
+        margin: auto;
+        border-radius: 23.11px;
+        .verify{
+            top: 30px;
+            align-self: center;
+            left:53.15px;
+            right:53.15px;
+            img{
+                right:12.6px
+            }
+
+            button {
+                width: 255.781px;
+                display: flex;
+                align-items: center;
+                justify-content:center;
+                height: 37.942px;
+                border-radius: 21.588px;
+                border: 1.963px solid transparent;
+                background: #000;
+                background-image: linear-gradient(black, ), radial-gradient(circle at top left, #f00,#3020ff);
+                color: #FFF;
+                font-family: Montserrat;
+                font-size: 14.05px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                letter-spacing: 0.281px;
+                
+            }
+            
+        }
+        .black-icon-image{
+            top:24.56px;
+            left:147.88px;
+            right: 147.88px;
+            
+        }
+        .verify-paragraph{
+            width: 187.16px;
+            height: 28px; 
+            top:19.26px;
+            left:87.8px;
+            right:87.8px;
+            align-items: center;
+            color: #242424;
+            text-align: center;
+            font-family: Montserrat;
+            font-size: 10.783px;
+            font-style: normal;
+            font-weight: 500;
+            width: 187.162px;
+            margin-bottom: 15.9px;
+        }
+
+    } 
+} 
+ 
+
+
+
+
+

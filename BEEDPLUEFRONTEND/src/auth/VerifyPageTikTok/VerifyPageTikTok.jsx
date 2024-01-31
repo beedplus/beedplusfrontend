@@ -1,7 +1,8 @@
 import React from 'react'
-import './VerifyPageTikTok.css'
+import './VerifyPageTikTok.scss'
 import BlackIconImage from "../../assets/beed.svg"
 import WhiteIconImage from '../../assets/image 1.png'
+import TiktokButtonIcon from '../../assets/Tiktok-logo-button.png'
 function VerifyPageTikTok() {
   return (
     <div className='verify-page'>
@@ -10,12 +11,9 @@ function VerifyPageTikTok() {
         <div className='black-icon-image'><img src={BlackIconImage} alt="beed logo black"/></div>
         <br/>
         <div className='verify-paragraph'>Verify your BEED+ account with Tiktok authourization</div>
-          <input className="tiktiok-userame" type="text" placeholder="Enter Tiktok Username" />
-        
-        <div className="authorize">
-            <button>Next</button>
+        <div className="verify">
+          <button> <img src={TiktokButtonIcon} className='tiktok-button-icon' alt="Tiktok Button Icon"/><p>Continue with TikTok</p></button> 
         </div>
-        <div></div>
       </form>
     </div>
   )

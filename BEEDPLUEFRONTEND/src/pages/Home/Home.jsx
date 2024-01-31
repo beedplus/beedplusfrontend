@@ -1,10 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TopPage from './Homecomponents/top_page/TopPage'
+import VerifyPageTikTok from '../../auth/VerifyPageTikTok/VerifyPageTikTok'
+import TopPage from './HomeComponents/TopPage/TopPage'
+import Advert from '../../assets/Group 90.png'
 import './Home.scss'
+import BottomPage from "./HomeComponents/BottomPage/Bottompage"
 function LandingPage(props) {
   return (
-    <TopPage/>
+    <div className='landing-Page'>
+      
+      <TopPage/>
+       <BottomPage/>
+      <img src={Advert} alt="Advert" className='advert' /> 
+      
+    </div>
+
   )
 }
 

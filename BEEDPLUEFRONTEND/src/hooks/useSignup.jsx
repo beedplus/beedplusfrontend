@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { usebackendStore } from "../store/store";
-import { useNavigate } from "react-router";
+import { redirect, useNavigate } from "react-router";
 
-export const useLogin = () => {
+export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
+  const setAuth = usebackendStore((state) => state.setAuth);
+  const navigate = useNavigate();
 
   const apiUrl = "https://singularly-picked-grub.ngrok-free.app/auth/";
 
-  const login = async (email, password) => {
+  const signup = async (firstName, lastName, email, password) => {
     setError(null);
     setIspending(true);
 
@@ -17,9 +19,11 @@ export const useLogin = () => {
       const postData = {
         email,
         password,
+        firstname: firstName,
+        lastname: lastName,
       };
 
-      const res = await fetch(`${apiUrl}/login`, {
+      const res = await fetch(`${apiUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,5 +56,5 @@ export const useLogin = () => {
 
   useEffect(() => () => setisCancelled(true), []);
 
-  return { login, error, ispending };
+  return { signup, error, ispending };
 };

@@ -1,5 +1,5 @@
 import image from "../../assets/image 1.png" 
-import "./Footer.css"
+import "./Footer.scss"
 import SocialComponents from "../SocialComponents/SocialComponents"
 
 export default function Footer() {
