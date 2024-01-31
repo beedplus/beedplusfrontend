@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NotFound from './components/NotFound/NotFound';
 import Signup from './auth/Signup/Signup';
 import Sigin from './auth/Signin/Sigin';
+import BankAcoount from "./auth/BankAccount/BankAcoount"
 
 function App() {
 
@@ -21,10 +22,10 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/auth">
             <Route index element={<Signup />} />
-            <Route path="sign-up" element={<Signup />} />
+            <Route path="signup" element={<Signup />} />
             <Route path="signin" element ={<Sigin/>}/>
+            <Route path='BankAcoount' element={<BankAcoount/>}/>
           </Route>
-          
         </Routes>
       </Router>
       <Footer />

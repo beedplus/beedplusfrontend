@@ -1,0 +1,99 @@
+.BankAct {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../../assets/MacBookAir.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    .BankAct_div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 362px;
+      height: 500px;
+      border-radius: 30px;
+      background: #FFF;
+  
+      .BankAct-input_div {
+        flex-direction: column;
+        display: flex;
+        height: 250px;
+        gap: 1.4em;
+      }
+  
+      .BankAct-form h3 {
+        color: #242424;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 1.2em;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 127%;
+        margin-bottom: 10px;
+      }
+  
+      .image-one {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        img {
+          width: 85px;
+          height: 37px;
+        }
+      }
+  
+      input {
+        padding-left: 12px;
+  
+        &::placeholder {
+          color: #9CA3AF;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: 0.28px;
+        }
+      }
+  
+      .BankAct-button_div {
+        width: 100%;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .BankActFirstName input,
+      .BankActLastName input {
+        width: 250px;
+        height: 30px;
+      }
+  
+      .BankAct-button_div button {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 27.846px;
+        background: #000;
+        height: 48.942px;
+        color: #FFF;
+        font-family: Inter;
+        font-size: 18.123px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        letter-spacing: 0.362px;
+      }
+    }
+  }
+  

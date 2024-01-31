@@ -3,7 +3,7 @@ import { BsPerson } from 'react-icons/bs';
 import { RiMailLine } from 'react-icons/ri';
 import { GoEye } from 'react-icons/go';
 import { Link } from 'react-router-dom';
-import "./Signup.css";
+import "./Signup.scss";
 import image from "../../assets/beed.svg";
 import last from "../../assets/Group1585.svg";
 import { useSignUp } from "../../hooks/useSignup";
@@ -88,15 +88,6 @@ export default function Signup() {
     }
   };
 
-  //   const handleSignup = (e) => {
-  //     e.preventDefault();
-
-  //     if (validateInputs()) {
-  //       console.log("Signup successful");
-  //     } else {
-  //       console.log("Invalid inputs. Please fix the errors.");
-  //     }
-  //   };
 
   const handleSubmit = (e) => {
     e.preventDefault();

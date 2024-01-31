@@ -1,4 +1,4 @@
-import "./Navbar.css"
+import "./Navbar.scss"
 import Beed from "../../assets/image1.svg"
 import { useState } from "react";
 import LandingPage from '../LandingPage/LandingPage';

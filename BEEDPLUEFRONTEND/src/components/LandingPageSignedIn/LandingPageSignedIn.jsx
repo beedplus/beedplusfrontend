@@ -1,4 +1,4 @@
-import "./LandingPageSignedIn.css"
+import "./LandingPageSignedIn.scss"
 import iconBall from "../../assets/iconoir_bell-notification.svg"
 
 export default function LandingPageSignedIn() {

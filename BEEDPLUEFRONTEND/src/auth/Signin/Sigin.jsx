@@ -5,6 +5,7 @@ import "./Sign.css";
 import image from "../../assets/beed.svg";
 import { useLogin } from "../../hooks/useLogin";
 export default function Signin() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, ispending } = useLogin();
@@ -52,7 +53,6 @@ export default function Signin() {
     e.preventDefault();
     if (validateInputs()) {
       console.log(email, password);
-      // Call your login or authentication function here
       login(email, password);
     } else {
       console.log("Invalid inputs. Please fix the errors.");
@@ -66,12 +66,12 @@ export default function Signin() {
           <div className="image">
             <img src={image} alt="beed logo" />
           </div>
-          <div className="Login">
+          <div className="sign_LoginLogin">
             <h3>Login to your BEED+ account with your email and password</h3>
           </div>
-          <div className="input-list">
-            <div className="email">
-              <div className="RiMailLine">
+          <div className="sign_Logininput-list">
+            <div className="sign_Loginemail">
+              <div className="sign_LoginRiMailLine">
                 <RiMailLine />
               </div>
               <input
@@ -83,8 +83,8 @@ export default function Signin() {
               />
               {emailError && <div className="error-message">{emailError}</div>}
             </div>
-            <div className="password">
-              <div className="GoEye">
+            <div className="sign_Loginpassword">
+              <div className="sign_LoginGoEye">
                 <GoEye />
               </div>
               <input
@@ -99,7 +99,7 @@ export default function Signin() {
               )}
             </div>
           </div>
-          <div className="next">
+          <div className="sign_Loginnext">
             <button type="submit">Next</button>
           </div>
         </form>

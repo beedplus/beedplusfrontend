@@ -1,4 +1,4 @@
-import './LandingPageSignedIn.css'
+import './LandingPageSignedIn.scss'
 import EnterChallence from "../../components/EnterChallengee/EnterChallenge"
 
 

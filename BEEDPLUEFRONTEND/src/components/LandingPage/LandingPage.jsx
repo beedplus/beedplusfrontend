@@ -1,4 +1,4 @@
-import "./LandingPage.css"
+import "./LandingPage.scss"
 
 export default function LandingPage() {
   return (
