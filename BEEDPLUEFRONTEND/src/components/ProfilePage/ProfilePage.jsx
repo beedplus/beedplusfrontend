@@ -93,8 +93,22 @@ const ProfilePage = () =>{
                         </form>
                     </div>
                 </section>
+                <section className="profile-page-form-button-section">
+                    <div className="profile-page-form-save-button">
+                        <button>
+                            SAVE
+                        </button>
+                    </div>
+                    <div className="profile-page-log-out-button">
+                        <button>
+                            LOG OUT
+                        </button>
+                    </div>
+                </section>
             </section>
+            <div className="overlay">
 
+            </div>
         </div>
     )
 }

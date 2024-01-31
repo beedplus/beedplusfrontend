@@ -11,6 +11,7 @@ import Sigin from './auth/Signin/Sigin';
 import BankAcoount from "./auth/BankAccount/BankAcoount"
 import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
+import EnterChallenge from "./components/EnterChallengee/EnterChallenge.jsx";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           </Route>
             <Route path="/challenge-submit" element={<ChallengeSubmit/>} />
             <Route path="/profile" element={<ProfilePage/>} />
+            <Route path="enter-challenge" element={<EnterChallenge/>}/>
         </Routes>
       </Router>
       <Footer />
