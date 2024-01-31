@@ -7,7 +7,7 @@ export const useLogin = () => {
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
 
-  const apiUrl = "https://singularly-picked-grub.ngrok-free.app/auth/";
+  const apiUrl = "https://singularly-picked-grub.ngrok-free.app/auth";
 
   const login = async (email, password) => {
     setError(null);
