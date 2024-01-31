@@ -1,1 +1,6 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+.page-width{
+    width: calc(100% - 8rem);
+    padding: 20px 20px;
+    margin: 0 auto;
+}

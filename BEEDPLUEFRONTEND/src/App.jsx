@@ -9,6 +9,9 @@ import NotFound from './components/NotFound/NotFound';
 import Signup from './auth/Signup/Signup';
 import Sigin from './auth/Signin/Sigin';
 import BankAcoount from "./auth/BankAccount/BankAcoount"
+import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
+import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
+
 
 function App() {
 
@@ -26,6 +29,8 @@ function App() {
             <Route path="signin" element ={<Sigin/>}/>
             <Route path='BankAcoount' element={<BankAcoount/>}/>
           </Route>
+            <Route path="/challenge-submit" element={<ChallengeSubmit/>} />
+            <Route path="/profile" element={<ProfilePage/>} />
         </Routes>
       </Router>
       <Footer />
