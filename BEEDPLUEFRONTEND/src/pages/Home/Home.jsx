@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TopPage from './page_one_components/top_page/TopPage'
-
+import TopPage from './Homecomponents/top_page/TopPage'
+import './Home.scss'
 function LandingPage(props) {
   return (
     <TopPage/>

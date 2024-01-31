@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn"
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from './auth/Signup/Signup';
 

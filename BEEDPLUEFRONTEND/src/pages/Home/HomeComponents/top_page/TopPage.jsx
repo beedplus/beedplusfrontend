@@ -1,7 +1,8 @@
 import React from 'react'
-import './TopPage.css'
+import './TopPage.scss'
 import PlayIconOne from '../../../../assets/image 378.png'
 import spreadPics from '../../../../assets/The Pics.png'
+import PlayIconTwo from '../../../../assets/playicon2.png'
 function TopPage() {
   return (
     <div className='top-page'>
@@ -9,7 +10,7 @@ function TopPage() {
           <span>
             Upload 5 Vide
           </span>
-          <span>...</span>
+          <img src={PlayIconTwo} alt="PlayIconTwo" className='play-icon-two' />
           <span>s</span>
           <br/>
           <span className='header-secondline-styling'>and Get $10  </span>
