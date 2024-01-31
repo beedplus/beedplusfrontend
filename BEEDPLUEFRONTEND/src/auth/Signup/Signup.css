@@ -133,7 +133,7 @@
 
 }
 
-.confirmPassword input {
+.confirmPasswordinput {
     border: none;
     border-radius: none;
     outline: none;
@@ -149,21 +149,7 @@
     margin-top: 12px;
 }
 
-.next button {
-    width: 80%;
-    height: 100%;
-    margin: 20px auto;
-    border: 2.279px solid #F00;
-    background: #000;
-    border-radius: 25.066px;
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 16.313px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    letter-spacing: 0.326px;
-}
+
 
 .Already {
     width: 100%;
@@ -171,6 +157,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 
