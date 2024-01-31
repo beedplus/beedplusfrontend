@@ -7,7 +7,10 @@ import {  ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from './components/NotFound/NotFound';
 import Signup from './auth/Signup/Signup';
-
+import Sigin from './auth/Signin/Sigin';
+import BankAcoount from "./auth/BankAccount/BankAcoount"
+import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
+import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 
 
 function App() {
@@ -24,7 +27,9 @@ function App() {
             <Route index element={<Signup />} />
             <Route path="sign-up" element={<Signup />} />
           </Route>
-        </Routes> 
+            <Route path="/challenge-submit" element={<ChallengeSubmit/>} />
+            <Route path="/profile" element={<ProfilePage/>} />
+        </Routes>
       </Router>
       <Footer />
       <ToastContainer position="top-center" autoClose={3000} />

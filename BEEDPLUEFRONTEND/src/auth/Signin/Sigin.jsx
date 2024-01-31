@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
-import "./Sign.css";
+import "./Sign.scss";
 import image from "../../assets/beed.svg";
 import { useLogin } from "../../hooks/useLogin";
 export default function Signin() {
@@ -61,15 +61,26 @@ export default function Signin() {
 
   return (
     <div className="sign_Login">
+
+
       <div className="sign-form-div">
+
+
         <form onSubmit={handleSubmit}>
+
+
           <div className="image">
             <img src={image} alt="beed logo" />
           </div>
+
+
           <div className="sign_LoginLogin">
             <h3>Login to your BEED+ account with your email and password</h3>
           </div>
+
+
           <div className="sign_Logininput-list">
+             
             <div className="sign_Loginemail">
               <div className="sign_LoginRiMailLine">
                 <RiMailLine />
@@ -83,6 +94,8 @@ export default function Signin() {
               />
               {emailError && <div className="error-message">{emailError}</div>}
             </div>
+
+
             <div className="sign_Loginpassword">
               <div className="sign_LoginGoEye">
                 <GoEye />
@@ -99,9 +112,13 @@ export default function Signin() {
               )}
             </div>
           </div>
+
+
           <div className="sign_Loginnext">
             <button type="submit">Next</button>
           </div>
+
+
         </form>
       </div>
     </div>
