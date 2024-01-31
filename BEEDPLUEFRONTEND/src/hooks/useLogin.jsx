@@ -1,23 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usebackendStore } from "../store/store";
-import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
-  const setAuth = usebackendStore((state) => state.setAuth);
-  // const apiUrl = "https://8e13-102-89-43-94.ngrok-free.app/auth";
-  // const apiUrl = "https://richlist-backend.onrender.com/auth";
-  const apiUrl = "https://richlist-backend.onrender.com/auth";
-  const navigate = useNavigate();
+
+  const apiUrl = "https://singularly-picked-grub.ngrok-free.app/auth/";
+
   const login = async (email, password) => {
-    setIspending(true);
     setError(null);
+    setIspending(true);
 
     try {
-      const postData = { email, password };
+      const postData = {
+        email,
+        password,
+      };
+
       const res = await fetch(`${apiUrl}/login`, {
         method: "POST",
         headers: {
@@ -29,17 +30,17 @@ export const useLogin = () => {
 
       const data = await res.json();
 
-      if (data.message) {
-        setError(data.message);
-        setIspending(false);
-        setTimeout(() => {
-          setError(null);
-        }, 8000);
-      } else {
-        // Dispatch token action data.accessID
-        setAuth(data.userId, data.accessToken);
-        setIspending(false);
-      }
+      //   if (data.message) {
+      //     setError(data.message);
+      //     // setIspending(false);
+      //     setTimeout(() => {
+      //       setError(null);
+      //     }, 8000);
+      //   } else {
+      //     console.log(data);
+      //   }
+      console.log(data);
+      setIspending(false);
     } catch {
       if (!iscancelled) {
         setError("Unknown Error occured");
@@ -48,9 +49,8 @@ export const useLogin = () => {
       setIspending(false);
     }
   };
-  useEffect(() => {
-    return () => setisCancelled(true);
-  }, []);
 
-  return { error, ispending, login };
+  useEffect(() => () => setisCancelled(true), []);
+
+  return { login, error, ispending };
 };
