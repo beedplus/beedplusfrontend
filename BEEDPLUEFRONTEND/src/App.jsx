@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import NotFound from './components/NotFound/NotFound';
 import Signup from './auth/Signup/Signup';
 import Sigin from './auth/Signin/Sigin';
+import NotificationPage from './components/NotificationPage/NotificationPage';
+import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 
 function App() {
 
@@ -24,7 +26,8 @@ function App() {
             <Route path="sign-up" element={<Signup />} />
             <Route path="signin" element ={<Sigin/>}/>
           </Route>
-          
+          <Route path="notification" element ={<NotificationPage/>}/>
+          <Route path="check-challenge" element ={<CheckChallenge/>}/>
         </Routes>
       </Router>
       <Footer />
