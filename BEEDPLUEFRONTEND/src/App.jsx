@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +10,9 @@ import Signup from "./auth/Signup/Signup";
 import Sigin from "./auth/Signin/Sigin";
 import BankAcoount from "./auth/BankAccount/BankAcoount";
 import Verify from "./Verify";
+import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
+import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
+
 function App() {
   return (
     <div className="app">
@@ -29,6 +32,8 @@ function App() {
             <Route path="signin" element={<Sigin />} />
             <Route path="BankAcoount" element={<BankAcoount />} />
           </Route>
+          <Route path="/challenge-submit" element={<ChallengeSubmit />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
       <Footer />
