@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+body{
+	font-style: inherit;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 300px) and (max-width: 720px){
+    .challenge-info{
+      width: 100%;
+      position: relative;
+    }
+
+    .challenge-info .bcg-image{
+        width: 100%;
+        height: 187px;
+    }
+
+    .challenge-info-overlay{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.3);
+        padding: 15px 30px;
+    }
+
+    .challenge-info .challenge-overlay{
+        display: flex;
+        /*align-items: center;*/
+        justify-content: space-between;
+    }
+
+    .challenge-info .tiktok-icon{
+        width: 25.89px;
+        height: 25.89px
+    }
+
+    .challenge-info .challenge-info-detail .challenge-info-hashtag{     
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0em;
+        color:rgba(255, 255, 255, 1);
+        margin: 0px 0px 5px 0px;
+    }
+
+    .challenge-info .challenge-info-detail {
+        text-align: right;
+    }
+
+
+    .challenge-info .challenge-info-detail .challenge-artiste{
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0em;
+        color: rgba(217, 217, 217, 1);
+    }
+
+    .challenge-info .track-button{
+        background: linear-gradient(268.5deg, #EFDB27 -4.61%, #FF0000 94.95%);
+        font-family: 'Montserrat',  sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0em;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+       /* width: 100px;*/
+        align-self: flex-end;
+       
+    }
+
+    .challenge-info .track-button a{
+        text-decoration: none;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .price-container{
+        width: 100%;
+        background: linear-gradient(#000000 30%, rgba(0,0,0,0.5), rgba(0,0,0,0.05));
+        padding: 20px 20px 40px 20px;
+        margin-top: -10px;
+    }
+
+    .price-container .fund-tracker{
+        width: 100%;
+        height: 8px;
+        border-radius: 8px;
+        background: rgba(217, 217, 217, 1);
+        overflow: hidden;
+    }
+
+     .price-container .fund-tracker .fund-measure{
+        width: 55%;
+        height: 100%;
+        background: rgba(6, 153, 3, 1);
+        border-radius: 8px;
+     }
+
+     .price-container .fund-generated{
+        display: flex;
+        align-items: center;
+        margin: 10px 0px;
+        color: rgba(217, 217, 217, 1);
+    
+        font-size: 11px;
+        font-weight: 600;
+        
+        letter-spacing: 0em;
+     }
+
+     .price-container .fund-generated span{
+ 
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: 0em;
+        color: rgba(255, 255, 255, 1);
+        margin: 0px 10px 0px 0px;
+     }
+
+     .button-section{
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        padding: 0px 20px;
+     }
+
+     .button-section .button-container{
+        width: 350px;
+        display: flex;
+     }
+
+     .button-section .button-container button{
+        width: 50%;
+        padding: 15px 15px ;
+        border-radius: 30px;
+        cursor: pointer;
+        border: none;
+        outline: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0em;
+       
+    }
+
+    .button-section .button-container .black{
+        color: rgba(255, 255, 255, 1);
+        background: rgba(0, 0, 0, 1)
+    }
+
+    .button-section .button-container .grey{
+        background: rgba(0, 0, 0, 0.31);
+        color: rgba(255, 255, 255, 1);
+    }
+
+     .challenge-requirements{
+        padding: 0px 20px;
+        animation: slideRight ease-in-out .5s;
+     }
+
+     .challenge-requirements header{
+        color: rgba(253, 16, 91, 1);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 17px;
+        letter-spacing: 0px;
+        text-align: left;
+        margin: 20px 0px 10px 0px;
+     }
+
+     .challenge-requirements .instruction.active{
+        animation: slideRight ease-in-out .5s;
+     }
+
+     .challenge-requirements .instruction ul li{
+        margin: 0px 0px 7.5px 0px;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: 0px;
+        text-align: left;
+
+     }
+
+     .section-footer{
+        padding: 20px;
+        text-align: center;
+        color: rgba(168, 174, 185, 1);
+        font-size: 10.6px;
+        border-top: 0.74px solid rgba(212, 209, 209, 1);
+    }
+
+    .claim-button{
+        width: 100%;
+        padding: 15px 15px ;
+        border-radius: 15px;
+        cursor: pointer;
+        border: none;
+        outline: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: 0em;
+        color: rgba(255, 255, 255, 1);
+        background: rgba(217, 217, 217, 1);
+        margin: 20px 0px 30px 0px;
+    }
+
+    @keyframes slideRight {
+        0%{
+          transform: translateX(-10px);
+          opacity: 0;
+        }
+      
+        100%{
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+ 
+}
