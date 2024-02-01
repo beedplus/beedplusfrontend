@@ -16,6 +16,7 @@ import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import NotificationPage from "./components/NotificationPage/NotificationPage";
 import CheckChallenge from "./components/CheckChallenge/CheckChallenge";
 import { usebackendStore } from "./store/store.js";
+import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
@@ -114,6 +115,7 @@ function App() {
               </>
             }
           />
+          <Route path="/challenge-link" element={<ChallengeLinks/>} />
         </Routes>
       </Router>
       <Footer />
