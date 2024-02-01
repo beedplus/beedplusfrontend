@@ -12,6 +12,11 @@ import BankAcoount from "./auth/BankAccount/BankAcoount";
 import Verify from "./Verify";
 import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
+import NotFound from './components/NotFound/NotFound';
+import Signup from './auth/Signup/Signup';
+import Sigin from './auth/Signin/Sigin';
+import NotificationPage from './components/NotificationPage/NotificationPage';
+import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 
 function App() {
   return (
@@ -34,6 +39,8 @@ function App() {
           </Route>
             <Route path="/challenge-submit" element={<ChallengeSubmit/>} />
             <Route path="/profile" element={<ProfilePage/>} />
+          <Route path="notification" element ={<NotificationPage/>}/>
+          <Route path="check-challenge" element ={<CheckChallenge/>}/>
         </Routes>
       </Router>
       <Footer />
