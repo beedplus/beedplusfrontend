@@ -16,35 +16,108 @@ import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import NotificationPage from "./components/NotificationPage/NotificationPage";
 import CheckChallenge from "./components/CheckChallenge/CheckChallenge";
 import { usebackendStore } from "./store/store.js";
-
+import { Navigate } from "react-router-dom";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
+  console.log(accessToken);
+
   return (
     <div className="app">
       <Navbar />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <>
+                {accessToken && <Home />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
           <Route
             path="/LandingPageSignedIn"
-            element={<LandingPageSignedIn />}
+            element={
+              <>
+                {accessToken && <Navigate to="/" />}
+                {!accessToken && <Signup />}
+              </>
+            }
           />
+
           <Route path="*" element={<NotFound />} />
           <Route path="/auth">
             <Route index element={<Signup />} />
-            <Route path="signup" element={<Signup />} />
+            <Route
+              path="signup"
+              element={
+                <>
+                  {accessToken && <Navigate to="/" />}
+                  {!accessToken && <Signup />}
+                </>
+              }
+            />
             <Route path="verify/:token" element={<Verify />} />
-            <Route path="signin" element={<Sigin />} />
-            <Route path="BankAcoount" element={<BankAcoount />} />
+            <Route
+              path="signin"
+              element={
+                <>
+                  {accessToken && <Navigate to="/" />}
+                  {!accessToken && <Sigin />}
+                </>
+              }
+            />
+            <Route
+              path="BankAcoount"
+              element={
+                <>
+                  {accessToken && <BankAcoount />}
+                  {!accessToken && <Navigate to="/auth/signin" />}
+                </>
+              }
+            />
             <Route path="Verification" element={<Verification />} />
           </Route>
-          <Route path="/challenge-submit" element={<ChallengeSubmit />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/notification" element={<NotificationPage />} />
-          <Route path="/check-challenge" element={<CheckChallenge />} />
+          <Route
+            path="/challenge-submit"
+            element={
+              <>
+                {accessToken && <ChallengeSubmit />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {accessToken && <ProfilePage />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
+          <Route
+            path="/notification"
+            element={
+              <>
+                {accessToken && <NotificationPage />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
+          <Route
+            path="/check-challenge"
+            element={
+              <>
+                {accessToken && <CheckChallenge />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
         </Routes>
       </Router>
       <Footer />
+
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
