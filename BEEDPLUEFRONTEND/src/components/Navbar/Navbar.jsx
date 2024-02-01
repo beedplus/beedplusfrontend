@@ -2,7 +2,7 @@ import "./Navbar.scss"
 import Beed from "../../assets/image1.svg"
 import { useState } from "react";
 import LandingPage from '../LandingPage/LandingPage';
-import LandingPageSignedIn from '../LandingPageSignedIn/LandingPageSignedIn'; 
+import LandingPageSignedIn from "../../pages/LandingPageSignedIn/LandingPageSignedIn";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
