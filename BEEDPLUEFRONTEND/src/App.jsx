@@ -12,8 +12,6 @@ import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
 import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
-import NotificationPage from "./components/NotificationPage/NotificationPage";
-import CheckChallenge from "./components/CheckChallenge/CheckChallenge";
 import { usebackendStore } from "./store/store.js";
 import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
