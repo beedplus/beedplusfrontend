@@ -5,7 +5,7 @@ export const useGetAllCampaign = () => {
   const [isPending, setIsPending] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [isCancelled] = useState(false);
-  const apiUrl = "https://singularly-picked-grub.ngrok-free.app/campaigns";
+  const apiUrl = "https://beedplus.onrender.com/campaigns";
 
   useEffect(() => {
     const fetchData = async () => {
