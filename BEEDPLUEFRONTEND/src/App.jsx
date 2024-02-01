@@ -9,15 +9,16 @@ import NotFound from "./components/NotFound/NotFound";
 import Signup from "./auth/Signup/Signup";
 import Sigin from "./auth/Signin/Sigin";
 import BankAcoount from "./auth/BankAccount/BankAcoount";
-import  Verification from "./auth/VerificationEmail/VerificationEmail.jsx"
+import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
 import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
-import NotificationPage from './components/NotificationPage/NotificationPage';
-import CheckChallenge from './components/CheckChallenge/CheckChallenge';
-
+import NotificationPage from "./components/NotificationPage/NotificationPage";
+import CheckChallenge from "./components/CheckChallenge/CheckChallenge";
+import { usebackendStore } from "./store/store.js";
 
 function App() {
+  const accessToken = usebackendStore((state) => state.accessToken);
   return (
     <div className="app">
       <Navbar />
@@ -35,7 +36,7 @@ function App() {
             <Route path="verify/:token" element={<Verify />} />
             <Route path="signin" element={<Sigin />} />
             <Route path="BankAcoount" element={<BankAcoount />} />
-            <Route path="Verification" element={<Verification/>}/>
+            <Route path="Verification" element={<Verification />} />
           </Route>
           <Route path="/challenge-submit" element={<ChallengeSubmit />} />
           <Route path="/profile" element={<ProfilePage />} />
@@ -50,4 +51,3 @@ function App() {
 }
 
 export default App;
-

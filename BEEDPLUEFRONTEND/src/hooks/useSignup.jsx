@@ -35,6 +35,9 @@ export const useSignUp = () => {
       if (data.status === "success") {
         navigate("/auth/Verification");
       }
+      if (data.status === "error") {
+        setError(data.message);
+      }
       setIspending(false);
     } catch {
       if (!iscancelled) {

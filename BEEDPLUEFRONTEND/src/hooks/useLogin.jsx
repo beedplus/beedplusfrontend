@@ -7,7 +7,7 @@ export const useLogin = () => {
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
   const setAuth = usebackendStore((state) => state.setAuth);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const apiUrl = "https://beedplus.onrender.com/auth";
 
