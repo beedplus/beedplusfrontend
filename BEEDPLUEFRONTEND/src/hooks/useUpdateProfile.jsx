@@ -8,8 +8,8 @@ export const useUpdateProfile = () => {
   const [isCancelled] = useState(false);
   const apiUrl = "https://beedplus.onrender.com/user/update/me";
   const accessToken = usebackendStore((state) => state.accessToken);
-  const updateProfile = async (name, username, tiktok, bio, BankAccount) => {
-    const data = { name, username, tiktok, bio, BankAccount };
+  const updateProfile = async (name, username, tiktok, bio) => {
+    const data = { name, username, tiktok, bio };
     setIsPending(true);
     setError(null);
     try {
