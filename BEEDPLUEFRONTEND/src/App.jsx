@@ -19,8 +19,8 @@ import { usebackendStore } from "./store/store.js";
 import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 function App() {
+  
   const accessToken = usebackendStore((state) => state.accessToken);
-  console.log(accessToken);
 
   return (
     <div className="app">
