@@ -1,41 +1,40 @@
 import  { useState } from 'react';
 import "./BankAcoount.scss";
 import image from "../../assets/beed.svg";
+import image2 from "../../assets/image 1.png" 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function BankAcoount() {
   const [bankName, setBankName] = useState('');
   const [accountName, setAccountName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
 
-  const [bankNameError, setBankNameError] = useState('');
-  const [accountNameError, setAccountNameError] = useState('');
-  const [accountNumberError, setAccountNumberError] = useState('');
-
   const validateInputs = () => {
     let isValid = true;
 
     if (!bankName.trim()) {
-      setBankNameError('Bank Name is required');
+      toast.error('Bank Name is required');
       isValid = false;
     } else {
-      setBankNameError('');
+      toast.error('');
     }
 
     if (!accountName.trim()) {
-      setAccountNameError('Account Name is required');
+      toast.error('Account Name is required');
       isValid = false;
     } else {
-      setAccountNameError('');
+      toast.error('');
     }
 
     if (!accountNumber.trim()) {
-      setAccountNumberError('Account Number is required');
+      toast.error('Account Number is required');
       isValid = false;
     } else if (!/^\d+$/.test(accountNumber)) {
-      setAccountNumberError('Invalid Account Number format');
+      toast.error('Invalid Account Number format');
       isValid = false;
     } else {
-      setAccountNumberError('');
+      toast.error('');
     }
 
     return isValid;
@@ -43,7 +42,6 @@ export default function BankAcoount() {
 
   const handleAddAccount = () => {
     if (validateInputs()) {
-      // Perform logic to add the bank account
       console.log('Bank account added successfully');
     } else {
       console.log('Invalid inputs. Please fix the errors.');
@@ -52,10 +50,14 @@ export default function BankAcoount() {
 
   return (
     <div className="BankAct">
+      <img src={image2} alt="beedlogo" />
+
       <div className="BankAct_div">
+
         <div className="image-one">
           <img src={image} alt="beed logo" />
         </div>
+        
         <div className="BankAct-form">
           <h3>
             Add your correct bank account
@@ -69,7 +71,6 @@ export default function BankAcoount() {
                 value={bankName}
                 onChange={(e) => setBankName(e.target.value)}
               />
-              {bankNameError && <div className="error-message">{bankNameError}</div>}
             </div>
             <div className="LastName">
               <input
@@ -78,7 +79,6 @@ export default function BankAcoount() {
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
               />
-              {accountNameError && <div className="error-message">{accountNameError}</div>}
             </div>
             <div className="LastName">
               <input
@@ -87,7 +87,6 @@ export default function BankAcoount() {
                 value={accountNumber}
                 onChange={(e) => setAccountNumber(e.target.value)}
               />
-              {accountNumberError && <div className="error-message">{accountNumberError}</div>}
             </div>
             <div className="BankAct-button_div">
               <button onClick={handleAddAccount}>

@@ -1,19 +1,40 @@
 .sign_Login {
-  height: 100vh;
-  width: 100%;
-  background: url(../../assets/MacBookAir.svg) center center no-repeat;
+  background: url(../../assets/MacBookAir.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
+  height: 790px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0;
+  flex-direction: column;
+  
+  .beedlogo {
+    position: relative;
+    width: 100%;
+    
+    img {
+      margin-top: -120px;
+      position: absolute;
+      margin-left: 40px;
+      width: 85px;
+      height: 37px;
+      flex-shrink: 0;
+    }
+  }
+
 
   .sign-form-div {
-    width: 380px;
+    width: 332px;
     height: 390px;
     flex-shrink: 0;
     border-radius: 23.106px;
     background: #fff;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(10px);
+
+  
 
     .image {
       width: 100%;

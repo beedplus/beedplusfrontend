@@ -1,12 +1,16 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { RiMailLine } from 'react-icons/ri';
 import { GoEye } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 import "./Signup.scss";
 import image from "../../assets/beed.svg";
-import last from "../../assets/Group1585.svg";
 import { useSignUp } from "../../hooks/useSignup";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import image2 from "../../assets/image 1.png" 
+
+
 export default function Signup() {
   const { signup, error, ispending } = useSignUp();
   const [firstName, setFirstName] = useState("");
@@ -15,55 +19,38 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [firstNameError, setFirstNameError] = useState("");
-  const [lastNameError, setLastNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
   const validateInputs = () => {
-    let isValid = true;
-
     if (!firstName.trim()) {
-      setFirstNameError("First name is required");
-      isValid = false;
-    } else {
-      setFirstNameError("");
+      toast.error("First name is required");
+      return false;
     }
 
     if (!lastName.trim()) {
-      setLastNameError("Last name is required");
-      isValid = false;
-    } else {
-      setLastNameError("");
+      toast.error("Last name is required");
+      return false;
     }
 
     if (!email.trim()) {
-      setEmailError("Email is required");
-      isValid = false;
+      toast.error("Email is required");
+      return false;
     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setEmailError("Invalid email format");
-      isValid = false;
-    } else {
-      setEmailError("");
+      toast.error("Invalid email format");
+      return false;
     }
 
     if (!password.trim()) {
-      setPasswordError("Password is required");
-      isValid = false;
-    } else {
-      setPasswordError("");
+      toast.error("Password is required");
+      return false;
     }
 
     if (password !== confirmPassword) {
-      setConfirmPasswordError("Passwords do not match");
-      isValid = false;
-    } else {
-      setConfirmPasswordError("");
+      toast.error("Passwords do not match");
+      return false;
     }
 
-    return isValid;
+    return true;
   };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -91,16 +78,19 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstName, lastName, email, password);
     if (validateInputs()) {
+      toast.success("sucess!!!!!!")
       signup(firstName, lastName, email, password);
     } else {
-      console.log("Invalid inputs. Please fix the errors.");
+      toast.error("Invalid inputs. Please fix the errors.");
     }
   };
 
   return (
     <div className="Signup">
+      <div   className='beedlogo'>
+          <img src={image2} alt="beed logo" />
+      </div> 
       <div className="form-div">
         <form onSubmit={handleSubmit}>
           <div className="image">
@@ -121,9 +111,6 @@ export default function Signup() {
                 value={firstName}
                 onChange={handleInputChange}
               />
-              {firstNameError && (
-                <div className="error-message">{firstNameError}</div>
-              )}
             </div>
             <div className="LastName">
               <div className="BsPerson">
@@ -136,9 +123,6 @@ export default function Signup() {
                 value={lastName}
                 onChange={handleInputChange}
               />
-              {lastNameError && (
-                <div className="error-message">{lastNameError}</div>
-              )}
             </div>
             <div className="email">
               <div className="RiMailLine">
@@ -151,7 +135,6 @@ export default function Signup() {
                 value={email}
                 onChange={handleInputChange}
               />
-              {emailError && <div className="error-message">{emailError}</div>}
             </div>
             <div className="password">
               <div className="GoEye">
@@ -164,9 +147,6 @@ export default function Signup() {
                 value={password}
                 onChange={handleInputChange}
               />
-              {passwordError && (
-                <div className="error-message">{passwordError}</div>
-              )}
             </div>
             <div className="confirmPassword">
               <div className="GoEye">
@@ -179,9 +159,6 @@ export default function Signup() {
                 value={confirmPassword}
                 onChange={handleInputChange}
               />
-              {confirmPasswordError && (
-                <div className="error-message">{confirmPasswordError}</div>
-              )}
             </div>
           </div>
           <div className="next">
@@ -190,14 +167,18 @@ export default function Signup() {
           <div className="Already">
             <h3>Already have an account? </h3>
             <div className="Sign">
-              <Link to="/LandingPageSignedIn">Sign In</Link>
+              <Link to="../../auth/Signin" className='link'>Sign In</Link>
             </div>
           </div>
-          <div className="last">
-            <img src={last} alt="last" />
-          </div>
         </form>
+        
       </div>
+      <div className='agree'>
+          <div className='agreetoArtic'>
+            Click “Next” to agree to Artic’s Terms of
+            Service and acknowledge that Beed+ Policy applies to you
+          </div>
+        </div>
     </div>
   );
 }

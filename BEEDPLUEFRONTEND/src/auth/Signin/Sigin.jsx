@@ -4,32 +4,36 @@ import { GoEye } from "react-icons/go";
 import "./Sign.scss";
 import image from "../../assets/beed.svg";
 import { useLogin } from "../../hooks/useLogin";
+import image2 from "../../assets/image 1.png" 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, ispending } = useLogin();
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+ 
 
   const validateInputs = () => {
     let isValid = true;
 
     if (!email.trim()) {
-      setEmailError("Email is required");
+      toast.error("Email is required");
       isValid = false;
     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setEmailError("Invalid email format");
+     toast.error("Invalid email format");
       isValid = false;
     } else {
-      setEmailError("");
+      toast.error("pleease input your password");
     }
 
     if (!password.trim()) {
-      setPasswordError("Password is required");
+      toast.error("Password is required");
       isValid = false;
     } else {
-      setPasswordError("");
+      toast.error("pleease input your password");
     }
 
     return isValid;
@@ -52,35 +56,27 @@ export default function Signin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateInputs()) {
-      console.log(email, password);
       login(email, password);
+      toast.success("sucess!!!!!");
     } else {
-      console.log("Invalid inputs. Please fix the errors.");
+      toast.error("Invalid inputs. Please fix the errors.");
     }
   };
 
   return (
     <div className="sign_Login">
-
-
+       <div   className='beedlogo'>
+          <img src={image2} alt="beedlogo" />
+      </div>
       <div className="sign-form-div">
-
-
         <form onSubmit={handleSubmit}>
-
-
           <div className="image">
             <img src={image} alt="beed logo" />
           </div>
-
-
           <div className="sign_LoginLogin">
             <h3>Login to your BEED+ account with your email and password</h3>
           </div>
-
-
-          <div className="sign_Logininput-list">
-             
+          <div className="sign_Logininput-list"> 
             <div className="sign_Loginemail">
               <div className="sign_LoginRiMailLine">
                 <RiMailLine />
@@ -92,10 +88,7 @@ export default function Signin() {
                 value={email}
                 onChange={handleInputChanges}
               />
-              {emailError && <div className="error-message">{emailError}</div>}
             </div>
-
-
             <div className="sign_Loginpassword">
               <div className="sign_LoginGoEye">
                 <GoEye />
@@ -107,15 +100,12 @@ export default function Signin() {
                 value={password}
                 onChange={handleInputChanges}
               />
-              {passwordError && (
-                <div className="error-message">{passwordError}</div>
-              )}
             </div>
           </div>
 
 
           <div className="sign_Loginnext">
-            <button type="submit">Next</button>
+            <button type="submit">Login</button>
           </div>
 
 
