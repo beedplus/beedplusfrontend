@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import { BsPerson } from 'react-icons/bs';
-import { RiMailLine } from 'react-icons/ri';
-import { GoEye } from 'react-icons/go';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { BsPerson } from "react-icons/bs";
+import { RiMailLine } from "react-icons/ri";
+import { GoEye } from "react-icons/go";
+import { Link } from "react-router-dom";
 import "./Signup.scss";
 import image from "../../assets/beed.svg";
 import { useSignUp } from "../../hooks/useSignup";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import image2 from "../../assets/image 1.png";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Signup() {
   const { signup, error, ispending } = useSignUp();
@@ -54,7 +53,6 @@ export default function Signup() {
     return true;
   };
 
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -78,13 +76,11 @@ export default function Signup() {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateInputs()) {
-      toast.success("sucess!!!!!!")
+      toast.success("sucess!!!!!!");
       signup(firstName, lastName, email, password);
-      navigate("/auth/VerificationEmail")
     } else {
       toast.error("Invalid inputs. Please fix the errors.");
     }
@@ -92,9 +88,9 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      <div   className='beedlogo'>
-          <img src={image2} alt="beed logo" />
-      </div> 
+      <div className="beedlogo">
+        <img src={image2} alt="beed logo" />
+      </div>
       <div className="form-div">
         <form onSubmit={handleSubmit}>
           <div className="image">
@@ -165,30 +161,29 @@ export default function Signup() {
               />
             </div>
           </div>
-          
+
           <div className="next">
-          <button type="submit">Next</button>
-            {ispending && (
-               <p className='word'>Loading.......</p>
-            )}
-            
-            {error && <p className='text'>{error}</p> } 
+            <button type="submit">Next</button>
+            {ispending && <p className="word">Loading.......</p>}
+
+            {error && <p className="text">{error}</p>}
           </div>
           <div className="Already">
             <h3>Already have an account? </h3>
             <div className="Sign">
-              <Link to="../../auth/Signin" className='link'>Sign In</Link>
+              <Link to="../../auth/Signin" className="link">
+                Sign In
+              </Link>
             </div>
           </div>
         </form>
-        
       </div>
-      <div className='agree'>
-          <div className='agreetoArtic'>
-            Click “Next” to agree to Artic’s Terms of
-            Service and acknowledge that Beed+ Policy applies to you
-          </div>
+      <div className="agree">
+        <div className="agreetoArtic">
+          Click “Next” to agree to Artic’s Terms of Service and acknowledge that
+          Beed+ Policy applies to you
         </div>
+      </div>
     </div>
   );
 }

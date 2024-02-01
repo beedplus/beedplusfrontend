@@ -31,9 +31,10 @@ export const useSignUp = () => {
       });
 
       const data = await res.json();
-       if(data){
-        navigate("/Verification");
-       }
+      console.log(data);
+      if (data.status === "success") {
+        navigate("/auth/Verification");
+      }
       setIspending(false);
     } catch {
       if (!iscancelled) {
