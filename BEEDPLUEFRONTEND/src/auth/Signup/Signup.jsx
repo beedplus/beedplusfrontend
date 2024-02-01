@@ -8,7 +8,8 @@ import image from "../../assets/beed.svg";
 import { useSignUp } from "../../hooks/useSignup";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import image2 from "../../assets/image 1.png" 
+import image2 from "../../assets/image 1.png";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Signup() {
@@ -18,6 +19,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const validateInputs = () => {
     if (!firstName.trim()) {
@@ -81,6 +84,7 @@ export default function Signup() {
     if (validateInputs()) {
       toast.success("sucess!!!!!!")
       signup(firstName, lastName, email, password);
+      navigate("/auth/VerificationEmail")
     } else {
       toast.error("Invalid inputs. Please fix the errors.");
     }
@@ -161,8 +165,14 @@ export default function Signup() {
               />
             </div>
           </div>
+          
           <div className="next">
-            <button type="submit">Next</button>
+          <button type="submit">Next</button>
+            {ispending && (
+               <p className='word'>Loading.......</p>
+            )}
+            
+            {error && <p className='text'>{error}</p> } 
           </div>
           <div className="Already">
             <h3>Already have an account? </h3>

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
+
+  const navigate = useNavigate();
 
   const apiUrl = "https://beedplus.onrender.com/auth";
 
@@ -23,12 +26,14 @@ export const useSignUp = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Add any other headers if needed
         },
         body: JSON.stringify(postData),
       });
 
-      // const data = await res.json();
+      const data = await res.json();
+       if(data){
+        navigate("/Verification");
+       }
       setIspending(false);
     } catch {
       if (!iscancelled) {

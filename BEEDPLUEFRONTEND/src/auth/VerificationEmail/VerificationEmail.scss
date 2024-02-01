@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top, #18181aba, #000000cc),
+    url("../.././assets/MacBookAir.svg") no-repeat top center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .model {
+    width: 80%;
+    height: 174px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 23.106px;
+    background: #fff;
+
+    .model-div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;margin-top: 40px;
+      p {
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 17px;
+        letter-spacing: 0em;
+        text-align: center;
+      }
+    }
+
+    .text{
+        font-size: 30px;
+    }
+  }
+}
