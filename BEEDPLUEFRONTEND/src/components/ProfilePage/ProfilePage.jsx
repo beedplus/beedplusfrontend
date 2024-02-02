@@ -4,10 +4,18 @@ import { CiUser } from "react-icons/ci";
 import {useState} from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import {useLogout} from "../../hooks/useLogout.jsx";
+import {useUpdateProfile} from "../../hooks/useUpdateProfile.jsx";
 const ProfilePage = () =>{
     const {logout} = useLogout()
     const [overlayActive, setOverlayActive] = useState(false)
     const [bankDetailsActive, setBankDetailsActive] =useState(true)
+    const [editAccountActive, setEditAccountActive] = useState(false)
+    const [detailsShown, setDetailsShown] = useState(true)
+    const {updateProfile, error, isPending} =useUpdateProfile()
+    const [User_name, setUser_name] = useState("")
+    const [User_username, setUser_username] = useState("")
+    const [User_tiktokhandle, setUser_tiktokhandle] = useState("")
+    const [User_bio, setUser_bio] = useState("")
 
     const toggleOverlay = () => {
             if (overlayActive){
@@ -19,6 +27,7 @@ const ProfilePage = () =>{
 
             console.log(bankDetailsActive)
     }
+
     const toggleOverlayTwo = () => {
         if (overlayActive){
             setOverlayActive(false)
@@ -30,21 +39,43 @@ const ProfilePage = () =>{
 
         console.log(bankDetailsActive)
     }
-    const submitButton = () => {
-        if(bankDetailsActive){
-            setBankDetailsActive(false)
+    const editAccountChange = () =>{
+        // if(editAccountActive){
+        //     setEditAccountActive(false)
+        // }
+        // else if (editAccountActive === false){
+        //     setEditAccountActive(true)
+        // }
+
+        if (detailsShown){
+            setDetailsShown(false)
+            setEditAccountActive(true)
+
         }
+        else if (detailsShown === false){
+            setDetailsShown(true)
+            setEditAccountActive(false)
+        }
+
+        console.log(detailsShown)
+    }
+
+
+    const submitButton = () => {
+
+        console.log("dfef")
     }
     const handleSubmit = (event) => {
         // Prevent the default form submission behavior
         event.preventDefault();
-
-
+        updateProfile(User_name, User_username, User_tiktokhandle, User_bio)
+        // if(detailsShown === false){
+        //     setDetailsShown(true)
+        //     setEditAccountActive(false)
+        // }
     };
-    const [User_name, setUser_name] = useState("")
-    const [User_username, setUser_username] = useState("")
-    const [User_tiktokhandle, setUser_tiktokhandle] = useState("")
-    const [User_bio, setUser_bio] =useState("")
+
+
     return(
         <div className="profile-page-section">
             <section className="profile-page-banner">
@@ -67,7 +98,7 @@ const ProfilePage = () =>{
                     </div>
                     <div className="profile-page-edit-profile">
                         <div className="profile-page-edit-profile-button">
-                            <button>
+                            <button onClick={editAccountChange}>
                                 Edit Profile
                             </button>
                         </div>
@@ -88,16 +119,65 @@ const ProfilePage = () =>{
                     </div>
                 </section>
                 <section className="profile-page-form-section">
-                    <div className="profile-page-form-section-div">
+                    <div className={detailsShown ? "profile-page-form-section-div-static" : "profile-page-form-section-div-static-inactive"}>
                         <form onSubmit={handleSubmit}>
                             <div className="profile-page-form-div-line">
                                 <p>
                                     Name
                                 </p>
                                 <div>
+                                    {User_name}
+                                </div>
+                            </div>
+                            <div  className="profile-page-form-div-line">
+                                <p>
+                                    UserName
+                                </p>
+                                <div>
+                                    {User_username}
+                                </div>
+                            </div>
+                            <div className="profile-page-form-div-line">
+                                <p>
+                                    TikTok
+                                </p>
+                                <div>
+                                    {User_tiktokhandle}
+                                </div>
+                            </div>
+                            <div className="profile-page-form-div-line">
+                                <p>
+                                    Bio
+                                </p>
+                                <div>
+                                    {User_bio}
+
+                                </div>
+                            </div>
+                            <div className="profile-page-form-div-line">
+                                <p>
+                                    Bank Account
+                                </p>
+                                <p>
+                                    <p>Access</p>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div className={detailsShown ? "profile-page-form-section-div-inactive" : "profile-page-form-section-div" }>
+                        <form
+                            id="account-submit"
+                            onSubmit={handleSubmit}>
+                            <div className="profile-page-form-div-line">
+                                <p>
+                                    Name
+                                </p>
+                                <div>
                                     <input className="user-name-input"
-                                            placeholder="Jane Doe"
-                                            value={User_name}/>
+                                           placeholder="Jane Doe"
+                                           onChange={(e) => setUser_name(e.target.value)}
+
+                                    />
                                 </div>
                             </div>
                             <div  className="profile-page-form-div-line">
@@ -106,8 +186,10 @@ const ProfilePage = () =>{
                                 </p>
                                 <div>
                                     <input className="user-username-input"
-                                            placeholder="_JaneDoe"
-                                            value={User_username}/>
+                                           placeholder="_JaneDoe"
+                                           onChange={(e) => setUser_username(e.target.value)}
+                                           />
+
                                 </div>
                             </div>
                             <div className="profile-page-form-div-line">
@@ -116,8 +198,10 @@ const ProfilePage = () =>{
                                 </p>
                                 <div>
                                     <input className="user-tiktok-input"
-                                            placeholder="JANYDOE"
-                                            value={User_tiktokhandle}/>
+                                           placeholder="JANYDOE"
+                                           onChange={(e) => setUser_tiktokhandle(e.target.value)}
+                                    />
+
                                 </div>
                             </div>
                             <div className="profile-page-form-div-line">
@@ -126,8 +210,9 @@ const ProfilePage = () =>{
                                 </p>
                                 <div>
                                     <input className="user-bio-input"
-                                            placeholder="www.google.com"
-                                            value={User_bio}/>
+                                           placeholder="www.google.com"
+                                           onChange={(e) => setUser_bio(e.target.value)}
+                                    />
                                 </div>
                             </div>
                             <div className="profile-page-form-div-line">
@@ -143,7 +228,11 @@ const ProfilePage = () =>{
                 </section>
                 <section className="profile-page-form-button-section">
                     <div className="profile-page-form-save-button">
-                        <button>
+                        <button
+                            id="account-submit"
+                            type="submit"
+                            // onClick={submitButton}
+                        >
                             SAVE
                         </button>
                     </div>
