@@ -7,11 +7,13 @@ import { BsCaretDownFill } from "react-icons/bs";
 import { FaClock, FaPause, FaPlay } from "react-icons/fa6";
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
 import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
+import { useSubmit } from "../../hooks/useSubmit";
 //import caretDown from '../../assets/Polygon 1.png';
 const id = "65ba75b9bc4134b7fb72419f";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [height, setHeight] = useState(false);
+  const { error, isPending, submit } = useSubmit();
 
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
@@ -48,24 +50,27 @@ const ChallengeLinks = () => {
     const [link, setlink] = useState("")
 
 
-    const togglePlayPause = () => {
-        const video = videoRef.current;
-        if (video.paused) {
-        video.play();
-        setIsPlaying(true);
-        } else {
-        video.pause();
-        setIsPlaying(false);
-        }
-    };
+  const togglePlayPause = () => {
+    const video = videoRef.current;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+  const handleMouseEnter = () => {
+    setShowButton(true);
+  };
 
-    const handleMouseEnter = () => {
-        setShowButton(true);
-      };
-    
-      const handleMouseLeave = () => {
-        setShowButton(false);
-      };
+  const handleMouseLeave = () => {
+    setShowButton(false);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submit(link1,link2,link3,link4,Link5)
+  };
 
   return (
     documents &&
