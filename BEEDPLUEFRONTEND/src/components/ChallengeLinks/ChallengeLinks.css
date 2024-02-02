@@ -332,6 +332,7 @@ body{
         width: 85%;
         overflow: hidden;
         font-size: 14px;
+        z-index: 200;
     }
 
     .video-link-container .check{

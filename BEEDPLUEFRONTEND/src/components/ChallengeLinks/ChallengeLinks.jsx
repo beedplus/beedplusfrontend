@@ -42,20 +42,30 @@ const ChallengeLinks = () => {
     console.log(documents.data);
   }, [documents]);
 
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [showButton, setShowButton] = useState(false);
+    const [link, setlink] = useState("")
 
-  const togglePlayPause = () => {
-    const video = videoRef.current;
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-  const handleSubmit = () => {};
+
+    const togglePlayPause = () => {
+        const video = videoRef.current;
+        if (video.paused) {
+        video.play();
+        setIsPlaying(true);
+        } else {
+        video.pause();
+        setIsPlaying(false);
+        }
+    };
+
+    const handleMouseEnter = () => {
+        setShowButton(true);
+      };
+    
+      const handleMouseLeave = () => {
+        setShowButton(false);
+      };
 
   return (
     documents &&
@@ -110,29 +120,34 @@ const ChallengeLinks = () => {
           </div>
         </div>
 
-        <div className="challenge-requirements">
-          {activeTab ? (
-            <div className="instruction active">
-              <header>Requirements</header>
-              <ul>
-                <li>Pick a challenge task you are interested in</li>
-                <li>Create 5 videos with the song and post it</li>
-                <li>The more you create, the more you win!</li>
-              </ul>
-              <header>Descriptions</header>
-              <ul>
-                <li>Pick a challenge task you are interested in</li>
-                <li>Create 5 videos with the song and post it</li>
-                <li>The more you create, the more you win!</li>
-              </ul>
-              <header>Video post</header>
-
-              <div className="challenge-video-container">
-                <video ref={videoRef} className="challenge-video">
-                  <source
-                    src={documents.data.demo_video}
-                    type="video/mp4"
-                  ></source>
+      <div className='challenge-requirements'>
+        {activeTab ? (
+          <div className="instruction active">
+            <header>Requirements</header>
+            <ul>
+              <li>Pick a challenge task you are interested in</li>
+              <li>Create 5 videos with the song and post it</li>
+              <li>The more you create, the more you win!</li>
+            </ul>
+            <header>Descriptions</header>
+            <ul>
+              <li>Pick a challenge task you are interested in</li>
+              <li>Create 5 videos with the song and post it</li>
+              <li>The more you create, the more you win!</li>
+            </ul>
+            <header>Video post</header>
+           
+            <div
+             className="challenge-video-container"
+             onMouseEnter={handleMouseEnter}
+             onMouseLeave={handleMouseLeave}
+             onClick={() => setShowButton(!showButton)}
+             >
+                <video  ref={videoRef} 
+                className='challenge-video'
+                onClick={togglePlayPause}
+                >
+                    <source src={documents.data.demo_video} type="video/mp4"></source>
                 </video>
 
                 <div className="challenge-video-overlay">
