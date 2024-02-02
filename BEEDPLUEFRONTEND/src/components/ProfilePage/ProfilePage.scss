@@ -226,7 +226,7 @@
       transition: ease-in-out .3s;
 
       .profile-page-account-section-div{
-
+        display: block;
       .profile-page-account-section-div-header{
         display: flex;
         padding: 15px;
@@ -235,7 +235,7 @@
       }
       }
       .profile-page-account-section-div-submitted{
-        transition: ease-in-out .3s;
+        display: none;
         .profile-page-account-section-div-header{
           display: flex;
           padding: 15px;
@@ -243,6 +243,7 @@
           gap: 10px;
         }
       }
+
       .profile-page-account-section-div-form{
         display: flex;
         flex-direction: column;
@@ -257,8 +258,12 @@
             padding: 20px 15px;
             border: 1px solid #000000;
             border-radius: 27.846px;
-
           }
+        }
+      }
+      .button-submit{
+        div{
+          width: 100%;
           button{
             width: 100%;
             border-radius: 27.846px;
@@ -273,7 +278,6 @@
             padding: 20px;
           }
         }
-
       }
     }
 
@@ -323,23 +327,72 @@
             border-radius: 27.846px;
 
           }
-          button{
-            width: 100%;
-            border-radius: 27.846px;
-            background: #000;
-            color: #FFF;
-            font-family: "Montserrat", sans-serif;
-            font-size: 18.123px;
-            font-style: normal;
-            font-weight: 800;
-            line-height: normal;
-            letter-spacing: 0.362px;
-            padding: 20px;
-          }
         }
 
       }
-    }
 
+    }
   }
+  .account-added-succesfully{
+    .profile-page-account-section-div-header{
+      display: flex;
+      padding: 15px;
+      text-align: center;
+      gap: 10px;
+    }
+    .ace-body{
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      .ace-check{
+        font-size: 70px;
+        color: green;
+      }
+      .ace-added{
+        color: #242424;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13.397px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 127%;
+      }
+    }
+  }
+  .account-added-succesfully-inactive{
+    display: none;
+    .profile-page-account-section-div-header{
+      display: flex;
+      padding: 15px;
+      text-align: center;
+      gap: 10px;
+    }
+    .ace-body{
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      .ace-check{
+        font-size: 70px;
+        color: green;
+      }
+      .ace-added{
+        color: #242424;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 13.397px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 127%;
+      }
+    }
+  }
+
 }
