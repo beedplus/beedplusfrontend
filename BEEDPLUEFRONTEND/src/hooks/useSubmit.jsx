@@ -6,10 +6,11 @@ export const useSubmit = () => {
   const [isPending, setIsPending] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [isCancelled] = useState(false);
-  const apiUrl = "https://beedplus.onrender.com/campaigns/${}";
   const accessToken = usebackendStore((state) => state.accessToken);
-  const submit = async (name, username, tiktok, bio) => {
-    const data = { name, username, tiktok, bio };
+
+  const submit = async (campID, link1, link2, link3, link4, link5) => {
+    const apiUrl = `https://beedplus.onrender.com/campaigns/${campID}/submission`;
+    const data = { campID, link1, link2, link3, link4, link5 };
     setIsPending(true);
     setError(null);
     try {
@@ -25,9 +26,8 @@ export const useSubmit = () => {
       if (res.status !== 200) {
         setIsPending(false);
         setError(`Failed to get event. Status: ${res.status}`);
-      } /else {
+      } else {
         const result = await res.json();
-        setDocuments(result);
         console.log(result);
       }
     } catch (error) {
