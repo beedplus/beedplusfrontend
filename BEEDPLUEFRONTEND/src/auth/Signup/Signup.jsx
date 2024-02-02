@@ -22,37 +22,31 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const validateInputs = () => {
+    let isValid = true;
+  
     if (!firstName.trim()) {
-      toast.error("First name is required");
-      return false;
-    }
-
-    if (!lastName.trim()) {
-      toast.error("Last name is required");
-      return false;
-    }
-
-    if (!email.trim()) {
-      toast.error("Email is required");
-      return false;
+      toast.error("Please fill in the first name!");
+      isValid = false;
+    } else if (!lastName.trim()) {
+      toast.error("Please fill in the last name!");
+      isValid = false;
+    } else if (!email.trim()) {
+      toast.error("Please fill in the email!");
+      isValid = false;
     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
       toast.error("Invalid email format");
-      return false;
+      isValid = false;
+    } else if (!password.trim()) {
+      toast.error("Please fill in the password!");
+      isValid = false;
+    } else if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      isValid = false;
     }
-
-    if (!password.trim()) {
-      toast.error("Password is required");
-      return false;
-    }
-
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return false;
-    }
-
-    return true;
+  
+    return isValid;
   };
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -82,7 +76,7 @@ export default function Signup() {
       toast.success("sucess!!!!!!");
       signup(firstName, lastName, email, password);
     } else {
-      toast.error("Invalid inputs. Please fix the errors.");
+      return  error
     }
   };
 

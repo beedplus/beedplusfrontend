@@ -42,13 +42,13 @@ function App() {
             path="/LandingPageSignedIn"
             element={
               <>
-                {accessToken && <Navigate to="/" />}
-                {!accessToken && <Signup />}
+                {accessToken && <LandingPageSignedIn />}
+                {!accessToken && <Navigate to="/signin" />}
               </>
             }
           />
 
-          <Route path="*" element={<NotFound />} />
+        
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
@@ -118,6 +118,7 @@ function App() {
             }
           />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <Footer />

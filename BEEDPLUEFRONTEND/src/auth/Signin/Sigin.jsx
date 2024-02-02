@@ -16,21 +16,19 @@ export default function Signin() {
   const validateInputs = () => {
     let isValid = true;
 
-    if (!email.trim()) {
+   
+    if (!email.trim() && !password.trim()) {
+      toast.error("Email and password are required");
+      isValid = false;
+    } else if (!email.trim() && password.trim()) {
       toast.error("Email is required");
+      isValid = false;
+    } else if (email.trim() && !password.trim()) {
+      toast.error("Password is required");
       isValid = false;
     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
       toast.error("Invalid email format");
       isValid = false;
-    } else {
-      toast.error("pleease input your password");
-    }
-
-    if (!password.trim()) {
-      toast.error("Password is required");
-      isValid = false;
-    } else {
-      toast.error("pleease input your password");
     }
 
     return isValid;
@@ -54,9 +52,8 @@ export default function Signin() {
     e.preventDefault();
     if (validateInputs()) {
       login(email, password);
-      toast.success("sucess!!!!!");
     } else {
-      toast.error("Invalid inputs. Please fix the errors.");
+      return error
     }
   };
 
