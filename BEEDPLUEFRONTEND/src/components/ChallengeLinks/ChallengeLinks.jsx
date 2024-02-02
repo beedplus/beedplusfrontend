@@ -66,13 +66,6 @@ const ChallengeLinks = () => {
       setIsPlaying(false);
     }
   };
-  const handleMouseEnter = () => {
-    setShowButton(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowButton(false);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitted");

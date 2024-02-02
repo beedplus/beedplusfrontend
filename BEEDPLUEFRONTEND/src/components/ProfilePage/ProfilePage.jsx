@@ -4,11 +4,13 @@ import { CiUser } from "react-icons/ci";
 import { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useLogout } from "../../hooks/useLogout.jsx";
+import { useUpdateProfile } from "../../hooks/useUpdateProfile.jsx";
+
 const ProfilePage = () => {
   const { logout } = useLogout();
   const [overlayActive, setOverlayActive] = useState(false);
-  const [bankDetailsActive, setBankDetailsActive] = useState(true);
-
+  const [bankDetailsActive, setBankDetailsActive] = useState(false);
+  const { error, isPending, updateProfile } = useUpdateProfile();
   const toggleOverlay = () => {
     if (overlayActive) {
       setOverlayActive(false);
@@ -16,31 +18,24 @@ const ProfilePage = () => {
       setOverlayActive(true);
     }
 
-    console.log(bankDetailsActive);
-  };
-  const toggleOverlayTwo = () => {
-    if (overlayActive) {
-      setOverlayActive(false);
-    } else if (!overlayActive) {
-      setOverlayActive(true);
-      setBankDetailsActive(true);
-    }
-
-    console.log(bankDetailsActive);
+    console.log("clicked");
   };
   const submitButton = () => {
     if (bankDetailsActive) {
       setBankDetailsActive(false);
     }
   };
-  const handleSubmit = (event) => {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-  };
   const [User_name, setUser_name] = useState("");
   const [User_username, setUser_username] = useState("");
   const [User_tiktokhandle, setUser_tiktokhandle] = useState("");
   const [User_bio, setUser_bio] = useState("");
+
+  const handleSubmit = (e) => {
+    console.log("submitted");
+    e.preventDefault();
+    updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
+  };
+
   return (
     <div className="profile-page-section">
       <section className="profile-page-banner">
@@ -79,7 +74,7 @@ const ProfilePage = () => {
         </section>
         <section className="profile-page-form-section">
           <div className="profile-page-form-section-div">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="updateProfile">
               <div className="profile-page-form-div-line">
                 <p>Name</p>
                 <div>
@@ -87,6 +82,7 @@ const ProfilePage = () => {
                     className="user-name-input"
                     placeholder="Jane Doe"
                     value={User_name}
+                    onChange={(e) => setUser_name(e.target.value)}
                   />
                 </div>
               </div>
@@ -97,6 +93,7 @@ const ProfilePage = () => {
                     className="user-username-input"
                     placeholder="_JaneDoe"
                     value={User_username}
+                    onChange={(e) => setUser_username(e.target.value)}
                   />
                 </div>
               </div>
@@ -107,6 +104,7 @@ const ProfilePage = () => {
                     className="user-tiktok-input"
                     placeholder="JANYDOE"
                     value={User_tiktokhandle}
+                    onChange={(e) => setUser_tiktokhandle(e.target.value)}
                   />
                 </div>
               </div>
@@ -117,6 +115,7 @@ const ProfilePage = () => {
                     className="user-bio-input"
                     placeholder="www.google.com"
                     value={User_bio}
+                    onChange={(e) => setUser_bio(e.target.value)}
                   />
                 </div>
               </div>
@@ -131,7 +130,9 @@ const ProfilePage = () => {
         </section>
         <section className="profile-page-form-button-section">
           <div className="profile-page-form-save-button">
-            <button>SAVE</button>
+            <button type="submit" form="updateProfile">
+              SAVE
+            </button>
           </div>
           <div className="profile-page-log-out-button">
             <button onClick={logout}>LOG OUT</button>
@@ -163,9 +164,7 @@ const ProfilePage = () => {
               <p>
                 Add your correct bank account details to withdraw your earnings
               </p>
-              <p className="exited" onClick={toggleOverlay}>
-                x
-              </p>
+              <p onClick={toggleOverlay}>x</p>
             </div>
             <form className="profile-page-account-section-div-form">
               <div>
@@ -186,30 +185,10 @@ const ProfilePage = () => {
                   placeholder="Enter Your Account Number"
                 />
               </div>
+              <div>
+                <button onClick={submitButton}>Submit</button>
+              </div>
             </form>
-            <div className="button-submit">
-              <button onClick={submitButton}>Submit</button>
-            </div>
-          </div>
-          <div
-            className={
-              bankDetailsActive
-                ? "account-added-succesfully-inactive"
-                : "account-added-succesfully"
-            }
-          >
-            <div className="profile-page-account-section-div-header">
-              <p>
-                Add your correct bank account details to withdraw your earnings
-              </p>
-              <p onClick={toggleOverlayTwo}>x</p>
-            </div>
-            <div className="ace-body">
-              <p>
-                <FaCircleCheck className="ace-check" />
-              </p>
-              <p className="ace-added">account added successfully</p>
-            </div>
           </div>
         </section>
       </div>
