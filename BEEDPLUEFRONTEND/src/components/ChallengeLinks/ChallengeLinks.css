@@ -157,12 +157,12 @@ body{
        
     }
 
-    .button-section .button-container .black{
+    .button-section .button-container .black.unactive{
         color: rgba(255, 255, 255, 1);
-        background: rgba(0, 0, 0, 1)
+        background: rgba(0, 0, 0, 0.31);
     }
 
-    .button-section .button-container .grey{
+    .button-section .button-container .grey.unactive{
         background: rgba(0, 0, 0, 0.31);
         color: rgba(255, 255, 255, 1);
     }
@@ -209,6 +209,16 @@ body{
         padding: 10px 20px ;
         margin: 30px 0px;
 
+     }
+
+     .button-section .button-container .black.active{
+        background: rgba(0, 0, 0, 1);
+        color: rgba(255, 255, 255, 1);
+     }
+
+     .button-section .button-container .grey.active{
+        background: rgba(0, 0, 0, 1);
+        color: rgba(255, 255, 255, 1);
      }
 
      .challenge-requirements .submission.active.height{
@@ -267,13 +277,43 @@ body{
     }
 
     .submit-button{
-        background: linear-gradient(268.5deg, #EFDB27 -4.61%, #FF0000 94.95%);
+        background:rgba(60, 60, 60, 1)
     }
 
     .challenge-video{
         width: 100%;
-        height: 187px;
+        height: 100%;
         object-fit: cover;
+    }
+
+    .challenge-video-container{
+        width: 100%;
+        position: relative;
+        height: 187px;
+    }
+
+    .challenge-video-overlay{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
+    .challenge-video-overlay .control-button{
+        border-radius: 50%;
+        border: 6px solid rgba(255, 255, 255, 1);
+        color:rgba(255, 255, 255, 1);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
     }
 
     .video-link-container{
@@ -288,16 +328,17 @@ body{
         color: rgba(126, 126, 126, 1);
         border-radius: 15px;
         padding: 15px 15px;
-    
+        background: transparent;
         width: 85%;
         overflow: hidden;
         font-size: 14px;
+        z-index: 200;     
     }
 
     .video-link-container .check{
         width: 10%;
         font-size: 30px;
-        color: rgba(6, 153, 3, 1);
+        color: rgba(126, 126, 126, 1);
     }
 
     @keyframes slideRight {

@@ -27,7 +27,6 @@ const ProfilePage = () =>{
 
             console.log(bankDetailsActive)
     }
-
     const toggleOverlayTwo = () => {
         if (overlayActive){
             setOverlayActive(false)
