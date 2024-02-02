@@ -1,120 +1,142 @@
-.BankAct {
-    height: 790px;
+.sign_Login {
+  background: url(../../assets/MacBookAir.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 790px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  .beedlogo {
+    position: relative;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: url(../../assets/MacBookAir.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    
+    img {
+      margin-top: -120px;
+      position: absolute;
+      margin-left: 40px;
+      width: 85px;
+      height: 37px;
+      flex-shrink: 0;
+    }
+  }
 
 
+  .sign-form-div {
+    width: 332px;
+    height: 490px;
+    flex-shrink: 0;
+    border-radius: 23.106px;
+    background: #fff;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(10px);
 
-    .beedlogo {
-      position: relative;
+  
+
+    .image {
       width: 100%;
-      
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       img {
-        margin-top: -120px;
-        position: absolute;
-        margin-left: 40px;
-        width: 85px;
-        height: 37px;
+        width: 65.468px;
+        height: 28.498px;
         flex-shrink: 0;
       }
     }
-  
 
-  
-    .BankAct_div {
+    .sign_LoginLogin {
+      color: #242424;
+      width: 190px;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10.783px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 127%;
+      margin: 0 auto;
+    }
+
+    .sign_Logininput-list {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 362px;
-      height: 500px;
-      border-radius: 30px;
-      background: #FFF;
-
+      margin-top: 20px;
+      gap: 1.2em;
       
-  
-      .BankAct-input_div {
-        flex-direction: column;
+
+      .sign_Loginemail {
         display: flex;
-        height: 250px;
-        gap: 1.4em;
-      }
-  
-      .BankAct-form h3 {
-        color: #242424;
-        text-align: center;
-        font-family: Montserrat;
-        font-size: 1.2em;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 127%;
-        margin-bottom: 10px;
-      }
-  
-      .image-one {
-        height: 100px;
-        width: 100%;
-        display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-  
-        img {
-          width: 85px;
-          height: 37px;
-        }
-      }
-  
-      input {
-        padding-left: 12px;
-  
-        &::placeholder {
-          color: #9CA3AF;
-          font-family: Montserrat;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          letter-spacing: 0.28px;
-        }
-      }
-  
-      .BankAct-button_div {
-        width: 100%;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-  
-      .BankActFirstName input,
-      .BankActLastName input {
-        width: 250px;
-        height: 30px;
-      }
-  
-      .BankAct-button_div button {
+        border: 1px solid #000;
+        height: 43.269px;
         width: 80%;
+        border-radius: 24.619px;
+        top: 20px;
+
+        .sign_LoginRiMailLine {
+          margin-right: 12px;
+        }
+
+        input {
+          height: 70%;
+          width: 80%;
+          border: none;
+          outline: none;
+        }
+      }
+
+      .sign_Loginpassword {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        border-radius: 27.846px;
-        background: #000;
-        height: 48.942px;
-        color: #FFF;
-        font-family: Inter;
-        font-size: 18.123px;
-        font-style: normal;
-        font-weight: 800;
-        line-height: normal;
-        letter-spacing: 0.362px;
+        border: 1px solid #000;
+        height: 43.269px;
+        width: 80%;
+        margin-top: 20px;
+        border-radius: 24.619px;
+
+        .sign_LoginGoEye {
+          margin-right: 12px;
+        }
+
+        input {
+          height: 70%;
+          width: 80%;
+          border: none;
+          outline: none;
+        }
       }
     }
   }
-  
+  .sign_Loginnext {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 70%;
+      border-radius: 27.846px;
+      background: #000;
+      height: 48.942px;
+      color: #fff;
+      font-family: Inter;
+      font-size: 18.123px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      letter-spacing: 0.362px;
+    }
+  }
+}

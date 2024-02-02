@@ -12,7 +12,7 @@ function LandingPage(props) {
       <TopPage/>
        <BottomPage/>
       <img src={Advert} alt="Advert" className='advert' /> 
-      
+
     </div>
 
   )

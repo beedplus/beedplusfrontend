@@ -1,4 +1,9 @@
-.EnterChallence {
+.LandingPageSignedIn{
+  background: url(../../assets/203.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .EnterChallence {
     width: 100%;
     margin: 25px auto;
   }
@@ -18,6 +23,7 @@
       padding-left: 60px;
     }
   }
+}
   
  
   

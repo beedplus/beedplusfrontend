@@ -7,7 +7,7 @@ import {useLogout} from "../../hooks/useLogout.jsx";
 const ProfilePage = () =>{
     const {logout} = useLogout()
     const [overlayActive, setOverlayActive] = useState(false)
-    const [bankDetailsActive, setBankDetailsActive] =useState(false)
+    const [bankDetailsActive, setBankDetailsActive] =useState(true)
 
     const toggleOverlay = () => {
             if (overlayActive){
@@ -17,13 +17,30 @@ const ProfilePage = () =>{
                 setOverlayActive(true)
             }
 
-            console.log("clicked")
+            console.log(bankDetailsActive)
+    }
+    const toggleOverlayTwo = () => {
+        if (overlayActive){
+            setOverlayActive(false)
+        }
+        else if (!overlayActive){
+            setOverlayActive(true)
+            setBankDetailsActive(true)
+        }
+
+        console.log(bankDetailsActive)
     }
     const submitButton = () => {
         if(bankDetailsActive){
             setBankDetailsActive(false)
         }
     }
+    const handleSubmit = (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+
+    };
     const [User_name, setUser_name] = useState("")
     const [User_username, setUser_username] = useState("")
     const [User_tiktokhandle, setUser_tiktokhandle] = useState("")
@@ -72,7 +89,7 @@ const ProfilePage = () =>{
                 </section>
                 <section className="profile-page-form-section">
                     <div className="profile-page-form-section-div">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="profile-page-form-div-line">
                                 <p>
                                     Name
@@ -144,7 +161,7 @@ const ProfilePage = () =>{
                             <p>
                                 Add your correct bank account details to withdraw your earnings
                             </p>
-                            <p onClick={toggleOverlay}>
+                            <p className="exited" onClick={toggleOverlay}>
                                 x
                             </p>
                         </div>
@@ -163,15 +180,33 @@ const ProfilePage = () =>{
                                         placeholder="Enter Your Account Number"/>
 
                             </div>
-                            <div>
-                                <button onClick={submitButton}>
-                                    Submit
-                                </button>
-                            </div>
+
                         </form>
-
+                        <div className="button-submit">
+                            <button
+                                onClick={submitButton}>
+                                Submit
+                            </button>
+                        </div>
                     </div>
-
+                    <div className={bankDetailsActive ? "account-added-succesfully-inactive" : "account-added-succesfully"}>
+                        <div className="profile-page-account-section-div-header">
+                            <p>
+                                Add your correct bank account details to withdraw your earnings
+                            </p>
+                            <p onClick={toggleOverlayTwo}>
+                                x
+                            </p>
+                        </div>
+                        <div className="ace-body">
+                            <p>
+                                <FaCircleCheck className="ace-check" />
+                            </p>
+                            <p className="ace-added">
+                                account added successfully
+                            </p>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

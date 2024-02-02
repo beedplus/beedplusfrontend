@@ -1,5 +1,5 @@
 import "./VerificationEmail.scss"
-import image2 from "../../assets/image 1.png"
+import image from "../../assets/beed.svg";
 
 export default function VerificationEmail() {
     return (
@@ -7,7 +7,7 @@ export default function VerificationEmail() {
             <div className="container">
                 <div className="model">
                     <div className="image">
-                        <img src={image2} alt="beed logo" />
+                        <img src={image} alt="beed logo" />
                     </div>
                     <div  className="model-div">
                         <p>

@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -13,14 +12,17 @@ import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
 import ChallengeSubmit from "./components/ChallengeSumbit/ChallengeSumbit.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
-import NotificationPage from "./components/NotificationPage/NotificationPage";
-import CheckChallenge from "./components/CheckChallenge/CheckChallenge";
 import { usebackendStore } from "./store/store.js";
 import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
+import NotificationPage from './components/NotificationPage/NotificationPage';
+import CheckChallenge from './components/CheckChallenge/CheckChallenge';
+import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
+
+
 function App() {
+  
   const accessToken = usebackendStore((state) => state.accessToken);
-  console.log(accessToken);
 
   return (
     <div className="app">

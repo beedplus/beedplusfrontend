@@ -15,11 +15,21 @@
     border-radius: 23.106px;
     background: #fff;
 
+     
+    .image{
+      width: 100%;
+      justify-content: center;
+      display: flex;
+    }
+
+
     .model-div {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;margin-top: 40px;
+
+
       p {
         font-family: Montserrat;
         font-size: 13px;
