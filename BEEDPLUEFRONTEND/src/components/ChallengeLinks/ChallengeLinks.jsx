@@ -7,12 +7,18 @@ import { BsCaretDownFill } from "react-icons/bs";
 import { FaClock, FaPause, FaPlay } from "react-icons/fa6";
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
 import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
-
 //import caretDown from '../../assets/Polygon 1.png';
 const id = "65ba75b9bc4134b7fb72419f";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [height, setHeight] = useState(false);
+
+  const [link1, setLink1] = useState("");
+  const [link2, setLink2] = useState("");
+  const [link3, setLink3] = useState("");
+  const [link4, setLink4] = useState("");
+  const [Link5, setLink5] = useState("");
+
   // const [loading, setLoading] = useState(false)
   //const [divCount, setDivCount] = useState(0);
 
@@ -154,27 +160,52 @@ const ChallengeLinks = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                   <div className="video-link-container">
-                    <input className="video-link" type="text" />
+                    <input
+                      className="video-link"
+                      type="text"
+                      value={link1}
+                      onChange={(e) => setLink1(e.target.value)}
+                    />
                     <FaClock className="check" />
                   </div>
 
                   <div className="video-link-container">
-                    <input className="video-link" type="text" />
+                    <input
+                      className="video-link"
+                      type="text"
+                      value={link2}
+                      onChange={(e) => setLink2(e.target.value)}
+                    />
                     <FaClock className="check" />
                   </div>
 
                   <div className="video-link-container">
-                    <input className="video-link" type="text" />
+                    <input
+                      className="video-link"
+                      type="text"
+                      value={link3}
+                      onChange={(e) => setLink3(e.target.value)}
+                    />
                     <FaClock className="check" />
                   </div>
 
                   <div className="video-link-container">
-                    <input className="video-link" type="text" />
+                    <input
+                      className="video-link"
+                      type="text"
+                      value={link4}
+                      onChange={(e) => setLink4(e.target.value)}
+                    />
                     <FaClock className="check" />
                   </div>
 
                   <div className="video-link-container">
-                    <input className="video-link" type="text" />
+                    <input
+                      className="video-link"
+                      type="text"
+                      value={Link5}
+                      onChange={(e) => setLink5(e.target.value)}
+                    />
                     <FaClock className="check" />
                   </div>
                 </form>
