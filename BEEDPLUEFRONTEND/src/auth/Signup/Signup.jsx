@@ -23,7 +23,7 @@ export default function Signup() {
 
   const validateInputs = () => {
     let isValid = true;
-  
+
     if (!firstName.trim()) {
       toast.error("Please fill in the first name!");
       isValid = false;
@@ -43,10 +43,10 @@ export default function Signup() {
       toast.error("Passwords do not match!");
       isValid = false;
     }
-  
+
     return isValid;
   };
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -76,7 +76,7 @@ export default function Signup() {
       toast.success("sucess!!!!!!");
       signup(firstName, lastName, email, password);
     } else {
-      return  error
+      return error
     }
   };
 
@@ -158,9 +158,6 @@ export default function Signup() {
 
           <div className="next">
             <button type="submit">Next</button>
-            {ispending && <p className="word">Loading.......</p>}
-
-            {error && <p className="text">{error}</p>}
           </div>
           <div className="Already">
             <h3>Already have an account? </h3>
@@ -169,6 +166,8 @@ export default function Signup() {
                 Sign In
               </Link>
             </div>
+            {ispending && <p className="word">Loading.......</p>}
+            {error && <p className="text">{error.message}</p>}
           </div>
         </form>
       </div>

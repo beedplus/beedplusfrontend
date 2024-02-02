@@ -7,6 +7,7 @@ import { useLogin } from "../../hooks/useLogin";
 import image2 from "../../assets/image 1.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Link} from "react-router-dom"
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -99,9 +100,16 @@ export default function Signin() {
 
           <div className="sign_Loginnext">
             <button type="submit">Login</button>
+          </div>
+          <div className="Already">
+            <h3>I have an account? </h3>
+            <div className="Sign">
+              <Link to="../../auth/Signup" className="link">
+                Sign In
+              </Link>
+            </div>
             {ispending && <p className="word">Loading.......</p>}
-
-            {error && <p className="text">{error}</p>}
+            {error && <p className="text">{error.message}</p>}
           </div>
         </form>
       </div>
