@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 import { usebackendStore } from "../store/store";
 
-export const useSubmit = () => {
+export const useGetSubmission = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [isCancelled] = useState(false);
   const accessToken = usebackendStore((state) => state.accessToken);
 
-  const submit = async (campaignId, link1, link2, link3, link4, link5) => {
+  const fetchSubmission = async (campaignId) => {
     const apiUrl = `https://beedplus.onrender.com/campaigns/${campaignId}/submission`;
-    const data = { campaignId, link1, link2, link3, link4, link5 };
+    const data = { campaignId };
     setIsPending(true);
     setError(null);
     try {
       const res = await fetch(apiUrl, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
@@ -29,6 +29,7 @@ export const useSubmit = () => {
       } else {
         const result = await res.json();
         console.log(result);
+        setDocuments(result);
       }
     } catch (error) {
       if (!isCancelled) {
@@ -39,5 +40,5 @@ export const useSubmit = () => {
     }
   };
 
-  return { error, isPending, submit };
+  return { error, isPending, fetchSubmission, documents };
 };
