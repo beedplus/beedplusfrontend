@@ -18,6 +18,7 @@ import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      {/* <Navbar /> */}
       <Router>
         <Routes>
           <Route
@@ -117,11 +118,25 @@ function App() {
               </>
             }
           />
+
+          <Route
+            path="/admin-dashboard"
+            element={
+              <>
+                {accessToken && <AdminDashboard />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
+<<<<<<< Updated upstream
           <Route path="*" element={<NotFound />} />
+=======
+        
+>>>>>>> Stashed changes
         </Routes>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
