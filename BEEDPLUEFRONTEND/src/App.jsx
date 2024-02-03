@@ -58,7 +58,7 @@ function App() {
                 </>
               }
             />
-            <Route path="verify/:token" element={<Verify />} />
+            <Route path="vf" element={<Verify />} />
             <Route
               path="signin"
               element={
