@@ -6,7 +6,6 @@ import tiktokLogo from '../../assets/Ellipse 7.png'
 import './ChallangeCard.scss'
 import { usebackendStore } from '../../store/store';
  //const ChallangeCard = ({Image,socialtype,name,startingAmount,currentAmount}) => {
-  
   // if(documents){
   //   return (
     
@@ -25,6 +24,11 @@ import { usebackendStore } from '../../store/store';
     const ChallangeCard = (props)=>{
       const setChallengeId =  usebackendStore(state => state.setChallengeId)
       let amountWidth=props.currentAmount*100/props.startingAmount
+        const  { error, isPending, documents } = useGetAllCampaign();
+        useEffect(() =>{
+            console.log(documents.data)
+        },[documents]);
+      let currentAmount=5
       return (
         <div className='challange-card' onClick={() => setChallengeId(props.id)}>
           <img src={props.image} className='background-image'/>

@@ -1,12 +1,11 @@
 .footer {
-    width: 405px;
-    height: 176px;
     background: #242424;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding: 10px 25px;
   
     .text {
       width: 10em;
@@ -19,13 +18,15 @@
     .section-one {
       display: flex;
       flex-direction: row;
-      gap: 7rem;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
     }
   
     .section-two {
-      display: flex;
-      flex-direction: column;
-      gap: 2em;
+      img{
+        width: 100px;
+      }
     }
   
     .Copyright {
@@ -45,12 +46,25 @@
     }
   
     .line {
-      background-color: #5B5B5B;
-      height: 3px;
+
+      border-bottom: solid 1px #5B5B5B;
       width: 95%;
       display: flex;
+      margin-top: 25px;
+      margin-bottom: 15px;
       justify-content: center;
       align-items: center;
+    }
+    .copyright{
+      padding: 15px 0;
+      h3{
+        color: #FFF;
+        font-family: "Montserrat", sans-serif;
+        font-size: 10.602px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
     }
   }
   

@@ -10,30 +10,76 @@ const ProfilePage = () => {
   const { logout } = useLogout();
   const [overlayActive, setOverlayActive] = useState(false);
   const [bankDetailsActive, setBankDetailsActive] = useState(false);
+  const [editAccountActive, setEditAccountActive] = useState(false)
+  const [detailsShown, setDetailsShown] = useState(true)
+  const [User_name, setUser_name] = useState("")
+  const [User_username, setUser_username] = useState("")
+  const [User_tiktokhandle, setUser_tiktokhandle] = useState("")
+  const [User_bio, setUser_bio] = useState("")
+
   const { error, isPending, updateProfile } = useUpdateProfile();
   const toggleOverlay = () => {
     if (overlayActive) {
       setOverlayActive(false);
+
     } else if (!overlayActive) {
       setOverlayActive(true);
+      setBankDetailsActive(true)
     }
 
     console.log("clicked");
   };
+  const toggleOverlayTwo = () => {
+    if (overlayActive){
+      setOverlayActive(false)
+    }
+    else if (!overlayActive){
+      setOverlayActive(true)
+      setBankDetailsActive(true)
+    }
+
+    console.log(bankDetailsActive)
+  }
+  const editAccountChange = () =>{
+    // if(editAccountActive){
+    //     setEditAccountActive(false)
+    // }
+    // else if (editAccountActive === false){
+    //     setEditAccountActive(true)
+    // }
+
+    if (detailsShown){
+      setDetailsShown(false)
+      setEditAccountActive(true)
+
+    }
+    else if (detailsShown === false){
+      setDetailsShown(true)
+      setEditAccountActive(false)
+    }
+
+    console.log(detailsShown)
+  }
+
   const submitButton = () => {
     if (bankDetailsActive) {
       setBankDetailsActive(false);
     }
+    if (editAccountActive){
+      setEditAccountActive(false)
+    }
   };
-  const [User_name, setUser_name] = useState("");
-  const [User_username, setUser_username] = useState("");
-  const [User_tiktokhandle, setUser_tiktokhandle] = useState("");
-  const [User_bio, setUser_bio] = useState("");
 
   const handleSubmit = (e) => {
-    console.log("submitted");
     e.preventDefault();
     updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
+    if (editAccountActive === false){
+      setDetailsShown(true)
+    }
+    console.log(editAccountActive)
+    console.log (detailsShown)
+    updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
+
   };
 
   return (
@@ -58,7 +104,8 @@ const ProfilePage = () => {
           </div>
           <div className="profile-page-edit-profile">
             <div className="profile-page-edit-profile-button">
-              <button>Edit Profile</button>
+              <button onClick={editAccountChange}
+              >Edit Profile</button>
             </div>
             <div
               onClick={toggleOverlay}
@@ -73,7 +120,52 @@ const ProfilePage = () => {
           </div>
         </section>
         <section className="profile-page-form-section">
-          <div className="profile-page-form-section-div">
+          <div className={detailsShown ? "profile-page-form-section-div-static" : "profile-page-form-section-div-static-inactive"}>
+            <form onSubmit={handleSubmit}>
+              <div className="profile-page-form-div-line">
+                <p>
+                  Name
+                </p>
+                <div>
+                  {User_name}
+                </div>
+              </div>
+              <div  className="profile-page-form-div-line">
+                <p>
+                  UserName
+                </p>
+                <div>
+                  {User_username}
+                </div>
+              </div>
+              <div className="profile-page-form-div-line">
+                <p>
+                  TikTok
+                </p>
+                <div>
+                  {User_tiktokhandle}
+                </div>
+              </div>
+              <div className="profile-page-form-div-line">
+                <p>
+                  Bio
+                </p>
+                <div>
+                  {User_bio}
+
+                </div>
+              </div>
+              <div className="profile-page-form-div-line">
+                <p>
+                  Bank Account
+                </p>
+                <p>
+                  <p>Access</p>
+                </p>
+              </div>
+            </form>
+          </div>
+          <div className={detailsShown ? "profile-page-form-section-div-inactive" : "profile-page-form-section-div" }>
             <form onSubmit={handleSubmit} id="updateProfile">
               <div className="profile-page-form-div-line">
                 <p>Name</p>
@@ -129,8 +221,10 @@ const ProfilePage = () => {
           </div>
         </section>
         <section className="profile-page-form-button-section">
-          <div className="profile-page-form-save-button">
-            <button type="submit" form="updateProfile">
+          <div className={detailsShown ? "profile-page-form-save-button-inactive" : "profile-page-form-save-button"}>
+            <button
+                onClick={submitButton}
+                type="submit" form="updateProfile">
               SAVE
             </button>
           </div>
@@ -164,7 +258,8 @@ const ProfilePage = () => {
               <p>
                 Add your correct bank account details to withdraw your earnings
               </p>
-              <p onClick={toggleOverlay}>x</p>
+              <p  className="hex"
+                  onClick={toggleOverlay}>x</p>
             </div>
             <form className="profile-page-account-section-div-form">
               <div>
@@ -185,10 +280,29 @@ const ProfilePage = () => {
                   placeholder="Enter Your Account Number"
                 />
               </div>
-              <div>
-                <button onClick={submitButton}>Submit</button>
-              </div>
             </form>
+            <div className="edit-account-submit-button">
+              <button onClick={submitButton}>Add Account</button>
+            </div>
+          </div>
+          <div className={bankDetailsActive ? "account-added-succesfully-inactive" : "account-added-succesfully"}>
+            <div className="profile-page-account-section-div-header">
+              <p>
+                Add your correct bank account details to withdraw your earnings
+              </p>
+              <p  className="hex"
+                  onClick={toggleOverlayTwo}>
+                x
+              </p>
+            </div>
+            <div className="ace-body">
+              <p>
+                <FaCircleCheck className="ace-check" />
+              </p>
+              <p className="ace-added">
+                account added successfully
+              </p>
+            </div>
           </div>
         </section>
       </div>

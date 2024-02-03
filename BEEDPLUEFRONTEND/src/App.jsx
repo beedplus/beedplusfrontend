@@ -18,7 +18,9 @@ import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
-import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx";
+import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
+import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+       <Navbar />
       <Router>
         <Routes>
           <Route
@@ -113,11 +115,22 @@ function App() {
               </>
             }
           />
+
+          <Route
+            path="/admin-dashboard"
+            element={
+              <>
+                {accessToken && <AdminDashboard />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            }
+          />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
-          <Route path="*" element={<NotFound />} />
+            <Route path="/admin-signin" element={<AdminDashboardLogin/>}/>
+
         </Routes>
       </Router>
-      <Footer />
+       <Footer />
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
