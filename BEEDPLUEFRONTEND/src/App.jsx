@@ -31,12 +31,8 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <>
-                {accessToken && <Home />}
-                {!accessToken && <Navigate to="/auth/signin" />}
-              </>
-            }
+            element= <Home />
+
           />
           <Route
             path="/LandingPageSignedIn"

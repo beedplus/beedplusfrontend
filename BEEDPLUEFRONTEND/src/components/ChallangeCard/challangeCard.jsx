@@ -1,14 +1,11 @@
 import React from 'react'
 import { useGetAllCampaign } from '../../hooks/useGetAllCampaign'
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import Image from'../../assets/cardbackground.png'
 import tiktokLogo from '../../assets/Ellipse 7.png'
 import './ChallangeCard.scss'
  //const ChallangeCard = ({Image,socialtype,name,startingAmount,currentAmount}) => {
-//   const  { error, isPending, documents } = useGetAllCampaign();
-//   useEffect(() =>{
-//    console.log(documents.data)
-//   },[documents]);
+
 
   // if(documents){
   //   return (
@@ -24,6 +21,10 @@ import './ChallangeCard.scss'
     //   return(<img src={tiktok}/>)
     // }
     const ChallangeCard = ()=>{
+        const  { error, isPending, documents } = useGetAllCampaign();
+        useEffect(() =>{
+            console.log(documents.data)
+        },[documents]);
       let currentAmount=5
       return (
         <div className='challange-card'>

@@ -311,7 +311,7 @@
       margin-top: auto;
       border-top-left-radius: 25px;
       border-top-right-radius: 25px;
-      padding: 20px;
+      padding: 20px 15px;
       transform: translateY(10px);
       transition: ease-in-out .3s;
 
@@ -319,9 +319,20 @@
         display: block;
       .profile-page-account-section-div-header{
         display: flex;
-        padding: 15px;
+        padding: 10px;
         text-align: center;
+        justify-content: center;
         gap: 10px;
+        .hex{
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          color: #FFFFFF;
+          background: #000000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
       }
       .profile-page-account-section-div-submitted{
@@ -485,4 +496,21 @@
     }
   }
 
+}
+.edit-account-submit-button{
+  width: 100%;
+  padding: 20px  0;
+  button{
+    width: 100%;
+    padding: 20px 0px;
+    border-radius: 27.86px;
+    background: black;
+    color: #ffffff;
+    font-family: "Montserrat", s'';
+    font-size: 18.123px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 0.362px;
+  }
 }

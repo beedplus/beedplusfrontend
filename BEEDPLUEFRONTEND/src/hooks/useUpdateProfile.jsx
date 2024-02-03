@@ -19,7 +19,7 @@ export const useUpdateProfile = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-        data,
+        body:JSON.stringify(data),
       });
 
       if (res.status !== 200) {
