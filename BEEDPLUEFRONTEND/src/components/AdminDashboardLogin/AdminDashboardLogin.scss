@@ -1,0 +1,187 @@
+.sign_Login-admin{
+  background: #FFFFFF;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .beedlogo {
+    position: relative;
+    width: 100%;
+
+    img {
+      margin-top: -120px;
+      position: absolute;
+      margin-left: 40px;
+      width: 85px;
+      height: 37px;
+      flex-shrink: 0;
+    }
+  }
+
+ .sign-login-admin-header{
+   color: #242424;
+   text-align: center;
+   font-family: "Montserrat", sans-serif;
+   font-size: 20px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 127%; /* 25.4px */
+   padding: 20px;
+ }
+  .sign-form-div {
+    width: 402px;
+    height: 390px;
+    flex-shrink: 0;
+    border-radius: 23.106px;
+    background: #fff;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(10px);
+
+
+    .Already {
+      width: 100%;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7em;
+      flex-direction: column;
+
+      h3 {
+        color: #000;
+        font-family: Montserrat;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.15px;
+      }
+      .Sign {
+        .link {
+          color: #de9b4a;
+          font-family: Montserrat;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          letter-spacing: -0.15px;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .image {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 65.468px;
+        height: 28.498px;
+        flex-shrink: 0;
+      }
+    }
+
+    .sign_LoginLogin {
+      color: #242424;
+      width: 190px;
+      text-align: center;
+      font-family: Inter;
+      font-size: 10.783px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 127%;
+      margin: 0 auto;
+    }
+
+    .sign_Logininput-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      gap: 1.2em;
+
+
+      .sign_Loginemail {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #000;
+        height: 43.269px;
+        width: 85%;
+        border-radius: 24.619px;
+        top: 20px;
+
+        .sign_LoginRiMailLine {
+          margin-right: 12px;
+        }
+
+        input {
+          height: 70%;
+          width: 80%;
+          border: none;
+          outline: none;
+        }
+      }
+
+      .sign_Loginpassword {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #000;
+        height: 43.269px;
+        width: 85%;
+        margin-top: 20px;
+        border-radius: 24.619px;
+
+        .sign_LoginGoEye {
+          margin-right: 12px;
+        }
+
+        input {
+          height: 70%;
+          width: 80%;
+          border: none;
+          outline: none;
+        }
+
+      }
+    }
+  }
+  .sign_Loginnext {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    button {
+      width: 70%;
+      border-radius: 27.846px;
+      background: #000;
+      height: 48.942px;
+      color: #fff;
+      font-family: "Montserrat", sans-serif;
+      font-size: 18.123px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      letter-spacing: 0.362px;
+      border: none;
+    }
+    .word{
+      margin-top: 10px;
+    }
+
+  }
+}

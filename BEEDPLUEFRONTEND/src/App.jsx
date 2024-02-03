@@ -19,6 +19,7 @@ import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
+import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 
 
 function App() {
@@ -27,17 +28,13 @@ function App() {
 
   return (
     <div className="app">
-      {/* <Navbar /> */}
+       <Navbar />
       <Router>
         <Routes>
           <Route
             path="/"
-            element={
-              <>
-                {accessToken && <Home />}
-                {!accessToken && <Navigate to="/auth/signin" />}
-              </>
-            }
+            element= <Home />
+
           />
           <Route
             path="/LandingPageSignedIn"
@@ -61,7 +58,7 @@ function App() {
                 </>
               }
             />
-            <Route path="verify/:token" element={<Verify />} />
+            <Route path="vf" element={<Verify />} />
             <Route
               path="signin"
               element={
@@ -129,9 +126,11 @@ function App() {
             }
           />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
+            <Route path="/admin-signin" element={<AdminDashboardLogin/>}/>
+
         </Routes>
       </Router>
-      {/* <Footer /> */}
+       <Footer />
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>

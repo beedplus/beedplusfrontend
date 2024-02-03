@@ -13,7 +13,7 @@ export default function Footer() {
            <SocialComponents/>
         </div>
         <div className="line"></div>
-        <div className="Copyright">
+        <div className="copyright">
           <h3>@ Copyright BEED+ 2024 Company. All rights reserved</h3>
         </div>     
    </footer>

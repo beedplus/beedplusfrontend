@@ -113,6 +113,9 @@ export default function Signin() {
           </div>
         </form>
       </div>
+      <div className="sign-in-terms-and-condition">
+        Click “Next” to agree to Artic’s Terms of Service and acknowledge that Beed+ Policy applies to you
+      </div>
     </div>
   );
 }
