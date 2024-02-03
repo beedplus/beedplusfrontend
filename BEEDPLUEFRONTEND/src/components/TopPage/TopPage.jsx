@@ -1,9 +1,9 @@
 import './TopPage.scss'
-import PlayIconOne from '../../../../assets/image 378.png'
-import spreadPics from '../../../../assets/The Pics.png'
-import PlayIconTwo from '../../../../assets/playicon2.png'
-import Faces from '../../../../assets/Group 164.png'
-import PlayIconThree from '../../../../assets/image 377.png'
+import PlayIconOne from '../../assets/image 378.png'
+import spreadPics from '../../assets/The Pics.png'
+import PlayIconTwo from '../../assets/playicon2.png'
+import Faces from '../../assets/Group 164.png'
+import PlayIconThree from '../../assets/image 377.png'
 function TopPage() {
   return (
     <div className='top-page'>

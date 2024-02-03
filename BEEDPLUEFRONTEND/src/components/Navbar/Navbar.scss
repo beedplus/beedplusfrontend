@@ -4,12 +4,55 @@
     height: 94px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    justify-content: space-around;
+    padding-left: 0px 20px ;
+    justify-content: space-between;
+    
+    
   
     img {
       width: 54px;
       height: 23px;
+      margin-left: 3vw; 
+      justify-self: right;
+   
+      top:4px;
     }
+    .link-holder{
+      display: flex;
+      // float: left;
+      // width:45%;
+      align-items: center;
+      margin-top:10px;
+      margin-right:3VW ;
+      // float: left;
+    
+
+      button{
+      
+        background-color: #FF0000 ;
+        border: none;
+        border-radius:10.85px;
+        color: blanchedalmond;
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 16px;
+        margin-right:10%;
+      
+      }
+      a{
+        color: blanchedalmond;
+        font-family: Montserrat;
+        font-size: 13px;
+        font-weight: 600;
+        // margin-lef:10%;
+        line-height: 16px;
+        border: none;
+        text-decoration: none;
+       
+        
+      }
+    }
+
   }
   

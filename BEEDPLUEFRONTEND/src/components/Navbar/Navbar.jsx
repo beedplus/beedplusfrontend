@@ -1,19 +1,27 @@
 import "./Navbar.scss"
 import Beed from "../../assets/image1.svg"
 import { useState } from "react";
-import LandingPage from '../LandingPage/LandingPage';
-import LandingPageSignedIn from "../../pages/LandingPageSignedIn/LandingPageSignedIn";
+import { usebackendStore } from "../../store/store";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  return (
-    <nav className="nav">
-      <img src={Beed} alt="website logo" />
-      {isLoggedIn ? (
-        <LandingPage />
-      ) : (
-        <LandingPageSignedIn/>
-      )}
-    </nav>
-  )
+  const accessToken = usebackendStore((state) => state.accessToken);
+ 
+ if (accessToken) { return (<nav className="nav">
+                    <img src={Beed} alt="website logo" />
+                    <div>  
+                      <button>CAMPAIGNS</button>
+                      <a href = "/auth/Signup">Login</a>
+                    </div>
+                  
+                  </nav>)}
+  else {return (
+   
+                     <nav className="nav">
+                  <img src={Beed} alt="website logo" />
+                  <div className="link-holder">
+                    <button style={{width: 90.3, height: 28.21}} >Earn Now </button>
+                    <a href = "/auth/Signup">Login</a>
+                  </div>
+                </nav>)}
+  
 }
