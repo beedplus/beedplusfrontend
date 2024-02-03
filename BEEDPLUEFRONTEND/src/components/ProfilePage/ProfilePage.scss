@@ -259,6 +259,29 @@
       padding: 20px;
       .profile-page-form-save-button{
         width: 100%;
+        display: block;
+        transition: ease-in-out .5s;
+        button{
+          width: 100%;
+          border-radius: 20px;
+          background: #000;
+          color: #FFFFFF;
+          padding: 10px;
+
+          font-family: "Montserrat", sans-serif;
+          font-size: 17px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: 28px;
+          border: none;
+          cursor: pointer;
+        ;
+        }
+      }
+      .profile-page-form-save-button-inactive{
+        width: 100%;
+        display: none;
+        transition: ease-in-out .3s;
         button{
           width: 100%;
           border-radius: 20px;

@@ -1,19 +1,17 @@
-.sign_Login {
-  background: url(../../assets/MacBookAir.svg);
-  background-position: center center;
-  background-repeat: no-repeat;
+.sign_Login-admin{
+  background: #FFFFFF;
   background-size: cover;
-  height: 790px;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
   .beedlogo {
     position: relative;
     width: 100%;
-    
+
     img {
       margin-top: -120px;
       position: absolute;
@@ -24,9 +22,18 @@
     }
   }
 
-
+ .sign-login-admin-header{
+   color: #242424;
+   text-align: center;
+   font-family: "Montserrat", sans-serif;
+   font-size: 20px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 127%; /* 25.4px */
+   padding: 20px;
+ }
   .sign-form-div {
-    width: 332px;
+    width: 402px;
     height: 390px;
     flex-shrink: 0;
     border-radius: 23.106px;
@@ -34,7 +41,7 @@
     box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
     transform: translateY(10px);
 
-   
+
     .Already {
       width: 100%;
       margin-bottom: 5px;
@@ -100,7 +107,7 @@
       align-items: center;
       margin-top: 20px;
       gap: 1.2em;
-      
+
 
       .sign_Loginemail {
         display: flex;
@@ -109,7 +116,7 @@
         align-items: center;
         border: 1px solid #000;
         height: 43.269px;
-        width: 80%;
+        width: 85%;
         border-radius: 24.619px;
         top: 20px;
 
@@ -132,7 +139,7 @@
         align-items: center;
         border: 1px solid #000;
         height: 43.269px;
-        width: 80%;
+        width: 85%;
         margin-top: 20px;
         border-radius: 24.619px;
 
@@ -146,7 +153,7 @@
           border: none;
           outline: none;
         }
-       
+
       }
     }
   }
@@ -164,16 +171,17 @@
       background: #000;
       height: 48.942px;
       color: #fff;
-      font-family: Inter;
+      font-family: "Montserrat", sans-serif;
       font-size: 18.123px;
       font-style: normal;
       font-weight: 800;
       line-height: normal;
       letter-spacing: 0.362px;
+      border: none;
     }
     .word{
       margin-top: 10px;
     }
-    
+
   }
 }

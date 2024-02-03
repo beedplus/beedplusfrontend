@@ -221,7 +221,7 @@ const ProfilePage = () => {
           </div>
         </section>
         <section className="profile-page-form-button-section">
-          <div className="profile-page-form-save-button">
+          <div className={detailsShown ? "profile-page-form-save-button-inactive" : "profile-page-form-save-button"}>
             <button
                 onClick={submitButton}
                 type="submit" form="updateProfile">

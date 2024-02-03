@@ -7,6 +7,7 @@ import { useLogin } from "../../hooks/useLogin";
 import image2 from "../../assets/image 1.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Link} from "react-router-dom"
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -16,21 +17,19 @@ export default function Signin() {
   const validateInputs = () => {
     let isValid = true;
 
-    if (!email.trim()) {
+   
+    if (!email.trim() && !password.trim()) {
+      toast.error("Email and password are required");
+      isValid = false;
+    } else if (!email.trim() && password.trim()) {
       toast.error("Email is required");
+      isValid = false;
+    } else if (email.trim() && !password.trim()) {
+      toast.error("Password is required");
       isValid = false;
     } else if (!/^\S+@\S+\.\S+$/.test(email)) {
       toast.error("Invalid email format");
       isValid = false;
-    } else {
-      toast.error("pleease input your password");
-    }
-
-    if (!password.trim()) {
-      toast.error("Password is required");
-      isValid = false;
-    } else {
-      toast.error("pleease input your password");
     }
 
     return isValid;
@@ -54,9 +53,8 @@ export default function Signin() {
     e.preventDefault();
     if (validateInputs()) {
       login(email, password);
-      toast.success("sucess!!!!!");
     } else {
-      toast.error("Invalid inputs. Please fix the errors.");
+      return error
     }
   };
 
@@ -102,9 +100,16 @@ export default function Signin() {
 
           <div className="sign_Loginnext">
             <button type="submit">Login</button>
+          </div>
+          <div className="Already">
+            <h3>I have an account? </h3>
+            <div className="Sign">
+              <Link to="../../auth/Signup" className="link">
+                Sign In
+              </Link>
+            </div>
             {ispending && <p className="word">Loading.......</p>}
-
-            {error && <p className="text">{error}</p>}
+            {error && <p className="text">{error.message}</p>}
           </div>
         </form>
       </div>

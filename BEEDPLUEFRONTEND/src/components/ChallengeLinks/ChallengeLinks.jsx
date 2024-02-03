@@ -8,13 +8,13 @@ import { FaClock, FaPause, FaPlay } from "react-icons/fa6";
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
 import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
 import { useSubmit } from "../../hooks/useSubmit";
+import { useGetSubmission } from "../../hooks/useGetSubmission";
 //import caretDown from '../../assets/Polygon 1.png';
 const id = "65ba75b9bc4134b7fb72419f";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [height, setHeight] = useState(false);
-  const { error, isPending, submit } = useSubmit();
-
+  const { submit } = useSubmit();
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
   const [link3, setLink3] = useState("");
@@ -36,11 +36,14 @@ const ChallengeLinks = () => {
     setDivCount(divCount + 1);
   };*/
 
+  let { error, isPending, documents } = useGetSingleCampaign(id);
+
   let {
     error: err,
-    isPending: ispending,
-    documents,
-  } = useGetSingleCampaign(id);
+    isPending: ispend,
+    fetchSubmission,
+    documents: doc,
+  } = useGetSubmission();
 
   // let {error, isPending, documents} = useGetAllCampaign()
 
@@ -50,6 +53,8 @@ const ChallengeLinks = () => {
 
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [link, setlink] = useState("");
 
   const togglePlayPause = () => {
     const video = videoRef.current;
@@ -63,9 +68,23 @@ const ChallengeLinks = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    submit(link1, link2, link3, link4, Link5);
+    console.log("submitted");
+    submit(id, link1, link2, link3, link4, Link5);
   };
 
+  const handleMouseEnter = () => {
+    setShowButton(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowButton(false);
+  };
+  useEffect(() => {
+    if (!activeTab) {
+      console.log("active");
+      fetchSubmission(id);
+    }
+  }, [activeTab]);
   return (
     documents &&
     documents.data && (
@@ -136,8 +155,17 @@ const ChallengeLinks = () => {
               </ul>
               <header>Video post</header>
 
-              <div className="challenge-video-container">
-                <video ref={videoRef} className="challenge-video">
+              <div
+                className="challenge-video-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => setShowButton(!showButton)}
+              >
+                <video
+                  ref={videoRef}
+                  className="challenge-video"
+                  onClick={togglePlayPause}
+                >
                   <source
                     src={documents.data.demo_video}
                     type="video/mp4"
@@ -157,17 +185,17 @@ const ChallengeLinks = () => {
             </div>
           ) : (
             <>
-              <div
-                className={`submission active ${height ? "height" : ""}`}
-                onClick={() => adjustHeight()}
-              >
-                <div className="submission-header">
+              <div className={`submission active ${height ? "height" : ""}`}>
+                <div
+                  className="submission-header"
+                  onClick={() => adjustHeight()}
+                >
                   <p>SUBMISSION 1</p>
                   <span>
                     <BsCaretDownFill className="caret-down" />
                   </span>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} id="submit">
                   <div className="video-link-container">
                     <input
                       className="video-link"
@@ -217,8 +245,11 @@ const ChallengeLinks = () => {
                     />
                     <FaClock className="check" />
                   </div>
+
+                  <button className="submit-button" type="submit" id="submit">
+                    SUBMIT LINKS
+                  </button>
                 </form>
-                <button className="submit-button">SUBMIT LINKS</button>
               </div>
 
               <button className="claim-button">CLAIM</button>
