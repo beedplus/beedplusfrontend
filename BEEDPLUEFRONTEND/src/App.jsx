@@ -129,11 +129,6 @@ function App() {
             }
           />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
-<<<<<<< Updated upstream
-          <Route path="*" element={<NotFound />} />
-=======
-        
->>>>>>> Stashed changes
         </Routes>
       </Router>
       {/* <Footer /> */}
