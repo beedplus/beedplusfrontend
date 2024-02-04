@@ -206,8 +206,6 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 990px;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,6 +231,8 @@
       background: #fff;
       box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
       transform: translateY(10px);
+      width: 100%;
+      padding: 0;
 
       .image {
         height: 100px;
@@ -310,7 +310,7 @@
           background: #000;
           border-radius: 25.066px;
           color: #fff;
-          font-family: Montserrat;
+          font-family: "Montserrat", sans-serif;
           font-size: 16.313px;
           font-style: normal;
           font-weight: 800;
@@ -344,7 +344,7 @@
         .Sign {
           .link {
             color: #de9b4a;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             font-size: 15px;
             font-style: normal;
             font-weight: 400;
@@ -381,7 +381,7 @@
       .agreetoArtic {
         width: 80%;
         color: #fff;
-        font-family: Montserrat;
+        font-family: "Montserrat", sans-serif;
         font-size: 11px;
         font-style: normal;
         font-weight: 500;
