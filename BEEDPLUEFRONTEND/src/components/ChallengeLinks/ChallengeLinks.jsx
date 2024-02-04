@@ -41,7 +41,7 @@ const ChallengeLinks = () => {
   const [showButton, setShowButton] = useState(false);
   const [link, setlink] = useState("");
   const [isAllLinksVerified, setIsAllLinksVerified] = useState(false);
-
+  const [IsClaimed, setIsClaimed] = useState(false);
   useEffect(() => {
     // Check if every link in every submission is 'verified'
     if (document.data && document.data?.attempts?.length !== 0) {
@@ -97,7 +97,32 @@ const ChallengeLinks = () => {
     const allVerified = test.every((value) => value);
     return allVerified;
   };
+  const createNewCard = () => {
+    // Generate a unique key using nanoid
+    const newKey = nanoid();
 
+    // Create a new submission with empty links
+    const newSubmission = {
+      id,
+      key: newKey,
+      index: document.data?.attempts.length || 0,
+      link1: { url: "", status: "" },
+      link2: { url: "", status: "" },
+      link3: { url: "", status: "" },
+      link4: { url: "", status: "" },
+      link5: { url: "", status: "" },
+      isPending: false,
+    };
+    // Add the new submission to the existing submissions
+    const updatedSubmissions = [...document.data?.attempts, newSubmission];
+
+    setIsClaimed(false);
+  };
+
+  const handleClaim = () => {
+    setIsClaimed(true);
+    createNewCard();
+  };
   return (
     documents &&
     documents.data && (
@@ -241,16 +266,16 @@ const ChallengeLinks = () => {
               color: isAllLinksVerified ? "white" : "black", // Example text color
               // Add any other styles you want to conditionally apply
             }}
-            onClick={() => {
-              console.log("clicked");
-              console.log(
-                "all verified or is empty",
-                isAllLinksVerified || document?.data?.attempts.length === 0
-              );
-            }}
+            onClick={() => handleClaim()}
           >
             CLAIM
           </button>
+          {IsClaimed && (
+            <p>
+              request has been submitted (note it may take you 3 days to
+              complete processing)
+            </p>
+          )}
           <footer className="section-footer">
             Copyright BEED+ 2024 Company. All rights reserved
           </footer>
