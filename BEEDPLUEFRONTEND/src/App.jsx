@@ -3,6 +3,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useState } from 'react'
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound/NotFound";
 import Signup from "./auth/Signup/Signup";
@@ -17,35 +18,34 @@ import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
-import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
+import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 
 
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
+  const [currentId,setcurrentId] =useState("")
 
   return (
     <div className="app">
-      {/* <Navbar /> */}
+      <Navbar />
       <Router>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                {accessToken && <Home />}
-                {!accessToken && <Navigate to="/auth/signin" />}
+                {accessToken && <LandingPageSignedIn />}
+                {!accessToken && <Home />}
               </>
             }
           />
           <Route
             path="/LandingPageSignedIn"
             element={
-              <>
-                {accessToken && <LandingPageSignedIn />}
-                {!accessToken && <Navigate to="/signin" />}
-              </>
+   <LandingPageSignedIn />
+
             }
           />
 
@@ -131,7 +131,7 @@ function App() {
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
         </Routes>
       </Router>
-      {/* <Footer /> */}
+    <Footer /> 
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>

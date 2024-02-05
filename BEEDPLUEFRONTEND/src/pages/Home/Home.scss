@@ -1,15 +1,53 @@
-.landing-Page{
-    display: flex;
-    flex-direction: column;
- ;
-    .advert{
-        width: 329px;
-        height: 108px;
+@media only screen and (max-width:1000px){
+    .landing-Page{
+        display: flex;
+        flex-direction: column;
+     ;
+        .advert{
+            width: 329px;
+            height: 108px;
+            align-self: center;
+            display:block;
+            position: absolute;
+            top: 420.8px;
+            background: none;
+            
+        }
+    }
+    .enter-win2{
+        display: none
+    }
+
+}
+
+@media only screen and (min-width:1000px){
+    .landing-Page{
+        display: flex;
+        flex-direction: column;
+     .advert{
+        width: 788px;
+        height: 258px;
         align-self: center;
         display:block;
         position: absolute;
-        top: 420.8px;
+        top: 750.8px;
         background: none;
         
+        
     }
+    .enter-win{
+        display: none;
+    }
+    .enter-win2-container{
+        padding-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .enter-win2{
+        width:876px;
+    }
+    }
+   
 }
