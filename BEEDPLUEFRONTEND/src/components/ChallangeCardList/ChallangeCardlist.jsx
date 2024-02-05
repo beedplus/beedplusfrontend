@@ -12,8 +12,10 @@ function ChallangeCardlist() {
     if(campaignData){
         return (<div className='challange-card-list'>
                 <p className='latest'>LATEST CAMPAIGNS</p>
-                {campaignData.map((singleData,index)=> 
-                <ChallangeCard key={index} image={singleData.image} name={singleData.name} artiste={singleData.artiste} id={singleData.id} currentAmount={singleData.funds.startingAmount-singleData.funds.currentAmount }/>)}
+                <div className='class-container'>
+                  {campaignData.map((singleData,index)=> 
+                < ChallangeCard key={index} image={singleData.image} name={singleData.name} artiste={singleData.artiste} id={singleData.id} currentAmount={singleData.funds.startingAmount-singleData.funds.currentAmount }/>)}
+                </div>
                
             </div>)
     }

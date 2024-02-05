@@ -1,16 +1,43 @@
-.bottom-page{
-    background: url("../../assets/Rectangle.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .enter-win{
-        margin-bottom: 53.9px;
+
+    @media only screen and (max-width:1000px){
+        .bottom-page{
+        background: url("../../assets/Rectangle.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        padding-top: 80px;
+        flex-direction: column;
+        align-items: center;
+        .enter-win{
+            margin-bottom: 53.9px;
+        }
+   
+        .beed-logo{
+            position: relative;
+            margin-top:100px;
+            margin-bottom:29px ;
+            display: none;
+            
+        }}
     }
-    .beed-logo{
-        position: relative;
-        margin-top:100px;
-        margin-bottom:29px ;
+    @media only screen and (min-width:1000px){
+        .bottom-page{
+        background: url("../../assets/Rectangle.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        padding-top: 300px;
+        flex-direction: column;
+        align-items: center;
+        .enter-win{
+           
+            display: none;
+        }
+        .beed-logo{
+            position: relative;
+            margin-top:100px;
+            margin-bottom:29px ;
+            display: none;
+            
+        }}
     }
-}

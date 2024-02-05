@@ -13,3 +13,35 @@
         
     }
 }
+.enter-win2{
+    display: none;
+}
+@media only screen and (min-width:1000px){
+    .landing-Page{
+        display: flex;
+        flex-direction: column;
+     ;
+     .advert{
+        width: 788px;
+        height: 258px;
+        align-self: center;
+        display:block;
+        position: absolute;
+        top: 750.8px;
+        background: none;
+        
+        
+    }
+    .enter-win2-container{
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .enter-win2{
+        width:876px;
+    }
+    }
+   
+}

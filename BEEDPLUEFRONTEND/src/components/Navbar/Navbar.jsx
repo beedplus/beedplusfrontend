@@ -9,7 +9,7 @@ export default function Navbar() {
  if (accessToken) { return (<nav className="nav">
                     <img src={Beed} alt="website logo" />
                     <div>  
-                      <button>CAMPAIGNS</button>
+                      <button onclick="location.href='/signup'"><a href = "/auth/Signup">CAMPAIGNS</a></button>
                       <a href = "/auth/Signup">Login</a>
                     </div>
                   
@@ -19,7 +19,7 @@ export default function Navbar() {
                      <nav className="nav">
                   <img src={Beed} alt="website logo" />
                   <div className="link-holder">
-                    <button style={{width: 90.3, height: 28.21}} >Earn Now </button>
+                    <button onclick="location.href='/signup'"className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button>
                     <a href = "/auth/Signup">Login</a>
                   </div>
                 </nav>)}

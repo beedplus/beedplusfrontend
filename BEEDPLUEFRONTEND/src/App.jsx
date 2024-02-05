@@ -26,7 +26,6 @@ import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboard
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
-  
   const [currentId,setcurrentId] =useState("")
 
   return (

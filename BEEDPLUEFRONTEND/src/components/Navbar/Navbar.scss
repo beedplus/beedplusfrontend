@@ -27,7 +27,7 @@
       // float: left;
     
 
-      button{
+     .nav-button{
       
         background-color: #FF0000 ;
         border: none;
@@ -39,6 +39,22 @@
         line-height: 16px;
         margin-right:10%;
       
+      }
+      @media only screen and (min-width:1000px){
+       .nav-button{
+      
+          background-color: #FF0000 ;
+          border: none;
+          width: 100px;
+          border-radius:10.85px;
+          color: blanchedalmond;
+          font-family: Montserrat;
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 16px;
+          margin-right:10%;
+        
+        }
       }
       a{
         color: blanchedalmond;
