@@ -29,15 +29,15 @@ function App() {
 
   return (
     <div className="app">
-      {/* <Navbar /> */}
+      <Navbar />
       <Router>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                {accessToken && <Home />}
-                {!accessToken && <Navigate to="/auth/signin" />}
+                {accessToken && <LandingPageSignedIn />}
+                {!accessToken && <Home />}
               </>
             }
           />
@@ -131,7 +131,7 @@ function App() {
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
         </Routes>
       </Router>
-      {/* <Footer /> */}
+    <Footer /> 
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>

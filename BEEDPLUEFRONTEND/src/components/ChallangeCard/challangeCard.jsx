@@ -24,13 +24,14 @@ import { usebackendStore } from '../../store/store';
     const ChallangeCard = (props)=>{
       const setChallengeId =  usebackendStore(state => state.setChallengeId)
       let amountWidth=props.currentAmount*100/props.startingAmount
+      
         const  { error, isPending, documents } = useGetAllCampaign();
         useEffect(() =>{
             console.log(documents.data)
         },[documents]);
       let currentAmount=5
       return (
-        <div className='challange-card' onClick={() => setChallengeId(props.id)}>
+        <div className='challange-card' onClick={() => {setChallengeId(props.id); console.log(props.idaq)}}>
           <img src={props.image} className='background-image'/>
           <div className='top-info-holder'>
             <img src={tiktokLogo}/>
