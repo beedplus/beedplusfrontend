@@ -6,11 +6,11 @@ import tiktokImage from "../../assets/Ellipse 7.png";
 import { BsCaretDownFill } from "react-icons/bs";
 import { FaClock, FaPause, FaPlay } from "react-icons/fa6";
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
-import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
+// import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
 import { useSubmit } from "../../hooks/useSubmit";
 import { useGetSubmission } from "../../hooks/useGetSubmission";
 //import caretDown from '../../assets/Polygon 1.png';
-const id = "65ba75b9bc4134b7fb72419f";
+const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [height, setHeight] = useState(false);
