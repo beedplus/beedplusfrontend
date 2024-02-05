@@ -169,6 +169,7 @@ const ProfilePage = () => {
             <form onSubmit={handleSubmit} id="updateProfile">
               <div className="profile-page-form-div-line">
                 <p>Name</p>
+
                 <div>
                   <input
                     className="user-name-input"

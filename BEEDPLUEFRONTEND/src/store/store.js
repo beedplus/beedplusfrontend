@@ -10,6 +10,7 @@ const usebackendStore = create(
       tempaccessToken: null,
       modal: false,
       challengeId: null,
+      compareStatus: [],
       setAuth: (id, token) => set({ userId: id, accessToken: token }),
       setTempAuth: (id, token) =>
         set({ tempuserid: id, tempaccessToken: token }),
@@ -17,6 +18,8 @@ const usebackendStore = create(
       // setModal: () => set((state) => ({ modal: !state.modal })),
       setModal: (payload) => set({ modal: payload }),
       setChallengeID: (id) => set({  challengeId: id }),
+      setCompareStatus: (payload) =>
+        set({ compareStatus: [...this.state.compareStatus, payload] }),
     }),
     {
       name: "usebackendStore", // name of the item in the storage (must be unique)
