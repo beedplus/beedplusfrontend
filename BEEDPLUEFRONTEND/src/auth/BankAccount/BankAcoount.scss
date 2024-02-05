@@ -51,7 +51,7 @@
 
     .sign_LoginLogin {
       color: #242424;
-      width: 190px;
+      width: 250px;
       text-align: center;
       font-family: "Montserrat", sans-serif;
       font-size: 10.783px;
@@ -83,6 +83,11 @@
 
         .sign_LoginRiMailLine {
           margin-right: 12px;
+
+             .select_list{
+              width: 100px;
+              height: 200px;
+             }
         }
 
         input {

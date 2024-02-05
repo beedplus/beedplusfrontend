@@ -29,13 +29,14 @@ function App() {
   return (
     <div className="app">
        <Navbar />
+       <BankAcoount />
       <Router>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element= <Home />
 
-          />
+          /> */}
           <Route
             path="/LandingPageSignedIn"
             element={
