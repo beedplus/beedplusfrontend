@@ -14,7 +14,7 @@ function ChallangeCardlist() {
                 <p className='latest'>LATEST CAMPAIGNS</p>
                 <div className='class-container'>
                   {campaignData.map((singleData,index)=> 
-                < ChallangeCard key={index} image={singleData.image} name={singleData.name} artiste={singleData.artiste} id={singleData.id} currentAmount={singleData.funds.startingAmount-singleData.funds.currentAmount }/>)}
+                < ChallangeCard key={index} image={singleData.image} name={singleData.name} artiste={singleData.artiste} id={singleData._id} currentAmount={singleData.funds.startingAmount-singleData.funds.currentAmount }/>)}
                 </div>
                
             </div>)

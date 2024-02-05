@@ -20,18 +20,21 @@ import { usebackendStore } from '../../store/store';
     //   return(<img src={tiktok}/>)
     // }
 
-    // const challengeId =  usebackendStore(state => state.ChallangeId)
+    
+      
     const ChallangeCard = (props)=>{
       const setChallengeId =  usebackendStore(state => state.setChallengeId)
+      const challengeId =  usebackendStore(state => state.ChallangeId)
       let amountWidth=props.currentAmount*100/props.startingAmount
       
         const  { error, isPending, documents } = useGetAllCampaign();
-        useEffect(() =>{
+        useEffect((challengeId) =>{
             console.log(documents.data)
         },[documents]);
       let currentAmount=5
       return (
-        <div className='challange-card' onClick={() => {setChallengeId(props.id); console.log(props.idaq)}}>
+        <div className='challange-card' onClick={() => {setChallengeId(props.id);console.log(props.id)}}>
+          
           <img src={props.image} className='background-image'/>
           <div className='top-info-holder'>
             <img src={tiktokLogo}/>
