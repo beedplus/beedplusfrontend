@@ -4,7 +4,6 @@ import { usebackendStore } from "../store/store";
 export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [documents, setDocuments] = useState([]);
   const [isCancelled] = useState(false);
   const apiUrl = "https://beedplus.onrender.com/user/update/me";
   const accessToken = usebackendStore((state) => state.accessToken);
@@ -24,11 +23,11 @@ export const useUpdateProfile = () => {
 
       if (res.status !== 200) {
         setIsPending(false);
-        setError(`Failed to get event. Status: ${res.status}`);
+        setError(`Failed to get . Status: ${res.status}`);
       } else {
         const result = await res.json();
-        setDocuments(result);
-        console.log(result);
+        if (result.status === "success") {
+        }
       }
     } catch (error) {
       if (!isCancelled) {
