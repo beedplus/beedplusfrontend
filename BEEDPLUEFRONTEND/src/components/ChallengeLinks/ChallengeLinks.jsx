@@ -72,7 +72,7 @@ const ChallengeLinks = () => {
     submit(id, link1, link2, link3, link4, Link5);
   };
 
-  const handleMouseEnter = () => {
+    const handleMouseEnter = () => {
     setShowButton(true);
   };
 
