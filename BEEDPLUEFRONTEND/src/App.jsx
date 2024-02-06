@@ -32,8 +32,9 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+
       <Router>
+          <Navbar />
         <Routes>
         <Route
             path="/home"

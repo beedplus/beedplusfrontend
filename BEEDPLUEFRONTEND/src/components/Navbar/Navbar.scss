@@ -151,6 +151,29 @@
         }
       }
     }
+    .not-signed-in-navbar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .earn-now-nav-button{
+        a{
+          text-decoration: none;
+          button{
+            border: none;
+            background: red;
+            border-radius: 15px;
+            color: #FFFFFF;
+          }
+        }
+      }
+      .not-signed-in-login-page{
+        a{
+          text-decoration: none;
+          color: #FFFFFF;
+        }
+      }
+    }
   }
 }
   

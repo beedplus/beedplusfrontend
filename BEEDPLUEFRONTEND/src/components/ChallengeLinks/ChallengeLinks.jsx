@@ -30,7 +30,7 @@ const ChallengeLinks = () => {
 
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
-  let { document } = useGetSubmission(id);
+  let { document, setDocument } = useGetSubmission(id);
 
   //   const checkFullyVerified = [];
   //   if (document.data) {
@@ -244,6 +244,7 @@ const ChallengeLinks = () => {
             <button
               onClick={() => setActiveTab(false)}
               className={`grey ${!activeTab ? "active" : "unactive"}`}
+
             >
               SUBMISSION
             </button>

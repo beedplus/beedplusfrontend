@@ -21,18 +21,17 @@ export default function Submission({
   const [link5, setLink5] = useState(li5?.url || "");
   const [height, setHeight] = useState(false);
 
-  const { submit } = useSubmit();
+  const { submit, isPend, error, success } = useSubmit();
   function adjustHeight() {
     setHeight(!height);
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isPending) {
-      submit(id, link1, link2, link3, link4, link5);
-      console.log;
+      await submit(id, link1, link2, link3, link4, link5);
+      // Success state is now handled inside the useSubmit hook
     }
   };
-
   // console.log(isPending)
   return (
     <div key={key2}>
@@ -56,6 +55,7 @@ export default function Submission({
               value={link1}
               onChange={(e) => setLink1(e.target.value)}
               disabled={li1?.status === "verified"}
+              required={true}
             />
 
             {li1?.status === "rejected" && <p>{li1?.reason}</p>}
@@ -76,6 +76,7 @@ export default function Submission({
               value={link2}
               onChange={(e) => setLink2(e.target.value)}
               disabled={li2?.status === "verified"}
+              required={true}
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
             {li2?.status === "verified" ? (
@@ -94,6 +95,7 @@ export default function Submission({
               value={link3}
               onChange={(e) => setLink3(e.target.value)}
               disabled={li3?.status === "verified"}
+              required={true}
             />
             {li3?.status === "rejected" && <p>{li3?.reason}</p>}
             {li3?.status === "verified" ? (
@@ -112,6 +114,7 @@ export default function Submission({
               value={link4}
               onChange={(e) => setLink4(e.target.value)}
               disabled={li4?.status === "verified"}
+              required={true}
             />
             {li4?.status === "rejected" && <p>{li4?.reason}</p>}
             {li4?.status === "verified" ? (
@@ -130,6 +133,7 @@ export default function Submission({
               value={link5}
               onChange={(e) => setLink5(e.target.value)}
               disabled={li5?.status === "verified"}
+              required={true}
             />
             {li5?.status === "rejected" && <p>{li5?.reason}</p>}
             {li5?.status === "verified" ? (
@@ -152,8 +156,11 @@ export default function Submission({
               // Add any other styles you want to conditionally apply
             }}
           >
-            SUBMIT LINKS
+            {!isPend && !success && <p>SUBMIT LINKS</p>}
+            {isPend && <p>loading</p>}
+            {success && !isPend && <p>success</p>}
           </button>
+          {/*{error && <p>{error}</p>}*/}
         </form>
       </div>
     </div>
