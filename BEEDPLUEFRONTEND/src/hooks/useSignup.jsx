@@ -47,6 +47,7 @@ export const useSignUp = () => {
       if (data.status === "error") {
         setError(data.message);
       }
+
       setIspending(false);
     } catch {
       if (!iscancelled) {

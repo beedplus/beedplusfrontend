@@ -6,6 +6,7 @@ import Faces from '../../assets/Group 164.svg'
 import PlayIconThree from '../../assets/Group 286.png'
 import Money from '../../assets/MONEY.svg'
 import money2 from '../../assets/MONEY2.svg'
+import { Link } from 'react-router-dom'
 function TopPage() {
   return (
     <div className='top-page'>
@@ -26,7 +27,7 @@ function TopPage() {
         <div className='butt-para-spreadpics'>
         <div className='para-butt'>
           <p className='para'>Participate in Challenges to win quick cash</p>
-          <button className='sign-up-now'> SIGN UP NOW </button>
+          <Link to='../../auth/Signup'><button className='sign-up-now' > SIGN UP NOW </button></Link>
           <img src={Faces} alt="Faces" className='faces' /> 
           <img src={PlayIconThree} alt="play-icon-three" className='play-icon-three' /> 
         </div>

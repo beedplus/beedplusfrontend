@@ -25,7 +25,7 @@ import {Routes,Route,useNavigate} from "react-router-dom"
       
     const ChallangeCard = (props)=>{
       const navigate = useNavigate();
-      const setChallengeId = usebackendStore((state) => state.setChallengeID);
+      const setChallengeId = usebackendStore((state) => state.setChallengeId);
 
       const navigateToChallengeLink = () =>{
 
@@ -36,7 +36,7 @@ import {Routes,Route,useNavigate} from "react-router-dom"
       
         const  { error, isPending, documents } = useGetAllCampaign();
         useEffect((challengeId) =>{
-            console.log(documents.data)
+            // console.log(documents.data)s
         },[documents]);
       let currentAmount=5
       return (

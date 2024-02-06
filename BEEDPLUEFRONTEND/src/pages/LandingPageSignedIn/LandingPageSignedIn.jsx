@@ -12,7 +12,9 @@ export default function LandingPageSignedIn() {
           <img src={Advert} alt="Advert" className='advert' />
       </div>
       <ChallangeCardlist id="latest"/>
-      <img src={EnterWin} alt="EnterWin" className='enter-win2' />
+      <div className="signed-in-landing-page-call-to-action">
+          <img src={EnterWin} alt="EnterWin" className='enter-win2' />
+      </div>
       <ChallangeCardlist className="new" campaign="new"/>
     </div>
   );
