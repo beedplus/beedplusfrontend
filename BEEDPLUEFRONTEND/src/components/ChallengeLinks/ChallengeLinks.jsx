@@ -13,11 +13,12 @@ import { useSubmit } from "../../hooks/useSubmit";
 import { useGetSubmission } from "../../hooks/useGetSubmission";
 import Submission from "../Submission";
 import { nanoid } from "nanoid";
+import { usebackendStore } from "../../store/store";
 //import caretDown from '../../assets/Polygon 1.png';
-const id = "65bd61e95032a9f093b2d775";
+// const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
-
+  const id = usebackendStore((state) => state.challengeId);
   const { submit } = useSubmit();
   // const [ID, setID] = useState(null);
   // const [loading, setLoading] = useState(false)
@@ -30,6 +31,7 @@ const ChallengeLinks = () => {
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
   let { document } = useGetSubmission(id);
+
   //   const checkFullyVerified = [];
   //   if (document.data) {
   //     document.data.attempts.map(
@@ -45,10 +47,31 @@ const ChallengeLinks = () => {
   const [link, setlink] = useState("");
   const [isAllLinksVerified, setIsAllLinksVerified] = useState(false);
   const [IsClaimed, setIsClaimed] = useState(false);
+  // useEffect(() => {
+  //   // Check if every link in every submission is 'verified'
+  //   if (document.data && document.data?.attempts?.length !== 0) {
+  //     const allLinksVerified = document.data.attempts.every((attempt) =>
+  //       handleCheckPend(
+  //         attempt.link1.status,
+  //         attempt.link2.status,
+  //         attempt.link3.status,
+  //         attempt.link4.status,
+  //         attempt.link5.status
+  //       )
+  //     );
+  //     setIsAllLinksVerified(allLinksVerified);
+  //     console.log("isallverified", isAllLinksVerified);
+  //   }
+  // }, [document, isAllLinksVerified]);
+
   useEffect(() => {
     // Check if every link in every submission is 'verified'
-    if (document.data && document.data?.attempts?.length !== 0) {
-      const allLinksVerified = document.data.attempts.every((attempt) =>
+    console.log("doc", document);
+    if (
+      document.message !== "No existing submission" &&
+      document?.data?.attempts?.length !== 0
+    ) {
+      const allLinksVerified = document.data?.attempts.every((attempt) =>
         handleCheckPend(
           attempt.link1.status,
           attempt.link2.status,
@@ -57,18 +80,33 @@ const ChallengeLinks = () => {
           attempt.link5.status
         )
       );
-      setIsAllLinksVerified(allLinksVerified);
-      console.log("isallverified", isAllLinksVerified);
+
+      // Use a functional update to ensure the state is updated correctly
+      setIsAllLinksVerified((prevIsAllLinksVerified) =>
+        prevIsAllLinksVerified !== allLinksVerified
+          ? allLinksVerified
+          : prevIsAllLinksVerified
+      );
+
+      console.log("isallverified", allLinksVerified);
     }
-  }, [document, isAllLinksVerified]);
+  }, [document]);
 
   useEffect(() => {
     if (!activeTab) {
-      console.log("is empty", document?.data?.attempts.length === 0);
+      console.log("is empty", document?.data?.attempts?.length === 0);
       console.log("all verified", isAllLinksVerified);
       console.log(document);
     }
   }, [document, activeTab, isAllLinksVerified]);
+
+  useEffect(() => {
+    if (documents && documents.data) {
+      console.log(documents.data.demo_video);
+      videoRef.current.src = documents.data.demo_video;
+    }
+  }, [documents]);
+
   const togglePlayPause = () => {
     const video = videoRef.current;
     if (video.paused) {
@@ -80,7 +118,7 @@ const ChallengeLinks = () => {
     }
   };
 
-    const handleMouseEnter = () => {
+  const handleMouseEnter = () => {
     setShowButton(true);
   };
 
@@ -194,7 +232,7 @@ const ChallengeLinks = () => {
                 <li>Create 5 videos with the song and post it</li>
                 <li>The more you create, the more you win!</li>
               </ul>
-              <header>Video post</header>
+              <header>Video post {documents.data.demo_video}</header>
 
               <div
                 className="challenge-video-container"
@@ -210,7 +248,7 @@ const ChallengeLinks = () => {
                   onClick={togglePlayPause}
                 >
                   <source
-                    // src={documents.data.demo_video}
+                    src={documents.data.demo_video}
                     type="video/mp4"
                   ></source>
                 </video>
@@ -221,12 +259,12 @@ const ChallengeLinks = () => {
                   </div>
                 </div>
               </div>
-              <button className="claim-button">CLAIM</button>
+              {/* <button className="claim-button">CLAIM</button>
               <footer className="section-footer">
                 Copyright BEED+ 2024 Company. All rights reserved
-              </footer>
+              </footer> */}
             </div>
-          ) : document.data && document.data.attempts.length > 0 ? (
+          ) : document.message !== "No existing submission" && document?.data?.attempts?.length > 0 ? (
             document.data.attempts.map((attempt, i) => (
               <Submission
                 id={id}

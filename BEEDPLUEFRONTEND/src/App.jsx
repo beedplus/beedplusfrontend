@@ -20,12 +20,15 @@ import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
-
+import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
   const [currentId,setcurrentId] =useState("")
+  // const navigateToChallengeLink =() =>{
+  //   navigate("/challenge-link")
+  // }
 
   return (
     <div className="app">
@@ -128,7 +131,8 @@ function App() {
               </>
             }
           />
-          <Route path="/challenge-link" element={<ChallengeLinks/>} />
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<ChallengeLinks />} />
+
         </Routes>
       </Router>
     <Footer /> 
@@ -139,3 +143,4 @@ function App() {
 }
 
 export default App;
+// export {navigateToChallengeLink};
