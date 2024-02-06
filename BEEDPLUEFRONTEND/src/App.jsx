@@ -3,6 +3,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useState } from 'react'
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound/NotFound";
 import Signup from "./auth/Signup/Signup";
@@ -17,33 +18,34 @@ import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
-import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
+import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
-import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 
 
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
+  const [currentId,setcurrentId] =useState("")
 
   return (
     <div className="app">
-       <Navbar />
-       {/* <BankAcoount /> */}
+      <Navbar />
       <Router>
         <Routes>
-          {/* <Route
-            path="/"
-            element= <Home />
-
-          /> */}
           <Route
-            path="/LandingPageSignedIn"
+            path="/"
             element={
               <>
                 {accessToken && <LandingPageSignedIn />}
-                {!accessToken && <Navigate to="/signin" />}
+                {!accessToken && <Home />}
               </>
+            }
+          />
+          <Route
+            path="/LandingPageSignedIn"
+            element={
+   <LandingPageSignedIn />
+
             }
           />
 
@@ -68,7 +70,7 @@ function App() {
               </>
               }
             />
-            <Route path="vf" element={<Verify />} />
+            <Route path="verify/:token" element={<Verify />} />
             <Route
               path="signin"
               element={
@@ -136,11 +138,9 @@ function App() {
             }
           />
           <Route path="/challenge-link" element={<ChallengeLinks/>} />
-            <Route path="/admin-signin" element={<AdminDashboardLogin/>}/>
-
         </Routes>
       </Router>
-       <Footer />
+    <Footer /> 
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>

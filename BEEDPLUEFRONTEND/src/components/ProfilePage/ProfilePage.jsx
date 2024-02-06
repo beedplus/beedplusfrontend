@@ -169,6 +169,7 @@ const ProfilePage = () => {
             <form onSubmit={handleSubmit} id="updateProfile">
               <div className="profile-page-form-div-line">
                 <p>Name</p>
+
                 <div>
                   <input
                     className="user-name-input"
@@ -288,7 +289,7 @@ const ProfilePage = () => {
           <div className={bankDetailsActive ? "account-added-succesfully-inactive" : "account-added-succesfully"}>
             <div className="profile-page-account-section-div-header">
               <p>
-                Add your correct bank account details to withdraw your earnings
+                Bank Account Added
               </p>
               <p  className="hex"
                   onClick={toggleOverlayTwo}>

@@ -1,40 +1,128 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../AdminDashboard/AdminDashboard.scss";
-import { IoSearchOutline } from "react-icons/io5";
-import notificationIcon from "../../assets/iconoir_bell-notification.png";
-import beepLogo from "../../assets/image 2.png";
+/*import { IoSearchOutline } from "react-icons/io5";
+import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
+
 import caretDown from "../../assets/Vector 1.png";
+import { FaWindowClose } from "react-icons/fa";
+import { IoCheckboxSharp } from "react-icons/io5";
+import FixedNavbar from "../FixedNavbar/FixedNavbar";
+import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
+
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA2ODk1ODQ1LCJleHAiOjE3MDc1MDA2NDV9.akWtLU25UBITW9Uuuxg65dHWLtHaOMlk0UooS1_o_CM";
+
+const fetchSingleSubmission = async (id) => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `https://beedplus.onrender.com/admin/submissions/${id}`,
+    // the :id here is the submission id
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  axios
+    .request(config)
+    .then((response) => {
+      const attempts = response.data.data.attempts;
+      // console.log(attempts)
+      console.log(JSON.stringify(attempts));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 const AdminDashboard = () => {
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA2ODk1ODQ1LCJleHAiOjE3MDc1MDA2NDV9.akWtLU25UBITW9Uuuxg65dHWLtHaOMlk0UooS1_o_CM";
-  let data = "";
-  let config = {
+  const [reason, setReason] = useState("");
+  const [attemptId, setAttemptId] = useState("");
+  let configa = {
     method: "get",
     maxBodyLength: Infinity,
     url: "https://beedplus.onrender.com/admin/submissions",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    data: data,
   };
 
   axios
-    .request(config)
+    .request(configa)
     .then((response) => {
-      if (response.data.status === "success") {
-        response.data.data.forEach((submission) => {
-          console.log(submission.campaignId.name);
-        });
+      if (response.data.status === "success" && response.data.data.length > 0) {
+        const submissionId = response.data.data[0]._id;
+        setCurrentSubmissionId(submissionId);
       } else {
-        console.log("Failed to fetch submissions.");
+        //console.log("Failed to fetch submissions.");
       }
     })
     .catch((error) => {
-      console.error("Error fetching submissions:", error);
+      //console.error("Error fetching submissions:", error);
     });
+
   const [submissions, setSubmissions] = useState([]);
+  const [clickedSubmissionLinks, setClickedSubmissionLinks] = useState([]);
+  const [currentSubmissionId, setCurrentSubmissionId] = useState("");
+  const [isDataFetched, setIsDataFetched] = useState(false);
+
+  //   const [rejection, setRejection] = useState(true);
+  let [submissionHeight, setSubmissionHeight] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.request(configa);
+        if (response.data.status === "success") {
+          response.data.data.map((res) => {
+            console.log({ res: res._id });
+            setCurrentSubmissionId(res._id);
+          });
+          setSubmissions(response.data.data);
+          setIsDataFetched(true);
+        } else {
+          // console.log("Failed to fetch submissions.");
+        }
+      } catch (error) {
+        // console.error("Error fetching submissions:", error);
+      }
+    };
+    if (!isDataFetched) {
+      fetchData();
+    }
+  }, [isDataFetched]);
+
+  function appendLinks(attempts, submissionIndex) {
+    let links = [];
+    const startIndex = submissionIndex * 5;
+    const endIndex = Math.min(startIndex + 5, attempts.length);
+    for (let i = startIndex; i < endIndex; i++) {
+      const attempt = attempts[i];
+      links.push(
+        <div key={`link-${i}`} className="submission-data">
+          {attempt.link1 && <a href={attempt.link1.url}>{attempt.link1.url}</a>}
+          {attempt.link2 && <a href={attempt.link2.url}>{attempt.link2.url}</a>}
+          {attempt.link3 && <a href={attempt.link3.url}>{attempt.link3.url}</a>}
+          {attempt.link4 && <a href={attempt.link4.url}>{attempt.link4.url}</a>}
+          {attempt.link5 && <a href={attempt.link5.url}>{attempt.link5.url}</a>}
+        </div>
+      );
+    }
+    return links;
+  }
+  function handleButtonClick(index, attempt) {
+    const links = [];
+    // Assuming link1 is always present in the attempt
+    for (let i = 1; i <= 5; i++) {
+      const linkKey = `link${i}`;
+      if (attempt[linkKey]) {
+        links.push(attempt[linkKey].url);
+      }
+    }
+    setClickedSubmissionLinks(links);
+    setAttemptId(attempt._id);
+  }
 
   const [headerStates, setHeaderStates] = useState({
     userInfo: false,
@@ -43,23 +131,6 @@ const AdminDashboard = () => {
     dateTime: false,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.request(config);
-        if (response.data.status === "success") {
-          setSubmissions(response.data.data);
-        } else {
-          console.log("Failed to fetch submissions.");
-        }
-      } catch (error) {
-        console.error("Error fetching submissions:", error);
-      }
-    };
-
-    fetchData();
-  }, []); // Em
-
   function toggleHeader(header) {
     setHeaderStates((prevState) => ({
       ...prevState,
@@ -67,21 +138,115 @@ const AdminDashboard = () => {
     }));
   }
 
+  const [submissionHeights, setSubmissionHeights] = useState({});
+
+  const toggleHeight = (submissionIndex) => {
+    setSubmissionHeights((prevHeights) => ({
+      ...prevHeights,
+      [submissionIndex]: !prevHeights[submissionIndex],
+    }));
+  };
+
+  function displayDropdown(submission) {
+    const idx = submission._id;
+    fetchSingleSubmission(idx);
+  }
+
+  const handleCheck = async (submissionId) => {
+    const data = {
+      attemptId: attemptId,
+      updates: {
+        link1: { status: "verified" },
+        link2: { status: "verified" },
+        link3: { status: "verified" },
+        link4: { status: "verified" },
+        link5: { status: "verified" },
+      },
+    };
+
+    let configs = {
+      method: "post",
+      url: `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: JSON.stringify(data),
+    };
+    axios
+      .request(configs)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleReject = async () => {
+    const data = {
+      attemptId: attemptId,
+      updates: {
+        link1: { status: "rejected", reason: reason },
+        link2: { status: "rejected", reason: reason },
+        link3: { status: "rejected", reason: reason },
+        link4: { status: "rejected", reason: reason },
+        link5: { status: "rejected", reason: reason },
+      },
+    };
+
+    try {
+      const response = await axios.post(
+        `https://beedplus.onrender.com/admin/submissions/${attemptId}/review`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const dayOfWeek = days[date.getDay()];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${dayOfWeek} ${month} ${year}`;
+  }
+
+  let [rejection, setRejection] = useState(true);
+
+  function displayRejectMessage() {
+    setRejection(false);
+  }
+
   return (
     <section className="admin-dashboard-section">
-      <div className="fixed-navigation-bar">
-        <img src={beepLogo} className="beep-logo" />
-      </div>
+        <FixedNavbar/>
 
       <div className="content-section">
-        <div className="navigation-bar">
-          <div className="input-field-container">
-            <input className="search-bar" placeholder="Search" />
-            <IoSearchOutline className="search-button" />
-          </div>
-          <img src={notificationIcon} className="notification-icon" />
-          <div className="user-initials"></div>
-        </div>
+        <SearchNavigationbar/>
 
         <div className="information-section">
           <div className="campaign-section">
@@ -95,121 +260,134 @@ const AdminDashboard = () => {
             <div className="dashboard-table">
               <div className="table-info">
                 <div className="table-headers">
-                <header
-                    className={headerStates.campaignName ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("campaignName")}
-                  >
-                    User Info <img src={caretDown} alt="caret-down" />
-                  </header>
-
-
-                  <header
-                    className={headerStates.campaignName ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("campaignName")}
-                  >
-                    Campaign name <img src={caretDown} alt="caret-down" />
-                  </header>
-
-                  <header
-                    className={headerStates.campaignName ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("campaignName")}
-                  >
-                    Phone number <img src={caretDown} alt="caret-down" />
-                    
-                  </header>
-
-                  <header
-                    className={headerStates.campaignName ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("campaignName")}
-                  >
-                    Date & Time <img src={caretDown} alt="caret-down" />
-                  </header>
-                </div>
-                <div className="table-item">
-               
-                  {submissions.map((submission, index) => (
-                     <div className="item">
-                        <div key={index} className="user-info em">
-                        <b>
-                            {submission.userId.firstname}&nbsp;
-                            {submission.userId.lastname}
-                        </b> <br />
-                        <p>{submission.userId.email}</p>
-                    </div>
-
-                    <p key={index} className="hashtag em">
-                    #{submission.campaignId.name} 
-                    </p>
-
-                    <p className="user-phone-number em">081202853523</p>
-
-                    <div key={index} className="date-and-time em">
-                   <p>{submission.updatedAt}</p>
-                    {/*<p>10.30 AM</p>*/}
-                   </div>
-                    </div>
-                
-                    
-
-
-                  ))}
-                </div>
-
-           
-              </div>
-            </div>
-          </div>
-
-          {/* 
-            <div className="dashboard-table">
-              <div className="table-info">
-                <div className="table-item">
                   <header
                     className={headerStates.userInfo ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("userInfo")}
                   >
-                    User info <img src={caretDown} alt="caret-down" />
+                    User Info <img src={caretDown} alt="caret-down" />
                   </header>
-                  <div className="user-info">
-                    <b>John Doe</b>
-                    <p>johndoe@gmail.com</p>
-                  </div>
-                </div>
 
-                <div className="table-item">
                   <header
                     className={headerStates.campaignName ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("campaignName")}
                   >
                     Campaign name <img src={caretDown} alt="caret-down" />
                   </header>
-                  <p className="hashtag">#Ofcourseitsme</p>
-                </div>
 
-                <div className="table-item">
                   <header
                     className={headerStates.phoneNumber ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("phoneNumber")}
                   >
                     Phone number <img src={caretDown} alt="caret-down" />
                   </header>
-                  <p className="user-phone-number">081202853523</p>
-                </div>
 
-                <div className="table-item">
                   <header
                     className={headerStates.dateTime ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("dateTime")}
                   >
-                    Date & time <img src={caretDown} alt="caret-down" />
+                    Date & Time <img src={caretDown} alt="caret-down" />
                   </header>
-                  <div className="date-and-time">
-                    <p>10 Feb 2023</p>
-                    <p>10.30 AM</p>
-                  </div>
+                </div>
+                <div className="table-item">
+                  {submissions.map((submission, submissionIndex) => (
+                    <div
+                      key={submissionIndex}
+                      className={`the-item ${
+                        submissionHeights[submissionIndex] ? "offset" : ""
+                      }`}
+                      onClick={() => toggleHeight(submissionIndex)}
+                    >
+                      <div
+                        className="item"
+                        onClick={() => displayDropdown(submission)}
+                      >
+                        <div className="user-info em">
+                          <b>
+                            {submission.userId.firstname}&nbsp;
+                            {submission.userId.lastname}
+                          </b>{" "}
+                          <br />
+                          <p>{submission.userId.email}</p>
+                        </div>
+
+                        <p className="hashtag em">
+                          #{submission.campaignId.name}
+                        </p>
+
+                        <p className="user-phone-number em">
+                          {submission.userId.phone}
+                        </p>
+
+                        <div className="date-and-time em">
+                          <p className="date">
+                            {formatDate(submission.updatedAt)}
+                          </p>
+                          <p className="time">
+                            {new Date(
+                              submission.updatedAt
+                            ).toLocaleTimeString()}
+                          </p>
+
+                          {/*<p>10.30 AM</p>*/}
+                        </div>
+                      </div>
+
+                      <div className="submission-list">
+                        {submission.attempts.map((attempt, index) => (
+                          <div key={`submission-${index}`}>
+                            <div
+                              onClick={() => handleButtonClick(index, attempt)}
+                              className="submission-data"
+                            >
+                              {`Submission ${index + 1}`}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div> */}
+            </div>
+          </div>
+
+          <div className="submission-section">
+            <div className="submission-header">Submission info</div>
+
+            <div className="links-container">
+              <header className="link-header">LINKS</header>
+              {clickedSubmissionLinks.map((link, index) => (
+                <div className="links" key={index}>
+                  <p className="link">{link}</p>
+                  <div className="btn-container">
+                    <IoCheckboxSharp
+                      className="check"
+                      onClick={handleCheck(currentSubmissionId)}
+                    />
+                    <FaWindowClose
+                      className="cancel"
+                      onClick={() => displayRejectMessage()}
+                    />
+                  </div>
+                </div>
+              ))}
+
+              {rejection ? (
+                <></>
+              ) : (
+                <div className="reject-message">
+                  <header>Rejection Reasons</header>
+                  <textarea
+                    placeholder="Write reasons here"
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                  ></textarea>
+                </div>
+              )}
+            </div>
+
+            <button className="finish-button">FINISH</button>
+          </div>
         </div>
 
         {/* <div className="submission-section">

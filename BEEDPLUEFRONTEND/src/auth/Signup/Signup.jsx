@@ -82,9 +82,9 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      <div className="beedlogo">
-        <img src={image2} alt="beed logo" />
-      </div>
+      {/*<div className="beedlogo">*/}
+      {/*  <img src={image2} alt="beed logo" />*/}
+      {/*</div>*/}
       <div className="form-div">
         <form onSubmit={handleSubmit}>
           <div className="image">
