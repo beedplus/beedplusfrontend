@@ -5,6 +5,7 @@ export const useGetBankAccount = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [documents, setDocuments] = useState([]);
+  const [code,setCode] = useState([]);
   let isCancelled = false;
 
   const apiUrl = `https://beedplus.onrender.com/user/banks`;
@@ -41,11 +42,11 @@ export const useGetBankAccount = () => {
 
     fetchData();
 
-  }, [apiUrl]);
+  }, [apiUrl, isCancelled]);
 
   useEffect(() => {
   }, [error]);
 
-  return { error, isPending, documents };
+  return { error, isPending, documents, code };
 };
 

@@ -9,61 +9,25 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetBankAccount } from "../../hooks/useGetBankAccount";
 import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber"
-
+import { useSubmitBankAccount } from "../../hooks/useSubmitBankAccount";
+import { usebackendStore } from "../../store/store";
 export default function BankAcoount() {
-  const [selectedBank, setSelectedBank] = useState("");
+  const [sortCode, setSortCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const { documents, error, isPending } = useGetBankAccount();
-  const {data} = useVerifyAccountNumber();
-
-  useEffect(() => {
-    if (selectedBank) {
-      const selectedBankObject = documents.find((bank) => bank.code === selectedBank);
-      if (selectedBankObject) {
-        console.log("Selected Bank Slug:",   selectedBankObject.code );
-      }
-    }
-  }, [selectedBank, documents]);
-
-  
-  
-  useEffect(() => {
-  }, [selectedBank]);
-
-  useEffect(() => {
-  }, [documents]);
-
-  const validateInputs = () => {
-    let isValid = true;
-
-    if(!selectedBank) {
-      toast.error("Please select a bank");
-      isValid = false;
-    }else if (!accountNumber.trim() || accountNumber.length < 10) {
-      toast.error("Account number is required and must be at least 10 digits");
-      isValid = false;
-    } else  if(accountNumber.length === 10){
-      data()
-    }
-
-    return isValid;
-  };
+  const { documents, error, isPending } = useGetBankAccount(); 
+  const {  submitbankAccount, error: err, ispending: ispend} = useSubmitBankAccount();
+  const id =  usebackendStore(state => state.user.userId) 
+  const {document} = useVerifyAccountNumber(sortCode, accountNumber);
  
-  
+   const handleSubmit = (e) =>  {
+    e.preventDefault()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateInputs()) {
-      toast.success("Please wait for some seconds");
-    } else {
-      return error;
-    }
-  };
-
+    submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+   }
 
 
   return (
-    <div className="sign_Login">
+    document && document.data && (<div className="sign_Login">
       <div className="beedlogo">
         <img src={image2} alt="beedlogo" />
       </div>
@@ -85,15 +49,15 @@ export default function BankAcoount() {
               <select
                name="selectedBank"
                className="select_list"
-               value={accountNumber}
-               onChange={(e) => setAccountNumber(console.log(e.target.value))}
+               value={sortCode}
+               onChange={(e) => setSortCode(e.target.value)}
                
               >
                 <option value="" disabled>
                   Select Your Bank
                 </option>
                 {documents.map((bank) => (
-                  <option className="" key={bank.id} value={bank.code}>
+                  <option  className="" key={bank.id} value={bank.code}>
                     {bank.name}
                   </option>
                 ))}
@@ -104,25 +68,19 @@ export default function BankAcoount() {
                   <BsBank />
               </div>
               <input
-                 type="number"
+                 type="text"
                  name="account_number"
                  placeholder="Enter account number"
-                //  value={accountNumber}
-                 onChange={(e) => setAccountNumber(e.target.value)}
-                
+                 maxLength="10"
+                 value={accountNumber}
+                 onChange={(e)  => setAccountNumber(e.target.value)}
               />
             </div>
-            <div className="sign_Loginpassword">
+            <div className="sign_Log inpassword">
               <div className="sign_LoginGoEye">
                 <BsBank />
               </div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter Your Password"
-                disabled                   
-               
-              />
+              {document.data.account_name}
             </div>
           </div>
 
@@ -131,7 +89,9 @@ export default function BankAcoount() {
           </div>
         </form>
       </div>
-    </div>
+    </div>)
   );
 }
+
+
 
