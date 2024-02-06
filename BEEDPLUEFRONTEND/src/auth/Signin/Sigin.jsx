@@ -109,7 +109,7 @@ export default function Signin() {
               </Link>
             </div>
             {ispending && <p className="word">Loading.......</p>}
-            {error && <p className="text">{error.message}</p>}
+            {error && <p className="text-error-sign">{error.message}</p>}
           </div>
         </form>
       </div>
