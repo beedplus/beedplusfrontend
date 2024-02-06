@@ -168,7 +168,7 @@ export default function Signup() {
                 </Link>
               </div>
               {ispending && <p className="word">Loading.......</p>}
-              {error && <p className="text">{error.message}</p>}
+              {error && <p className="text">{error}</p>}
             </div>
           </div>
 
@@ -176,7 +176,7 @@ export default function Signup() {
       </div>
       <div className="agree">
         <div className="agreetoArtic">
-          Click “Next” to agree to Artic’s Terms of Service and acknowledge that
+          Click “Next” to agree to Article's Terms of Service and acknowledge that
           Beed+ Policy applies to you
         </div>
       </div>

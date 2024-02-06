@@ -4,6 +4,8 @@ import { useState } from "react";
 import { usebackendStore } from "../../store/store";
 import { FaRegBellSlash } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+
 
 export default function Navbar() {
   const accessToken = usebackendStore((state) => state.accessToken);
@@ -14,7 +16,7 @@ export default function Navbar() {
                     </div>
                     <div className="signed-in-navbar-div">
                       <button>
-                          <a href = "/auth/Signup">CAMPAIGNS</a>
+                          {/* <a href= "/auth/Signup">CAMPAIGNS</a> */}
                       </button>
                       <p className="singned-nav-user-icon">
                           <a href = "/notification"><FaRegBellSlash className="navbar-notification"/></a>
@@ -31,8 +33,8 @@ export default function Navbar() {
                      <nav className="nav">
                   <img src={Beed} alt="website logo" />
                   <div className="link-holder">
-                    <button onclick="location.href='/signup'"className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button>
-                    <a href = "/auth/Signup">Login</a>
+                    <a href="/auth/Signup" ><button className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button></a>
+                    <a href = "/auth/Signin">Login</a>
                   </div>
                 </nav>)}
   
