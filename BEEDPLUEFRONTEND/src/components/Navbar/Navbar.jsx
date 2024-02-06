@@ -6,7 +6,6 @@ import { FaRegBellSlash } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-
 export default function Navbar() {
   const accessToken = usebackendStore((state) => state.accessToken);
  
@@ -29,9 +28,8 @@ export default function Navbar() {
                   
                   </nav>)}
   else {return (
-   
                      <nav className="nav">
-                  <img src={Beed} alt="website logo" />
+                       <img src={Beed} alt="website logo" />
                   <div className="link-holder">
                     <a href="/auth/Signup" ><button className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button></a>
                     <a href = "/auth/Signin">Login</a>

@@ -18,10 +18,34 @@ export default function BankAcoount() {
   const {  submitbankAccount, error: err, ispending: ispend} = useSubmitBankAccount();
   const id =  usebackendStore(state => state.user.userId) 
   const {document} = useVerifyAccountNumber(sortCode, accountNumber);
+
+  const validateInputs = () => {
+    let isValid = true;
+
+    if (!sortCode) {
+      toast.error("Please select a bank");
+      isValid = false;
+    } else if (!accountNumber.trim() || accountNumber.length < 10) {
+      toast.error("Account number is required and must be at least 10 digits");
+      isValid = false;
+    } else if(accountNumber.length === 10) {
+      console.log(document);
+    }else if(!document){
+      toast.error("Please check your account number");
+      isValid = false;
+    }
+
+    return isValid;
+  };
  
    const handleSubmit = (e) =>  {
     e.preventDefault()
-    submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+    if (validateInputs() && document.data.Bank_name) {
+     return  submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+    } else {
+      return error;
+    }
+    
    }
 
 
@@ -86,6 +110,8 @@ export default function BankAcoount() {
 
           <div className="sign_Loginnext">
             <button type="submit">Login</button>
+              {ispend&&<h4>Loading......</h4>}
+              {err&&<p>{err.message}</p>}
           </div>
         </form>
       </div>
