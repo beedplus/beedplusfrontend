@@ -21,7 +21,8 @@ import {Routes,Route,useNavigate} from "react-router-dom"
     //   return(<img src={tiktok}/>)
     // }
 
-    // const challengeId =  usebackendStore(state => state.ChallangeId)
+    
+      
     const ChallangeCard = (props)=>{
       const navigate = useNavigate();
       const setChallengeId = usebackendStore((state) => state.setChallengeID);
@@ -34,7 +35,7 @@ import {Routes,Route,useNavigate} from "react-router-dom"
       let amountWidth=props.currentAmount*100/props.startingAmount
       
         const  { error, isPending, documents } = useGetAllCampaign();
-        useEffect(() =>{
+        useEffect((challengeId) =>{
             console.log(documents.data)
         },[documents]);
       let currentAmount=5

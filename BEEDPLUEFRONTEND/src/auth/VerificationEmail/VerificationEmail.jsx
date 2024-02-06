@@ -13,6 +13,11 @@ export default function VerificationEmail() {
                         <p>
                             A verification link has been sent to
                             your email, kindly check your email to verify
+
+                           
+                        </p>
+                        <p>
+                           you can now close this page.
                         </p>
                     </div>
                 </div>

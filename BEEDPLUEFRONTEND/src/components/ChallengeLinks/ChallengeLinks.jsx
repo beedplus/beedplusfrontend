@@ -63,6 +63,7 @@ const ChallengeLinks = () => {
   //     console.log("isallverified", isAllLinksVerified);
   //   }
   // }, [document, isAllLinksVerified]);
+  const accessToken = usebackendStore((state) => state.accessToken);
 
   useEffect(() => {
     // Check if every link in every submission is 'verified'
@@ -138,14 +139,37 @@ const ChallengeLinks = () => {
     const allVerified = test.every((value) => value);
     return allVerified;
   };
+  const updateSubmission = async (attemptId) => {
+    console.log(attemptId)
+    try {
+      const response = await fetch(`https://beedplus.onrender.com/campaigns/${document.data._id}/submission`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+          Authorization: `Bearer ${accessToken}`,
+        },
+      
+        body: JSON.stringify({ attemptId }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to update submission. Status: ${response.status}`);
+      }
+  
+      console.log('Submission updated successfully');
+      console.log(response.json())
+    } catch (error) {
+      console.error('Error updating submission:', error.message);
+      // Handle the error as needed
+    }
+  };
+  
   const createNewCard = () => {
     // Generate a unique key using nanoid
-    const newKey = nanoid();
-
-    // Create a new submission with empty links
     const newSubmission = {
-      id,
-      key: newKey,
+      campaignId: id,
+      key: nanoid(),
       index: document.data?.attempts.length || 0,
       link1: { url: "", status: "" },
       link2: { url: "", status: "" },
@@ -154,16 +178,25 @@ const ChallengeLinks = () => {
       link5: { url: "", status: "" },
       isPending: false,
     };
-    // Add the new submission to the existing submissions
-    const updatedSubmissions = [...document.data?.attempts, newSubmission];
-
-    setIsClaimed(false);
+  
+    // Return the new submission
+    return newSubmission;
   };
-
+  
   const handleClaim = () => {
     setIsClaimed(true);
-    createNewCard();
+    const newSubmission = createNewCard();
+    
+    // Update the document state with the new submission
+    setDocument(prevDocument => {
+      const updatedSubmissions = [...prevDocument.data?.attempts, newSubmission];
+      return { ...prevDocument, data: { attempts: updatedSubmissions } };
+    });
+    
+    // Update the backend with the new submission
+    updateSubmission(newSubmission._id); // Assuming _id is the identifier for the attempt
   };
+  
   return (
     documents &&
     documents.data && (
