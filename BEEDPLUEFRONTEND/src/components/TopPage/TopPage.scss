@@ -1,0 +1,233 @@
+ *{
+ position: relative;
+ 
+}
+ @media only screen and (min-width:1000px){
+     .top-page{
+         height:700px;
+         padding-left:120px;
+         padding-top: .01px;    
+         border:none;
+         background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
+         backdrop-filter: blur(8.285717964172363px);
+         color: #FFF;
+         font-family: "Poppins", sans-serif;
+         font-style: normal;
+         font-style: normal;
+        
+     }
+     .money{
+        left: -120px;
+        top: 100px;
+     }
+     .money2{
+        float: right;
+        top:630px
+     }
+         .heading{
+         width:520px;
+         margin:47.06px 0px 0px 0px;
+         letter-spacing: 1px;
+         height: 77.5px;
+         font-size:montserrat;
+         font-weight:600;
+         font-size:51.47px;
+         line-height:34.27px;
+         img{
+             width: 48px;
+             top:2px;
+         }
+         .header-secondline-styling{
+             top: 19.07px;
+             font-weight: 700;
+             font-size: 47px;
+             font-weight: 700;
+             line-height: 20.036px;
+    
+         }
+         .header-thirdline-styling{
+             font-weight: 400;
+             line-height: 20.036px; 
+             letter-spacing: -0.201px;
+             font-size: 34.17px;
+             line-height: 34.27px;
+             top:25px;
+             color: #FFF;
+             font-family:montserrat;
+         }
+     }
+     .play-icon-one{
+         float:right;
+         margin-top:30.12px;
+        
+     }
+     .faces{
+         margin-top:20px;
+         width: 261px;
+         height: 69px; 
+         padding: 0px;
+        margin-left: -30px;
+     }
+    
+     .play-icon-three{
+         margin-top:10px;
+         left:20px;
+         width: 69px;
+         height: 69px; 
+     }
+    .sign-up-now{
+         margin-top:180.13px;
+         border-radius: 87.988px;
+         background-color: #000;
+         display: flex;
+         border:none;
+         width: 171.8px;
+         height: 44.874px;
+         padding: 13.198px 20.095px 12.318px 19.358px;
+         justify-content: center;
+         align-items: center;
+         color: #FFF;
+         text-align: center;
+         font-family: Montserrat;
+         font-size: 15.318px;
+         font-style: normal;
+         font-weight: 700;
+         line-height: 23.45px;
+     }
+     .para{
+         top:200px;
+         font-size: 24.528px;
+         font-weight: 400;
+         line-height:31.77px; 
+         width:320px;
+         height:34px; 
+         top:100px;
+         Font-family:Montserrat;
+         font-size:24.52px;
+         line-height:31.77px;
+     }
+     .spread-pics{
+         width: 489px;
+         height:497px;
+         float:right;
+         padding-right:4.09px ;
+         margin-top:-380px;
+         right:60px
+     }
+ }
+
+
+@media only screen and (max-width:1000px){
+    .top-page{
+        height: 472px;
+        padding-left:28px;
+        padding-top: .01px;
+        border:none;
+        background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
+        backdrop-filter: blur(8.285717964172363px);
+        color: #FFF;
+        font-family: "Poppins", sans-serif;
+        font-style: normal;
+        font-style: normal;
+        width:100vw;
+        .money{
+            display: none;
+        }
+        .money2{
+            display: none;
+        }
+        .heading{
+            margin:47.06px 0px 0px 0px;
+            font-size: 30.09px;
+            font-weight: 600;
+            line-height: 20.036px; 
+            letter-spacing: -0.301px;
+            height: 77.5px;
+            img{
+                width: 28px;
+                top:2px;
+            }
+            .header-secondline-styling{
+                top: 9.07px;
+                font-size: 27.583px;
+                font-weight: 700;
+                line-height: 20.036px;
+        
+            }
+            .header-thirdline-styling{
+                font-weight: 500;
+                line-height: 20.036px; 
+                letter-spacing: -0.201px;
+                font-size: 20.06px;
+                top:10px;
+                color: #FFF;
+                font-family:Poppins;
+            }
+                    
+        }
+        
+        .play-icon-one{
+            float:right;
+            margin-top:20px;
+            
+        }
+        .para{
+            top:10px;
+            font-size: 12.758px;
+            font-weight: 500;
+            line-height:16.841px; 
+            width:164px;
+            height:34px; 
+        }
+        .spread-pics{
+            float:right;
+            padding-right:4.09px ;
+            margin-top: -120px;
+            width: 186px;
+            height: 191px;
+        }
+       
+        .faces{
+            top:80px;
+            height: 38px;
+        }
+        .play-icon-three{
+            top: 80px;
+            left:20px;
+            width: 38px;
+            height: 38px;
+        }
+
+        @media only screen and (max-width:360px) {
+            .spread-pics{
+               width:51%;
+           
+            }
+        }
+
+       .sign-up-now{
+            top:65.13px;
+            border-radius: 87.988px;
+            background-color: #000;
+            display: flex;
+            border:none;
+            width: 138px;
+            height: 44.874px;
+            padding: 13.198px 20.095px 12.318px 19.358px;
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
+            text-align: center;
+            font-family: Montserrat;
+            font-size: 12.318px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 18.477px;
+        }
+    }
+
+}
+
+
+    
+

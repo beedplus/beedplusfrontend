@@ -29,7 +29,8 @@ const AdminDashboard = () => {
   let configa = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://beedplus.onrender.com/admin/submissions",
+    url: `https://beedplus.onrender.com/admin/submissions/${id}`,
+    // the :id here is the submission id
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -414,7 +415,6 @@ const AdminDashboard = () => {
 
           <div className="submission-section">
             <div className="submission-header">Submission info</div>
-
             <div className="links-container">
               <header className="link-header">LINKS</header>
               {clickedSubmissionLinks.map((link, index) => (

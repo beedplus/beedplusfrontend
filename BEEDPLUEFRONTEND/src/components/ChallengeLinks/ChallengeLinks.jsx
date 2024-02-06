@@ -13,11 +13,12 @@ import { useSubmit } from "../../hooks/useSubmit";
 import { useGetSubmission } from "../../hooks/useGetSubmission";
 import Submission from "../Submission";
 import { nanoid } from "nanoid";
+import { usebackendStore } from "../../store/store";
 //import caretDown from '../../assets/Polygon 1.png';
-const id = "65bd61e95032a9f093b2d775";
+// const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
-
+  const id = usebackendStore((state) => state.ChallengeId);
   const { submit } = useSubmit();
   // const [ID, setID] = useState(null);
   // const [loading, setLoading] = useState(false)
@@ -29,7 +30,8 @@ const ChallengeLinks = () => {
 
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
-  let { document } = useGetSubmission(id);
+  let { document, setDocument } = useGetSubmission(id);
+
   //   const checkFullyVerified = [];
   //   if (document.data) {
   //     document.data.attempts.map(
@@ -45,10 +47,32 @@ const ChallengeLinks = () => {
   const [link, setlink] = useState("");
   const [isAllLinksVerified, setIsAllLinksVerified] = useState(false);
   const [IsClaimed, setIsClaimed] = useState(false);
+  // useEffect(() => {
+  //   // Check if every link in every submission is 'verified'
+  //   if (document.data && document.data?.attempts?.length !== 0) {
+  //     const allLinksVerified = document.data.attempts.every((attempt) =>
+  //       handleCheckPend(
+  //         attempt.link1.status,
+  //         attempt.link2.status,
+  //         attempt.link3.status,
+  //         attempt.link4.status,
+  //         attempt.link5.status
+  //       )
+  //     );
+  //     setIsAllLinksVerified(allLinksVerified);
+  //     console.log("isallverified", isAllLinksVerified);
+  //   }
+  // }, [document, isAllLinksVerified]);
+  const accessToken = usebackendStore((state) => state.accessToken);
+
   useEffect(() => {
     // Check if every link in every submission is 'verified'
-    if (document.data && document.data?.attempts?.length !== 0) {
-      const allLinksVerified = document.data.attempts.every((attempt) =>
+    // console.log("doc", document);
+    if (
+      document.message !== "No existing submission" &&
+      document?.data?.attempts?.length !== 0
+    ) {
+      const allLinksVerified = document.data?.attempts.every((attempt) =>
         handleCheckPend(
           attempt.link1.status,
           attempt.link2.status,
@@ -57,18 +81,33 @@ const ChallengeLinks = () => {
           attempt.link5.status
         )
       );
-      setIsAllLinksVerified(allLinksVerified);
-      console.log("isallverified", isAllLinksVerified);
+
+      // Use a functional update to ensure the state is updated correctly
+      setIsAllLinksVerified((prevIsAllLinksVerified) =>
+        prevIsAllLinksVerified !== allLinksVerified
+          ? allLinksVerified
+          : prevIsAllLinksVerified
+      );
+
+      // console.log("isallverified", allLinksVerified);x
     }
-  }, [document, isAllLinksVerified]);
+  }, [document]);
 
   useEffect(() => {
     if (!activeTab) {
-      console.log("is empty", document?.data?.attempts.length === 0);
-      console.log("all verified", isAllLinksVerified);
-      console.log(document);
+      // console.log("is empty", document?.data?.attempts?.length === 0);
+      // console.log("all verified", isAllLinksVerified);
+      // console.log(document);
     }
   }, [document, activeTab, isAllLinksVerified]);
+
+  useEffect(() => {
+    if (documents && documents.data) {
+      // console.log(documents.data.demo_video);
+      videoRef.current.src = documents.data.demo_video;
+    }
+  }, [documents]);
+
   const togglePlayPause = () => {
     const video = videoRef.current;
     if (video.paused) {
@@ -100,14 +139,37 @@ const ChallengeLinks = () => {
     const allVerified = test.every((value) => value);
     return allVerified;
   };
+  const updateSubmission = async (attemptId) => {
+    // console.log(attemptId)
+    try {
+      const response = await fetch(`https://beedplus.onrender.com/campaigns/${document.data._id}/submission`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+          Authorization: `Bearer ${accessToken}`,
+        },
+      
+        body: JSON.stringify({ attemptId }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to update submission. Status: ${response.status}`);
+      }
+  
+      console.log('Submission updated successfully');
+      // console.log(response.json())
+    } catch (error) {
+      console.error('Error updating submission:', error.message);
+      // Handle the error as needed
+    }
+  };
+  
   const createNewCard = () => {
     // Generate a unique key using nanoid
-    const newKey = nanoid();
-
-    // Create a new submission with empty links
     const newSubmission = {
-      id,
-      key: newKey,
+      campaignId: id,
+      key: nanoid(),
       index: document.data?.attempts.length || 0,
       link1: { url: "", status: "" },
       link2: { url: "", status: "" },
@@ -116,16 +178,25 @@ const ChallengeLinks = () => {
       link5: { url: "", status: "" },
       isPending: false,
     };
-    // Add the new submission to the existing submissions
-    const updatedSubmissions = [...document.data?.attempts, newSubmission];
-
-    setIsClaimed(false);
+  
+    // Return the new submission
+    return newSubmission;
   };
-
+  
   const handleClaim = () => {
     setIsClaimed(true);
-    createNewCard();
+    const newSubmission = createNewCard();
+    
+    // Update the document state with the new submission
+    setDocument(prevDocument => {
+      const updatedSubmissions = [...prevDocument.data?.attempts, newSubmission];
+      return { ...prevDocument, data: { attempts: updatedSubmissions } };
+    });
+    
+    // Update the backend with the new submission
+    updateSubmission(newSubmission._id); // Assuming _id is the identifier for the attempt
   };
+  
   return (
     documents &&
     documents.data && (
@@ -173,6 +244,7 @@ const ChallengeLinks = () => {
             <button
               onClick={() => setActiveTab(false)}
               className={`grey ${!activeTab ? "active" : "unactive"}`}
+
             >
               SUBMISSION
             </button>
@@ -194,7 +266,7 @@ const ChallengeLinks = () => {
                 <li>Create 5 videos with the song and post it</li>
                 <li>The more you create, the more you win!</li>
               </ul>
-              <header>Video post</header>
+              <header>Video post </header>
 
               <div
                 className="challenge-video-container"
@@ -210,7 +282,7 @@ const ChallengeLinks = () => {
                   onClick={togglePlayPause}
                 >
                   <source
-                    // src={documents.data.demo_video}
+                    src={documents.data.demo_video}
                     type="video/mp4"
                   ></source>
                 </video>
@@ -221,12 +293,12 @@ const ChallengeLinks = () => {
                   </div>
                 </div>
               </div>
-              <button className="claim-button">CLAIM</button>
+              {/* <button className="claim-button">CLAIM</button>
               <footer className="section-footer">
                 Copyright BEED+ 2024 Company. All rights reserved
-              </footer>
+              </footer> */}
             </div>
-          ) : document.data && document.data.attempts.length > 0 ? (
+          ) : document.message !== "No existing submission" && document?.data?.attempts?.length > 0 ? (
             document.data.attempts.map((attempt, i) => (
               <Submission
                 id={id}

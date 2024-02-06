@@ -3,10 +3,11 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useState } from 'react'
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound/NotFound";
-import Signup from "./auth/Signup/Signup";
-import Sigin from "./auth/Signin/Sigin";
+import Signup from "./auth/Signup/Signup.jsx";
+import Signin from './auth/Signin/Signin.jsx'
 import BankAcoount from "./auth/BankAccount/BankAcoount";
 import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
@@ -17,66 +18,87 @@ import ChallengeLinks from "./components/ChallengeLinks/ChallengeLinks.jsx";
 import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
-import LandingPageSignedIn from "./pages/LandingPageSignIn/LandingPageSignedIn";
+import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
-import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
-
+import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
+  const [currentId,setcurrentId] =useState("")
+  // const navigateToChallengeLink =() =>{
+  //   navigate("/challenge-link")
+  // }
 
   return (
     <div className="app">
-       <Navbar />
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element= <Home />
 
+      <Router>
+          <Navbar />
+        <Routes>
+        <Route
+            path="/home"
+            element={<Home /> }
           />
           <Route
-            path="/LandingPageSignedIn"
+            path="/"
             element={
               <>
                 {accessToken && <LandingPageSignedIn />}
-                {!accessToken && <Navigate to="/signin" />}
+                {!accessToken && <Navigate to= '/home'/>}
               </>
             }
           />
+          
+   {/*       <Route*/}
+   {/*         path="/LandingPageSignedIn"*/}
+   {/*         element={*/}
+   {/*<LandingPageSignedIn />*/}
+
+   {/*         }*/}
+   {/*       />*/}
 
         
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
-              path="signup"
+              path="Signup"
               element={
                 <>
                   {accessToken && <Navigate to="/" />}
                   {!accessToken && <Signup />}
                 </>
+
               }
             />
-            <Route path="vf" element={<Verify />} />
+            <Route
+             path="bankaccount"
+             element={
+                <>
+              {accessToken && <Navigate to="/profile" />}
+              {!accessToken && <BankAcoount />}
+              </>
+             }
+            />
+            <Route path="verify/:token" element={<Verify />} />
             <Route
               path="signin"
               element={
                 <>
                   {accessToken && <Navigate to="/" />}
-                  {!accessToken && <Sigin />}
+                  {!accessToken && <Signin />}
                 </>
               }
             />
-            <Route
-              path="BankAcoount"
+            {/* <Route
+              path="bank-account"
               element={
                 <>
-                  {accessToken && <BankAcoount />}
-                  {!accessToken && <Navigate to="/auth/signin" />}
+                  {accessToken && <Navigate to="/profile" />}
+                  {!accessToken && <BankAcoount />}
                 </>
               }
-            />
+            /> */}
             <Route path="Verification" element={<Verification />} />
           </Route>
           <Route
@@ -125,12 +147,14 @@ function App() {
               </>
             }
           />
-          <Route path="/challenge-link" element={<ChallengeLinks/>} />
-            <Route path="/admin-signin" element={<AdminDashboardLogin/>}/>
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
+                {accessToken && <ChallengeLinks />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>} />
 
         </Routes>
       </Router>
-       <Footer />
+    <Footer /> 
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
@@ -138,3 +162,4 @@ function App() {
 }
 
 export default App;
+// export {navigateToChallengeLink};

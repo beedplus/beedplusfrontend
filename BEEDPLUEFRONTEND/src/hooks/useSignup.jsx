@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { usebackendStore } from "../store/store";
 export const useSignUp = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
-
+  const setFirstName = usebackendStore(state => state.setFirstName)
+  const setLastName = usebackendStore(state => state.setLastName)
+  const setEmail = usebackendStore(state => state.setEmail)
+  const setTiktok = usebackendStore(state => state.setTiktok)
+  const setUserId = usebackendStore(state => state.setUserId)
   const navigate = useNavigate();
 
   const apiUrl = "https://beedplus.onrender.com/auth";
@@ -31,13 +35,19 @@ export const useSignUp = () => {
       });
 
       const data = await res.json();
-      console.log(data);
+      console.log(data); 
       if (data.status === "success") {
-        navigate("/auth/Verification");
+        setFirstName(data.data.firstname)
+        setLastName(data.data.lastname)
+        setTiktok(data.data.tiktok)
+        setEmail(data.data.email)
+        setUserId(data.data._id)
+        navigate("/auth/bankaccount");
       }
       if (data.status === "error") {
         setError(data.message);
       }
+
       setIspending(false);
     } catch {
       if (!iscancelled) {

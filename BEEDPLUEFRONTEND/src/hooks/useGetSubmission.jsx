@@ -41,5 +41,5 @@ export const useGetSubmission = (id) => {
     fetchData();
   }, [apiUrl, accessToken, isCancelled]);
 
-  return { error, isPending, document };
+  return { error, isPending, document, setDocument };
 };
