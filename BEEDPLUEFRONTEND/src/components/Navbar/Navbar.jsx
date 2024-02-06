@@ -6,7 +6,6 @@ import { FaRegBellSlash } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-
 export default function Navbar() {
   const accessToken = usebackendStore((state) => state.accessToken);
  
@@ -29,7 +28,6 @@ export default function Navbar() {
                   
                   </nav>)}
   else {return (
-   
                      <nav className="nav">
                    <div className="not-signed-in-nav-logo">
                        <img src={Beed} alt="website logo" />
