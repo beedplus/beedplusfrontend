@@ -108,6 +108,8 @@ export default function Signin() {
                 Sign Up
               </Link>
             </div>
+            {/*{ispending && <p className="word">Loading.......</p>}*/}
+            {/*{error && <p className="text-error-sign">{error.message}</p>}*/}
              {ispending && <p className="login-error-text">Loading.......</p>}
             {error && <p className="login-error-text"> {error}</p>}
           </div>
