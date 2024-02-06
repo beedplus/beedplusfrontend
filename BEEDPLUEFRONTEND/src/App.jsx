@@ -61,6 +61,15 @@ function App() {
                 </>
               }
             />
+            <Route
+              path="bankaccount"
+              element={
+                <>
+                {accessToken && <Navigate to="/profile" />}
+                {!accessToken && <BankAcoount />}
+              </>
+              }
+            />
             <Route path="verify/:token" element={<Verify />} />
             <Route
               path="signin"

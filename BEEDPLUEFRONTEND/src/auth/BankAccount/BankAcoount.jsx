@@ -1,72 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
+import { BsBank } from "react-icons/bs";
 import "./BankAcoount.scss";
 import image from "../../assets/beed.svg";
-import { useLogin } from "../../hooks/useLogin";
-import image2 from "../../assets/image 1.png" 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import image2 from "../../assets/image 1.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useGetBankAccount } from "../../hooks/useGetBankAccount";
+import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber"
+import { useSubmitBankAccount } from "../../hooks/useSubmitBankAccount";
+import { usebackendStore } from "../../store/store";
 export default function BankAcoount() {
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, error, ispending } = useLogin();
+  const [sortCode, setSortCode] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const { documents, error, isPending } = useGetBankAccount(); 
+  const {  submitbankAccount, error: err, ispending: ispend} = useSubmitBankAccount();
+  const id =  usebackendStore(state => state.user.userId) 
+  const {document} = useVerifyAccountNumber(sortCode, accountNumber);
  
+   const handleSubmit = (e) =>  {
+    e.preventDefault()
+    submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+   }
 
-  const validateInputs = () => {
-    let isValid = true;
-
-    if (!email.trim()) {
-      toast.error("Email is required");
-      isValid = false;
-    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-     toast.error("Invalid email format");
-      isValid = false;
-    } else {
-      toast.error("pleease input your password");
-    }
-
-    if (!password.trim()) {
-      toast.error("Password is required");
-      isValid = false;
-    } else {
-      toast.error("pleease input your password");
-    }
-
-    return isValid;
-  };
-
-  const handleInputChanges = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case "email":
-        setEmail(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateInputs()) {
-      login(email, password);
-      toast.success("sucess!!!!!");
-    } else {
-      toast.error("Invalid inputs. Please fix the errors.");
-    }
-  };
 
   return (
-    <div className="sign_Login">
-       <div   className='beedlogo'>
-          <img src={image2} alt="beedlogo" />
+    document && document.data && (<div className="sign_Login">
+      <div className="beedlogo">
+        <img src={image2} alt="beedlogo" />
       </div>
       <div className="sign-form-div">
         <form onSubmit={handleSubmit}>
@@ -74,58 +36,61 @@ export default function BankAcoount() {
             <img src={image} alt="beed logo" />
           </div>
           <div className="sign_LoginLogin">
-            <h3>Add your correct bank account 
-              details to withdraw your earnings</h3>
+            <h3>
+              Add your correct bank account details to withdraw your earnings
+            </h3>
           </div>
-          <div className="sign_Logininput-list"> 
+          <div className="sign_Logininput-list">
             <div className="sign_Loginemail">
               <div className="sign_LoginRiMailLine">
-                <RiMailLine />
+                 <BsBank />
               </div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Your Bank Name"
-                value={email}
-                onChange={handleInputChanges}
-              />
+              <select
+               name="selectedBank"
+               className="select_list"
+               value={sortCode}
+               onChange={(e) => setSortCode(e.target.value)}
+               
+              >
+                <option value="" disabled>
+                  Select Your Bank
+                </option>
+                {documents.map((bank) => (
+                  <option  className="" key={bank.id} value={bank.code}>
+                    {bank.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="sign_Loginpassword">
               <div className="sign_LoginGoEye">
-                <GoEye />
+                  <BsBank />
               </div>
               <input
-                type="password"
-                name="password"
-                placeholder="Enter Your Account Name"
-                value={password}
-                onChange={handleInputChanges}
+                 type="text"
+                 name="account_number"
+                 placeholder="Enter account number"
+                 maxLength="10"
+                 value={accountNumber}
+                 onChange={(e)  => setAccountNumber(e.target.value)}
               />
             </div>
-            <div className="sign_Loginpassword">
+            <div className="sign_Log inpassword">
               <div className="sign_LoginGoEye">
-                <GoEye />
+                <BsBank />
               </div>
-              <input
-                type="number"
-                name="number"
-                placeholder="Enter Your Account Name"
-                value={password}
-                onChange={handleInputChanges}
-              />
+              {document.data.account_name}
             </div>
           </div>
-
 
           <div className="sign_Loginnext">
             <button type="submit">Login</button>
           </div>
-
-
         </form>
       </div>
-    </div>
+    </div>)
   );
 }
+
 
 
