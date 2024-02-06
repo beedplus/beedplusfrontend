@@ -17,7 +17,7 @@ function ChallangeCardlist() {
                 < ChallangeCard key={index} image={singleData.image} name={singleData.name} artiste={singleData.artiste} id={singleData._id} currentAmount={singleData.funds.startingAmount-singleData.funds.currentAmount }/>)}
                 </div>
                
-            </div>)
+            </div>) 
     }
 }
 

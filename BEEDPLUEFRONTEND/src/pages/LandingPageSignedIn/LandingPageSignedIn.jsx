@@ -8,7 +8,9 @@ export default function LandingPageSignedIn() {
   const { logout } = useLogout();
   return (
     <div className="landing-page-signed-in">
-      <img src={Advert} alt="Advert" className='advert' />
+      <div className="signed-in-landing-page-advert-banner-div">
+          <img src={Advert} alt="Advert" className='advert' />
+      </div>
       <ChallangeCardlist id="latest"/>
       <img src={EnterWin} alt="EnterWin" className='enter-win2' />
       <ChallangeCardlist className="new" campaign="new"/>
