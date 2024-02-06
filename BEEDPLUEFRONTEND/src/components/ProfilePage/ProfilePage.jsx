@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useLogout } from "../../hooks/useLogout.jsx";
 import { useUpdateProfile } from "../../hooks/useUpdateProfile.jsx";
-
+import { usebackendStore } from "../../store/store.js";
 const ProfilePage = () => {
   const { logout } = useLogout();
   const [overlayActive, setOverlayActive] = useState(false);
@@ -18,6 +18,10 @@ const ProfilePage = () => {
   const [User_bio, setUser_bio] = useState("")
 
   const { error, isPending, updateProfile } = useUpdateProfile();
+
+  const tiktok = usebackendStore(state => state.user.tiktok)
+  const firstName = usebackendStore(state => state.user.firstName)
+  const lastName = usebackendStore(state => state.user.lastName)
   const toggleOverlay = () => {
     if (overlayActive) {
       setOverlayActive(false);
@@ -127,7 +131,7 @@ const ProfilePage = () => {
                   Name
                 </p>
                 <div>
-                  {User_name}
+                  {firstName + lastName}
                 </div>
               </div>
               <div  className="profile-page-form-div-line">
@@ -135,7 +139,7 @@ const ProfilePage = () => {
                   UserName
                 </p>
                 <div>
-                  {User_username}
+                  {/* {User_username} */}
                 </div>
               </div>
               <div className="profile-page-form-div-line">
@@ -143,7 +147,7 @@ const ProfilePage = () => {
                   TikTok
                 </p>
                 <div>
-                  {User_tiktokhandle}
+                  {tiktok}
                 </div>
               </div>
               <div className="profile-page-form-div-line">
@@ -173,7 +177,7 @@ const ProfilePage = () => {
                 <div>
                   <input
                     className="user-name-input"
-                    placeholder="Jane Doe"
+                    placeholder={firstName + lastName}
                     value={User_name}
                     onChange={(e) => setUser_name(e.target.value)}
                   />
@@ -184,7 +188,7 @@ const ProfilePage = () => {
                 <div>
                   <input
                     className="user-username-input"
-                    placeholder="_JaneDoe"
+                    // placeholder={fi}
                     value={User_username}
                     onChange={(e) => setUser_username(e.target.value)}
                   />
@@ -195,7 +199,7 @@ const ProfilePage = () => {
                 <div>
                   <input
                     className="user-tiktok-input"
-                    placeholder="JANYDOE"
+                    placeholder={tiktok}
                     value={User_tiktokhandle}
                     onChange={(e) => setUser_tiktokhandle(e.target.value)}
                   />

@@ -105,11 +105,13 @@ export default function Signin() {
             <h3>Do not have an account ?  </h3>
             <div className="Sign">
               <Link to="../../auth/Signup" className="link">
-                Sign In
+                Sign Up
               </Link>
             </div>
-            {ispending && <p className="word">Loading.......</p>}
-            {error && <p className="text-error-sign">{error.message}</p>}
+            {/*{ispending && <p className="word">Loading.......</p>}*/}
+            {/*{error && <p className="text-error-sign">{error.message}</p>}*/}
+             {ispending && <p className="login-error-text">Loading.......</p>}
+            {error && <p className="login-error-text"> {error}</p>}
           </div>
         </form>
       </div>

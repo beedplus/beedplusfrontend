@@ -8,14 +8,25 @@ import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
 import caretDown from "../../assets/Vector 1.png";
 import { FaWindowClose } from "react-icons/fa";
 import { IoCheckboxSharp } from "react-icons/io5";
-import FixedNavbar from "../FixedNavbar/FixedNavbar";
-import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
+// import FixedNavbar from "../FixedNavbar/FixedNavbar";
+// import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
 
 let token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA2ODk1ODQ1LCJleHAiOjE3MDc1MDA2NDV9.akWtLU25UBITW9Uuuxg65dHWLtHaOMlk0UooS1_o_CM";
 
-const fetchSingleSubmission = async (id) => {
-  let config = {
+
+
+const AdminDashboard = () => {
+  const [reason, setReason] = useState("");
+  const [attemptId, setAttemptId] = useState("");
+  const [currentSubmissionId, setCurrentSubmissionId] = useState("");
+  const [submitSubmissionId, setSubmitSubmissionId] = useState("")
+  const [submissions, setSubmissions] = useState([]);
+  const [clickedSubmissionLinks, setClickedSubmissionLinks] = useState([]);
+  const [isDataFetched, setIsDataFetched] = useState(false);
+  const [linkStatuses, setLinkStatuses] = useState({});
+  let [submissionHeight, setSubmissionHeight] = useState(false);
+  let configa = {
     method: "get",
     maxBodyLength: Infinity,
     url: `https://beedplus.onrender.com/admin/submissions/${id}`,
@@ -26,37 +37,10 @@ const fetchSingleSubmission = async (id) => {
   };
 
   axios
-    .request(config)
-    .then((response) => {
-      const attempts = response.data.data.attempts;
-      // console.log(attempts)
-      console.log(JSON.stringify(attempts));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const AdminDashboard = () => {
-
-
-  const [reason, setReason] = useState("");
-  const [attemptId, setAttemptId] = useState("");
-  let configa = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: "https://beedplus.onrender.com/admin/submissions",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  axios
     .request(configa)
     .then((response) => {
       if (response.data.status === "success" && response.data.data.length > 0) {
         const submissionId = response.data.data[0]._id;
-        setCurrentSubmissionId(submissionId);
       } else {
         //console.log("Failed to fetch submissions.");
       }
@@ -65,13 +49,86 @@ const AdminDashboard = () => {
       //console.error("Error fetching submissions:", error);
     });
 
-  const [submissions, setSubmissions] = useState([]);
-  const [clickedSubmissionLinks, setClickedSubmissionLinks] = useState([]);
-  const [currentSubmissionId, setCurrentSubmissionId] = useState("");
-  const [isDataFetched, setIsDataFetched] = useState(false);
+  const fetchSingleSubmission = async (id) => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `https://beedplus.onrender.com/admin/submissions/${id}`,
+      // the :id here is the submission id
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  
+    axios
+      .request(config)
+      .then((response) => {
+        const submisionId = response.data.data._id
+        console.log("submisionId", submisionId)
+        setSubmitSubmissionId(submisionId);
+        const attempts = response.data.data.attempts;
+        // console.log(attempts)
+        console.log(JSON.stringify(attempts));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  //   const [rejection, setRejection] = useState(true);
-  let [submissionHeight, setSubmissionHeight] = useState(false);
+  const acceptLink = (link) => {
+    const updatedStatuses = {};
+    console.log("linkIndex", link);
+    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+    console.log("linkIndexs", linkIndex);
+    
+    // Update only the clicked link
+    updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
+  
+    setLinkStatuses((prevStatuses) => ({
+      ...prevStatuses,
+      ...updatedStatuses,
+    }));
+    // setRejection(true); // Assuming you set rejection to true after accepting the links
+  };
+  
+
+  const rejectLink = (link) => {
+    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+    console.log("linkIndexs", linkIndex);
+    setLinkStatuses((prevStatuses) => ({
+      ...prevStatuses,
+      [`link${linkIndex}`]: { status: "rejected", reason: reason },
+    }));
+    setRejection(true);
+  };
+
+  const finishReview = (submissionId) => {
+    const requestBody = {
+      attemptId: attemptId,
+      updates: linkStatuses,
+    };
+    console.log("linkStatuses", linkStatuses)
+    // Send POST request with requestBody to the endpoint
+    fetch(
+      `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    )
+      .then((response) => {
+        // Handle response
+        console.log(response);
+      })
+      .catch((error) => {
+        // Handle error
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -124,7 +181,9 @@ const AdminDashboard = () => {
       }
     }
     setClickedSubmissionLinks(links);
+    console.log("links", links);
     setAttemptId(attempt._id);
+    console.log("attemptId:", attemptId);
   }
 
   const [headerStates, setHeaderStates] = useState({
@@ -155,63 +214,63 @@ const AdminDashboard = () => {
     fetchSingleSubmission(idx);
   }
 
-  const handleCheck = async (submissionId) => {
-    const data = {
-      attemptId: attemptId,
-      updates: {
-        link1: { status: "verified" },
-        link2: { status: "verified" },
-        link3: { status: "verified" },
-        link4: { status: "verified" },
-        link5: { status: "verified" },
-      },
-    };
+  // const handleCheck = async (submissionId) => {
+  //   const data = {
+  //     attemptId: attemptId,
+  //     updates: {
+  //       link1: { status: "verified" },
+  //       link2: { status: "verified" },
+  //       link3: { status: "verified" },
+  //       link4: { status: "verified" },
+  //       link5: { status: "verified" },
+  //     },
+  //   };
 
-    let configs = {
-      method: "post",
-      url: `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
+  //   let configs = {
+  //     method: "post",
+  //     url: `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
 
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: JSON.stringify(data),
-    };
-    axios
-      .request(configs)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  const handleReject = async () => {
-    const data = {
-      attemptId: attemptId,
-      updates: {
-        link1: { status: "rejected", reason: reason },
-        link2: { status: "rejected", reason: reason },
-        link3: { status: "rejected", reason: reason },
-        link4: { status: "rejected", reason: reason },
-        link5: { status: "rejected", reason: reason },
-      },
-    };
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     data: JSON.stringify(data),
+  //   };
+  //   axios
+  //     .request(configs)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  // const handleReject = async (submissionId) => {
+  //   const data = {
+  //     attemptId: attemptId,
+  //     updates: {
+  //       link1: { status: "rejected", reason: reason },
+  //       link2: { status: "rejected", reason: reason },
+  //       link3: { status: "rejected", reason: reason },
+  //       link4: { status: "rejected", reason: reason },
+  //       link5: { status: "rejected", reason: reason },
+  //     },
+  //   };
 
-    try {
-      const response = await axios.post(
-        `https://beedplus.onrender.com/admin/submissions/${attemptId}/review`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   try {
+  //     const response = await axios.post(
+  //       `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -246,10 +305,10 @@ const AdminDashboard = () => {
 
   return (
     <section className="admin-dashboard-section">
-        <FixedNavbar/>
+      {/* <FixedNavbar/> */}
 
       <div className="content-section">
-        <SearchNavigationbar/>
+        {/* <SearchNavigationbar/> */}
 
         <div className="information-section">
           <div className="campaign-section">
@@ -356,7 +415,6 @@ const AdminDashboard = () => {
 
           <div className="submission-section">
             <div className="submission-header">Submission info</div>
-
             <div className="links-container">
               <header className="link-header">LINKS</header>
               {clickedSubmissionLinks.map((link, index) => (
@@ -365,11 +423,11 @@ const AdminDashboard = () => {
                   <div className="btn-container">
                     <IoCheckboxSharp
                       className="check"
-                      onClick={handleCheck(currentSubmissionId)}
+                      onClick={() => acceptLink(link)}
                     />
                     <FaWindowClose
                       className="cancel"
-                      onClick={() => displayRejectMessage()}
+                      onClick={() => rejectLink(link)}
                     />
                   </div>
                 </div>
@@ -388,14 +446,16 @@ const AdminDashboard = () => {
                 </div>
               )}
             </div>
-
-            <button className="finish-button">FINISH</button>
+            <div>
+              <button
+                className="finish-button"
+                onClick={() => finishReview(submitSubmissionId)}
+              >
+                FINISH
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* <div className="submission-section">
-          <div className="submission-header">Submission info</div>
-        </div> */}
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ export const useLogin = () => {
   const setLastName = usebackendStore(state => state.setLastName)
   const setEmail = usebackendStore(state => state.setEmail)
   const setTiktok = usebackendStore(state => state.setTiktok)
-  // const navigate = useNavigate();
+
 
   const apiUrl = "https://beedplus.onrender.com/auth";
 
@@ -31,18 +31,22 @@ export const useLogin = () => {
         },
         body: JSON.stringify(postData),
       });
-      
+
       const data = await res.json();
+      console.log(data)
       if (data.status === "success") {
         setFirstName(data.data.firstname)
         setLastName(data.data.lastname)
         setTiktok(data.data.tiktok)
         setEmail(data.data.email)
         setAuth(data.data._id, data.token);
-        navigate("/auth/Verification");
+
       }
       if (data.status === "error") {
         setError(data.message);
+      }
+      if(data.message){
+        setError(data.message)
       }
       setIspending(false);
     } catch {

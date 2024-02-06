@@ -11,10 +11,8 @@ export default function VerificationEmail() {
                     </div>
                     <div  className="model-div">
                         <p>
-                            A verification link has been sent to
-                            your email, kindly check your email to verify
-
-                           
+                            We've sent a verification link to your email.
+                            Please check your inbox to complete the verification process.
                         </p>
                         <p>
                            you can now close this page.

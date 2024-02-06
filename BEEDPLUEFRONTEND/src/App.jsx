@@ -6,8 +6,8 @@ import { ToastContainer } from "react-toastify";
 import { useState } from 'react'
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound/NotFound";
-import Signup from "./auth/Signup/Signup";
-import Sigin from "./auth/Signin/Sigin";
+import Signup from "./auth/Signup/Signup.jsx";
+import Signin from './auth/Signin/Signin.jsx'
 import BankAcoount from "./auth/BankAccount/BankAcoount";
 import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
@@ -32,46 +32,53 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+
       <Router>
+          <Navbar />
         <Routes>
+        <Route
+            path="/home"
+            element={<Home /> }
+          />
           <Route
             path="/"
             element={
               <>
                 {accessToken && <LandingPageSignedIn />}
-                {!accessToken && <Home />}
+                {!accessToken && <Navigate to= '/home'/>}
               </>
             }
           />
-          <Route
-            path="/LandingPageSignedIn"
-            element={
-   <LandingPageSignedIn />
+          
+   {/*       <Route*/}
+   {/*         path="/LandingPageSignedIn"*/}
+   {/*         element={*/}
+   {/*<LandingPageSignedIn />*/}
 
-            }
-          />
+   {/*         }*/}
+   {/*       />*/}
 
         
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
-              path="signup"
+              path="Signup"
               element={
                 <>
                   {accessToken && <Navigate to="/" />}
                   {!accessToken && <Signup />}
                 </>
+
               }
             />
             <Route
-              path="bankaccount"
-              element={
+             path="bankaccount"
+             element={
                 <>
-                {accessToken && <Navigate to="/profile" />}
-                {!accessToken && <BankAcoount />}
+              {accessToken && <Navigate to="/profile" />}
+              {!accessToken && <BankAcoount />}
               </>
-              }
+             }
             />
             <Route path="verify/:token" element={<Verify />} />
             <Route
@@ -79,19 +86,19 @@ function App() {
               element={
                 <>
                   {accessToken && <Navigate to="/" />}
-                  {!accessToken && <Sigin />}
+                  {!accessToken && <Signin />}
                 </>
               }
             />
-            <Route
-              path="BankAcoount"
+            {/* <Route
+              path="bank-account"
               element={
                 <>
-                  {accessToken && <BankAcoount />}
-                  {!accessToken && <Navigate to="/auth/signin" />}
+                  {accessToken && <Navigate to="/profile" />}
+                  {!accessToken && <BankAcoount />}
                 </>
               }
-            />
+            /> */}
             <Route path="Verification" element={<Verification />} />
           </Route>
           <Route
@@ -140,7 +147,10 @@ function App() {
               </>
             }
           />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<ChallengeLinks />} />
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
+                {accessToken && <ChallengeLinks />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>} />
 
         </Routes>
       </Router>

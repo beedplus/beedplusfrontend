@@ -1,6 +1,6 @@
-import React, {useState}from 'react'
+
 import '../NotificationPage/NotificationPage.css'
-import adImage from '../../assets/Group 90 (1).png'
+import adImage from '../../assets/Group 90.png'
 
 
 const NotificationPage = () => {

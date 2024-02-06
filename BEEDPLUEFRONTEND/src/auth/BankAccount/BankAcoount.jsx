@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { BsBank } from "react-icons/bs";
-import "./BankAcoount.scss";
+import "./BankAcoount.css";
 import image from "../../assets/beed.svg";
 import image2 from "../../assets/image 1.png";
 import { toast } from "react-toastify";
@@ -18,10 +18,34 @@ export default function BankAcoount() {
   const {  submitbankAccount, error: err, ispending: ispend} = useSubmitBankAccount();
   const id =  usebackendStore(state => state.user.userId) 
   const {document} = useVerifyAccountNumber(sortCode, accountNumber);
+
+  const validateInputs = () => {
+    let isValid = true;
+
+    if (!sortCode) {
+      toast.error("Please select a bank");
+      isValid = false;
+    } else if (!accountNumber.trim() || accountNumber.length < 10) {
+      toast.error("Account number is required and must be at least 10 digits");
+      isValid = false;
+    } else if(accountNumber.length === 10) {
+      console.log(document);
+    }else if(!document){
+      toast.error("Please check your account number");
+      isValid = false;
+    }
+
+    return isValid;
+  };
  
    const handleSubmit = (e) =>  {
     e.preventDefault()
-    submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+    if (validateInputs() && document.data.Bank_name) {
+     return  submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+    } else {
+      return error;
+    }
+    
    }
 
 
@@ -40,14 +64,14 @@ export default function BankAcoount() {
               Add your correct bank account details to withdraw your earnings
             </h3>
           </div>
-          <div className="sign_Logininput-list">
-            <div className="sign_Loginemail">
+          <div className="bank-account-selection-div">
+            <div className="select-bank">
               <div className="sign_LoginRiMailLine">
                  <BsBank />
               </div>
               <select
                name="selectedBank"
-               className="select_list"
+               className="select-list"
                value={sortCode}
                onChange={(e) => setSortCode(e.target.value)}
                
@@ -62,7 +86,7 @@ export default function BankAcoount() {
                 ))}
               </select>
             </div>
-            <div className="sign_Loginpassword">
+            <div className="bank-account-number-input">
               <div className="sign_LoginGoEye">
                   <BsBank />
               </div>
@@ -70,12 +94,13 @@ export default function BankAcoount() {
                  type="text"
                  name="account_number"
                  placeholder="Enter account number"
+                 className="account-number-input-field"
                  maxLength="10"
                  value={accountNumber}
                  onChange={(e)  => setAccountNumber(e.target.value)}
               />
             </div>
-            <div className="sign_Log inpassword">
+            <div className="account-name-field">
               <div className="sign_LoginGoEye">
                 <BsBank />
               </div>
@@ -85,6 +110,8 @@ export default function BankAcoount() {
 
           <div className="sign_Loginnext">
             <button type="submit">Login</button>
+              {ispend&&<h4>Loading......</h4>}
+              {err&&<p>{err.message}</p>}
           </div>
         </form>
       </div>

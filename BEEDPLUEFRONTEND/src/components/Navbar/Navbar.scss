@@ -1,14 +1,11 @@
 .nav {
     background: #000;
     width: 100%;
-    height: 94px;
     display: flex;
+    padding:35px 30px ;
     align-items: center;
-    padding-left: 0px 20px ;
     justify-content: space-between;
-    
-    
-  
+
     img {
       width: 54px;
       height: 23px;
@@ -17,18 +14,48 @@
    
       top:4px;
     }
+   .signed-in-navbar-div{
+     display: flex;
+     gap: 20px;
+     justify-content: center;
+     align-items: center;
+     button{
+       padding: 10px 15px;
+        background: red;
+       border-radius: 15px;
+       border: none;
+       a{
+         text-decoration: none;
+         font-family: "Montserrat", sans-serif;
+         font-size: 12px;
+         color: #FFFFFF;
+       }
+     }
+     .singned-nav-user-icon{
+       .navbar-notification{
+         color: #FFFFFF;
+         font-size: 20px;
+       }
+     }
+     .navbar-profile-icon-div{
+
+       .navbar-profile-icon{
+         color: #FFFFFF;
+         font-size: 20px;
+       }
+     }
+   }
+
     .link-holder{
       display: flex;
-      // float: left;
-      // width:45%;
+
       align-items: center;
       margin-top:10px;
       margin-right:3VW ;
-      // float: left;
-    
+
 
      .nav-button{
-      
+
         background-color: #FF0000 ;
         border: none;
         border-radius:10.85px;
@@ -38,11 +65,17 @@
         font-weight: 600;
         line-height: 16px;
         margin-right:10%;
-      
+
       }
       @media only screen and (min-width:1000px){
+
+
+
+
+
+
        .nav-button{
-      
+
           background-color: #FF0000 ;
           border: none;
           width: 100px;
@@ -53,22 +86,94 @@
           font-weight: 600;
           line-height: 16px;
           margin-right:10%;
-        
+
         }
       }
-      a{
-        color: blanchedalmond;
-        font-family: Montserrat;
-        font-size: 13px;
-        font-weight: 600;
-        // margin-lef:10%;
-        line-height: 16px;
-        border: none;
-        text-decoration: none;
-       
-        
-      }
+
     }
 
   }
+
+
+
+
+@media screen and (min-width: 360px) and (max-width: 820px) {
+
+  .nav {
+    background: #000;
+    width: 100%;
+    display: flex;
+    padding: 35px 30px;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      width: 44px;
+      height: 23px;
+      margin-left: 3vw;
+      justify-self: right;
+
+      top: 4px;
+    }
+
+    .signed-in-navbar-div {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        padding: 7px 12px;
+        background: red;
+        border-radius: 15px;
+        border: none;
+
+        a {
+          text-decoration: none;
+          font-family: "Montserrat", sans-serif;
+          font-size: 10px;
+          color: #FFFFFF;
+        }
+      }
+
+      .singned-nav-user-icon {
+        .navbar-notification {
+          color: #FFFFFF;
+          font-size: 16px;
+        }
+      }
+
+      .navbar-profile-icon-div {
+
+        .navbar-profile-icon {
+          color: #FFFFFF;
+          font-size: 15px;
+        }
+      }
+    }
+    .not-signed-in-navbar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .earn-now-nav-button{
+        a{
+          text-decoration: none;
+          button{
+            border: none;
+            background: red;
+            border-radius: 15px;
+            color: #FFFFFF;
+          }
+        }
+      }
+      .not-signed-in-login-page{
+        a{
+          text-decoration: none;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}
   

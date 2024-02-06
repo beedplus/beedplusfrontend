@@ -18,7 +18,7 @@ import { usebackendStore } from "../../store/store";
 // const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
-  const id = usebackendStore((state) => state.challengeId);
+  const id = usebackendStore((state) => state.ChallengeId);
   const { submit } = useSubmit();
   // const [ID, setID] = useState(null);
   // const [loading, setLoading] = useState(false)
@@ -30,7 +30,7 @@ const ChallengeLinks = () => {
 
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
-  let { document } = useGetSubmission(id);
+  let { document, setDocument } = useGetSubmission(id);
 
   //   const checkFullyVerified = [];
   //   if (document.data) {
@@ -67,7 +67,7 @@ const ChallengeLinks = () => {
 
   useEffect(() => {
     // Check if every link in every submission is 'verified'
-    console.log("doc", document);
+    // console.log("doc", document);
     if (
       document.message !== "No existing submission" &&
       document?.data?.attempts?.length !== 0
@@ -89,21 +89,21 @@ const ChallengeLinks = () => {
           : prevIsAllLinksVerified
       );
 
-      console.log("isallverified", allLinksVerified);
+      // console.log("isallverified", allLinksVerified);x
     }
   }, [document]);
 
   useEffect(() => {
     if (!activeTab) {
-      console.log("is empty", document?.data?.attempts?.length === 0);
-      console.log("all verified", isAllLinksVerified);
-      console.log(document);
+      // console.log("is empty", document?.data?.attempts?.length === 0);
+      // console.log("all verified", isAllLinksVerified);
+      // console.log(document);
     }
   }, [document, activeTab, isAllLinksVerified]);
 
   useEffect(() => {
     if (documents && documents.data) {
-      console.log(documents.data.demo_video);
+      // console.log(documents.data.demo_video);
       videoRef.current.src = documents.data.demo_video;
     }
   }, [documents]);
@@ -140,7 +140,7 @@ const ChallengeLinks = () => {
     return allVerified;
   };
   const updateSubmission = async (attemptId) => {
-    console.log(attemptId)
+    // console.log(attemptId)
     try {
       const response = await fetch(`https://beedplus.onrender.com/campaigns/${document.data._id}/submission`, {
         method: 'PUT',
@@ -158,7 +158,7 @@ const ChallengeLinks = () => {
       }
   
       console.log('Submission updated successfully');
-      console.log(response.json())
+      // console.log(response.json())
     } catch (error) {
       console.error('Error updating submission:', error.message);
       // Handle the error as needed
@@ -244,6 +244,7 @@ const ChallengeLinks = () => {
             <button
               onClick={() => setActiveTab(false)}
               className={`grey ${!activeTab ? "active" : "unactive"}`}
+
             >
               SUBMISSION
             </button>
@@ -265,7 +266,7 @@ const ChallengeLinks = () => {
                 <li>Create 5 videos with the song and post it</li>
                 <li>The more you create, the more you win!</li>
               </ul>
-              <header>Video post {documents.data.demo_video}</header>
+              <header>Video post </header>
 
               <div
                 className="challenge-video-container"
