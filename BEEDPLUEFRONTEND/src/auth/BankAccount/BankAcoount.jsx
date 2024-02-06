@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { BsBank } from "react-icons/bs";
-import "./BankAcoount.scss";
+import "./BankAcoount.css";
 import image from "../../assets/beed.svg";
 import image2 from "../../assets/image 1.png";
 import { toast } from "react-toastify";
@@ -64,14 +64,14 @@ export default function BankAcoount() {
               Add your correct bank account details to withdraw your earnings
             </h3>
           </div>
-          <div className="sign_Logininput-list">
-            <div className="sign_Loginemail">
+          <div className="bank-account-selection-div">
+            <div className="select-bank">
               <div className="sign_LoginRiMailLine">
                  <BsBank />
               </div>
               <select
                name="selectedBank"
-               className="select_list"
+               className="select-list"
                value={sortCode}
                onChange={(e) => setSortCode(e.target.value)}
                
@@ -86,7 +86,7 @@ export default function BankAcoount() {
                 ))}
               </select>
             </div>
-            <div className="sign_Loginpassword">
+            <div className="bank-account-number-input">
               <div className="sign_LoginGoEye">
                   <BsBank />
               </div>
@@ -94,12 +94,13 @@ export default function BankAcoount() {
                  type="text"
                  name="account_number"
                  placeholder="Enter account number"
+                 className="account-number-input-field"
                  maxLength="10"
                  value={accountNumber}
                  onChange={(e)  => setAccountNumber(e.target.value)}
               />
             </div>
-            <div className="sign_Log inpassword">
+            <div className="account-name-field">
               <div className="sign_LoginGoEye">
                 <BsBank />
               </div>

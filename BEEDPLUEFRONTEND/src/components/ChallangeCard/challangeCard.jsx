@@ -5,6 +5,7 @@ import Image from'../../assets/cardbackground.png'
 import tiktokLogo from '../../assets/Ellipse 7.png'
 import './ChallangeCard.scss'
 import { usebackendStore } from '../../store/store';
+import {Routes,Route,useNavigate} from "react-router-dom"
  //const ChallangeCard = ({Image,socialtype,name,startingAmount,currentAmount}) => {
   // if(documents){
   //   return (
@@ -23,18 +24,23 @@ import { usebackendStore } from '../../store/store';
     
       
     const ChallangeCard = (props)=>{
-      const setChallengeId =  usebackendStore(state => state.setChallengeId)
-      const challengeId =  usebackendStore(state => state.ChallangeId)
+      const navigate = useNavigate();
+      const setChallengeId = usebackendStore((state) => state.setChallengeId);
+
+      const navigateToChallengeLink = () =>{
+
+        setChallengeId(props.id);
+        navigate(`/challenge/${props.id}`)
+      }
       let amountWidth=props.currentAmount*100/props.startingAmount
       
         const  { error, isPending, documents } = useGetAllCampaign();
         useEffect((challengeId) =>{
-            console.log(documents.data)
+            // console.log(documents.data)s
         },[documents]);
       let currentAmount=5
       return (
-        <div className='challange-card' onClick={() => {setChallengeId(props.id);console.log(props.id)}}>
-          
+        <div className='challange-card' onClick={navigateToChallengeLink} >
           <img src={props.image} className='background-image'/>
           <div className='top-info-holder'>
             <img src={tiktokLogo}/>
@@ -47,7 +53,7 @@ import { usebackendStore } from '../../store/store';
           <div className='bottom-info-holder'>
             <p className='challange-name challange'>#{props.name}</p>
             <p className='challange'>{props.artiste}</p>
-            <div className='progress-line' data-percent="90">
+            <div className='progress-line' data-percent="10">
               <div className="percentage"style={{width: {amountWidth}}}><></></div>
             </div>
           </div>

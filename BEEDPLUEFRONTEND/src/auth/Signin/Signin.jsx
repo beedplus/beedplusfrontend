@@ -102,14 +102,14 @@ export default function Signin() {
             <button type="submit">Login</button>
           </div>
           <div className="Already">
-            <h3>I have an account? </h3>
+            <h3>Do not have an account ?  </h3>
             <div className="Sign">
               <Link to="../../auth/Signup" className="link">
-                Sign In
+                Sign Up
               </Link>
             </div>
-            {ispending && <p className="word">Loading.......</p>}
-            {error && <p className="text">{error.message}</p>}
+             {ispending && <p className="word">Loading.......</p>}
+            {error && <p className="text"> {error}</p>}
           </div>
         </form>
       </div>

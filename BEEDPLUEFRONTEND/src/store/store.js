@@ -14,6 +14,7 @@ const usebackendStore = create(
         tempUserId: null,
         tempAccessToken: null,
       },
+      ChallengeId: null,
       setAuth: (id, token) => set((state) => ({ user: { ...state.user, userId: id },  accessToken: token })),
       setFirstName: (name) => set((state) => ({ user: { ...state.user, firstName: name } })),
       setLastName: (name) => set((state) => ({ user: { ...state.user, lastName: name } })),
@@ -21,14 +22,14 @@ const usebackendStore = create(
       setTiktok: (tik) => set((state) => ({ user: { ...state.user, tiktok: tik } })),
       setUserId: (id) => set((state) => ({ user: { ...state.user, userId: id } })),
       setTempAuth: (id, token) => set((state) => ({ user: { ...state.user, tempUserId: id, tempAccessToken: token } })),
-      resetAuth: () => set({ user: { userId: null, accessToken: null } }),
+      resetAuth: () => set({ user: { userId: null } , accessToken: null }),
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({  ChallengeId: id }),
       setCompareStatus: (payload) =>
         set({ compareStatus: [...this.state.compareStatus, payload] }),
     }),
     {
-      name: "usebackendStore", // name of the item in the storage (must be unique)
+      name: "usebackendStore", // name of the item in the storage (must be unique)   
     }
   )
 );
