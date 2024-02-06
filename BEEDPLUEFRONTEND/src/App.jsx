@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="app">
        <Navbar />
-       <BankAcoount />
+       {/* <BankAcoount /> */}
       <Router>
         <Routes>
           {/* <Route
@@ -57,6 +57,15 @@ function App() {
                   {accessToken && <Navigate to="/" />}
                   {!accessToken && <Signup />}
                 </>
+              }
+            />
+            <Route
+              path="bankaccount"
+              element={
+                <>
+                {accessToken && <Navigate to="/profile" />}
+                {!accessToken && <BankAcoount />}
+              </>
               }
             />
             <Route path="vf" element={<Verify />} />

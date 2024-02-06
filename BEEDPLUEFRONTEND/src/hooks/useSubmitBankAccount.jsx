@@ -6,7 +6,7 @@ export const useSubmitBankAccount = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const apiUrl = "https://beedplus.onrender.com/user/accounts";
 
@@ -31,6 +31,12 @@ export const useSubmitBankAccount = () => {
 
       const data = await res.json();
       console.log(data)
+      if(data.status  === 'success'){
+        navigate("/auth/verification");
+      }
+      if (data.status === "error") {
+        setError(data.message);
+      }
       setIspending(false);
     } catch {
       if (!iscancelled) {

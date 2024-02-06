@@ -42,7 +42,7 @@ export const useSignUp = () => {
         setTiktok(data.data.tiktok)
         setEmail(data.data.email)
         setUserId(data.data._id)
-        navigate("/auth/Verification");
+        navigate("/auth/bankaccount");
       }
       if (data.status === "error") {
         setError(data.message);

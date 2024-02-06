@@ -21,7 +21,6 @@ export default function BankAcoount() {
  
    const handleSubmit = (e) =>  {
     e.preventDefault()
-
     submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
    }
 
