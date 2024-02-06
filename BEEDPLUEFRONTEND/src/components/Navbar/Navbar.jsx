@@ -11,17 +11,17 @@ export default function Navbar() {
  
  if (accessToken) { return (<nav className="nav">
                     <div>
-                        <img src={Beed} alt="website logo" />
+                        <Link to="/" className="link"> <img src={Beed} alt="website logo" /></Link>
                     </div>
                     <div className="signed-in-navbar-div">
                       <button>
                           {/* <a href= "/auth/Signup">CAMPAIGNS</a> */}
                       </button>
                       <p className="singned-nav-user-icon">
-                          <a href = "/notification"><FaRegBellSlash className="navbar-notification"/></a>
+                          <Link to="/notification" className="link"><FaRegBellSlash className="navbar-notification"/></Link>
                       </p>
                       <p className="navbar-profile-icon-div">
-                          <a href="/profile" > <FaRegUser className="navbar-profile-icon" /> </a>
+                          <Link to="/profile" className="link"><FaRegUser className="navbar-profile-icon" /></Link>
 
                       </p>
                     </div>
@@ -29,10 +29,16 @@ export default function Navbar() {
                   </nav>)}
   else {return (
                      <nav className="nav">
+                   <div className="not-signed-in-nav-logo">
                        <img src={Beed} alt="website logo" />
-                  <div className="link-holder">
-                    <a href="/auth/Signup" ><button className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button></a>
-                    <a href = "/auth/Signin">Login</a>
+                   </div>
+                  <div className="not-signed-in-navbar">
+                      <p className="earn-now-nav-button">
+                          <a href="/auth/Signup" ><button className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button></a>
+                      </p>
+                      <p className="not-signed-in-login-page">
+                          <a href = "/auth/Signin">Login</a>
+                      </p>
                   </div>
                 </nav>)}
   
