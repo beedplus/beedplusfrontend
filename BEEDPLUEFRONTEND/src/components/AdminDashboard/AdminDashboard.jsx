@@ -74,14 +74,28 @@ const AdminDashboard = () => {
       });
   };
 
-  const acceptLink = (link) => {
-    const updatedStatuses = {};
-    console.log("linkIndex", link);
-    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-    console.log("linkIndexs", linkIndex);
+  // const acceptLink = (link) => {
+  //   const updatedStatuses = {};
+  //   console.log("linkIndex", link);
+  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+  //   console.log("linkIndexs", linkIndex);
+  //   console.log("linkIndexs", clickedSubmissionLinks);
     
+  //   // Update only the clicked link
+  //   updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
+  
+  //   setLinkStatuses((prevStatuses) => ({
+  //     ...prevStatuses,
+  //     ...updatedStatuses,
+  //   }));
+  //   // setRejection(true); // Assuming you set rejection to true after accepting the links
+  // };
+  const acceptLink = (linkIndex) => { // Accept the index directly
+    const updatedStatuses = {};
+    console.log("linkIndex", linkIndex);
+  
     // Update only the clicked link
-    updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
+    updatedStatuses[`link${linkIndex}`] = { status: "verified" };
   
     setLinkStatuses((prevStatuses) => ({
       ...prevStatuses,
@@ -91,14 +105,28 @@ const AdminDashboard = () => {
   };
   
 
-  const rejectLink = (link) => {
-    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-    console.log("linkIndexs", linkIndex);
+  // const rejectLink = (link) => {
+  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+  //   console.log("linkIndexs", linkIndex);
+  //   setLinkStatuses((prevStatuses) => ({
+  //     ...prevStatuses,
+  //     [`link${linkIndex}`]: { status: "rejected", reason: reason },
+  //   }));
+  //   setRejection(true);
+  // };
+
+  const rejectLink = (linkIndex) => { // Accept the index directly
+    const updatedStatuses = {};
+    console.log("linkIndex", linkIndex);
+  
+    // Update only the clicked link
+    updatedStatuses[`link${linkIndex}`] = { status: "rejected", reason: reason };
+  
     setLinkStatuses((prevStatuses) => ({
       ...prevStatuses,
-      [`link${linkIndex}`]: { status: "rejected", reason: reason },
+      ...updatedStatuses,
     }));
-    setRejection(true);
+    // setRejection(true); // Assuming you set rejection to true after accepting the links
   };
 
   const finishReview = (submissionId) => {
@@ -180,6 +208,7 @@ const AdminDashboard = () => {
       }
     }
     setClickedSubmissionLinks(links);
+    console.log({"setClickedSubmissionLinks" : setClickedSubmissionLinks})
     console.log("links", links);
     setAttemptId(attempt._id);
     console.log("attemptId:", attemptId);
@@ -423,11 +452,11 @@ const AdminDashboard = () => {
                   <div className="btn-container">
                     <IoCheckboxSharp
                       className="check"
-                      onClick={() => acceptLink(link)}
+                      onClick={() => acceptLink(index + 1)}
                     />
                     <FaWindowClose
                       className="cancel"
-                      onClick={() => rejectLink(link)}
+                      onClick={() => rejectLink(index + 1)}
                     />
                   </div>
                 </div>
