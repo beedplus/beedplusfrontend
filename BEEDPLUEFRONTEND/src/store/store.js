@@ -5,6 +5,7 @@ const usebackendStore = create(
   persist(
     (set) => ({
       accessToken: null,
+        tempAccessToken: null,
       user: {
         userId: null,
         email: '',
@@ -12,7 +13,7 @@ const usebackendStore = create(
         lastName: '',
         tiktok: '',
         tempUserId: null,
-        tempAccessToken: null,
+
       },
       ChallengeId: null,
       setAuth: (id, token) => set((state) => ({ user: { ...state.user, userId: id },  accessToken: token })),
@@ -21,7 +22,7 @@ const usebackendStore = create(
       setEmail: (email) => set((state) => ({ user: { ...state.user, email: email } })),
       setTiktok: (tik) => set((state) => ({ user: { ...state.user, tiktok: tik } })),
       setUserId: (id) => set((state) => ({ user: { ...state.user, userId: id } })),
-      setTempAuth: (id, token) => set((state) => ({ user: { ...state.user, tempUserId: id, tempAccessToken: token } })),
+      setTempAuth: (id, token) => set((state) => ({ user: { ...state.user, tempUserId: id } , tempAccessToken: token})),
       resetAuth: () => set({ user: { userId: null } , accessToken: null }),
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({  ChallengeId: id }),

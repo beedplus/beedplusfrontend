@@ -7,6 +7,8 @@ export const useSubmitBankAccount = () => {
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
   const navigate = useNavigate();
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
+  console.log(tempAccessToken)
 
   const apiUrl = "https://beedplus.onrender.com/user/accounts";
 
@@ -17,7 +19,7 @@ export const useSubmitBankAccount = () => {
 
     try {
       const postData = {
-        id, bankname, accountName, accountNumber
+        id, bankName: bankname, accountName, accountNumber
       };
 
       const res = await fetch(`${apiUrl}`, {
@@ -25,6 +27,7 @@ export const useSubmitBankAccount = () => {
         headers: {
           "Content-Type": "application/json",
           // Add any other headers if needed
+          Authorization: `Bearer ${tempAccessToken}`,
         },
         body: JSON.stringify(postData),
       });
