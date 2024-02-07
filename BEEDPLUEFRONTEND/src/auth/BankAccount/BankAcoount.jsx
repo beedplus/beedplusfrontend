@@ -109,7 +109,7 @@ export default function BankAcoount() {
           </div>
 
           <div className="sign_Loginnext">
-            <button type="submit">Login</button>
+            <button type="submit">Add Account Number</button>
               {ispend&&<h4>Loading......</h4>}
               {err&&<p>{err.message}</p>}
           </div>

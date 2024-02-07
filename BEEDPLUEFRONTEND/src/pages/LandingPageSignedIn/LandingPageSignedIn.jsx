@@ -6,6 +6,7 @@ import Advert from '../../assets/Group 90.png';
 import ChallangeCardlist from "../../components/ChallangeCardList/ChallangeCardlist";
 export default function LandingPageSignedIn() {
   const { logout } = useLogout();
+    console.log('ksalmdc')
   return (
     <div className="landing-page-signed-in">
       <div className="signed-in-landing-page-advert-banner-div">

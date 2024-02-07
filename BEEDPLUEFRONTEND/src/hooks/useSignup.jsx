@@ -10,6 +10,7 @@ export const useSignUp = () => {
   const setEmail = usebackendStore(state => state.setEmail)
   const setTiktok = usebackendStore(state => state.setTiktok)
   const setUserId = usebackendStore(state => state.setUserId)
+  const setTempAuth = usebackendStore(state => state.setTempAuth )
   const navigate = useNavigate();
 
   const apiUrl = "https://beedplus.onrender.com/auth";
@@ -41,7 +42,7 @@ export const useSignUp = () => {
         setLastName(data.data.lastname)
         setTiktok(data.data.tiktok)
         setEmail(data.data.email)
-        setUserId(data.data._id)
+        setTempAuth(data.data._id,data.token)
         navigate("/auth/bankaccount");
       }
       if (data.status === "error") {
