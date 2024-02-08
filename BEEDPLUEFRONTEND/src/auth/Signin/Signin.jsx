@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
+import { FaRegEyeSlash } from "react-icons/fa";
 import "./Sign.scss";
 import image from "../../assets/beed.svg";
 import { useLogin } from "../../hooks/useLogin";
@@ -12,7 +13,17 @@ import {Link} from "react-router-dom"
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPaasword] =  useState(false)
+  
+
   const { login, error, ispending } = useLogin();
+
+
+  const handleShowPassword = () =>{
+    setShowPaasword(!showPassword)
+  }
+ 
 
   const validateInputs = () => {
     let isValid = true;
@@ -60,9 +71,6 @@ export default function Signin() {
 
   return (
     <div className="sign_Login">
-      {/*<div className="beedlogo">*/}
-      {/*  <img src={image2} alt="beedlogo" />*/}
-      {/*</div>*/}
       <div className="sign-form-div">
         <form onSubmit={handleSubmit}>
           <div className="image">
@@ -85,11 +93,9 @@ export default function Signin() {
               />
             </div>
             <div className="sign_Loginpassword">
-              <div className="sign_LoginGoEye">
-                <GoEye />
-              </div>
+              <div className="sign_LoginGoEye" onClick={handleShowPassword}>{showPassword ?<GoEye /> : <FaRegEyeSlash />} </div>
               <input
-                type="password"
+                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter Your Password"
                 value={password}
@@ -108,8 +114,6 @@ export default function Signin() {
                 Sign Up
               </Link>
             </div>
-            {/*{ispending && <p className="word">Loading.......</p>}*/}
-            {/*{error && <p className="text-error-sign">{error.message}</p>}*/}
              {ispending && <p className="login-error-text">Loading.......</p>}
             {error && <p className="login-error-text"> {error}</p>}
           </div>
