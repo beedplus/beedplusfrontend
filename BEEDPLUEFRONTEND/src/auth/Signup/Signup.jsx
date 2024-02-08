@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
+import { FaRegEyeSlash } from "react-icons/fa";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { Link } from "react-router-dom";
@@ -18,6 +19,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPaasword] =  useState(false)
+  const[seeConfirPassword, setSeeconfirPassword] = useState(false)
 
   const navigate = useNavigate();
 
@@ -47,6 +50,14 @@ export default function Signup() {
     return isValid;
   };
 
+  const handleShowPassword = () =>{
+    setShowPaasword(!showPassword)
+  }
+
+  const handleseeConfirPassword = ()=>{
+    setSeeconfirPassword(!seeConfirPassword)
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -69,6 +80,9 @@ export default function Signup() {
         break;
     }
   };
+
+  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -132,11 +146,9 @@ export default function Signup() {
                 />
               </div>
               <div className="password">
-                <div className="GoEye">
-                  <GoEye />
-                </div>
+                <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye />:<FaRegEyeSlash /> }</div>
                 <input
-                    type="password"
+                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Enter Your Password"
                     value={password}
@@ -144,11 +156,9 @@ export default function Signup() {
                 />
               </div>
               <div className="confirmPassword">
-                <div className="GoEye">
-                  <GoEye />
-                </div>
+                <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
                 <input
-                    type="password"
+                    type={seeConfirPassword ?  "text" :  "password"}
                     name="confirmPassword"
                     placeholder="Confirm Your Password"
                     value={confirmPassword}
