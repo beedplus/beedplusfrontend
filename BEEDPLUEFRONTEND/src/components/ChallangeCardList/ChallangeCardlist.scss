@@ -1,54 +1,39 @@
-.challange-card-list{
+.challange-card-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  .latest {
+    color: #fd105b;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .class-container {
     display: flex;
-    flex-direction: column;
-    padding: 20px 30px;
-    .latest{
-        color: #FD105B;
-        font-weight: 700;
-        font-size: 15px;
-        margin-bottom: 20px
-        ;
-    }
-    .class-container{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
+    flex-wrap: wrap;
+    gap: 15px;
+  }
 }
 
-
-
-
-
-
-
-
-
-
-
 @media screen and (min-width: 360px) and (max-width: 820px) {
-
-    .challange-card-list{
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        width: 85%;
-        padding: 30px 0;
-        .latest{
-            color: #FD105B;
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 20px
-        ;
-        }
-        .class-container{
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+  .challange-card-list {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    padding: 30px 0;
+    .latest {
+      color: #fd105b;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 20px;
     }
-
-
+    .class-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
 }
 
 //@media only screen and (min-width:1000px){

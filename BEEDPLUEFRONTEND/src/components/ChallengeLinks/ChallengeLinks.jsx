@@ -30,7 +30,7 @@ const ChallengeLinks = () => {
 
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
-  let { document, setDocument } = useGetSubmission(id);
+  let { document, refetch } = useGetSubmission(id);
 
   //   const checkFullyVerified = [];
   //   if (document.data) {
@@ -139,32 +139,32 @@ const ChallengeLinks = () => {
     const allVerified = test.every((value) => value);
     return allVerified;
   };
-  const updateSubmission = async (attemptId) => {
-    // console.log(attemptId)
-    try {
-      const response = await fetch(`https://beedplus.onrender.com/campaigns/${document.data._id}/submission`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any other headers if needed
-          Authorization: `Bearer ${accessToken}`,
-        },
-      
-        body: JSON.stringify({ attemptId }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Failed to update submission. Status: ${response.status}`);
-      }
-  
-      console.log('Submission updated successfully');
-      // console.log(response.json())
-    } catch (error) {
-      console.error('Error updating submission:', error.message);
-      // Handle the error as needed
-    }
-  };
-  
+  // const updateSubmission = async (attemptId) => {
+  //   // console.log(attemptId)
+  //   try {
+  //     const response = await fetch(`https://beedplus.onrender.com/campaigns/${document.data._id}/submission`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // Add any other headers if needed
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+
+  //       body: JSON.stringify({ attemptId }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`Failed to update submission. Status: ${response.status}`);
+  //     }
+
+  //     console.log('Submission updated successfully');
+  //     // console.log(response.json())
+  //   } catch (error) {
+  //     console.error('Error updating submission:', error.message);
+  //     // Handle the error as needed
+  //   }
+  // };
+
   const createNewCard = () => {
     // Generate a unique key using nanoid
     const newSubmission = {
@@ -178,25 +178,25 @@ const ChallengeLinks = () => {
       link5: { url: "", status: "" },
       isPending: false,
     };
-  
+
     // Return the new submission
     return newSubmission;
   };
-  
+
   const handleClaim = () => {
     setIsClaimed(true);
     const newSubmission = createNewCard();
-    
+
     // Update the document state with the new submission
-    setDocument(prevDocument => {
-      const updatedSubmissions = [...prevDocument.data?.attempts, newSubmission];
-      return { ...prevDocument, data: { attempts: updatedSubmissions } };
-    });
-    
+    // setDocument(prevDocument => {
+    //   const updatedSubmissions = [...prevDocument.data?.attempts, newSubmission];
+    //   return { ...prevDocument, data: { attempts: updatedSubmissions } };
+    // });
+
     // Update the backend with the new submission
-    updateSubmission(newSubmission._id); // Assuming _id is the identifier for the attempt
+    // updateSubmission(newSubmission._id); // Assuming _id is the identifier for the attempt
   };
-  
+
   return (
     documents &&
     documents.data && (
@@ -244,7 +244,6 @@ const ChallengeLinks = () => {
             <button
               onClick={() => setActiveTab(false)}
               className={`grey ${!activeTab ? "active" : "unactive"}`}
-
             >
               SUBMISSION
             </button>
@@ -298,7 +297,8 @@ const ChallengeLinks = () => {
                 Copyright BEED+ 2024 Company. All rights reserved
               </footer> */}
             </div>
-          ) : document.message !== "No existing submission" && document?.data?.attempts?.length > 0 ? (
+          ) : document.message !== "No existing submission" &&
+            document?.data?.attempts?.length > 0 ? (
             document.data.attempts.map((attempt, i) => (
               <Submission
                 id={id}
