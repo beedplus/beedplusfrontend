@@ -351,9 +351,6 @@ const ChallengeLinks = () => {
               complete processing)
             </p>
           )}
-          <footer className="section-footer">
-            Copyright BEED+ 2024 Company. All rights reserved
-          </footer>
         </div>
       </section>
     )

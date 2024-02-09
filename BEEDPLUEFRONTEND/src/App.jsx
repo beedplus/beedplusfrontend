@@ -39,31 +39,28 @@ function App() {
     <div className="app">
 
       <Router>
-          <Navbar />
         <Routes>
         <Route
             path="/home"
-            element={<Home /> }
+            element={
+              <>
+              <Navbar />
+              <Home />
+              <Footer /> 
+              </>    
+          }
           />
           <Route
             path="/"
             element={
               <>
+              <Navbar />
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to= '/home'/>}
+              <Footer /> 
               </>
             }
-          />
-          
-   {/*       <Route*/}
-   {/*         path="/LandingPageSignedIn"*/}
-   {/*         element={*/}
-   {/*<LandingPageSignedIn />*/}
-
-   {/*         }*/}
-   {/*       />*/}
-
-        
+          />        
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
@@ -110,6 +107,7 @@ function App() {
             path="/challenge-submit"
             element={
               <>
+              <Navbar />
                 {accessToken && <ChallengeSubmit />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -119,6 +117,7 @@ function App() {
             path="/profile"
             element={
               <>
+                <Navbar />
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -128,6 +127,7 @@ function App() {
             path="/notification"
             element={
               <>
+               <Navbar />
                 {accessToken && <NotificationPage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -137,6 +137,7 @@ function App() {
             path="/check-challenge"
             element={
               <>
+              <Navbar /> 
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -160,6 +161,7 @@ function App() {
                 </>}
                 />
           {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
+
                 {accessToken && <ChallengeLinks />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>}
@@ -173,7 +175,6 @@ function App() {
 
         </Routes>
       </Router>
-    <Footer /> 
 
       <ToastContainer position="top-center" autoClose={3000} />
     </div>

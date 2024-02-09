@@ -61,7 +61,7 @@ export default function BankAcoount() {
           </div>
           <div className="sign_LoginLogin">
             <h3>
-              Add your correct bank account details to withdraw your earnings
+              Add your  bank account details.
             </h3>
           </div>
           <div className="bank-account-selection-div">
