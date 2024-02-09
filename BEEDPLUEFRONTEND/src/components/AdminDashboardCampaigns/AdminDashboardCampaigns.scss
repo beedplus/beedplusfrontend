@@ -1,0 +1,64 @@
+.admin-dashboard-campaign-div{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .admin-dashboard-campaign-link-listed-div{
+    width: 70%;
+    .admin-dashboard-campaign-link-listed-head-text{
+      padding: 15px 0;
+      p{
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+    .admin-dashboard-campaign-link-listed-header{
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      .admin-dashboard-campaign-link-listed-header-div{
+        width: 33.3%;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        h2{
+          font-size: 15px;
+          font-weight: 500;
+        }
+        p{
+          .admin-dasboard-arrow-down{
+            font-weight: 500;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .admin-dashboard-campaigns-individual-campaign-div{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .admin-dashboard-campaigns-individual-campaign-div-bar{
+        display: flex;
+        background: #e3e2e2;
+        padding: 20px 15px;
+        border-radius: 10px;
+        div{
+          width: 33.3%;
+            .admin-dashboard-campaign-name{
+              font-weight: 700;
+              font-size: 13px;
+            }
+            .admin-dashboard-campaign-owner{
+              color: #3C3C3C;
+              font-size: 12px;
+            }
+          .admin-dashboard-campaign-date{
+            color: #3C3C3C;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
