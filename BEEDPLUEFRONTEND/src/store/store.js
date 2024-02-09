@@ -24,6 +24,7 @@ const usebackendStore = create(
       setUserId: (id) => set((state) => ({ user: { ...state.user, userId: id } })),
       setTempAuth: (id, token) => set((state) => ({ user: { ...state.user, tempUserId: id } , tempAccessToken: token})),
       resetAuth: () => set({ user: { userId: null } , accessToken: null }),
+        resetTempAuth: () => set({ user: { tempUserId: null } , tempAccessToken: null }),
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({  ChallengeId: id }),
       setCompareStatus: (payload) =>

@@ -21,10 +21,12 @@ import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
+import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
+    const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
   const [currentId,setcurrentId] =useState("")
   // const navigateToChallengeLink =() =>{
   //   navigate("/challenge-link")
@@ -143,20 +145,25 @@ function App() {
             path="/admin-dashboard"
             element={
               <>
-                {accessToken && <AdminDashboard />}
-                {!accessToken && <Navigate to="/auth/signin" />}
+                {tempAccessToken && <AdminDashboard />}
+                {!tempAccessToken && <Navigate to="/admin-login" />}
               </>
             }
           />
-              <Route path="/challenge/:id" element={      
-                 <>
-                 <Navbar />
+          <Route
+                path="/admin-login"
+                element={   <>
+                    {tempAccessToken &&<Navigate to="/admin-dashboard" />}
+                    {!tempAccessToken && <AdminDashboardLogin/>}
+                </>}
+                />
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
+
                 {accessToken && <ChallengeLinks />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             } 
             />
-
         </Routes>
       </Router>
 
