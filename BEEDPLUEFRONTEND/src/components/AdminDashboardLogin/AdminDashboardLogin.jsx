@@ -3,14 +3,14 @@ import { useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import image from "../../assets/beed.svg";
-import { useLogin } from "../../hooks/useLogin";
+import {useAdminLogin} from "../../hooks/useAdminLogin.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminDashboardLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login, error, ispending } = useLogin();
+    const { login, error, ispending } = useAdminLogin();
 
     const validateInputs = () => {
         let isValid = true;
@@ -101,6 +101,7 @@ const AdminDashboardLogin = () => {
                             <div className="sign_Loginnext">
                                 <button type="submit">Login</button>
                             </div>
+                            {ispending && <p>loading..</p>}
                         </form>
                     </div>
                 </div>
