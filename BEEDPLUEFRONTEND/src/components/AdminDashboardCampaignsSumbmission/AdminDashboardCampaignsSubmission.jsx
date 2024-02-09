@@ -90,7 +90,7 @@ const AdminDashboardCampaignsSubmission = () => {
             </section>
             <section className="admin-dashboard-campaign-info">
                 <div className="admin-dashboard-campaign-info-div">
-                    <p className="admin-dashboard-campaign-inf">
+                    <p className="admin-dashboard-campaign-info">
                         Campaign Info
                     </p>
                     <div>
