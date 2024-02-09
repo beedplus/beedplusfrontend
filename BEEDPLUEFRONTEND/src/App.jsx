@@ -22,26 +22,23 @@ import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 
+
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
   const [currentId,setcurrentId] =useState("")
-  // const navigateToChallengeLink =() =>{
-  //   navigate("/challenge-link")
-  // }
+  
 
   return (
     <div className="app">
-
+      
       <Router>
         <Routes>
         <Route
             path="/home"
             element={
               <>
-              <Navbar />
               <Home />
-              <Footer /> 
               </>    
           }
           />
@@ -49,10 +46,8 @@ function App() {
             path="/"
             element={
               <>
-              <Navbar />
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to= '/home'/>}
-              <Footer /> 
               </>
             }
           />        
@@ -102,7 +97,6 @@ function App() {
             path="/challenge-submit"
             element={
               <>
-              <Navbar />
                 {accessToken && <ChallengeSubmit />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -112,7 +106,6 @@ function App() {
             path="/profile"
             element={
               <>
-                <Navbar />
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -122,7 +115,6 @@ function App() {
             path="/notification"
             element={
               <>
-               <Navbar />
                 {accessToken && <NotificationPage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -131,13 +123,13 @@ function App() {
           <Route
             path="/check-challenge"
             element={
-              <>
-              <Navbar /> 
+              <> 
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             }
           />
+        
 
           <Route
             path="/admin-dashboard"
@@ -150,12 +142,20 @@ function App() {
           />
               <Route path="/challenge/:id" element={      
                  <>
-                 <Navbar />
                 {accessToken && <ChallengeLinks />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             } 
             />
+              <Route path="HowItWorks" element={      
+                 <>
+                {accessToken && <ChallengeLinks />}
+                {!accessToken && <Navigate to="/auth/signin" />}
+              </>
+            } 
+            />
+            
+
 
         </Routes>
       </Router>
@@ -166,4 +166,4 @@ function App() {
 }
 
 export default App;
-// export {navigateToChallengeLink};
+

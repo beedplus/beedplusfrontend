@@ -1,0 +1,61 @@
+.HowItWorks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+  .HowItWorks-image-div{
+    margin-top: 3em;
+  }
+
+    .Faq-div-HowItWorks{
+        display: flex;
+         gap: 3.4rem;
+         margin-top: 7em;
+         margin-bottom: 5em;
+    
+        div{
+             background-color: rgb(255, 0, 0, 1);
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             color: white;
+             border-radius: 20px;
+             padding: 5px 40px;
+        }
+
+        h3{
+            padding-top: 10px;
+            color:  rgba(253, 16, 91, 1);
+            
+        }
+    }
+
+    .HowItWorks-contains-li{
+        margin-top: 30px;
+        background-color: rgba(237, 236, 236, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2em 1.5em;
+        width: 80%;
+        border-radius: 12px;
+        
+
+        .contain-one{
+            display: flex;
+            gap: .7em;
+            font-weight: 500;
+            padding-bottom: 1.5em;
+            
+        }
+
+        .paras{
+            margin-top: 10px;
+            line-height: 1.5em;
+        }
+        
+    } 
+}

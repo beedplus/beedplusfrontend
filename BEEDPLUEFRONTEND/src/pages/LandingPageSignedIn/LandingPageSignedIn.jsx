@@ -9,6 +9,7 @@ export default function LandingPageSignedIn() {
     console.log('ksalmdc')
   return (
     <div className="landing-page-signed-in">
+
       <div className="signed-in-landing-page-advert-banner-div">
           <img src={Advert} alt="Advert" className='advert' />
       </div>
@@ -17,6 +18,7 @@ export default function LandingPageSignedIn() {
           <img src={EnterWin} alt="EnterWin" className='enter-win2' />
       </div>
       <ChallangeCardlist className="new" campaign="new"/>
+       
     </div>
   );
 }
