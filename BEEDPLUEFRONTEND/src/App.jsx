@@ -22,6 +22,9 @@ import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
+import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
+import AdminDashboardCampaignsSubmission
+    from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
 
 function App() {
   
@@ -159,7 +162,14 @@ function App() {
           {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
                 {accessToken && <ChallengeLinks />}
                 {!accessToken && <Navigate to="/auth/signin" />}
-              </>} />
+              </>}
+        />
+
+          <Route
+                path="/test"
+                element={<AdminDashboardCampaignsSubmission/>}
+                />
+
 
         </Routes>
       </Router>
