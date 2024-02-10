@@ -21,16 +21,17 @@ import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
-<<<<<<< Updated upstream
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
+import FAQ from "./components/FAQ/Faqs.jsx";
+import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
+import AdminDashboardRejectedCampaign
+    from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
 import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
-=======
-import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
+// import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
->>>>>>> Stashed changes
 
 function App() {
 
@@ -44,6 +45,14 @@ function App() {
 
       <Router>
         <Routes>
+        <Route
+            path="/Dashboard-Navbar"
+            element={
+            
+             <DashboardNavbar/>
+            
+          }
+          />
           <Route
             path="/home"
             element={
@@ -53,6 +62,16 @@ function App() {
             }
           />
           <Route
+            path="/FAQS"
+            element={
+              <>
+              <Navbar />
+              <FAQ />
+              <Footer /> 
+              </>    
+          }
+          />
+          <Route
             path="/"
             element={
               <>
@@ -60,10 +79,10 @@ function App() {
                 {!accessToken && <Navigate to='/home' />}
               </>
             }
-<<<<<<< Updated upstream
+
           />
-=======
-          />        
+
+                
           <Route
             path="/SideBarAdmin"
             element={
@@ -73,7 +92,7 @@ function App() {
               </>
             }
           />        
->>>>>>> Stashed changes
+
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
@@ -180,6 +199,11 @@ function App() {
 
           <Route
             path="/test"
+                element={<AdminDashboardCampaigns/>}
+                />
+
+                <Route
+                path="/test-campaign/:id"
             element={<AdminDashboardCampaignsSubmission />}
           />
 
