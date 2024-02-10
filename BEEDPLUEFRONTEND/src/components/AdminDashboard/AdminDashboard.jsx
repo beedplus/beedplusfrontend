@@ -8,11 +8,10 @@ import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
 import caretDown from "../../assets/Vector 1.png";
 import { FaWindowClose } from "react-icons/fa";
 import { IoCheckboxSharp } from "react-icons/io5";
+import {usebackendStore} from "../../store/store.js";
 // import FixedNavbar from "../FixedNavbar/FixedNavbar";
 // import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
 
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA2ODk1ODQ1LCJleHAiOjE3MDc1MDA2NDV9.akWtLU25UBITW9Uuuxg65dHWLtHaOMlk0UooS1_o_CM";
 
 
 
@@ -26,13 +25,14 @@ const AdminDashboard = () => {
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [linkStatuses, setLinkStatuses] = useState({});
   let [submissionHeight, setSubmissionHeight] = useState(false);
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken)
   let configa = {
     method: "get",
     maxBodyLength: Infinity,
     url: `https://beedplus.onrender.com/admin/submissions/${id}`,
     // the :id here is the submission id
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tempAccessToken}`,
     },
   };
 
