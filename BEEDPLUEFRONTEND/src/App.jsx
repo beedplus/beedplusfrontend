@@ -21,11 +21,16 @@ import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
+<<<<<<< Updated upstream
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
 import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
+=======
+import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
+
+>>>>>>> Stashed changes
 
 function App() {
 
@@ -55,7 +60,20 @@ function App() {
                 {!accessToken && <Navigate to='/home' />}
               </>
             }
+<<<<<<< Updated upstream
           />
+=======
+          />        
+          <Route
+            path="/SideBarAdmin"
+            element={
+              <>
+                {accessToken && <SideBarAdmin />}
+                {!accessToken && <Navigate to= '/home'/>}
+              </>
+            }
+          />        
+>>>>>>> Stashed changes
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route

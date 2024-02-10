@@ -9,7 +9,6 @@ export default function LandingPageSignedIn() {
     console.log('ksalmdc')
   return (
     <div className="landing-page-signed-in">
-
       <div className="signed-in-landing-page-advert-banner-div">
           <img src={Advert} alt="Advert" className='advert' />
       </div>
