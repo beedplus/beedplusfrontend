@@ -1,4 +1,4 @@
-import { FaChevronDown } from "react-icons/fa";
+// import { FaChevronDown } from "react-icons/fa";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -20,6 +20,7 @@ const AdminDashboardCampaignsSubmission = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        setCampaignName(response.data.data.campaignName)
         setCampaignDetails(response.data.data.attempts);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -45,7 +46,7 @@ const AdminDashboardCampaignsSubmission = () => {
     <div className="admin-dashboard-campaign-submission-div">
       <section className="admin-dashboard-campaign-link-listed-div">
         <div className="admin-dashboard-campaign-link-listed-head-text">
-          <p>#GorimapaChallenge</p>
+          <p>#{campaignName}</p>
         </div>
         <div className="admin-dashboard-campaigns-individual-submission-div">
           {campaignDetails.map((campaign, index) => {

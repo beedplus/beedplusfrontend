@@ -7,13 +7,11 @@
     justify-content: space-between;
 
     img {
-      width: 54px;
-      height: 23px;
       margin-left: 3vw; 
       justify-self: right;
-   
       top:4px;
     }
+    
    .signed-in-navbar-div{
      display: flex;
      gap: 20px;
@@ -95,12 +93,6 @@
 
       }
       @media only screen and (min-width:1000px){
-
-
-
-
-
-
        .nav-button{
 
           background-color: #FF0000 ;
