@@ -90,18 +90,20 @@ const AdminDashboardCampaigns = () => {
         <div className="admin-dashboard-campaigns-individual-campaign-div">
           {submissions.map((submission, index) => {
             return (
+
+                <Link
+                    className="admin-dashboard-campaign-name"
+                    to={`/test-campaign/${submission._id}`}
+                >
               <div
                 key={index}
                 className="admin-dashboard-campaigns-individual-campaign-div-bar"
               >
                 <div>
                   <p className="admin-dashboard-campaign-name">
-                    <Link
-                      className="admin-dashboard-campaign-name"
-                      to={`/test-campaign/${submission._id}`}
-                    >
+
                       {`#${submission.name}`}
-                    </Link>
+
                   </p>
                 </div>
                 <div>
@@ -115,6 +117,8 @@ const AdminDashboardCampaigns = () => {
                   </p>
                 </div>
               </div>
+
+                </Link>
             );
           })}
         </div>

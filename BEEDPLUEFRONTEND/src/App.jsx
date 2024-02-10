@@ -27,6 +27,9 @@ import AdminDashboardCampaignsSubmission
     from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
 import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
+import AdminDashboardRejectedCampaign
+    from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
+
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);

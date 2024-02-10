@@ -50,30 +50,32 @@ const AdminDashboardCampaignsSubmission = () => {
         <div className="admin-dashboard-campaigns-individual-submission-div">
           {campaignDetails.map((campaign, index) => {
             return (
-                <div className="admin-dashboard-campaign-submission-campaign-title">
+                <div key={index}
+                    className="admin-dashboard-campaign-submission-campaign-section">
                   {Object.values(campaign)
                     .filter((link) => link && typeof link === "object")
                     .map((link, idx) => (
-                      <div key={idx} className="admin-dashboard-campaigns-individual-submission-div-bar">
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.url}
-                        </a>
-                        <div className="admin-dashboard-submission-accept-reject-bar">
-                          <button className="admin-dashboard-preview-button">
-                            Preview
-                          </button>
-                          <button className="admin-dashboard-accept-button">
-                            Accept
-                          </button>
-                          <button className="admin-dashboard-reject-button">
-                            Reject
-                          </button>
-                        </div>
-                      </div>
+                          <div key={idx} className="admin-dashboard-campaigns-individual-submission-div-bar">
+                            <a
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                              {link.url}
+                            </a>
+                            <div className="admin-dashboard-submission-accept-reject-bar">
+                              <button className="admin-dashboard-preview-button">
+                                Preview
+                              </button>
+                              <button className="admin-dashboard-accept-button">
+                                Accept
+                              </button>
+                              <button className="admin-dashboard-reject-button">
+                                Reject
+                              </button>
+                            </div>
+                          </div>
+
                     ))}
                 </div>
             );
