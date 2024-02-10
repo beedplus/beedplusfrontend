@@ -1,6 +1,8 @@
+import "../AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.scss"
+
 import { FaChevronDown } from "react-icons/fa";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss"
-const AdminDashboardCampaignsSubmission = () => {
+const AdminDashboardRejectedCampaign = () => {
     const campaignDetails   = [
         {
             campaignName: 'https://www.google.com',
@@ -67,14 +69,9 @@ const AdminDashboardCampaignsSubmission = () => {
                                         </p>
                                     </div>
                                     <div className="admin-dashboard-submission-accept-reject-bar">
-                                        <button className="admin-dashboard-preview-button">
-                                            Preview
-                                        </button>
-                                        <button className="admin-dashboard-accept-button">
-                                            Accept
-                                        </button>
+
                                         <button className="admin-dashboard-reject-button">
-                                            Reject
+                                            Rejected
                                         </button>
                                     </div>
 
@@ -119,4 +116,4 @@ const AdminDashboardCampaignsSubmission = () => {
         </div>
     )
 }
-export default AdminDashboardCampaignsSubmission
+export default AdminDashboardRejectedCampaign

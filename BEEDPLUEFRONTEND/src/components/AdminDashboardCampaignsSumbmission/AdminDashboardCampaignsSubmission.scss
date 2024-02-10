@@ -94,8 +94,30 @@
   .admin-dashboard-campaign-info{
     width: 30%;
     padding: 30px 15px;
-    .admin-dashboard-campaign-info-div{
+    .admin-dashboard-campaign-info-header{
+      font-weight: 600;
+      font-size: 15px;
+      padding: 10px 0;
+    }
+    .admin-dashboard-campaign-info-body{
+      padding: 0 12px;
+      .admin-dashboard-campaign-info-body-requirement{
+        font-size: 12px;
+        color: red;
+        font-weight: 600;
 
+      }
+      .admin-dashboard-campaign-info-body-requirement-list{
+        display: flex;
+        gap: 15px;
+        ul{
+
+          li{
+            font-size: 12px;
+            gap: 15px;
+          }
+        }
+      }
     }
   }
 }
