@@ -25,7 +25,8 @@ import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboard
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission
     from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
-
+import FAQ from "./components/FAQ/Faqs.jsx";
+import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 function App() {
   
   const accessToken = usebackendStore((state) => state.accessToken);
@@ -41,11 +42,29 @@ function App() {
       <Router>
         <Routes>
         <Route
+            path="/Dashboard-Navbar"
+            element={
+            
+             <DashboardNavbar/>
+            
+          }
+          />
+        <Route
             path="/home"
             element={
               <>
               <Navbar />
               <Home />
+              <Footer /> 
+              </>    
+          }
+          />
+          <Route
+            path="/FAQS"
+            element={
+              <>
+              <Navbar />
+              <FAQ />
               <Footer /> 
               </>    
           }
