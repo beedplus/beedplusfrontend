@@ -1,5 +1,5 @@
 import "./Navbar.scss"
-import BeedplusLogo from "../BeedplusLogo/BeedplusLogo.jsx"
+import Beed from "../../assets/image1.svg"
 import {useEffect, useState} from "react";
 import { usebackendStore } from "../../store/store";
 import { FaRegBellSlash } from "react-icons/fa";
