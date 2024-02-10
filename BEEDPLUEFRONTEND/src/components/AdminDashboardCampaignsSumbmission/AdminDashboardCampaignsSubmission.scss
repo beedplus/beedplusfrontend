@@ -37,6 +37,11 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      .admin-dashboard-campaign-submission-campaign-section{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
       .admin-dashboard-campaigns-individual-submission-div-bar{
         display: flex;
         align-items: center;
