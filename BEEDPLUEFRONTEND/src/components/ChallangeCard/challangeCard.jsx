@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
 import { useEffect } from "react";
 import Image from "../../assets/cardbackground.png";
@@ -6,6 +6,7 @@ import tiktokLogo from "../../assets/Ellipse 7.png";
 import "./ChallangeCard.scss";
 import { usebackendStore } from "../../store/store";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion"
 //const ChallangeCard = ({Image,socialtype,name,startingAmount,currentAmount}) => {
 // if(documents){
 //   return (
@@ -32,7 +33,12 @@ const ChallangeCard = (props) => {
 
   let currentAmount = 5;
   return (
-    <div className="challange-card" onClick={navigateToChallengeLink}>
+    <motion.div
+    initial={{scale:.8,opacity:0.2}}
+    whileInView={{scale:.9,transition:{duration:.5},opacity:1}}
+    whileHover={{scale:1}}
+
+    className="challange-card" onClick={navigateToChallengeLink}>
       <img src={props.image} className="background-image" />
       <div className="top-info-holder">
         <img src={tiktokLogo} />
@@ -50,7 +56,7 @@ const ChallangeCard = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
