@@ -205,6 +205,11 @@ function App() {
                 />
 
                 <Route
+                path="/dashboard"
+                element={<AdminDashboardCampaigns/>}
+                />
+
+                <Route
                 path="/test-campaign/:id"
             element={<AdminDashboardCampaignsSubmission />}
           />

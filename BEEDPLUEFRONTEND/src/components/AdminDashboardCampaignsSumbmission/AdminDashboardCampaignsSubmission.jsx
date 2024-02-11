@@ -9,6 +9,7 @@ const token =
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
   const [campaignName, setCampaignName] = useState("");
+  const [requirement, setRequirement] = useState([]);
   const { id } = useParams();
   const url = `${baseURL}${id}/submission/links`;
 
@@ -22,8 +23,9 @@ const AdminDashboardCampaignsSubmission = () => {
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
-        setCampaignName(response.data.data.campaignName);
-        setCampaignDetails(response.data.data.links);
+        setCampaignName(response.data.data.campaign.name);
+        setCampaignDetails(response.data.data.links.data);
+        setRequirement(response.data.data.campaign.requirements);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -90,18 +92,6 @@ const AdminDashboardCampaignsSubmission = () => {
     );
   };
 
-  const requirement = [
-    {
-      rule: "Pick a challenge task you are interested in ",
-    },
-    {
-      rule: "Pick a challenge task you are interested in ",
-    },
-    {
-      rule: "Pick a challenge task you are interested in ",
-    },
-  ];
-
   return (
     <div className="admin-dashboard-campaign-submission-div">
       <section className="admin-dashboard-campaign-link-listed-div">
@@ -157,7 +147,7 @@ const AdminDashboardCampaignsSubmission = () => {
             {requirement.map((rule, index) => (
               <div key={index}>
                 <ul>
-                  <li>{rule.rule}</li>
+                  <li>{rule}</li>
                 </ul>
               </div>
             ))}
