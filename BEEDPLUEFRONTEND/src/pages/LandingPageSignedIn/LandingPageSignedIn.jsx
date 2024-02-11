@@ -17,6 +17,7 @@ export default function LandingPageSignedIn() {
           <img src={EnterWin} alt="EnterWin" className='enter-win2' />
       </div>
       <ChallangeCardlist className="new" campaign="new"/>
+       
     </div>
   );
 }

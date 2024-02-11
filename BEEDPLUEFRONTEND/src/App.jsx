@@ -23,21 +23,22 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
-import AdminDashboardCampaignsSubmission
-    from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
+import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
 import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 import AdminDashboardRejectedCampaign
     from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
+import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
+import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
+// import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
+
 
 function App() {
-  
+
   const accessToken = usebackendStore((state) => state.accessToken);
-    const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
-  const [currentId,setcurrentId] =useState("")
-  // const navigateToChallengeLink =() =>{
-  //   navigate("/challenge-link")
-  // }
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
+  const [currentId, setcurrentId] = useState("")
+
 
   return (
     <div className="app">
@@ -52,15 +53,13 @@ function App() {
             
           }
           />
-        <Route
+          <Route
             path="/home"
             element={
               <>
-              <Navbar />
-              <Home />
-              <Footer /> 
-              </>    
-          }
+                <Home />
+              </>
+            }
           />
           <Route
             path="/FAQS"
@@ -76,13 +75,24 @@ function App() {
             path="/"
             element={
               <>
-              <Navbar />
                 {accessToken && <LandingPageSignedIn />}
+                {!accessToken && <Navigate to='/home' />}
+              </>
+            }
+
+          />
+
+                
+          <Route
+            path="/SideBarAdmin"
+            element={
+              <>
+                {accessToken && <SideBarAdmin />}
                 {!accessToken && <Navigate to= '/home'/>}
-              <Footer /> 
               </>
             }
           />        
+
           <Route path="/auth">
             <Route index element={<Signup />} />
             <Route
@@ -96,13 +106,13 @@ function App() {
               }
             />
             <Route
-             path="bankaccount"
-             element={
+              path="bankaccount"
+              element={
                 <>
-              {accessToken && <Navigate to="/profile" />}
-              {!accessToken && <BankAcoount />}
-              </>
-             }
+                  {accessToken && <Navigate to="/profile" />}
+                  {!accessToken && <BankAcoount />}
+                </>
+              }
             />
             <Route path="verify/:token" element={<Verify />} />
             <Route
@@ -129,7 +139,6 @@ function App() {
             path="/challenge-submit"
             element={
               <>
-              <Navbar />
                 {accessToken && <ChallengeSubmit />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -139,7 +148,6 @@ function App() {
             path="/profile"
             element={
               <>
-                <Navbar />
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -149,7 +157,6 @@ function App() {
             path="/notification"
             element={
               <>
-               <Navbar />
                 {accessToken && <NotificationPage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -159,12 +166,12 @@ function App() {
             path="/check-challenge"
             element={
               <>
-              <Navbar /> 
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             }
           />
+
 
           <Route
             path="/admin-dashboard"
@@ -175,32 +182,48 @@ function App() {
               </>
             }
           />
-          <Route
-                path="/admin-login"
-                element={   <>
-                    {tempAccessToken &&<Navigate to="/admin-dashboard" />}
-                    {!tempAccessToken && <AdminDashboardLogin/>}
-                </>}
-                />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
-
-                {accessToken && <ChallengeLinks />}
-                {!accessToken && <Navigate to="/auth/signin" />}
-              </>}
-        />
 
           <Route
+            path="/admin-login"
+            element={<>
+              {tempAccessToken && <Navigate to="/admin-dashboard" />}
+              {!tempAccessToken && <AdminDashboardLogin />}
+            </>}
+          />
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<>
+
+            {accessToken && <ChallengeLinks />}
+            {!accessToken && <Navigate to="/auth/signin" />}
+          </>}
+          />
+
+          <Route
+
                 path="/test"
                 element={<AdminDashboard/>}
+
                 />
 
                 <Route
                 path="/test-campaign/:id"
-                element={<AdminDashboardCampaignsSubmission/>}
+            element={<AdminDashboardCampaignsSubmission />}
+          />
+
+          <Route
+            path="/SideBarAdmin"
+            element={<SideBarAdmin/>}
+          />
+          <Route
+            path="/AcceptedSubmissions"
+            element={<AcceptedSubmissions/>}
+          />                <Route path="/rejected-campaign"
+                element={<AdminDashboardRejectedCampaign/>}
                 />
 
 
         </Routes>
+
+
       </Router>
 
       <ToastContainer position="top-center" autoClose={3000} />
@@ -209,4 +232,4 @@ function App() {
 }
 
 export default App;
-// export {navigateToChallengeLink};
+

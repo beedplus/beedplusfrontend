@@ -5,13 +5,14 @@ import TopPage from '../../components/TopPage/TopPage'
 import Advert from '../../assets/Group 90.svg'
 import './Home.scss'
 import BottomPage from "../../components/BottomPage/Bottompage"
+
 // import newEnterWin from '../../assets/enter-win2.png'
 // import enterwin from '../../assets/Group 263.png'
 function LandingPage(props) {
   
    return (
     <div className='landing-Page'>
-      
+       
       <TopPage/>
       <BottomPage/>
       <img src={Advert} alt="Advert" className='advert' />
