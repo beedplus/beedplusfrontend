@@ -198,8 +198,10 @@ function App() {
           />
 
           <Route
-            path="/test"
-                element={<AdminDashboardCampaigns/>}
+
+                path="/test"
+                element={<AdminDashboard/>}
+
                 />
 
                 <Route
