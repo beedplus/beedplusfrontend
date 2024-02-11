@@ -9,6 +9,8 @@
   align-items: center;
   flex-direction: column;
 
+  
+
   .beedlogo {
     position: relative;
     width: 100%;
@@ -31,6 +33,10 @@
     background: #fff;
     box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
+
+    form{
+      padding: 10px 0;
+    }
 
     .image {
       height: 100px;
@@ -75,7 +81,7 @@
       .email,
       .password,
       .confirmPassword {
-        width: 85%;
+        width: 100%;
         padding: 12px 0;
         display: flex;
         justify-content: center;
@@ -258,7 +264,7 @@
         h3 {
           color: #242424;
           font-family: Montserrat;
-          font-size: 14px;
+          font-size: 17px;
           font-style: normal;
           font-weight: 500;
           line-height: normal;
@@ -277,12 +283,11 @@
         .email,
         .password,
         .confirmPassword {
-          width: 80%;
+          width: 90%;
           height: 2.3em;
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 2px auto;
           border-radius: 120px;
           border: 1px solid black;
 
@@ -334,7 +339,7 @@
         h3 {
           color: #000;
           font-family: Montserrat;
-          font-size: 15px;
+          font-size: 17px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
@@ -345,7 +350,7 @@
           .link {
             color: #de9b4a;
             font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
+            font-size: 17px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -382,11 +387,12 @@
         width: 80%;
         color: #fff;
         font-family: "Montserrat", sans-serif;
-        font-size: 11px;
+        font-size: 13px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
       }
+
     }
   }
 

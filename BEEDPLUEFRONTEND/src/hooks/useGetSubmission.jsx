@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usebackendStore } from "../store/store";
 
 export const useGetSubmission = (id) => {
@@ -9,37 +9,41 @@ export const useGetSubmission = (id) => {
   const apiUrl = `https://beedplus.onrender.com/campaigns/${id}/submission`;
   const accessToken = usebackendStore((state) => state.accessToken);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsPending(true);
-      setError(null);
-      try {
-        const res = await fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+  const fetchData = useCallback(async () => {
+    setIsPending(true);
+    setError(null);
+    try {
+      const res = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-        if (res.status !== 200) {
-          setIsPending(false);
-          setError(`Failed to get . Status: ${res.status}`);
-        } else {
-          const result = await res.json();
-          setDocument(result);
-        }
-      } catch (error) {
-        if (!isCancelled) {
-          setError("Unknown error occurred");
-        }
-      } finally {
+      if (res.status !== 200) {
         setIsPending(false);
+        setError(`Failed to get . Status: ${res.status}`);
+      } else {
+        const result = await res.json();
+        setDocument(result);
       }
-    };
-
-    fetchData();
+    } catch (error) {
+      if (!isCancelled) {
+        setError("Unknown error occurred");
+      }
+    } finally {
+      setIsPending(false);
+    }
   }, [apiUrl, accessToken, isCancelled]);
 
-  return { error, isPending, document };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const refetch = useCallback(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { error, isPending, document, setDocument, refetch };
 };

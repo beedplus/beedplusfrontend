@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
+import { FaRegEyeSlash } from "react-icons/fa";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { Link } from "react-router-dom";
@@ -18,6 +19,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPaasword] =  useState(false)
+  const[seeConfirPassword, setSeeconfirPassword] = useState(false)
 
   const navigate = useNavigate();
 
@@ -47,6 +50,14 @@ export default function Signup() {
     return isValid;
   };
 
+  const handleShowPassword = () =>{
+    setShowPaasword(!showPassword)
+  }
+
+  const handleseeConfirPassword = ()=>{
+    setSeeconfirPassword(!seeConfirPassword)
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -70,6 +81,9 @@ export default function Signup() {
     }
   };
 
+  
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateInputs()) {
@@ -82,98 +96,94 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      {/*<div className="beedlogo">*/}
-      {/*  <img src={image2} alt="beed logo" />*/}
-      {/*</div>*/}
       <div className="form-div">
         <form onSubmit={handleSubmit}>
-          <div className="image">
-            <img src={image} alt="beed logo" />
-          </div>
-          <div className="SignUp">
-            <h3>Sign Up With Email</h3>
-          </div>
-          <div className="input-list">
-            <div className="FirstName">
-              <div className="BsPerson">
-                <BsPerson />
-              </div>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="Enter First Name"
-                value={firstName}
-                onChange={handleInputChange}
-              />
+          <div>
+            <div className="image">
+              <img src={image} alt="beed logo" />
             </div>
-            <div className="LastName">
-              <div className="BsPerson">
-                <BsPerson />
-              </div>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Enter Last Name"
-                value={lastName}
-                onChange={handleInputChange}
-              />
+            <div className="SignUp">
+              <h3>Sign Up With Email</h3>
             </div>
-            <div className="email">
-              <div className="RiMailLine">
-                <RiMailLine />
+            <div className="input-list">
+              <div className="FirstName">
+                <div className="BsPerson">
+                  <BsPerson />
+                </div>
+                <input
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter First Name"
+                    value={firstName}
+                    onChange={handleInputChange}
+                />
               </div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Your Email"
-                value={email}
-                onChange={handleInputChange}
-              />
+              <div className="LastName">
+                <div className="BsPerson">
+                  <BsPerson />
+                </div>
+                <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter Last Name"
+                    value={lastName}
+                    onChange={handleInputChange}
+                />
+              </div>
+              <div className="email">
+                <div className="RiMailLine">
+                  <RiMailLine />
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter Your Email"
+                    value={email}
+                    onChange={handleInputChange}
+                />
+              </div>
+              <div className="password">
+                <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye />:<FaRegEyeSlash /> }</div>
+                <input
+                     type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Enter Your Password"
+                    value={password}
+                    onChange={handleInputChange}
+                />
+              </div>
+              <div className="confirmPassword">
+                <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
+                <input
+                    type={seeConfirPassword ?  "text" :  "password"}
+                    name="confirmPassword"
+                    placeholder="Confirm Your Password"
+                    value={confirmPassword}
+                    onChange={handleInputChange}
+                />
+              </div>
             </div>
-            <div className="password">
-              <div className="GoEye">
-                <GoEye />
-              </div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter Your Password"
-                value={password}
-                onChange={handleInputChange}
-              />
+
+            <div className="next">
+              <button type="submit">Next</button>
             </div>
-            <div className="confirmPassword">
-              <div className="GoEye">
-                <GoEye />
+            <div className="Already">
+              <h3>Already have an account? </h3>
+              <div className="Sign">
+                <Link to="../../auth/Signin" className="link">
+                  Sign In
+                </Link>
               </div>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Your Password"
-                value={confirmPassword}
-                onChange={handleInputChange}
-              />
+              {ispending && <p className="word">Loading.......</p>}
+              {error && <p className="text">{error}</p>}
             </div>
           </div>
 
-          <div className="next">
-            <button type="submit">Next</button>
-          </div>
-          <div className="Already">
-            <h3>Already have an account? </h3>
-            <div className="Sign">
-              <Link to="../../auth/Signin" className="link">
-                Sign In
-              </Link>
-            </div>
-            {ispending && <p className="word">Loading.......</p>}
-            {error && <p className="text">{error.message}</p>}
-          </div>
         </form>
       </div>
       <div className="agree">
         <div className="agreetoArtic">
-          Click “Next” to agree to Artic’s Terms of Service and acknowledge that
+          Click “Next” to agree to Article's Terms of Service and acknowledge that
           Beed+ Policy applies to you
         </div>
       </div>

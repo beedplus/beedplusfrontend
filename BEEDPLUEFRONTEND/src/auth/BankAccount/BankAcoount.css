@@ -1,0 +1,101 @@
+
+.select-list{
+    width: 70%;
+    padding: 10px;
+}
+.bank-account-selection-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.select-bank{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-radius: 20px;
+
+}
+.bank-account-number-input{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 80%;
+
+}
+.account-number-input-field{
+    width: 100%;
+    padding: 10px;
+}
+.account-name-field{
+    display: flex;
+    gap: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 360px) and (max-width: 820px) {
+    .select-list{
+        width: 70%;
+        padding: 10px;
+    }
+    .bank-account-selection-div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .select-bank{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        border-radius: 20px;
+
+    }
+    .bank-account-number-input{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 80%;
+
+    }
+    .account-number-input-field{
+        width: 100%;
+        padding: 10px;
+    }
+    .account-name-field{
+        display: flex;
+        gap: 15px;
+    }
+}
+.sign_Loginnext button{
+    font-size: 10px;
+}
