@@ -214,7 +214,11 @@ function App() {
           <Route
             path="/AcceptedSubmissions"
             element={<AcceptedSubmissions/>}
-          />
+          />                <Route path="/rejected-campaign"
+                element={<AdminDashboardRejectedCampaign/>}
+                />
+
+
         </Routes>
 
 
