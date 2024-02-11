@@ -1,27 +1,21 @@
 import { useState, useEffect } from "react";
 import { usebackendStore } from "../store/store";
 
-export const useUpdateProfile = () => {
+export const useUpdateBankAccount = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [isCancelled] = useState(false);
-  const apiUrl = "https://beedplus.onrender.com/user/me";
+  const apiUrl = "https://beedplus.onrender.com/user/accounts";
   const accessToken = usebackendStore((state) => state.accessToken);
-  const setFirstName = usebackendStore((state) => state.setFirstName);
-  const setLastName = usebackendStore((state) => state.setLastName);
-  const setEmail = usebackendStore((state) => state.setEmail);
-  const setAcct = usebackendStore((state) => state.setAccount);
-  const setBio = usebackendStore((state) => state.setBio);
-  const setUserName = usebackendStore((state) => state.setUserName);
   const [success, setSuccess] = useState(null);
-  const updateProfile = async (name, username, tiktok, bio) => {
-    const data = { name, username, tiktok, bio };
-
+  const setAcct = usebackendStore((state) => state.setAccount);
+  const updateBankAccount = async (bankName, accountName, accountNumber) => {
+    const data = { bankName, accountName, accountNumber };
     setIsPending(true);
     setError(null);
     try {
       const res = await fetch(apiUrl, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
@@ -32,11 +26,6 @@ export const useUpdateProfile = () => {
       const result = await res.json();
 
       if (result.status === "success") {
-        setFirstName(result.data.firstname);
-        setLastName(result.data.lastname);
-        // setTiktok(result.data.tiktok);
-        setEmail(result.data.email);
-        setUserName(result.data.username);
         if (result.data.account.bankName) {
           setAcct(
             result.data.account?.bankName,
@@ -44,12 +33,9 @@ export const useUpdateProfile = () => {
             result.data.account?.accountNumber
           );
         }
-
-        setBio(result.data.bio);
         setSuccess(true);
       }
       if (result.status === "error") {
-        console.log(result);
         // setError(result.)
       }
     } catch (error) {
@@ -61,5 +47,5 @@ export const useUpdateProfile = () => {
     }
   };
 
-  return { error, isPending, updateProfile, success, setSuccess };
+  return { error, isPending, updateBankAccount, success, setSuccess };
 };

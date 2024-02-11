@@ -7,5 +7,4 @@ input:focus {
   outline: none;
   /* Add your custom focus style here */
   /* Example: */
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
 }
