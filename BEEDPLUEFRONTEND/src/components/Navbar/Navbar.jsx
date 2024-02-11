@@ -6,6 +6,8 @@ import { FaRegBellSlash } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useGetAllNotification } from "../../hooks/useGetAllNotification.jsx";
+import BeedplusLogo from "../BeedplusLogo/BeedplusLogo.jsx";
+
 
 export default function Navbar() {
   const { error, isPending, document } = useGetAllNotification();
@@ -21,7 +23,17 @@ export default function Navbar() {
     }
   }, [document, notificationStatus]);
 
-  const accessToken = usebackendStore((state) => state.accessToken);
+ // const accessToken = usebackendStore((state) => state.accessToken);
+    const accessToken = usebackendStore((state) => state.accessToken);
+ 
+ if (accessToken) { return (<nav className="nav">
+                    <div>
+                    <Link to="/" className="link"><BeedplusLogo/></Link>
+                    </div>
+                    <div className="signed-in-navbar-div">
+                      <button>
+                          {/* <a href= "/auth/Signup">CAMPAIGNS</a> */}
+                      </button>
 
   if (accessToken) {
     return (
@@ -74,4 +86,23 @@ export default function Navbar() {
       </nav>
     );
   }
+//                       </p>
+//                     </div>
+                  
+//                   </nav>)}
+//                     else {return (
+//                      <nav className="nav">
+//                    <div className="not-signed-in-nav-logo">
+//                         <BeedplusLogo/>
+//                    </div>
+//                   <div className="not-signed-in-navbar">
+//                       <p className="earn-now-nav-button">
+//                           <a href="/auth/Signup" ><button className="nav-button"style={{width: 90.3, height: 28.21}} >Earn Now </button></a>
+//                       </p>
+//                       <p className="not-signed-in-login-page">
+//                           <a href = "/auth/Signin">Login</a>
+//                       </p>
+//                   </div>
+//                 </nav>)}
+  
 }

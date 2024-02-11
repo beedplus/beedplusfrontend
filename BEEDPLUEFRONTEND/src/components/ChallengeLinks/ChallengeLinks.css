@@ -166,7 +166,7 @@ body{
 }
 
 .challenge-requirements{
-    padding: 0px 20px;
+    padding: 0px 70px;
     animation: slideRight ease-in-out .5s;
 }
 
@@ -880,7 +880,7 @@ body{
     }
 
      .challenge-requirements{
-        padding: 0px 20px;
+        padding: 0px 50px;
         animation: slideRight ease-in-out .5s;
      }
 

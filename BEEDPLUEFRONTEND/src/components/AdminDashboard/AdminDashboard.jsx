@@ -8,11 +8,10 @@ import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
 import caretDown from "../../assets/Vector 1.png";
 import { FaWindowClose } from "react-icons/fa";
 import { IoCheckboxSharp } from "react-icons/io5";
+import {usebackendStore} from "../../store/store.js";
 // import FixedNavbar from "../FixedNavbar/FixedNavbar";
 // import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
 
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA2ODk1ODQ1LCJleHAiOjE3MDc1MDA2NDV9.akWtLU25UBITW9Uuuxg65dHWLtHaOMlk0UooS1_o_CM";
 
 
 
@@ -26,13 +25,14 @@ const AdminDashboard = () => {
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [linkStatuses, setLinkStatuses] = useState({});
   let [submissionHeight, setSubmissionHeight] = useState(false);
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken)
   let configa = {
     method: "get",
     maxBodyLength: Infinity,
-    url: `https://beedplus.onrender.com/admin/submissions/${id}`,
+    url: `https://beedplus.onrender.com/admin/submissions`,
     // the :id here is the submission id
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${tempAccessToken}`,
     },
   };
 
@@ -75,14 +75,28 @@ const AdminDashboard = () => {
       });
   };
 
-  const acceptLink = (link) => {
-    const updatedStatuses = {};
-    console.log("linkIndex", link);
-    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-    console.log("linkIndexs", linkIndex);
+  // const acceptLink = (link) => {
+  //   const updatedStatuses = {};
+  //   console.log("linkIndex", link);
+  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+  //   console.log("linkIndexs", linkIndex);
+  //   console.log("linkIndexs", clickedSubmissionLinks);
     
+  //   // Update only the clicked link
+  //   updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
+  
+  //   setLinkStatuses((prevStatuses) => ({
+  //     ...prevStatuses,
+  //     ...updatedStatuses,
+  //   }));
+  //   // setRejection(true); // Assuming you set rejection to true after accepting the links
+  // };
+  const acceptLink = (linkIndex) => { // Accept the index directly
+    const updatedStatuses = {};
+    console.log("linkIndex", linkIndex);
+  
     // Update only the clicked link
-    updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
+    updatedStatuses[`link${linkIndex}`] = { status: "verified" };
   
     setLinkStatuses((prevStatuses) => ({
       ...prevStatuses,
@@ -92,14 +106,28 @@ const AdminDashboard = () => {
   };
   
 
-  const rejectLink = (link) => {
-    const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-    console.log("linkIndexs", linkIndex);
+  // const rejectLink = (link) => {
+  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
+  //   console.log("linkIndexs", linkIndex);
+  //   setLinkStatuses((prevStatuses) => ({
+  //     ...prevStatuses,
+  //     [`link${linkIndex}`]: { status: "rejected", reason: reason },
+  //   }));
+  //   setRejection(true);
+  // };
+
+  const rejectLink = (linkIndex) => { // Accept the index directly
+    const updatedStatuses = {};
+    console.log("linkIndex", linkIndex);
+  
+    // Update only the clicked link
+    updatedStatuses[`link${linkIndex}`] = { status: "rejected", reason: reason };
+  
     setLinkStatuses((prevStatuses) => ({
       ...prevStatuses,
-      [`link${linkIndex}`]: { status: "rejected", reason: reason },
+      ...updatedStatuses,
     }));
-    setRejection(true);
+    // setRejection(true); // Assuming you set rejection to true after accepting the links
   };
 
   const finishReview = (submissionId) => {
@@ -181,6 +209,7 @@ const AdminDashboard = () => {
       }
     }
     setClickedSubmissionLinks(links);
+    console.log({"setClickedSubmissionLinks" : setClickedSubmissionLinks})
     console.log("links", links);
     setAttemptId(attempt._id);
     console.log("attemptId:", attemptId);
@@ -313,11 +342,6 @@ const AdminDashboard = () => {
         <div className="information-section">
           <div className="campaign-section">
             <header className="campaign-header">Campaigns</header>
-
-            <div className="ar-button-container">
-              <button className="accept-button">Accepted</button>
-              <button className="reject-button">Rejected</button>
-            </div>
             {/* start */}
             <div className="dashboard-table">
               <div className="table-info">
@@ -340,14 +364,14 @@ const AdminDashboard = () => {
                     className={headerStates.phoneNumber ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("phoneNumber")}
                   >
-                    Phone number <img src={caretDown} alt="caret-down" />
+                    Level Request <img src={caretDown} alt="caret-down" />
                   </header>
 
                   <header
                     className={headerStates.dateTime ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("dateTime")}
                   >
-                    Date & Time <img src={caretDown} alt="caret-down" />
+                    Account Details <img src={caretDown} alt="caret-down" />
                   </header>
                 </div>
                 <div className="table-item">
@@ -357,7 +381,7 @@ const AdminDashboard = () => {
                       className={`the-item ${
                         submissionHeights[submissionIndex] ? "offset" : ""
                       }`}
-                      onClick={() => toggleHeight(submissionIndex)}
+                      // onClick={() => toggleHeight(submissionIndex)}
                     >
                       <div
                         className="item"
@@ -365,29 +389,32 @@ const AdminDashboard = () => {
                       >
                         <div className="user-info em">
                           <b>
-                            {submission.userId.firstname}&nbsp;
-                            {submission.userId.lastname}
+                            gfchhgf
+                            {/*{submission.userId.firstname}&nbsp;*/}
+                            {/*{submission.userId.lastname}*/}
                           </b>{" "}
                           <br />
-                          <p>{submission.userId.email}</p>
+                          {/*<p>{submission.userId.email}</p>*/}
                         </div>
 
                         <p className="hashtag em">
-                          #{submission.campaignId.name}
+                          jhgvj
+                          {/*#{submission.campaignId.name}*/}
                         </p>
 
                         <p className="user-phone-number em">
-                          {submission.userId.phone}
+                          {/*{submission.userId.phone}*/}
+                          <button>
+                            submission one
+                          </button>
                         </p>
 
                         <div className="date-and-time em">
                           <p className="date">
-                            {formatDate(submission.updatedAt)}
+                            {/*{formatDate(submission.updatedAt)}*/}
                           </p>
                           <p className="time">
-                            {new Date(
-                              submission.updatedAt
-                            ).toLocaleTimeString()}
+                           account details
                           </p>
 
                           {/*<p>10.30 AM</p>*/}
@@ -423,11 +450,11 @@ const AdminDashboard = () => {
                   <div className="btn-container">
                     <IoCheckboxSharp
                       className="check"
-                      onClick={() => acceptLink(link)}
+                      onClick={() => acceptLink(index + 1)}
                     />
                     <FaWindowClose
                       className="cancel"
-                      onClick={() => rejectLink(link)}
+                      onClick={() => rejectLink(index + 1)}
                     />
                   </div>
                 </div>

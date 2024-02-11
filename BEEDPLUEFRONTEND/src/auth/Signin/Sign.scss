@@ -27,7 +27,7 @@
 
 
   .sign-form-div {
-    width: 40%;
+    width: 50%;
     flex-shrink: 0;
     border-radius: 23.106px;
     background: #fff;
@@ -139,12 +139,13 @@
         border-radius: 24.619px;
 
         .sign_LoginGoEye {
-          margin-right: 12px;
+          margin-right: 10px;  
         }
 
         input {
           height: 70%;
           width: 80%;
+          margin-left: 10px;
           border: none;
           outline: none;
         }
@@ -179,7 +180,7 @@
       background: #000;
       color: #fff;
       font-family: "Montserrat", sans-serif;
-      font-size: 12.123px;
+      font-size: 14px;
       font-style: normal;
       font-weight: 800;
       line-height: normal;
@@ -253,7 +254,7 @@
         h3 {
           color: #000;
           font-family: "Montserrat", sans-serif;
-          font-size: 15px;
+          font-size: 17px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
@@ -298,7 +299,7 @@
         width: 190px;
         text-align: center;
         font-family: "Montserrat",sans-serif;
-        font-size: 10.783px;
+        font-size: 12px;
         font-style: normal;
         font-weight: 500;
         line-height: 127%;
@@ -375,7 +376,7 @@
           height: 48.942px;
           color: #fff;
           font-family: Inter;
-          font-size: 18.123px;
+          font-size: 20px;
           font-style: normal;
           font-weight: 800;
           line-height: normal;
@@ -394,7 +395,7 @@
       color: #FFF;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      font-size: 11.47px;
+      font-size: 13px;
       font-style: normal;
       font-weight: 500;
       line-height: normal;
