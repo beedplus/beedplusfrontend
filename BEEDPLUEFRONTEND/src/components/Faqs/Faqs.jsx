@@ -4,13 +4,11 @@ import { AiOutlineCaretRight } from "react-icons/ai";
 //import _, { cloneDeep } from 'lodash';
 import advert from "../../assets/Group 90.svg"
 //import _, { cloneDeep } from 'lodash';
+import FaqsHeading from '../FaqsHeading/Faqsheading';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
-import FaqsHeading from '../FaqsHeading/Faqsheading';
 
-
-
-const FAQ = () => {
+const Faqs = () => {
   const FAQ   = [
     {
       question: 'What is the best time to workout?',
@@ -85,16 +83,24 @@ const FAQ = () => {
     console.log('clicked')
   }
 
+  function revealSecondAnswers(secondIndex) {
+    if (secondActiveIndex !== secondIndex) {
+      setSecondActiveIndex(secondIndex)
+    } else {
+      setSecondActiveIndex(-1)
+    }
 
-return (
+    console.log('clicked')
+  }
+
+  return (
     <div className='faq-page-width'>
       <img src={advert} alt="advert" className='advert' />  
-    
-      
+      <FaqsHeading/>
+
       <div className="faq-section">
-      
+
         <div className="section">
-        <FaqsHeading/>
           {
             FAQ.map((question, firstIndex) => {
               return <div key={firstIndex} className={`faq ${firstActiveIndex === firstIndex ? 'active' : ''}`} onClick={() => revealFirstAnswers(firstIndex)}>
@@ -102,9 +108,12 @@ return (
                   {question.question}
                   <IoMdArrowDropdown className='arrow-down'/>
                 </div>
+
                 <div className='faq-answer'>
                   {question.answer}
+                 
                 </div>
+
               </div>
             })
           }
@@ -123,4 +132,4 @@ return (
   )
 }
 
-export default FAQ
+export default Faqs

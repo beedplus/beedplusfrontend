@@ -1,5 +1,5 @@
 import "./Navbar.scss"
-import Beed from "../../assets/image1.svg"
+import Beed from "../../assets/image1.svg" 
 import {useEffect, useState} from "react";
 import { usebackendStore } from "../../store/store";
 import { FaRegBellSlash } from "react-icons/fa";
@@ -52,7 +52,7 @@ export default function Navbar() {
                     else {return (
                      <nav className="nav">
                    <div className="not-signed-in-nav-logo">
-                       <img src={Beed} alt="website logo" />
+                        <BeedplusLogo/>
                    </div>
                   <div className="not-signed-in-navbar">
                       <p className="earn-now-nav-button">
