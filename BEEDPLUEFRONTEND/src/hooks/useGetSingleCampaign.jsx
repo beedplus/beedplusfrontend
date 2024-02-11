@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-
+import { usebackendStore } from "../store/store";
 export const useGetSingleCampaign = (id) => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [isCancelled] = useState(false);
-  const apiUrl = `https://beedplus.onrender.com/campaigns/${id}`;
+  const accessToken = usebackendStore((state) => state.accessToken);
+  const apiUrl = `https://beedplus.onrender.com/campaigns/${id}/submission`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,7 @@ export const useGetSingleCampaign = (id) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
           },
         });
 
