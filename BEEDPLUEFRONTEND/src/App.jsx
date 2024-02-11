@@ -191,7 +191,7 @@ function App() {
 
           <Route
                 path="/test"
-                element={<AdminDashboardCampaigns/>}
+                element={<AdminDashboard/>}
                 />
 
                 <Route

@@ -6,6 +6,7 @@ import { FaRegBellSlash } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import {useGetAllNotification} from "../../hooks/useGetAllNotification.jsx";
+import BeedplusLogo from "../BeedplusLogo/BeedplusLogo.jsx";
 
 
 export default function Navbar() {
