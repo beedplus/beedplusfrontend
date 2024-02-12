@@ -29,7 +29,7 @@ const AdminDashboard = () => {
   let configa = {
     method: "get",
     maxBodyLength: Infinity,
-    url: `https://beedplus.onrender.com/admin/submissions/${id}`,
+    url: `https://beedplus.onrender.com/admin/submissions`,
     // the :id here is the submission id
     headers: {
       Authorization: `Bearer ${tempAccessToken}`,
@@ -75,22 +75,6 @@ const AdminDashboard = () => {
       });
   };
 
-  // const acceptLink = (link) => {
-  //   const updatedStatuses = {};
-  //   console.log("linkIndex", link);
-  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-  //   console.log("linkIndexs", linkIndex);
-  //   console.log("linkIndexs", clickedSubmissionLinks);
-    
-  //   // Update only the clicked link
-  //   updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
-  
-  //   setLinkStatuses((prevStatuses) => ({
-  //     ...prevStatuses,
-  //     ...updatedStatuses,
-  //   }));
-  //   // setRejection(true); // Assuming you set rejection to true after accepting the links
-  // };
   const acceptLink = (linkIndex) => { // Accept the index directly
     const updatedStatuses = {};
     console.log("linkIndex", linkIndex);
@@ -342,11 +326,6 @@ const AdminDashboard = () => {
         <div className="information-section">
           <div className="campaign-section">
             <header className="campaign-header">Campaigns</header>
-
-            <div className="ar-button-container">
-              <button className="accept-button">Accepted</button>
-              <button className="reject-button">Rejected</button>
-            </div>
             {/* start */}
             <div className="dashboard-table">
               <div className="table-info">
@@ -369,14 +348,14 @@ const AdminDashboard = () => {
                     className={headerStates.phoneNumber ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("phoneNumber")}
                   >
-                    Phone number <img src={caretDown} alt="caret-down" />
+                    Level Request <img src={caretDown} alt="caret-down" />
                   </header>
 
                   <header
                     className={headerStates.dateTime ? "carat-rotate" : ""}
                     onClick={() => toggleHeader("dateTime")}
                   >
-                    Date & Time <img src={caretDown} alt="caret-down" />
+                    Account Details <img src={caretDown} alt="caret-down" />
                   </header>
                 </div>
                 <div className="table-item">
@@ -386,7 +365,7 @@ const AdminDashboard = () => {
                       className={`the-item ${
                         submissionHeights[submissionIndex] ? "offset" : ""
                       }`}
-                      onClick={() => toggleHeight(submissionIndex)}
+                      // onClick={() => toggleHeight(submissionIndex)}
                     >
                       <div
                         className="item"
@@ -394,29 +373,32 @@ const AdminDashboard = () => {
                       >
                         <div className="user-info em">
                           <b>
-                            {submission.userId.firstname}&nbsp;
-                            {submission.userId.lastname}
+                            gfchhgf
+                            {/*{submission.userId.firstname}&nbsp;*/}
+                            {/*{submission.userId.lastname}*/}
                           </b>{" "}
                           <br />
-                          <p>{submission.userId.email}</p>
+                          {/*<p>{submission.userId.email}</p>*/}
                         </div>
 
                         <p className="hashtag em">
-                          #{submission.campaignId.name}
+                          jhgvj
+                          {/*#{submission.campaignId.name}*/}
                         </p>
 
                         <p className="user-phone-number em">
-                          {submission.userId.phone}
+                          {/*{submission.userId.phone}*/}
+                          <button>
+                            submission one
+                          </button>
                         </p>
 
                         <div className="date-and-time em">
                           <p className="date">
-                            {formatDate(submission.updatedAt)}
+                            {/*{formatDate(submission.updatedAt)}*/}
                           </p>
                           <p className="time">
-                            {new Date(
-                              submission.updatedAt
-                            ).toLocaleTimeString()}
+                           account details
                           </p>
 
                           {/*<p>10.30 AM</p>*/}

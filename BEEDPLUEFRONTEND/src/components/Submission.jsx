@@ -12,7 +12,9 @@ export default function Submission({
   link3: li3,
   link4: li4,
   link5: li5,
+  claimStatus,
   isPending,
+  SubmissionId,
 }) {
   const [link1, setLink1] = useState(li1?.url || "");
   const [link2, setLink2] = useState(li2?.url || "");
@@ -21,18 +23,32 @@ export default function Submission({
   const [link5, setLink5] = useState(li5?.url || "");
   const [height, setHeight] = useState(false);
 
-  const { submit, isPend, error, success } = useSubmit();
+  const { updateAttempts, isPend, error, success } = useSubmit();
   function adjustHeight() {
     setHeight(!height);
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isPending) {
-      await submit(id, link1, link2, link3, link4, link5);
+    if (claimStatus === "pending") {
+      await updateAttempts(
+        id,
+        link1,
+        link2,
+        link3,
+        link4,
+        link5,
+        key2,
+        SubmissionId
+      );
       // Success state is now handled inside the useSubmit hook
     }
   };
-  // console.log(isPending)
+  useEffect(() => {
+    if (success) {
+      window.location.reload();
+    }
+  }, [success]);
   return (
     <div key={key2}>
       <div className={`submission active ${height ? "height" : ""}`}>
@@ -54,7 +70,9 @@ export default function Submission({
               type="text"
               value={link1}
               onChange={(e) => setLink1(e.target.value)}
-              disabled={li1?.status === "verified"}
+              disabled={
+                li1?.status === "verified" || li1?.status === "submitted"
+              }
               required={true}
             />
 
@@ -75,7 +93,9 @@ export default function Submission({
               type="text"
               value={link2}
               onChange={(e) => setLink2(e.target.value)}
-              disabled={li2?.status === "verified"}
+              disabled={
+                li2?.status === "verified" || li2?.status === "submitted"
+              }
               required={true}
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
@@ -94,7 +114,9 @@ export default function Submission({
               type="text"
               value={link3}
               onChange={(e) => setLink3(e.target.value)}
-              disabled={li3?.status === "verified"}
+              disabled={
+                li3?.status === "verified" || li3?.status === "submitted"
+              }
               required={true}
             />
             {li3?.status === "rejected" && <p>{li3?.reason}</p>}
@@ -113,7 +135,9 @@ export default function Submission({
               type="text"
               value={link4}
               onChange={(e) => setLink4(e.target.value)}
-              disabled={li4?.status === "verified"}
+              disabled={
+                li4?.status === "verified" || li4?.status === "submitted"
+              }
               required={true}
             />
             {li4?.status === "rejected" && <p>{li4?.reason}</p>}
@@ -132,7 +156,9 @@ export default function Submission({
               type="text"
               value={link5}
               onChange={(e) => setLink5(e.target.value)}
-              disabled={li5?.status === "verified"}
+              disabled={
+                li5?.status === "verified" || li5?.status === "submitted"
+              }
               required={true}
             />
             {li5?.status === "rejected" && <p>{li5?.reason}</p>}
@@ -149,16 +175,16 @@ export default function Submission({
             className="submit-button"
             type="submit"
             id="submit"
-            disabled={isPending}
+            disabled={claimStatus !== "pending"}
             style={{
-              backgroundColor: isPending ? "gray" : "green", // Example background color
-              color: isPending ? "white" : "black", // Example text color
+              backgroundColor: claimStatus !== "pending" ? "gray" : "green", // Example background color
+              color: claimStatus !== "pending" ? "white" : "black", // Example text color
               // Add any other styles you want to conditionally apply
             }}
           >
-            {!isPend && !success && <p>SUBMIT LINKS</p>}
+            {<p>SUBMIT LINKS</p>}
             {isPend && <p>loading</p>}
-            {success && !isPend && <p>success</p>}
+            {/* {success && !isPend && <p>success</p>} */}
           </button>
           {/*{error && <p>{error}</p>}*/}
         </form>

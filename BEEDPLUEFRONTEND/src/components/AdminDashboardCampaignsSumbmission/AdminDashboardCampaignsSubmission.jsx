@@ -3,32 +3,95 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss";
-const baseURL = "https://beedplus.onrender.com/campaigns/";
+
+import { baseURL, patchURL } from "../../config.js";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1cnRseS51cmxAZ21haWwuY29tIiwiaWQiOiI2NWMyMGE4Yzg0YjAxYzU2Nzg1MGVmMmYiLCJpYXQiOjE3MDc1MjM1OTEsImV4cCI6MTcwODEyODM5MX0.ZwmjEsfcoI9gj12CQ6o1T5kIVwYmh8aVX94tu00IDhw";
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
-  const [campaignName, setCampaignName ]= useState("")
+
+  const [campaignName, setCampaignName] = useState("");
   const { id } = useParams();
-  const url = `${baseURL}${id}/submission`;
+  const url = `${baseURL}${id}/submission/links`;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setCampaignName(response.data.data.campaignName)
-        setCampaignDetails(response.data.data.attempts);
+        const options = {
+          method: "GET",
+          url: url,
+          params: { linkStatus: "pending" },
+          headers: { "content-type": "application/json" },
+        };
+        const response = await axios.request(options);
+        setCampaignName(response.data.data.campaignName);
+        setCampaignDetails(response.data.data.links);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData(); // Call the function to fetch data
+
+    fetchData();
   }, [url]);
+
+  const acceptLink = async (submissionId, attemptId, linkId) => {
+    try {
+      const options = {
+        method: "PATCH",
+        url: patchURL,
+        params: {
+          submissionId: submissionId,
+          attemptId: attemptId,
+          linkId: linkId,
+        },
+        headers: { "content-type": "application/json" },
+        data: { status: "verified" },
+      };
+
+      try {
+        const { data } = await axios.request(options);
+        console.log(data);
+        updateLinkStatus(linkId);
+      } catch (error) {
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const rejectLink = async (submissionId, attemptId, linkId) => {
+    try {
+      const options = {
+        method: "PATCH",
+        url: patchURL,
+        params: {
+          submissionId: submissionId,
+          attemptId: attemptId,
+          linkId: linkId,
+        },
+        headers: { "content-type": "application/json" },
+        data: { status: "rejected" },
+      };
+
+      try {
+        const { data } = await axios.request(options);
+        console.log(data);
+        updateLinkStatus(linkId);
+      } catch (error) {
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateLinkStatus = (linkId) => {
+    setCampaignDetails((prevDetails) =>
+      prevDetails.filter((link) => link.linkId !== linkId)
+    );
+  };
 
   const requirement = [
     {
@@ -49,38 +112,45 @@ const AdminDashboardCampaignsSubmission = () => {
           <p>#{campaignName}</p>
         </div>
         <div className="admin-dashboard-campaigns-individual-submission-div">
-          {campaignDetails.map((campaign, index) => {
-            return (
-                <div key={index}
-                    className="admin-dashboard-campaign-submission-campaign-section">
-                  {Object.values(campaign)
-                    .filter((link) => link && typeof link === "object")
-                    .map((link, idx) => (
-                          <div key={idx} className="admin-dashboard-campaigns-individual-submission-div-bar">
-                            <a
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                              {link.url}
-                            </a>
-                            <div className="admin-dashboard-submission-accept-reject-bar">
-                              <button className="admin-dashboard-preview-button">
-                                Preview
-                              </button>
-                              <button className="admin-dashboard-accept-button">
-                                Accept
-                              </button>
-                              <button className="admin-dashboard-reject-button">
-                                Reject
-                              </button>
-                            </div>
-                          </div>
 
-                    ))}
-                </div>
-            );
-          })}
+          {campaignDetails.map((link, idx) => (
+            <div
+              key={idx}
+              className="admin-dashboard-campaigns-individual-submission-div-bar"
+            >
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={link.url.length > 40 ? link.url : null}
+              >
+                {link.url.length > 40
+                  ? link.url.substring(0, 40) + "..."
+                  : link.url}
+              </a>
+              <div className="admin-dashboard-submission-accept-reject-bar">
+                <button className="admin-dashboard-preview-button">
+                  Preview
+                </button>
+                <button
+                  className="admin-dashboard-accept-button"
+                  onClick={() =>
+                    acceptLink(link.submissionId, link.attemptId, link.linkId)
+                  }
+                >
+                  Accept
+                </button>
+                <button
+                  className="admin-dashboard-reject-button"
+                  onClick={() =>
+                    rejectLink(link.submissionId, link.attemptId, link.linkId)
+                  }
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
       <section className="admin-dashboard-campaign-info">

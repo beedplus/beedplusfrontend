@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar/Navbar";
+// import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -24,14 +24,19 @@ import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
-import Faqs from "./components/Faqs/Faqs.jsx";
+
+import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
-import AdminDashboardRejectedCampaig from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
+import AdminDashboardRejectedCampaign
+    from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
 import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
+import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
+
 function App() {
+
   const accessToken = usebackendStore((state) => state.accessToken);
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
   const [currentId, setcurrentId] = useState("")
@@ -39,7 +44,6 @@ function App() {
 
   return (
     <div className="app">
-
       <Router>
         <Routes>
         <Route
@@ -69,6 +73,7 @@ function App() {
               <Footer /> 
               </>    
           }
+
           />
              <Route
             path="/FAQS"
@@ -76,6 +81,7 @@ function App() {
               <>
               <Navbar />
               <Faqs/>
+
               <Footer /> 
               </>    
           }
@@ -88,6 +94,7 @@ function App() {
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
                 <Footer /> 
+
               </>
             }
 
@@ -195,13 +202,13 @@ function App() {
           />
 
           <Route
-                path="/admin-login"
-                element={   <>
-                    {tempAccessToken &&<Navigate to="/admin-dashboard" />}
-                    {!tempAccessToken && <AdminDashboardLogin/>}
-                </>}
-                />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={       <>
+            path="/admin-login"
+            element={<>
+              {tempAccessToken && <Navigate to="/admin-dashboard" />}
+              {!tempAccessToken && <AdminDashboardLogin />}
+            </>}
+          />
+          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<>
 
             {accessToken && <ChallengeLinks />}
             {!accessToken && <Navigate to="/auth/signin" />}
@@ -209,14 +216,33 @@ function App() {
           />
 
           <Route
-            path="/test"
-                element={<AdminDashboardCampaigns/>}
+
+
+                path="/test"
+                element={<AdminDashboard/>}
+
                 />
 
                 <Route
                 path="/test-campaign/:id"
             element={<AdminDashboardCampaignsSubmission />}
           />
+
+
+          <Route
+            path="/tester"
+            element={<AdminDashboardCampaigns/>}
+          />
+          <Route
+            path="/AcceptedSubmissions"
+            element={<AcceptedSubmissions/>}
+          />                <Route path="/rejected-campaign"
+                element={<AdminDashboardRejectedCampaign/>}
+                />
+          <Route
+                path="bumbum"
+                element={<AdminDashboardPaidRequest/>}/>
+
 
           <Route
             path="/SideBarAdmin"

@@ -1,94 +1,172 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
-body{
-	font-style: inherit;
-    font-family: 'Montserrat', sans-serif;
+body {
+  font-style: inherit;
+  font-family: "Montserrat", sans-serif;
 }
 
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+.notification-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.notification-section {
+  width: 80%;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+}
+.notification-section-image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notification-section .ad-image {
+  width: 80%;
+  height: 108px;
+}
 
-.notification-container{
+.notification-section .notification-header {
+  font-weight: 700;
+  margin: 20px 0px;
+  color: rgba(222, 155, 74, 1);
+}
+
+.verification-section {
+  width: 100%;
+  box-shadow: 0px 0px 19.340087890625px 0px rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.verification-section .notification {
+  padding: 20px;
+  border-left: 7px solid rgba(6, 153, 3, 1);
+  border-top: 0.74px solid rgba(212, 209, 209, 1);
+}
+
+.verification-section .notification.unread {
+  border-left: 7px solid rgba(6, 153, 3, 1);
+}
+
+.verification-section .notification.read {
+  border-left: 7px solid rgba(222, 155, 74, 1);
+}
+
+.verification-section .notification .verification-title {
+  font-size: 14.88px;
+}
+
+.verification-section .notification .verification-message,
+.verification-date {
+  font-size: 10.88px;
+  color: rgba(107, 107, 107, 1);
+  line-height: 12.19px;
+  font-weight: 400;
+}
+
+.verification-section .notification .verification-message {
+  margin: 10px 0px;
+}
+
+.notification-section-footer {
+  padding: 20px;
+  text-align: center;
+  color: rgba(168, 174, 185, 1);
+  font-size: 10.6px;
+  border-top: 0.74px solid rgba(212, 209, 209, 1);
+}
+
+.verification-section .view-button {
+  background: none;
+  border: none;
+  font-size: 11.9px;
+  font-weight: 700;
+  color: rgba(107, 107, 107, 1);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 25px 0px;
+}
+
+.verification-section .view-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.read {
+  color: red;
+}
+@media screen and (min-width: 300px) and (max-width: 720px) {
+  .notification-section {
+    padding: 50px 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-}
-.notification-section{
-    width: 80%;
-    padding: 50px 0;
-    display: flex;
-    flex-direction: column;
+  }
 
-
-}
-.notification-section-image-div{
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-.notification-section .ad-image{
-    width: 80%;
-   ;
+  .notification-section .ad-image {
+    width: 100%;
     height: 108px;
-}
+  }
 
-.notification-section .notification-header{
+  .notification-section .notification-header {
     font-weight: 700;
     margin: 20px 0px;
-    color:rgba(222, 155, 74, 1)
-}
+    color: rgba(222, 155, 74, 1);
+  }
 
-.verification-section{
+  .verification-section {
     width: 100%;
     box-shadow: 0px 0px 19.340087890625px 0px rgba(0, 0, 0, 0.35);
     border-radius: 18px;
     overflow: hidden;
-}
+  }
 
-.verification-section .notification{
+  .verification-section .notification {
     padding: 20px;
     border-left: 7px solid rgba(6, 153, 3, 1);
     border-top: 0.74px solid rgba(212, 209, 209, 1);
-}
+  }
 
-.verification-section .notification.unread{
+  .verification-section .notification.unread {
     border-left: 7px solid rgba(6, 153, 3, 1);
-}
+  }
 
-.verification-section .notification.read{
-    border-left: 7px solid rgba(222, 155, 74, 1)
-}
+  .verification-section .notification.read {
+    border-left: 7px solid rgba(222, 155, 74, 1);
+  }
 
-.verification-section .notification .verification-title{
+  .verification-section .notification .verification-title {
     font-size: 14.88px;
-}
+  }
 
-.verification-section .notification .verification-message, .verification-date{
+  .verification-section .notification .verification-message,
+  .verification-date {
     font-size: 10.88px;
     color: rgba(107, 107, 107, 1);
     line-height: 12.19px;
     font-weight: 400;
-}
+  }
 
-.verification-section .notification .verification-message{
+  .verification-section .notification .verification-message {
     margin: 10px 0px;
-}
+  }
 
-.notification-section-footer{
+  .notification-section-footer {
     padding: 20px;
     text-align: center;
     color: rgba(168, 174, 185, 1);
     font-size: 10.6px;
     border-top: 0.74px solid rgba(212, 209, 209, 1);
-}
+  }
 
-.verification-section .view-button{
+  .verification-section .view-button {
     background: none;
     border: none;
     font-size: 11.9px;
@@ -98,93 +176,10 @@ body{
     width: 100%;
     justify-content: center;
     margin: 25px 0px;
-}
+  }
 
-.verification-section .view-button:hover{
+  .verification-section .view-button:hover {
     cursor: pointer;
     text-decoration: underline;
-}
-.read{
-    color: red;
-}
-@media screen and (min-width: 300px) and (max-width: 720px){
-    .notification-section{
-        padding: 50px 20px;
-        display: flex;
-        flex-direction: column;
-       
-        
-    }
-
-    .notification-section .ad-image{
-        width: 100%;
-        height: 108px;
-    }
-
-    .notification-section .notification-header{
-        font-weight: 700;
-        margin: 20px 0px;
-        color:rgba(222, 155, 74, 1)
-    }
-
-    .verification-section{
-        width: 100%;
-        box-shadow: 0px 0px 19.340087890625px 0px rgba(0, 0, 0, 0.35);
-        border-radius: 18px;
-        overflow: hidden;
-    }
-
-    .verification-section .notification{
-        padding: 20px;
-        border-left: 7px solid rgba(6, 153, 3, 1);
-        border-top: 0.74px solid rgba(212, 209, 209, 1);
-    }
-
-    .verification-section .notification.unread{
-        border-left: 7px solid rgba(6, 153, 3, 1);
-    }
-
-    .verification-section .notification.read{
-        border-left: 7px solid rgba(222, 155, 74, 1)
-    }
-
-    .verification-section .notification .verification-title{
-        font-size: 14.88px;
-    }
-
-    .verification-section .notification .verification-message, .verification-date{
-        font-size: 10.88px;
-        color: rgba(107, 107, 107, 1);
-        line-height: 12.19px;
-        font-weight: 400;
-    }
-
-    .verification-section .notification .verification-message{
-        margin: 10px 0px;
-    }
-
-    .notification-section-footer{
-        padding: 20px;
-        text-align: center;
-        color: rgba(168, 174, 185, 1);
-        font-size: 10.6px;
-        border-top: 0.74px solid rgba(212, 209, 209, 1);
-    }
-
-    .verification-section .view-button{
-        background: none;
-        border: none;
-        font-size: 11.9px;
-        font-weight: 700;
-        color: rgba(107, 107, 107, 1);
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        margin: 25px 0px;
-    }
-
-    .verification-section .view-button:hover{
-        cursor: pointer;
-        text-decoration: underline;
-    }
+  }
 }

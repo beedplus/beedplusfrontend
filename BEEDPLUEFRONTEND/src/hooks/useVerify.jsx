@@ -5,8 +5,6 @@ export const useVerify = (token) => {
   const navigate = useNavigate();
   const verify = async () => {
     const apiUrl = `https://beedplus.onrender.com/auth/verify/${token}`;
-    console.log("apiUrl: ", apiUrl);
-
     try {
       const response = await axios.get(apiUrl);
 
@@ -14,7 +12,6 @@ export const useVerify = (token) => {
       const data = response.data;
       if (data.status === "success") {
         navigate("/auth/signin");
-        console.log(data);
       }
     } catch (error) {
       console.error("Error during verification:", error.message);

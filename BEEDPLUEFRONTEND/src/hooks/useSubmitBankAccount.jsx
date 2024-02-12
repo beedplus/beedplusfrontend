@@ -8,18 +8,24 @@ export const useSubmitBankAccount = () => {
   const [iscancelled, setisCancelled] = useState(false);
   const navigate = useNavigate();
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
-  console.log(tempAccessToken)
 
   const apiUrl = "https://beedplus.onrender.com/user/accounts";
 
-  const submitbankAccount = async (id, bankname, accountName, accountNumber) => {
-    console.log(id)
+  const submitbankAccount = async (
+    id,
+    bankname,
+    accountName,
+    accountNumber
+  ) => {
     setError(null);
     setIspending(true);
 
     try {
       const postData = {
-        id, bankName: bankname, accountName, accountNumber
+        id,
+        bankName: bankname,
+        accountName,
+        accountNumber,
       };
 
       const res = await fetch(`${apiUrl}`, {
@@ -33,8 +39,7 @@ export const useSubmitBankAccount = () => {
       });
 
       const data = await res.json();
-      console.log(data)
-      if(data.status  === 'success'){
+      if (data.status === "success") {
         navigate("/auth/verification");
       }
       if (data.status === "error") {
