@@ -250,7 +250,7 @@
         padding: 10px 0;
         gap: 0.7em;
         flex-direction: column;
-
+       
         h3 {
           color: #000;
           font-family: "Montserrat", sans-serif;
@@ -275,8 +275,11 @@
         .login-error-text{
           font-size: 11px;
           text-align: center;
-
+          color:  #FF0000;
+          margin-left: 0.5em;
+          margin-bottom: 0.5em;
         }
+      
 
       }
 
