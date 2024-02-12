@@ -277,6 +277,13 @@
           cursor: pointer;
         ;
         }
+        .error{
+          font-size: 11px;
+          text-align: center;
+          color:  #FF0000;
+          margin-left: 0.5em;
+          margin-bottom: 0.5em;
+        }
       }
       .profile-page-form-save-button-inactive{
         width: 100%;
@@ -288,7 +295,6 @@
           background: #000;
           color: #FFFFFF;
           padding: 10px;
-
           font-family: "Montserrat", sans-serif;
           font-size: 17px;
           font-style: normal;

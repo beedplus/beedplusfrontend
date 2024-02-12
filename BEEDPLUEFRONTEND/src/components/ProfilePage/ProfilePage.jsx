@@ -294,7 +294,7 @@ const ProfilePage = () => {
             <button onClick={logout}>LOG OUT</button>
           </div>
           {isPending && <p>LOADING..</p>}
-          {Error && <p>{Error}</p>}
+          {Error && <p className="error">{Error}</p>}
         </section>
       </section>
       <div
@@ -364,7 +364,7 @@ const ProfilePage = () => {
               <div className="edit-account-submit-button">
                 <button type="submit">Add Account</button>
                 {isPend && <p>LOADING..</p>}
-                {err && <p>{err}</p>}
+                {err && <p  className="error">{err}</p>}
               </div>
             </form>
           </div>
