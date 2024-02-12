@@ -18,7 +18,7 @@ const AdminDashboardRejectedCampaign = () => {
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
-        setCampaignDetails(response.data.data.links);
+        setCampaignDetails(response.data.data.links.data);
         setCampaignName(response.data.data.campaignName);
         console.log({ response: response.data.data.links });
       } catch (error) {

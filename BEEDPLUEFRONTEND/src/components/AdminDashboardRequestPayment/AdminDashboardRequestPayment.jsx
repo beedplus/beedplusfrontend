@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../AdminDashboard/AdminDashboard.scss";
+import ".//AdminDashboard.scss";
 
 /*import { IoSearchOutline } from "react-icons/io5";
 import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
@@ -15,7 +15,7 @@ import {usebackendStore} from "../../store/store.js";
 
 
 
-const AdminDashboard = () => {
+const AdminDashboardRequestPayment = () => {
   const [reason, setReason] = useState("");
   const [attemptId, setAttemptId] = useState("");
   const [currentSubmissionId, setCurrentSubmissionId] = useState("");
@@ -472,4 +472,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboardRequestPayment;

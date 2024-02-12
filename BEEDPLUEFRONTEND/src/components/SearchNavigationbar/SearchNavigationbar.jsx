@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 import notificationIcon from "../../assets/iconoir_bell-notification.png";
-import "../AdminDashboard/AdminDashboard.scss";
+import "../AdminDashboardRequestPayment/AdminDashboard.scss";
 
 const SearchNavigationbar = () => {
   return (

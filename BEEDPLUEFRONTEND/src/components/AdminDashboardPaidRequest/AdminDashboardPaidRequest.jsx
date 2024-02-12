@@ -1,4 +1,5 @@
 import axios from "axios";
+import  {baseURL} from "../../config.js";
 import "../AdminDashboardPaidRequest/AdminDashboardPaidRequest.scss";
 
 /*import { IoSearchOutline } from "react-icons/io5";
@@ -16,189 +17,35 @@ import {useEffect, useState} from "react";
 
 
 const AdminDashboardPaidRequest = () => {
-    const [reason, setReason] = useState("");
-    const [attemptId, setAttemptId] = useState("");
-    const [currentSubmissionId, setCurrentSubmissionId] = useState("");
-    const [submitSubmissionId, setSubmitSubmissionId] = useState("")
-    const [submissions, setSubmissions] = useState([]);
-    const [clickedSubmissionLinks, setClickedSubmissionLinks] = useState([]);
-    const [isDataFetched, setIsDataFetched] = useState(false);
-    const [linkStatuses, setLinkStatuses] = useState({});
-    let [submissionHeight, setSubmissionHeight] = useState(false);
+    const [campaignInfo, setCampaignInfo] = useState([])
     const tempAccessToken = usebackendStore((state) => state.tempAccessToken)
-    let configa = {
-        method: "get",
-        maxBodyLength: Infinity,
-        url: `https://beedplus.onrender.com/admin/submissions`,
-        // the :id here is the submission id
-        headers: {
-            Authorization: `Bearer ${tempAccessToken}`,
-        },
-    };
-
-    axios
-        .request(configa)
-        .then((response) => {
-            if (response.data.status === "success" && response.data.data.length > 0) {
-                const submissionId = response.data.data[0]._id;
-            } else {
-                //console.log("Failed to fetch submissions.");
-            }
-        })
-        .catch((error) => {
-            //console.error("Error fetching submissions:", error);
-        });
-
-    const fetchSingleSubmission = async (id) => {
-        let config = {
-            method: "get",
-            maxBodyLength: Infinity,
-            url: `https://beedplus.onrender.com/admin/submissions/${id}`,
-            // the :id here is the submission id
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        axios
-            .request(config)
-            .then((response) => {
-                const submisionId = response.data.data._id
-                console.log("submisionId", submisionId)
-                setSubmitSubmissionId(submisionId);
-                const attempts = response.data.data.attempts;
-                // console.log(attempts)
-                console.log(JSON.stringify(attempts));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-    const acceptLink = (linkIndex) => { // Accept the index directly
-        const updatedStatuses = {};
-        console.log("linkIndex", linkIndex);
-
-        // Update only the clicked link
-        updatedStatuses[`link${linkIndex}`] = { status: "verified" };
-
-        setLinkStatuses((prevStatuses) => ({
-            ...prevStatuses,
-            ...updatedStatuses,
-        }));
-        // setRejection(true); // Assuming you set rejection to true after accepting the links
-    };
 
 
-    // const rejectLink = (link) => {
-    //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-    //   console.log("linkIndexs", linkIndex);
-    //   setLinkStatuses((prevStatuses) => ({
-    //     ...prevStatuses,
-    //     [`link${linkIndex}`]: { status: "rejected", reason: reason },
-    //   }));
-    //   setRejection(true);
-    // };
-
-    const rejectLink = (linkIndex) => { // Accept the index directly
-        const updatedStatuses = {};
-        console.log("linkIndex", linkIndex);
-
-        // Update only the clicked link
-        updatedStatuses[`link${linkIndex}`] = { status: "rejected", reason: reason };
-
-        setLinkStatuses((prevStatuses) => ({
-            ...prevStatuses,
-            ...updatedStatuses,
-        }));
-        // setRejection(true); // Assuming you set rejection to true after accepting the links
-    };
-
-    const finishReview = (submissionId) => {
-        const requestBody = {
-            attemptId: attemptId,
-            updates: linkStatuses,
-        };
-        console.log("linkStatuses", linkStatuses)
-        // Send POST request with requestBody to the endpoint
-        let token;
-        fetch(
-            `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(requestBody),
-            }
-        )
-            .then((response) => {
-                // Handle response
-                console.log(response);
-            })
-            .catch((error) => {
-                // Handle error
-                console.log(error);
-            });
-    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.request(configa);
-                if (response.data.status === "success") {
-                    response.data.data.map((res) => {
-                        console.log({ res: res._id });
-                        setCurrentSubmissionId(res._id);
-                    });
-                    setSubmissions(response.data.data);
-                    setIsDataFetched(true);
-                } else {
-                    // console.log("Failed to fetch submissions.");
+                const options = {
+                    method : "GET",
+                    url : `${baseURL}all/submission/attempts`,
+                    params : {claimStatus : "claimed"},
+                    headers : {"content-type" : "application/json"},
+                    data : {}
+                };
+                try {
+                    const response = await axios.request(options)
+                    console.log({"response" : response.data.data.data})
+                    setCampaignInfo(response.data.data.data)
+                    console.log({"campaignInfo" : campaignInfo})
+                }catch (error) {
+                    console.error(error)
                 }
             } catch (error) {
-                // console.error("Error fetching submissions:", error);
+                console.error("Error fetching submissions:", error);
             }
         };
-        if (!isDataFetched) {
             fetchData();
-        }
-    }, [isDataFetched]);
-
-    // function appendLinks(attempts, submissionIndex) {
-    //     let links = [];
-    //     const startIndex = submissionIndex * 5;
-    //     const endIndex = Math.min(startIndex + 5, attempts.length);
-    //     for (let i = startIndex; i < endIndex; i++) {
-    //         const attempt = attempts[i];
-    //         links.push(
-    //             <div key={`link-${i}`} className="submission-data">
-    //                 {attempt.link1 && <a href={attempt.link1.url}>{attempt.link1.url}</a>}
-    //                 {attempt.link2 && <a href={attempt.link2.url}>{attempt.link2.url}</a>}
-    //                 {attempt.link3 && <a href={attempt.link3.url}>{attempt.link3.url}</a>}
-    //                 {attempt.link4 && <a href={attempt.link4.url}>{attempt.link4.url}</a>}
-    //                 {attempt.link5 && <a href={attempt.link5.url}>{attempt.link5.url}</a>}
-    //             </div>
-    //         );
-    //     }
-    //     return links;
-    // }
-    function handleButtonClick(index, attempt) {
-        const links = [];
-        // Assuming link1 is always present in the attempt
-        for (let i = 1; i <= 5; i++) {
-            const linkKey = `link${i}`;
-            if (attempt[linkKey]) {
-                links.push(attempt[linkKey].url);
-            }
-        }
-        setClickedSubmissionLinks(links);
-        console.log({"setClickedSubmissionLinks" : setClickedSubmissionLinks})
-        console.log("links", links);
-        setAttemptId(attempt._id);
-        console.log("attemptId:", attemptId);
-    }
+    }, []);
 
     const [headerStates, setHeaderStates] = useState({
         userInfo: false,
@@ -213,82 +60,6 @@ const AdminDashboardPaidRequest = () => {
             [header]: !prevState[header],
         }));
     }
-
-    // const [submissionHeights, setSubmissionHeights] = useState({});
-    //
-    // const toggleHeight = (submissionIndex) => {
-    //     setSubmissionHeights((prevHeights) => ({
-    //         ...prevHeights,
-    //         [submissionIndex]: !prevHeights[submissionIndex],
-    //     }));
-    // };
-
-    function displayDropdown(submission) {
-        const idx = submission._id;
-        fetchSingleSubmission(idx);
-    }
-
-    // const handleCheck = async (submissionId) => {
-    //   const data = {
-    //     attemptId: attemptId,
-    //     updates: {
-    //       link1: { status: "verified" },
-    //       link2: { status: "verified" },
-    //       link3: { status: "verified" },
-    //       link4: { status: "verified" },
-    //       link5: { status: "verified" },
-    //     },
-    //   };
-
-    //   let configs = {
-    //     method: "post",
-    //     url: `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     data: JSON.stringify(data),
-    //   };
-    //   axios
-    //     .request(configs)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // };
-    // const handleReject = async (submissionId) => {
-    //   const data = {
-    //     attemptId: attemptId,
-    //     updates: {
-    //       link1: { status: "rejected", reason: reason },
-    //       link2: { status: "rejected", reason: reason },
-    //       link3: { status: "rejected", reason: reason },
-    //       link4: { status: "rejected", reason: reason },
-    //       link5: { status: "rejected", reason: reason },
-    //     },
-    //   };
-
-    //   try {
-    //     const response = await axios.post(
-    //       `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-    //       data,
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       }
-    //     );
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
-
-
-
 
     return (
         <section className="admin-dashboard-section">
@@ -333,7 +104,7 @@ const AdminDashboardPaidRequest = () => {
                                     </header>
                                 </div>
                                 <div className="table-item">
-                                    {submissions.map((submission, submissionIndex) => (
+                                    {campaignInfo.map((submission, submissionIndex) => (
                                         <div
                                             key={submissionIndex}
                                             className="the-item"
@@ -341,53 +112,46 @@ const AdminDashboardPaidRequest = () => {
                                         >
                                             <div
                                                 className="item"
-                                                onClick={() => displayDropdown(submission)}
                                             >
                                                 <div className="user-info em">
                                                     <b>
-                                                        gfchhgf
-                                                        {/*{submission.userId.firstname}&nbsp;*/}
-                                                        {/*{submission.userId.lastname}*/}
+                                                        {submission.user.firstname} {submission.user.lastname}
                                                     </b>{" "}
                                                     <br />
-                                                    {/*<p>{submission.userId.email}</p>*/}
+                                                    <p>{submission.user.email}</p>
                                                 </div>
 
                                                 <p className="hashtag em">
-                                                    jhgvj
-                                                    {/*#{submission.campaignId.name}*/}
+                                                    {submission.campaign.name}
                                                 </p>
 
                                                 <p className="user-phone-number em">
                                                     {/*{submission.userId.phone}*/}
                                                     <button>
-                                                        submission one
+                                                        submission {submission.submissionNumber}
                                                     </button>
                                                 </p>
 
                                                 <div className="date-and-time em">
-                                                    <p className="date">
-                                                        {/*{formatDate(submission.updatedAt)}*/}
-                                                    </p>
-                                                    <p className="time">
-                                                        account details
-                                                    </p>
+                                                    {submission.user.account ? (
+                                                        <div>
+                                                            <p className="time">
+                                                                {submission.user.account.bankName}
+                                                            </p>
+                                                            <p>
+                                                                {submission.user.account.accountNumber}
+                                                            </p>
+                                                            <p>
+                                                                {submission.user.account.accountName}
+                                                            </p>
+                                                        </div>
 
+
+                                                    ) : (
+                                                        <p>No account details set</p>
+                                                    )}
                                                     {/*<p>10.30 AM</p>*/}
                                                 </div>
-                                            </div>
-
-                                            <div className="submission-list">
-                                                {submission.attempts.map((attempt, index) => (
-                                                    <div key={`submission-${index}`}>
-                                                        <div
-                                                            onClick={() => handleButtonClick(index, attempt)}
-                                                            className="submission-data"
-                                                        >
-                                                            {`Submission ${index + 1}`}
-                                                        </div>
-                                                    </div>
-                                                ))}
                                             </div>
                                         </div>
                                     ))}
