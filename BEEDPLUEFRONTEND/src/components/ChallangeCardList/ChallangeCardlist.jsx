@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
 import ChallangeCard from "../ChallangeCard/challangeCard";
 import loading from "../../assets/loading.gif";
-function ChallangeCardlist() {
+function ChallangeCardlist(props) {
   const { error, isPending, documents } = useGetAllCampaign();
   const campaignData = documents.data;
   console.log(isPending);
@@ -24,7 +24,7 @@ function ChallangeCardlist() {
         />
       )}
       {error && <p>{error}</p>}
-      <p className="latest">LATEST CAMPAIGNS</p>
+      <p className="latest">{props.name} CAMPAIGNS</p>
       <div className="class-container">
         {campaignData &&
           campaignData.map((singleData, index) => (

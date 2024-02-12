@@ -1,5 +1,5 @@
 import "./Navbar.scss"
-import Beed from "../../assets/image1.svg" 
+import Beed from "../../assets/image1.svg"
 import {useEffect, useState} from "react";
 import { usebackendStore } from "../../store/store";
 import { FaRegBellSlash } from "react-icons/fa";
@@ -32,13 +32,13 @@ export default function Navbar() {
  
  if (accessToken) { return (<nav className="nav">
                     <div>
-                    <Link to="/" className="link"><BeedplusLogo/></Link>
+                    <Link to="/" className="link"><img src={Beed} alt="" /></Link>
                     </div>
                     <div className="signed-in-navbar-div">
                       <button>
                           {/* <a href= "/auth/Signup">CAMPAIGNS</a> */}
                       </button>
-
+                        
                       <p className="singned-nav-user-icon">
                           <Link to="/notification" className='link' ><FaRegBellSlash className={notificationStatus ? "links" : "navbar-notification"}/></Link>
                       </p>
@@ -52,7 +52,8 @@ export default function Navbar() {
                     else {return (
                      <nav className="nav">
                    <div className="not-signed-in-nav-logo">
-                        <BeedplusLogo/>
+                   <Link to="/" className="link">
+                    <img src={Beed} alt="" /></Link>
                    </div>
                   <div className="not-signed-in-navbar">
                       <p className="earn-now-nav-button">

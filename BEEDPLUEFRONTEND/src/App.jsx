@@ -31,9 +31,7 @@ import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
-
 function App() {
-
   const accessToken = usebackendStore((state) => state.accessToken);
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
   const [currentId, setcurrentId] = useState("")
@@ -56,7 +54,9 @@ function App() {
             path="/home"
             element={
               <>
-                <Home />
+              <Navbar />
+              <Home/>
+              <Footer /> 
               </>
             }
           />
@@ -84,8 +84,10 @@ function App() {
             path="/"
             element={
               <>
+                <Navbar />
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
+                <Footer /> 
               </>
             }
 
