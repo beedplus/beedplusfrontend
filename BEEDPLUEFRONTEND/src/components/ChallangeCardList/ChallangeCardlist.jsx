@@ -7,7 +7,6 @@ import loading from "../../assets/loading.gif";
 function ChallangeCardlist() {
   const { error, isPending, documents } = useGetAllCampaign();
   const campaignData = documents.data;
-  console.log(isPending);
 
   return (
     <div className="challange-card-list">

@@ -1,11 +1,20 @@
 import "./ProfilePage.scss";
 import profilebackground from "../../assets/Rectangle 47.png";
 import { CiUser } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useLogout } from "../../hooks/useLogout.jsx";
 import { useUpdateProfile } from "../../hooks/useUpdateProfile.jsx";
 import { usebackendStore } from "../../store/store.js";
+import { useUpdateBankAccount } from "../../hooks/useUpdateBankAccount.jsx";
+import { useGetBankAccount } from "../../hooks/useGetBankAccount";
+import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BsBank } from "react-icons/bs";
+import { MdCancel } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+
 const ProfilePage = () => {
   const { logout } = useLogout();
   const [overlayActive, setOverlayActive] = useState(false);
@@ -17,12 +26,49 @@ const ProfilePage = () => {
   const [User_tiktokhandle, setUser_tiktokhandle] = useState("");
   const [User_bio, setUser_bio] = useState("");
 
-  const { error, isPending, updateProfile } = useUpdateProfile();
+  const [sortCode, setSortCode] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const { documents } = useGetBankAccount();
+  const { document } = useVerifyAccountNumber(sortCode, accountNumber);
+  const validateInputs = () => {
+    let isValid = true;
+
+    if (!sortCode) {
+      toast.error("Please select a bank");
+      isValid = false;
+    } else if (!accountNumber.trim() || accountNumber.length < 10) {
+      toast.error("Account number is required and must be at least 10 digits");
+      isValid = false;
+    } else if (accountNumber.length === 10) {
+      console.log(document);
+    } else if (!document) {
+      toast.error("Please check your account number");
+      isValid = false;
+    }
+
+    return isValid;
+  };
+  // const [userBank, setUserBank] = useState('')
+  // const [, setUserBank] = useState('')
+  const { error, isPending, updateProfile, success, setSuccess } =
+    useUpdateProfile();
 
   const tiktok = usebackendStore((state) => state.user.tiktok);
   const firstName = usebackendStore((state) => state.user.firstName);
   const lastName = usebackendStore((state) => state.user.lastName);
-  console.log(firstName, lastName, tiktok);
+  const bio = usebackendStore((state) => state.user.bio);
+  const username = usebackendStore((state) => state.user.userName);
+  const {
+    error: err,
+    isPending: isPend,
+    updateBankAccount,
+    success: succ,
+    setSuccess: setSucc,
+  } = useUpdateBankAccount();
+  const accountName = usebackendStore((state) => state.user.account.bankName);
+  // console.log(accountName)
+  // console.log(accountName, tiktok);
+  // console.log(tiktok);
   const toggleOverlay = () => {
     if (overlayActive) {
       setOverlayActive(false);
@@ -31,8 +77,25 @@ const ProfilePage = () => {
       setBankDetailsActive(true);
     }
 
-    console.log("clicked");
+    // console.log("clicked");
   };
+  useEffect(() => {
+    if (success) {
+      setDetailsShown(true);
+      setUser_bio("");
+      setUser_name("");
+      setUser_username("");
+      setSuccess(false);
+    }
+  }, [success, setSuccess]);
+  useEffect(() => {
+    if (succ) {
+      setBankDetailsActive(false);
+      setAccountNumber("");
+      setSortCode("");
+      setSucc(false);
+    }
+  }, [succ, setSucc]);
   const toggleOverlayTwo = () => {
     if (overlayActive) {
       setOverlayActive(false);
@@ -41,7 +104,7 @@ const ProfilePage = () => {
       setBankDetailsActive(true);
     }
 
-    console.log(bankDetailsActive);
+    // console.log(bankDetailsActive);
   };
   const editAccountChange = () => {
     // if(editAccountActive){
@@ -59,27 +122,34 @@ const ProfilePage = () => {
       setEditAccountActive(false);
     }
 
-    console.log(detailsShown);
+    // console.log(detailsShown);
   };
 
-  const submitButton = () => {
-    if (bankDetailsActive) {
-      setBankDetailsActive(false);
-    }
-    if (editAccountActive) {
-      setEditAccountActive(false);
-    }
-  };
+  // const submitButton = () => {
+  //   // if (bankDetailsActive) {
+  //   //   setBankDetailsActive(false);
+  //   // }
+  //   // if (editAccountActive) {
+  //   //   setEditAccountActive(false);
+  //   // }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
-    if (editAccountActive === false) {
-      setDetailsShown(true);
+  };
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+    if (validateInputs() && document.data.Bank_name) {
+      updateBankAccount(
+        document.data.Bank_name,
+        document.data.account_name,
+        accountNumber
+      );
     }
-    console.log(editAccountActive);
-    console.log(detailsShown);
-    updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
+
+    // updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
   };
 
   return (
@@ -91,9 +161,9 @@ const ProfilePage = () => {
       </section>
       <section className="profile-page-details">
         <section className="profile-page-details-header">
-          <div className="profile-page-user-initials">JD</div>
+          <div className="profile-page-user-initials"><FaUser /></div>
           <div className="profile-page-user-name">
-            <h4>@JohnDoe</h4>
+            <h4>{firstName}</h4>
             <p>
               <span>
                 {" "}
@@ -132,22 +202,21 @@ const ProfilePage = () => {
                 <div>{firstName + lastName}</div>
               </div>
               <div className="profile-page-form-div-line">
-                <p>UserName</p>
-                <div>{/* {User_username} */}</div>
+                <p>Username</p>
+                <div>{username}</div>
               </div>
-              <div className="profile-page-form-div-line">
+              {/* <div className="profile-page-form-div-line">
                 <p>TikTok</p>
                 <div>{tiktok}</div>
-              </div>
+              </div> */}
               <div className="profile-page-form-div-line">
                 <p>Bio</p>
-                <div>{User_bio}</div>
+                <div>{bio}</div>
               </div>
               <div className="profile-page-form-div-line">
                 <p>Bank Account</p>
-                <p>
-                  <p>Access</p>
-                </p>
+
+                <p>{accountName}</p>
               </div>
             </form>
           </div>
@@ -172,17 +241,17 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="profile-page-form-div-line">
-                <p>UserName</p>
+                <p>Username</p>
                 <div>
                   <input
                     className="user-username-input"
-                    // placeholder={fi}
+                    placeholder={username}
                     value={User_username}
                     onChange={(e) => setUser_username(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="profile-page-form-div-line">
+              {/* <div className="profile-page-form-div-line">
                 <p>TikTok</p>
                 <div>
                   <input
@@ -192,13 +261,14 @@ const ProfilePage = () => {
                     onChange={(e) => setUser_tiktokhandle(e.target.value)}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className="profile-page-form-div-line">
                 <p>Bio</p>
+
                 <div>
                   <input
                     className="user-bio-input"
-                    placeholder="www.google.com"
+                    placeholder={bio}
                     value={User_bio}
                     onChange={(e) => setUser_bio(e.target.value)}
                   />
@@ -206,9 +276,7 @@ const ProfilePage = () => {
               </div>
               <div className="profile-page-form-div-line">
                 <p>Bank Account</p>
-                <p>
-                  <p>Access</p>
-                </p>
+                <p>{accountName}</p>
               </div>
             </form>
           </div>
@@ -221,13 +289,15 @@ const ProfilePage = () => {
                 : "profile-page-form-save-button"
             }
           >
-            <button onClick={submitButton} type="submit" form="updateProfile">
+            <button type="submit" form="updateProfile">
               SAVE
             </button>
           </div>
           <div className="profile-page-log-out-button">
             <button onClick={logout}>LOG OUT</button>
           </div>
+          {isPending && <p>LOADING..</p>}
+          {Error && <p>{Error}</p>}
         </section>
       </section>
       <div
@@ -256,32 +326,51 @@ const ProfilePage = () => {
                 Add your correct bank account details to withdraw your earnings
               </p>
               <p className="hex" onClick={toggleOverlay}>
-                x
+                <MdCancel className="cancel-button" />
               </p>
             </div>
-            <form className="profile-page-account-section-div-form">
-              <div>
-                <input
-                  className="profile-page-account-input"
-                  placeholder="Enter Your Bank Name"
-                />
+            <form
+              className="profile-page-account-section-div-form"
+              onSubmit={handleSubmit2}
+            >
+              <div className="profile-page-edit-bank-selection">
+                {/*<div className="sign_LoginRiMailLine">*/}
+                {/*  <BsBank />*/}
+                {/*</div>*/}
+                <select
+                  name="selectedBank"
+                  className="select-list"
+                  value={sortCode}
+                  onChange={(e) => setSortCode(e.target.value)}
+                >
+                  <option value="" disabled>
+                    Select Your Bank
+                  </option>
+                  {documents.map((bank) => (
+                    <option className="" key={bank.id} value={bank.code}>
+                      {bank.name}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <div>
-                <input
-                  className="profile-page-account-input"
-                  placeholder="Enter Your Account Name"
-                />
-              </div>
-              <div>
+              <div className="profile-page-bank-details"
+              >{document?.data?.account_name}</div>
+              <div className="profile-page-account-number-div">
                 <input
                   className="profile-page-account-input"
                   placeholder="Enter Your Account Number"
+                  value={accountNumber}
+                  onChange={(e) => {
+                    setAccountNumber(e.target.value);
+                  }}
                 />
               </div>
+              <section className="edit-account-submit-button">
+                <button type="submit">Add Account</button>
+                {isPend && <p>LOADING..</p>}
+                {err && <p>{err}</p>}
+              </section>
             </form>
-            <div className="edit-account-submit-button">
-              <button onClick={submitButton}>Add Account</button>
-            </div>
           </div>
           <div
             className={
@@ -293,7 +382,7 @@ const ProfilePage = () => {
             <div className="profile-page-account-section-div-header">
               <p>Bank Account Added</p>
               <p className="hex" onClick={toggleOverlayTwo}>
-                x
+                <MdCancel />
               </p>
             </div>
             <div className="ace-body">

@@ -75,22 +75,6 @@ const AdminDashboard = () => {
       });
   };
 
-  // const acceptLink = (link) => {
-  //   const updatedStatuses = {};
-  //   console.log("linkIndex", link);
-  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-  //   console.log("linkIndexs", linkIndex);
-  //   console.log("linkIndexs", clickedSubmissionLinks);
-    
-  //   // Update only the clicked link
-  //   updatedStatuses[`link${linkIndex}`] = { "status": "verified" };
-  
-  //   setLinkStatuses((prevStatuses) => ({
-  //     ...prevStatuses,
-  //     ...updatedStatuses,
-  //   }));
-  //   // setRejection(true); // Assuming you set rejection to true after accepting the links
-  // };
   const acceptLink = (linkIndex) => { // Accept the index directly
     const updatedStatuses = {};
     console.log("linkIndex", linkIndex);
