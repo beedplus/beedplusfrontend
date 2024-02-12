@@ -3,11 +3,13 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss";
+
 import { baseURL, patchURL } from "../../config.js";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1cnRseS51cmxAZ21haWwuY29tIiwiaWQiOiI2NWMyMGE4Yzg0YjAxYzU2Nzg1MGVmMmYiLCJpYXQiOjE3MDc1MjM1OTEsImV4cCI6MTcwODEyODM5MX0.ZwmjEsfcoI9gj12CQ6o1T5kIVwYmh8aVX94tu00IDhw";
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
+
   const [campaignName, setCampaignName] = useState("");
   const { id } = useParams();
   const url = `${baseURL}${id}/submission/links`;
@@ -28,6 +30,7 @@ const AdminDashboardCampaignsSubmission = () => {
         console.error("Error fetching data:", error);
       }
     };
+
 
     fetchData();
   }, [url]);
@@ -109,6 +112,7 @@ const AdminDashboardCampaignsSubmission = () => {
           <p>#{campaignName}</p>
         </div>
         <div className="admin-dashboard-campaigns-individual-submission-div">
+
           {campaignDetails.map((link, idx) => (
             <div
               key={idx}

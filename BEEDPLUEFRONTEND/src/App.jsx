@@ -24,6 +24,7 @@ import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
+
 import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 import AdminDashboardRejectedCampaign
@@ -57,7 +58,9 @@ function App() {
             path="/home"
             element={
               <>
-                <Home />
+              <Navbar />
+              <Home/>
+              <Footer /> 
               </>
             }
           />
@@ -65,8 +68,20 @@ function App() {
             path="/FAQS"
             element={
               <>
-              {/*<Navbar />*/}
-              <FAQ />
+              <Navbar />
+              <Faqs />
+              <Footer /> 
+              </>    
+          }
+
+          />
+             <Route
+            path="/FAQS"
+            element={
+              <>
+              <Navbar />
+              <Faqs/>
+
               <Footer /> 
               </>    
           }
@@ -75,8 +90,11 @@ function App() {
             path="/"
             element={
               <>
+                <Navbar />
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
+                <Footer /> 
+
               </>
             }
 
@@ -199,6 +217,7 @@ function App() {
 
           <Route
 
+
                 path="/test"
                 element={<AdminDashboard/>}
 
@@ -208,6 +227,7 @@ function App() {
                 path="/test-campaign/:id"
             element={<AdminDashboardCampaignsSubmission />}
           />
+
 
           <Route
             path="/tester"
@@ -224,6 +244,14 @@ function App() {
                 element={<AdminDashboardPaidRequest/>}/>
 
 
+          <Route
+            path="/SideBarAdmin"
+            element={<SideBarAdmin/>}
+          />
+          <Route
+            path="/AcceptedSubmissions"
+            element={<AcceptedSubmissions/>}
+          />
         </Routes>
 
 
