@@ -5,11 +5,13 @@ import { useLogout } from "../../hooks/useLogout";
 import Advert from "../../assets/Group 90.png";
 import ChallangeCardlist from "../../components/ChallangeCardList/ChallangeCardlist";
 
+// import Navbar from "../../components/Navbar/Navbar.jsx";
 export default function LandingPageSignedIn() {
   return (
     <div className="landing-page-signed-in">
+        {/*<Navbar/>*/}
       <div className="signed-in-landing-page-advert-banner-div">
-        <img src={Advert} alt="Advert" className="advert" />
+        {/*<img src={Advert} alt="Advert" className="advert" />*/}
       </div>
       <ChallangeCardlist id="latest" />
       <div className="signed-in-landing-page-call-to-action">

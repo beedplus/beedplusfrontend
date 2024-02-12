@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar/Navbar";
+// import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -30,6 +30,7 @@ import AdminDashboardRejectedCampaign
     from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
 import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
+import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -64,7 +65,7 @@ function App() {
             path="/FAQS"
             element={
               <>
-              <Navbar />
+              {/*<Navbar />*/}
               <FAQ />
               <Footer /> 
               </>    
@@ -209,8 +210,8 @@ function App() {
           />
 
           <Route
-            path="/SideBarAdmin"
-            element={<SideBarAdmin/>}
+            path="/tester"
+            element={<AdminDashboardCampaigns/>}
           />
           <Route
             path="/AcceptedSubmissions"
@@ -218,6 +219,9 @@ function App() {
           />                <Route path="/rejected-campaign"
                 element={<AdminDashboardRejectedCampaign/>}
                 />
+          <Route
+                path="bumbum"
+                element={<AdminDashboardPaidRequest/>}/>
 
 
         </Routes>

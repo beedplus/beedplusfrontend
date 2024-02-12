@@ -4,13 +4,6 @@
 // import { usebackendStore } from "../../store/store";
 // import { FaRegBellSlash } from "react-icons/fa";
 // import { FaRegUser } from "react-icons/fa";
-// import { Link } from 'react-router-dom';
-// import {useGetAllNotification} from "../../hooks/useGetAllNotification.jsx";
-
-
-// export default function Navbar() {
-//   const { error, isPending, document } = useGetAllNotification();
-//   const [notificationStatus, setNotificationStatus] = useState(false);
 
 //   useEffect(() => {
 //     if (document) {
@@ -20,11 +13,7 @@
 //         console.log(notificationStatus);
 //       }
 //     }
-//   }, [document, notificationStatus]);
 
-//  // const accessToken = usebackendStore((state) => state.accessToken);
-//     const accessToken = usebackendStore((state) => state.accessToken);
- 
 //  if (accessToken) { return (<nav className="nav">
 //                     <div>
 //                     <Link to="/" className="link"><BeedplusLogo/></Link>
@@ -34,32 +23,6 @@
 //                           {/* <a href= "/auth/Signup">CAMPAIGNS</a> */}
 //                       </button>
 
-//   if (accessToken) {
-//     return (
-//       <nav className="nav">
-//         <div>
-//           <Link to="/" className="link">
-//             {" "}
-//             <img src={Beed} alt="website logo" />
-//           </Link>
-//         </div>
-//         <div className="signed-in-navbar-div">
-//           <button>{/* <a href= "/auth/Signup">CAMPAIGNS</a> */}</button>
-
-//           <p className="singned-nav-user-icon">
-//             <Link to="/notification" className="link">
-//               <FaRegBellSlash
-//                 className={notificationStatus ? "links" : "navbar-notification"}
-//               />
-//             </Link>
-//           </p>
-//           <p className="navbar-profile-icon-div">
-//             <Link to="/profile" className="link">
-//               <FaRegUser className="navbar-profile-icon" />
-//             </Link>
-//           </p>
-//         </div>
-//       </nav>
 //     );
 //   } else {
 //     return (
@@ -180,4 +143,5 @@ export default function Navbar() {
     );
   }
 }
+
 
