@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss";
+import SideBarAdmin from "../SideBarAdmin/SideBarAdmin.jsx";
+import DashboardNavbar from "../DashboardNavbar/DashboardNavbar.jsx";
 const url = "https://beedplus.onrender.com/campaigns";
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -67,64 +69,76 @@ const AdminDashboardCampaigns = () => {
   ];
 
   return (
-    <div className="admin-dashboard-campaign-div">
-      <section className="admin-dashboard-campaign-link-listed-div">
-        <div className="admin-dashboard-campaign-link-listed-head-text">
-          <p>Campaigns</p>
+      <section className="admin-dashboard-campaign-container">
+        <div className="admin-dashboard-campaign-sidebar">
+          <SideBarAdmin/>
         </div>
-        <div className="admin-dashboard-campaign-link-listed-header">
-          {campaignDetailsHeader.map((head, headIndex) => {
-            return (
-              <div
-                key={headIndex}
-                className="admin-dashboard-campaign-link-listed-header-div"
-              >
-                <h2>{head.head}</h2>
-                <p>
-                  <FaChevronDown className="admin-dasboard-arrow-down" />
-                </p>
+        <div className="admin-dashboard-campaign-whole-div">
+          <div>
+            <DashboardNavbar/>
+          </div>
+          <div className="admin-dashboard-campaign-div">
+            <section className="admin-dashboard-campaign-link-listed-div">
+              <div className="admin-dashboard-campaign-link-listed-head-text">
+                <p>Campaigns</p>
               </div>
-            );
-          })}
-        </div>
-        <div className="admin-dashboard-campaigns-individual-campaign-div">
-          {submissions.map((submission, index) => {
-            return (
-
-                <Link
-                    className="admin-dashboard-campaign-name"
-                    to={`/test-campaign/${submission._id}`}
-                >
-              <div
-                key={index}
-                className="admin-dashboard-campaigns-individual-campaign-div-bar"
-              >
-                <div>
-                  <p className="admin-dashboard-campaign-name">
-
-                      {`#${submission.name}`}
-
-                  </p>
-                </div>
-                <div>
-                  <p className="admin-dashboard-campaign-owner">
-                    {submission.artiste}
-                  </p>
-                </div>
-                <div>
-                  <p className="admin-dashboard-campaign-date">
-                    {formatDate(submission.createdAt)}
-                  </p>
-                </div>
+              <div className="admin-dashboard-campaign-link-listed-header">
+                {campaignDetailsHeader.map((head, headIndex) => {
+                  return (
+                      <div
+                          key={headIndex}
+                          className="admin-dashboard-campaign-link-listed-header-div"
+                      >
+                        <h2>{head.head}</h2>
+                        <p>
+                          <FaChevronDown className="admin-dasboard-arrow-down" />
+                        </p>
+                      </div>
+                  );
+                })}
               </div>
+              <div className="admin-dashboard-campaigns-individual-campaign-div">
+                {submissions.map((submission, index) => {
+                  return (
 
-                </Link>
-            );
-          })}
+                      <Link
+                          className="admin-dashboard-campaign-name"
+                          to={`/test-campaign/${submission._id}`}
+                      >
+                        <div
+                            key={index}
+                            className="admin-dashboard-campaigns-individual-campaign-div-bar"
+                        >
+                          <div>
+                            <p className="admin-dashboard-campaign-name">
+
+                              {`#${submission.name}`}
+
+                            </p>
+                          </div>
+                          <div>
+                            <p className="admin-dashboard-campaign-owner">
+                              {submission.artiste}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="admin-dashboard-campaign-date">
+                              {formatDate(submission.createdAt)}
+                            </p>
+                          </div>
+                        </div>
+
+                      </Link>
+                  );
+                })}
+              </div>
+            </section>
+            <section className="admin-dashboard-campaign-info"></section>
+          </div>
         </div>
+
       </section>
-      <section className="admin-dashboard-campaign-info"></section>
-    </div>
+
   );
 };
 export default AdminDashboardCampaigns;

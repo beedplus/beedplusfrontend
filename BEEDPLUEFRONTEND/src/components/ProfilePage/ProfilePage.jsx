@@ -12,6 +12,8 @@ import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsBank } from "react-icons/bs";
+import { MdCancel } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 const ProfilePage = () => {
   const { logout } = useLogout();
@@ -64,6 +66,7 @@ const ProfilePage = () => {
     setSuccess: setSucc,
   } = useUpdateBankAccount();
   const accountName = usebackendStore((state) => state.user.account.bankName);
+  // console.log(accountName)
   // console.log(accountName, tiktok);
   // console.log(tiktok);
   const toggleOverlay = () => {
@@ -158,7 +161,7 @@ const ProfilePage = () => {
       </section>
       <section className="profile-page-details">
         <section className="profile-page-details-header">
-          <div className="profile-page-user-initials">JD</div>
+          <div className="profile-page-user-initials"><FaUser /></div>
           <div className="profile-page-user-name">
             <h4>{firstName}</h4>
             <p>
@@ -323,17 +326,17 @@ const ProfilePage = () => {
                 Add your correct bank account details to withdraw your earnings
               </p>
               <p className="hex" onClick={toggleOverlay}>
-                x
+                <MdCancel className="cancel-button" />
               </p>
             </div>
             <form
               className="profile-page-account-section-div-form"
               onSubmit={handleSubmit2}
             >
-              <div>
-                <div className="sign_LoginRiMailLine">
-                  <BsBank />
-                </div>
+              <div className="profile-page-edit-bank-selection">
+                {/*<div className="sign_LoginRiMailLine">*/}
+                {/*  <BsBank />*/}
+                {/*</div>*/}
                 <select
                   name="selectedBank"
                   className="select-list"
@@ -350,8 +353,9 @@ const ProfilePage = () => {
                   ))}
                 </select>
               </div>
-              <div>{document?.data?.account_name}</div>
-              <div>
+              <div className="profile-page-bank-details"
+              >{document?.data?.account_name}</div>
+              <div className="profile-page-account-number-div">
                 <input
                   className="profile-page-account-input"
                   placeholder="Enter Your Account Number"
@@ -361,11 +365,11 @@ const ProfilePage = () => {
                   }}
                 />
               </div>
-              <div className="edit-account-submit-button">
+              <section className="edit-account-submit-button">
                 <button type="submit">Add Account</button>
                 {isPend && <p>LOADING..</p>}
                 {err && <p>{err}</p>}
-              </div>
+              </section>
             </form>
           </div>
           <div
@@ -378,7 +382,7 @@ const ProfilePage = () => {
             <div className="profile-page-account-section-div-header">
               <p>Bank Account Added</p>
               <p className="hex" onClick={toggleOverlayTwo}>
-                x
+                <MdCancel />
               </p>
             </div>
             <div className="ace-body">
