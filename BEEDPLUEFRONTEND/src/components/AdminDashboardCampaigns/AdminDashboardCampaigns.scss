@@ -1,8 +1,18 @@
+.admin-dashboard-campaign-container{
+  display: flex;
+}
+.admin-dashboard-campaign-sidebar{
+  width: 20%;
+}
+.admin-dashboard-campaign-whole-div{
+  width: 70%;
+}
 .admin-dashboard-campaign-div{
   padding: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   .admin-dashboard-campaign-link-listed-div{
     width: 70%;
     .admin-dashboard-campaign-link-listed-head-text{

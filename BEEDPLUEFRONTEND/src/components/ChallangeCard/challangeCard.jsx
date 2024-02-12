@@ -55,7 +55,7 @@ const ChallangeCard = (props) => {
           <p>remaining</p>
         </div>
       </div>
-      <div className="bo5ttom-info-holder">
+      <div className="bottom-info-holder">
         <p className="challange-name challange">#{props.name}</p>
         <p className="challange">{props.artiste}</p>
         <div className="progress-line" data-percent="10">
