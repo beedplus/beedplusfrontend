@@ -1,13 +1,16 @@
-import "./SideBarAdmin.scss"
-import image1 from "../../assets/image 2.png"
-import { useState } from "react"
+import React from "react"; // Make sure to import React
+
+import "./SideBarAdmin.scss";
+import image1 from "../../assets/image 2.png";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function SideBarAdmin() {
-  const [clickedDiv, setSClickedDiv] = useState(null)
+  const [clickedDiv, setClickedDiv] = useState(null);
 
   const handleClicked = (index) => {
-    setSClickedDiv(index)
-  }
+    setClickedDiv(index);
+  };
 
   return (
     <div className="Sidebaradmin">
@@ -16,18 +19,100 @@ export default function SideBarAdmin() {
           <img src={image1} alt="div-logo" />
         </div>
         <div className="Sidebaradmin-list">
-          <div onClick={() => handleClicked(1)} className={clickedDiv === 1 ? "clicked " : " "}>Campaigns</div>
-          <div onClick={() => handleClicked(2)} className={clickedDiv === 2 ? "clicked" : ""}>Claim Requests</div>
-          <div onClick={() => handleClicked(3)} className={clickedDiv === 3 ? "clicked" : " "}>Accepted</div>
-          <div onClick={() => handleClicked(4)} className={clickedDiv === 4 ? "clicked" : " "}>Rejected</div>
-          <div onClick={() => handleClicked(5)} className={clickedDiv === 5 ? "clicked" : " "}>Paid</div>
+            <div>
+              <NavLink
+                  to="/admin"
+                  // isActive={(match, location) => location.pathname === "/admin"}
+                  // style={{ color: "red" }}
+                  className="side-links"
+                  style={({ isActive }) => ({
+                    color: isActive ? 'red' : 'blue',
+                  })}
+                  
+              >
+                  Campaigns
+
+              </NavLink>
+            </div>
+            <div>
+
+              <NavLink
+                  to="/admin/claim"
+                  // isActive={(match, location) => location.pathname === "/"}
+                  // style={{ color: "red" }}
+                  className="side-links"
+                  style={({ isActive }) => ({
+                    color: isActive ? 'red' : 'blue',
+                  })}
+                  
+              >
+
+                  Claim Requests
+
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                  to="/admin/acceptedsubmissions"
+                  // isActive={(match, location) =>
+                  //     location.pathname === "/admin/acceptedsubmissions"
+                  // }
+                  // style={{ color: "red" }}
+                  style={({ isActive }) => ({
+                    color: isActive ? 'red' : 'blue',
+                  })}
+                  
+                  className="side-links"
+              >
+
+                  Accepted
+
+
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                  to="/admin/rejected-campaign"
+                  // isActive={(match, location) =>
+                  //     location.pathname === "/admin/rejected-campaign"
+                  // }
+                  // style={{ color: "red" }}
+                  style={({ isActive }) => ({
+                    color: isActive ? 'red' : 'blue',
+                  })}
+                  
+                  className="side-links"
+              >
+
+                  Rejected
+
+
+              </NavLink>
+            </div>
+           <div>
+             <NavLink
+                 to="/admin/paid"
+                //  isActive={(match, location) =>
+                //      location.pathname === "/admin/admindashboardrequest"
+                //  }
+                //  style={{ color: "red" }}
+              style={({ isActive }) => ({
+  color: isActive ? 'red' : 'blue',
+})}
+
+                 className="side-links"
+             >
+
+                 Paid
+
+             </NavLink>
+           </div>
+
         </div>
         <div className="Logout-Sidebaradmin-div">
-          <div className="Logout-Sidebaradmin">
-            LOG OUT
-          </div>
+          <div className="Logout-Sidebaradmin">LOG OUT</div>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -22,8 +22,9 @@ const AdminDashboardCampaignsSubmission = () => {
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
-        setCampaignName(response.data.data.campaignName);
-        setCampaignDetails(response.data.data.links);
+        setCampaignName(response.data.data.campaign.name);
+        setCampaignDetails(response.data.data.links.data);
+        console.log({"campaign" : response.data.data.campaign.name})
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -149,21 +150,21 @@ const AdminDashboardCampaignsSubmission = () => {
           ))}
         </div>
       </section>
-      <section className="admin-dashboard-campaign-info">
-        <div className="admin-dashboard-campaign-info-div">
-          <p className="admin-dashboard-campaign-info">Campaign Info</p>
-          <div>
-            <p>Requirements</p>
-            {requirement.map((rule, index) => (
-              <div key={index}>
-                <ul>
-                  <li>{rule.rule}</li>
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/*<section className="admin-dashboard-campaign-info">*/}
+      {/*  <div className="admin-dashboard-campaign-info-div">*/}
+      {/*    <p className="admin-dashboard-campaign-info">Campaign Info</p>*/}
+      {/*    <div>*/}
+      {/*      <p>Requirements</p>*/}
+      {/*      {requirement.map((rule, index) => (*/}
+      {/*        <div key={index}>*/}
+      {/*          <ul>*/}
+      {/*            <li>{rule.rule}</li>*/}
+      {/*          </ul>*/}
+      {/*        </div>*/}
+      {/*      ))}*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
     </div>
   );
 };

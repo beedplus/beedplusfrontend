@@ -1,5 +1,5 @@
 import React from 'react'
-import "../AdminDashboard/AdminDashboard.scss";
+import "../AdminDashboardRequestPayment/AdminDashboard.scss";
 import beepLogo from "../../assets/image 2.png";
 import { useLogout } from "../../hooks/useLogout.jsx";
 

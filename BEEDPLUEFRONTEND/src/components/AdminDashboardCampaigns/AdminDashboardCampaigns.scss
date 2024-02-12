@@ -1,11 +1,11 @@
 .admin-dashboard-campaign-container{
-  display: flex;
+  width: 100%;
 }
 .admin-dashboard-campaign-sidebar{
   width: 20%;
 }
 .admin-dashboard-campaign-whole-div{
-  width: 70%;
+  width: 100%;
 }
 .admin-dashboard-campaign-div{
   padding: 30px;
@@ -44,6 +44,9 @@
         }
       }
     }
+    .admin-dashboard-campaign-name-bar{
+      text-decoration: none;
+    }
     .admin-dashboard-campaigns-individual-campaign-div{
       display: flex;
       flex-direction: column;
@@ -55,10 +58,15 @@
         border-radius: 10px;
         div{
           width: 33.3%;
-            .admin-dashboard-campaign-name{
+            .admin-dashboard-campaign-name-p{
               font-weight: 700;
               font-size: 13px;
+              color: #6B6B6B;
+              p{
+                text-decoration: none;
+              }
             }
+
             .admin-dashboard-campaign-owner{
               color: #3C3C3C;
               font-size: 12px;
