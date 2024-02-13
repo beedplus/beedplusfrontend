@@ -175,16 +175,21 @@ export default function Submission({
             className="submit-button"
             type="submit"
             id="submit"
-            disabled={claimStatus !== "pending"}
+            disabled={isPending}
             style={{
+<<<<<<< Updated upstream
               backgroundColor: claimStatus !== "pending" ? "gray" : "#228b22", // Example background color
               color: claimStatus !== "pending" ? "white" : "black", // Example text color
+=======
+              backgroundColor: isPending ? "gray" : "green", // Example background color
+              color: isPending !== "pending" ? "white" : "black", // Example text color
+>>>>>>> Stashed changes
               // Add any other styles you want to conditionally apply
             }}
           >
-            {<p>SUBMIT LINKS</p>}
+            {!success && !isPend && <p>SUBMIT LINKS</p>}
             {isPend && <p>loading</p>}
-            {/* {success && !isPend && <p>success</p>} */}
+            {success && !isPend && <p>success</p>}
           </button>
           {/*{error && <p>{error}</p>}*/}
         </form>
