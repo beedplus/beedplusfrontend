@@ -1,203 +1,94 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ".//AdminDashboard.scss";
-
-/*import { IoSearchOutline } from "react-icons/io5";
-import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
-
+import { baseURL } from "../../config.js";
+// all/submission/attempts
 import caretDown from "../../assets/Vector 1.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { FaWindowClose } from "react-icons/fa";
 import { IoCheckboxSharp } from "react-icons/io5";
-import {usebackendStore} from "../../store/store.js";
+import { usebackendStore } from "../../store/store.js";
+import { useNavigate } from "react-router";
 // import FixedNavbar from "../FixedNavbar/FixedNavbar";
 // import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA3ODI3MzI2LCJleHAiOjE3MDg0MzIxMjZ9.WfSjk_b2ZXONJDSR7txaZWd8RzRfMuJGDCC3JUnkwG0";
 
-
-
-
-const AdminDashboardRequestPayment = () => {
+const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const [campaignInfo, setCampaignInfo] = useState([]);
+  const [linkss, setLinks] = useState([]);
   const [reason, setReason] = useState("");
-  const [attemptId, setAttemptId] = useState("");
-  const [currentSubmissionId, setCurrentSubmissionId] = useState("");
-  const [submitSubmissionId, setSubmitSubmissionId] = useState("")
-  const [submissions, setSubmissions] = useState([]);
+  const [attemptIdx, setAttemptIdx] = useState("");
+  const [campaignIdx, setCampaignIdx] = useState("");
+  const [submissionIdx, setSubmissionIdx] = useState("");
   const [clickedSubmissionLinks, setClickedSubmissionLinks] = useState([]);
-  const [isDataFetched, setIsDataFetched] = useState(false);
-  const [linkStatuses, setLinkStatuses] = useState({});
-  let [submissionHeight, setSubmissionHeight] = useState(false);
-  const tempAccessToken = usebackendStore((state) => state.tempAccessToken)
-  let configa = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `https://beedplus.onrender.com/admin/submissions`,
-    // the :id here is the submission id
-    headers: {
-      Authorization: `Bearer ${tempAccessToken}`,
-    },
-  };
-
-  axios
-    .request(configa)
-    .then((response) => {
-      if (response.data.status === "success" && response.data.data.length > 0) {
-        const submissionId = response.data.data[0]._id;
-      } else {
-        //console.log("Failed to fetch submissions.");
-      }
-    })
-    .catch((error) => {
-      //console.error("Error fetching submissions:", error);
-    });
-
-  const fetchSingleSubmission = async (id) => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `https://beedplus.onrender.com/admin/submissions/${id}`,
-      // the :id here is the submission id
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  
-    axios
-      .request(config)
-      .then((response) => {
-        const submisionId = response.data.data._id
-        console.log("submisionId", submisionId)
-        setSubmitSubmissionId(submisionId);
-        const attempts = response.data.data.attempts;
-        // console.log(attempts)
-        console.log(JSON.stringify(attempts));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const acceptLink = (linkIndex) => { // Accept the index directly
-    const updatedStatuses = {};
-    console.log("linkIndex", linkIndex);
-  
-    // Update only the clicked link
-    updatedStatuses[`link${linkIndex}`] = { status: "verified" };
-  
-    setLinkStatuses((prevStatuses) => ({
-      ...prevStatuses,
-      ...updatedStatuses,
-    }));
-    // setRejection(true); // Assuming you set rejection to true after accepting the links
-  };
-  
-
-  // const rejectLink = (link) => {
-  //   const linkIndex = clickedSubmissionLinks.indexOf(link) + 1;
-  //   console.log("linkIndexs", linkIndex);
-  //   setLinkStatuses((prevStatuses) => ({
-  //     ...prevStatuses,
-  //     [`link${linkIndex}`]: { status: "rejected", reason: reason },
-  //   }));
-  //   setRejection(true);
-  // };
-
-  const rejectLink = (linkIndex) => { // Accept the index directly
-    const updatedStatuses = {};
-    console.log("linkIndex", linkIndex);
-  
-    // Update only the clicked link
-    updatedStatuses[`link${linkIndex}`] = { status: "rejected", reason: reason };
-  
-    setLinkStatuses((prevStatuses) => ({
-      ...prevStatuses,
-      ...updatedStatuses,
-    }));
-    // setRejection(true); // Assuming you set rejection to true after accepting the links
-  };
-
-  const finishReview = (submissionId) => {
-    const requestBody = {
-      attemptId: attemptId,
-      updates: linkStatuses,
-    };
-    console.log("linkStatuses", linkStatuses)
-    // Send POST request with requestBody to the endpoint
-    fetch(
-      `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(requestBody),
-      }
-    )
-      .then((response) => {
-        // Handle response
-        console.log(response);
-      })
-      .catch((error) => {
-        // Handle error
-        console.log(error);
-      });
-  };
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.request(configa);
-        if (response.data.status === "success") {
-          response.data.data.map((res) => {
-            console.log({ res: res._id });
-            setCurrentSubmissionId(res._id);
-          });
-          setSubmissions(response.data.data);
-          setIsDataFetched(true);
-        } else {
-          // console.log("Failed to fetch submissions.");
+        const options = {
+          method: "GET",
+          url: `${baseURL}all/submission/attempts`,
+          params: { claimStatus: "submitted" },
+          headers: { "content-type": "application/json" },
+          data: { status: "verified" },
+        };
+        try {
+          const response = await axios.request(options);
+          setCampaignInfo(response.data.data.data);
+          setLinks(response.data.data.data);
+          console.log(response.data.data.data);
+        } catch (error) {
+          console.error(error);
         }
       } catch (error) {
         // console.error("Error fetching submissions:", error);
       }
     };
-    if (!isDataFetched) {
-      fetchData();
-    }
-  }, [isDataFetched]);
+    fetchData();
+  }, []);
 
-  function appendLinks(attempts, submissionIndex) {
-    let links = [];
-    const startIndex = submissionIndex * 5;
-    const endIndex = Math.min(startIndex + 5, attempts.length);
-    for (let i = startIndex; i < endIndex; i++) {
-      const attempt = attempts[i];
-      links.push(
-        <div key={`link-${i}`} className="submission-data">
-          {attempt.link1 && <a href={attempt.link1.url}>{attempt.link1.url}</a>}
-          {attempt.link2 && <a href={attempt.link2.url}>{attempt.link2.url}</a>}
-          {attempt.link3 && <a href={attempt.link3.url}>{attempt.link3.url}</a>}
-          {attempt.link4 && <a href={attempt.link4.url}>{attempt.link4.url}</a>}
-          {attempt.link5 && <a href={attempt.link5.url}>{attempt.link5.url}</a>}
-        </div>
-      );
-    }
-    return links;
-  }
-  function handleButtonClick(index, attempt) {
-    const links = [];
-    // Assuming link1 is always present in the attempt
-    for (let i = 1; i <= 5; i++) {
-      const linkKey = `link${i}`;
-      if (attempt[linkKey]) {
-        links.push(attempt[linkKey].url);
+  const handleSubmissionLinks = (
+    campaignIdx,
+    submissionIdx,
+    attemptIdx,
+    campaignLinks
+  ) => {
+    setCampaignIdx(campaignIdx);
+    setSubmissionIdx(submissionIdx);
+    setAttemptIdx(attemptIdx);
+    setLinks(campaignLinks);
+  };
+
+  const paymentAccepted = async (campaignId, submissionId, attemptId) => {
+    const options = {
+      method: "PATCH",
+      url: `${baseURL}${campaignId}/submission/${attemptId}`,
+      params: { submissionId: `${submissionId}` },
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        claimStatus: "claimed",
+      },
+    };
+    try {
+      // const response = await axios.request(options)
+      const { data } = await axios.request(options);
+      if (data.status === "success") {
+        setTimeout(() => {
+          toast.success("Paid Successfully!");
+          navigate("/admin/paid");
+        }, 4000);
       }
+    } catch (error) {
+      console.error(error);
     }
-    setClickedSubmissionLinks(links);
-    console.log({"setClickedSubmissionLinks" : setClickedSubmissionLinks})
-    console.log("links", links);
-    setAttemptId(attempt._id);
-    console.log("attemptId:", attemptId);
-  }
+  };
 
   const [headerStates, setHeaderStates] = useState({
     userInfo: false,
@@ -221,100 +112,6 @@ const AdminDashboardRequestPayment = () => {
       [submissionIndex]: !prevHeights[submissionIndex],
     }));
   };
-
-  function displayDropdown(submission) {
-    const idx = submission._id;
-    fetchSingleSubmission(idx);
-  }
-
-  // const handleCheck = async (submissionId) => {
-  //   const data = {
-  //     attemptId: attemptId,
-  //     updates: {
-  //       link1: { status: "verified" },
-  //       link2: { status: "verified" },
-  //       link3: { status: "verified" },
-  //       link4: { status: "verified" },
-  //       link5: { status: "verified" },
-  //     },
-  //   };
-
-  //   let configs = {
-  //     method: "post",
-  //     url: `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     data: JSON.stringify(data),
-  //   };
-  //   axios
-  //     .request(configs)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-  // const handleReject = async (submissionId) => {
-  //   const data = {
-  //     attemptId: attemptId,
-  //     updates: {
-  //       link1: { status: "rejected", reason: reason },
-  //       link2: { status: "rejected", reason: reason },
-  //       link3: { status: "rejected", reason: reason },
-  //       link4: { status: "rejected", reason: reason },
-  //       link5: { status: "rejected", reason: reason },
-  //     },
-  //   };
-
-  //   try {
-  //     const response = await axios.post(
-  //       `https://beedplus.onrender.com/admin/submissions/${submissionId}/review`,
-  //       data,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-
-    const dayOfWeek = days[date.getDay()];
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-
-    return `${dayOfWeek} ${month} ${year}`;
-  }
-
-  let [rejection, setRejection] = useState(true);
-
-  function displayRejectMessage() {
-    setRejection(false);
-  }
 
   return (
     <section className="admin-dashboard-section">
@@ -359,117 +156,94 @@ const AdminDashboardRequestPayment = () => {
                   </header>
                 </div>
                 <div className="table-item">
-                  {submissions.map((submission, submissionIndex) => (
-                    <div
-                      key={submissionIndex}
-                      className={`the-item ${
-                        submissionHeights[submissionIndex] ? "offset" : ""
-                      }`}
-                      // onClick={() => toggleHeight(submissionIndex)}
-                    >
+                  {campaignInfo.length === 0 ? (
+                    <b>No submitted request available</b>
+                  ) : (
+                    campaignInfo.map((campaign, submissionIndex) => (
                       <div
-                        className="item"
-                        onClick={() => displayDropdown(submission)}
+                        key={submissionIndex}
+                        className={`the-item`}
+                        onClick={() => toggleHeight(submissionIndex)}
                       >
-                        <div className="user-info em">
-                          <b>
-                            gfchhgf
-                            {/*{submission.userId.firstname}&nbsp;*/}
-                            {/*{submission.userId.lastname}*/}
-                          </b>{" "}
-                          <br />
-                          {/*<p>{submission.userId.email}</p>*/}
-                        </div>
-
-                        <p className="hashtag em">
-                          jhgvj
-                          {/*#{submission.campaignId.name}*/}
-                        </p>
-
-                        <p className="user-phone-number em">
-                          {/*{submission.userId.phone}*/}
-                          <button>
-                            submission one
-                          </button>
-                        </p>
-
-                        <div className="date-and-time em">
-                          <p className="date">
-                            {/*{formatDate(submission.updatedAt)}*/}
-                          </p>
-                          <p className="time">
-                           account details
-                          </p>
-
-                          {/*<p>10.30 AM</p>*/}
-                        </div>
-                      </div>
-
-                      <div className="submission-list">
-                        {submission.attempts.map((attempt, index) => (
-                          <div key={`submission-${index}`}>
-                            <div
-                              onClick={() => handleButtonClick(index, attempt)}
-                              className="submission-data"
-                            >
-                              {`Submission ${index + 1}`}
-                            </div>
+                        <div className="item">
+                          <div className="user-info em">
+                            <b>
+                              {campaign.user.firstname} {campaign.user.lastname}
+                            </b>
+                            <br />
+                            {campaign.user.email}
                           </div>
-                        ))}
+
+                          <p className="hashtag em">{campaign.campaign.name}</p>
+
+                          <p className="user-phone-number em">
+                            <button
+                              onClick={() =>
+                                handleSubmissionLinks(
+                                  campaign._id,
+                                  campaign.submissionId,
+                                  campaign.attemptId,
+                                  campaign.links
+                                )
+                              }
+                            >
+                              Submission {campaign.submissionNumber}
+                            </button>
+                          </p>
+
+                          <div className="date-and-time em">
+                            {campaign.user.account ? (
+                              <p className="time">
+                                <br />
+                                {campaign.user.account.bankName} <br /> {""}
+                                {
+                                  campaign.user.account.accountNumber
+                                } <br /> {campaign.user.account.accountName}
+                              </p>
+                            ) : (
+                              <p className="error-message">
+                                Not account details set
+                              </p>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          {/*<div className="submission-section">*/}
-          {/*  <div className="submission-header">Submission info</div>*/}
-          {/*  <div className="links-container">*/}
-          {/*    <header className="link-header">LINKS</header>*/}
-          {/*    {clickedSubmissionLinks.map((link, index) => (*/}
-          {/*      <div className="links" key={index}>*/}
-          {/*        <p className="link">{link}</p>*/}
-          {/*        <div className="btn-container">*/}
-          {/*          <IoCheckboxSharp*/}
-          {/*            className="check"*/}
-          {/*            onClick={() => acceptLink(index + 1)}*/}
-          {/*          />*/}
-          {/*          <FaWindowClose*/}
-          {/*            className="cancel"*/}
-          {/*            onClick={() => rejectLink(index + 1)}*/}
-          {/*          />*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-          {/*    ))}*/}
-
-          {/*    {rejection ? (*/}
-          {/*      <></>*/}
-          {/*    ) : (*/}
-          {/*      <div className="reject-message">*/}
-          {/*        <header>Rejection Reasons</header>*/}
-          {/*        <textarea*/}
-          {/*          placeholder="Write reasons here"*/}
-          {/*          value={reason}*/}
-          {/*          onChange={(e) => setReason(e.target.value)}*/}
-          {/*        ></textarea>*/}
-          {/*      </div>*/}
-          {/*    )}*/}
-          {/*  </div>*/}
-          {/*  <div>*/}
-          {/*    <button*/}
-          {/*      className="finish-button"*/}
-          {/*      onClick={() => finishReview(submitSubmissionId)}*/}
-          {/*    >*/}
-          {/*      FINISH*/}
-          {/*    </button>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
+          <div className="submission-section">
+            <div className="submission-header">Submission info</div>
+            <div className="links-container">
+              <header className="link-header">LINKS</header>
+              <div>
+                {linkss.map((link, linkIndex) => (
+                  <p key={linkIndex} className="link">
+                    {link.url && link.url.length > 40
+                      ? link.url.substring(0, 28) + "..."
+                      : link.url}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div>
+              <button
+                className="finish-button"
+                onClick={() =>
+                  paymentAccepted(campaignIdx, submissionIdx, attemptIdx)
+                }
+              >
+                PAY
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default AdminDashboardRequestPayment;
+export default AdminDashboard;
