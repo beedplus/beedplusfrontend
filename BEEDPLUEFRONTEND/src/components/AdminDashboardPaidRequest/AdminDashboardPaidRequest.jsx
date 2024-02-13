@@ -106,7 +106,6 @@ const AdminDashboardPaidRequest = () => {
                       <div
                         key={submissionIndex}
                         className="the-item"
-                        // onClick={() => toggleHeight(submissionIndex)}
                       >
                         <div className="item">
                           <div className="user-info em">
