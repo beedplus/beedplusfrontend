@@ -65,7 +65,7 @@ const ProfilePage = () => {
     success: succ,
     setSuccess: setSucc,
   } = useUpdateBankAccount();
-  const accountName = usebackendStore((state) => state.user.account.bankName);
+  const accountName = usebackendStore((state) => state.user.account?.bankName);
   // console.log(accountName)
   // console.log(accountName, tiktok);
   // console.log(tiktok);

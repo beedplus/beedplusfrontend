@@ -1,14 +1,15 @@
-import image from "../../assets/image 1.png" 
+import Beed from "../../assets/image1.svg"
+
 import "./Footer.scss"
 import SocialComponents from "../SocialComponents/SocialComponents"
+import {Link} from "react-router-dom";
 
 export default function Footer() {
   return (
    <footer className="footer">
         <div className="section-one">
            <div className="section-two">
-              <img src={image} alt="beed logo" />
-              {/* <input type="text" className="text"/> */}
+               <Link to="/"><img src={Beed} alt="beed logo" /></Link>
            </div>
            <SocialComponents/>
         </div>

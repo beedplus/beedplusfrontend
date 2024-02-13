@@ -4,7 +4,9 @@ import challengeImage from "../../assets/Rectangle 52.png";
 import tiktokImage from "../../assets/Ellipse 7.png";
 //import videoContent from '../../assets/Rectangle 63.png'
 import { BsCaretDownFill } from "react-icons/bs";
-import { FaClock, FaPause, FaPlay } from "react-icons/fa6";
+import { FaClock, FaPause, FaPlay  } from "react-icons/fa6";
+
+
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
 import loading from "../../assets/loading.gif";
 // import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
@@ -159,6 +161,10 @@ const ChallengeLinks = () => {
           style={{
             width: "80px",
             height: "70px",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            marginTop: "250px",
             marginRight: "auto",
             marginLeft: "auto",
           }}
@@ -205,7 +211,7 @@ const ChallengeLinks = () => {
                 <div className="button-container">
                   <button
                       onClick={() => setActiveTab(true)}
-                      className={   `black ${activeTab ? "active" : "unactive"} clb` }
+                      className={`black ${activeTab ? "active" : "unactive"} clb` }
                   >
                     INSTRUCTIONS
                   </button>
@@ -253,6 +259,8 @@ const ChallengeLinks = () => {
                         <div className="challenge-video-overlay">
                           <div className="control-button" onClick={togglePlayPause}>
                             {isPlaying ? <FaPause /> : <FaPlay />}
+                            
+                            
                           </div>
                         </div>
                       </div>

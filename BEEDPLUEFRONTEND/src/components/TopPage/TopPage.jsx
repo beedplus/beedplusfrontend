@@ -13,16 +13,20 @@ function TopPage() {
         <img src={Money} alt="PlayIconOne" className='money' />
         <img src={money2} alt="PlayIconOne" className='money2' /> 
         <img src={PlayIconOne} alt="PlayIconOne" className='play-icon-one' /> 
-        <div className='heading'>
+        <div className='top-page-heading'>
           <span>
             UPLOAD 5 VIDE
           </span>
-          <img src={PlayIconTwo} alt="PlayIconTwo" className='play-icon-two' />
-          <span>O</span>
-          <br/>
-          <span className='header-secondline-styling'>AND GET $10  </span>
-          <br/>
-          <span className='header-thirdline-styling'>INSTANTLY</span>
+          <span>
+            <img src={PlayIconTwo} alt="PlayIconTwo" className='play-icon-two' />
+          </span>
+         <span>
+             S
+         </span>
+        </div>
+        <div>
+            <span className='header-secondline-styling'>AND GET $10  </span>
+            <span className='header-thirdline-styling'>INSTANTLY</span>
         </div>
         <div className='butt-para-spreadpics'>
         <div className='para-butt'>

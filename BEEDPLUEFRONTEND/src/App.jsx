@@ -1,4 +1,4 @@
-// import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -33,6 +33,7 @@ import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 import SideBar from "./layout/SideBar.jsx";
+import MyCampaigns from "./components/MyCampaigns/MyCampaigns.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -59,8 +60,11 @@ function App() {
           <Route
             path="/home"
             element={
+
               <>
+                  <Navbar/>
                 <Home />
+                 <Footer/>
               </>
             }
           />
@@ -78,8 +82,10 @@ function App() {
             path="/"
             element={
               <>
+                <Navbar/>
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
+                <Footer/>
               </>
             }
 
@@ -151,11 +157,22 @@ function App() {
             path="/profile"
             element={
               <>
+                  <Navbar/>
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             }
           />
+            <Route
+                path="/my-campaigns"
+                element={
+                    <>
+                        <Navbar/>
+                     {accessToken && <MyCampaigns/>}
+                        {!accessToken && <Navigate to="/auth/signin" />}
+                    </>
+                }
+            />
           <Route
             path="/notification"
             element={

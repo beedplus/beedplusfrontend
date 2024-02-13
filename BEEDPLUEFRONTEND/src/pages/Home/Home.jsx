@@ -12,14 +12,14 @@ function LandingPage(props) {
   
    return (
     <div className='landing-Page'>
-       
+      
       <TopPage/>
       <BottomPage/>
       <img src={Advert} alt="Advert" className='advert' />
       {/*<img src={enterwin} alt="enterwin" className='enter-win' />*/}
-      <div className='enter-win2-container'>
-      {/* <img src={newEnterWin} alt="newEnterWin" className='enter-win2' />  */}
-      </div>
+      {/*<div className='enter-win2-container'>*/}
+      {/*/!* <img src={newEnterWin} alt="newEnterWin" className='enter-win2' />  *!/*/}
+      {/*</div>*/}
     </div>
 
   )

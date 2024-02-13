@@ -105,7 +105,7 @@ const AdminDashboardCampaignsSubmission = () => {
 
   return (
     <div className="admin-dashboard-campaign-submission-div">
-      <section className="admin-dashboard-campaign-link-listed-div">
+      <section className="admin-dashboard-campaign-link-listed-div-one">
         <div className="admin-dashboard-campaign-link-listed-head-text">
           <p>#{campaignName}</p>
         </div>
@@ -150,21 +150,21 @@ const AdminDashboardCampaignsSubmission = () => {
           ))}
         </div>
       </section>
-      {/*<section className="admin-dashboard-campaign-info">*/}
-      {/*  <div className="admin-dashboard-campaign-info-div">*/}
-      {/*    <p className="admin-dashboard-campaign-info">Campaign Info</p>*/}
-      {/*    <div>*/}
-      {/*      <p>Requirements</p>*/}
-      {/*      {requirement.map((rule, index) => (*/}
-      {/*        <div key={index}>*/}
-      {/*          <ul>*/}
-      {/*            <li>{rule.rule}</li>*/}
-      {/*          </ul>*/}
-      {/*        </div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <section className="admin-dashboard-campaign-info">
+        <div className="admin-dashboard-campaign-info-div">
+          <p className="admin-dashboard-campaign-info">Campaign Info</p>
+          <div>
+            <p>Requirements</p>
+            {requirement.map((rule, index) => (
+              <div key={index}>
+                <ul>
+                  <li>{rule.rule}</li>
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
