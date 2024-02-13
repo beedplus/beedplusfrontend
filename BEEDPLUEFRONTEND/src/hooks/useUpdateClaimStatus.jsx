@@ -27,7 +27,10 @@ export const useUpdateClaimStatus = () => {
       } else {
         const result = await res.json();
         console.log(result);
-        setSuccess(true);
+        if (result.status == "success") {
+          setSuccess(true);
+        }
+
         setIsPending(false); // Set success state based on the result
       }
     } catch (error) {
