@@ -24,8 +24,9 @@ const AdminDashboardCampaignsSubmission = () => {
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
-        setCampaignName(response.data.data.campaignName);
-        setCampaignDetails(response.data.data.links);
+        setCampaignName(response.data.data.campaign.name);
+        setCampaignDetails(response.data.data.links.data);
+        console.log({"campaign" : response.data.data.campaign.name})
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -107,7 +108,7 @@ const AdminDashboardCampaignsSubmission = () => {
 
   return (
     <div className="admin-dashboard-campaign-submission-div">
-      <section className="admin-dashboard-campaign-link-listed-div">
+      <section className="admin-dashboard-campaign-link-listed-div-one">
         <div className="admin-dashboard-campaign-link-listed-head-text">
           <p>#{campaignName}</p>
         </div>

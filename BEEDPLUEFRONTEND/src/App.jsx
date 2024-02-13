@@ -1,4 +1,4 @@
-// import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./components/NotFound/NotFound";
 import Signup from "./auth/Signup/Signup.jsx";
 import Signin from './auth/Signin/Signin.jsx'
+
 import BankAcoount from "./auth/BankAccount/BankAcoount";
 import Verification from "./auth/VerificationEmail/VerificationEmail.jsx";
 import Verify from "./Verify";
@@ -19,7 +20,7 @@ import { Navigate } from "react-router-dom";
 import NotificationPage from './components/NotificationPage/NotificationPage';
 import CheckChallenge from './components/CheckChallenge/CheckChallenge';
 import LandingPageSignedIn from "./pages/LandingPageSignedIn/LandingPageSignedIn.jsx"
-import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
+import AdminDashboardRequestPayment from "./components/AdminDashboardRequestPayment/AdminDashboardRequestPayment.jsx";
 import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
@@ -32,6 +33,8 @@ import AdminDashboardRejectedCampaign
 import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
+import SideBar from "./layout/SideBar.jsx";
+import MyCampaigns from "./components/MyCampaigns/MyCampaigns.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -57,10 +60,12 @@ function App() {
           <Route
             path="/home"
             element={
+
               <>
-              <Navbar />
-              <Home/>
-              <Footer /> 
+                  <Navbar/>
+                <Home />
+                 <Footer/>
+
               </>
             }
           />
@@ -90,10 +95,10 @@ function App() {
             path="/"
             element={
               <>
-                <Navbar />
+                <Navbar/>
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
-                <Footer /> 
+                <Footer/>
 
               </>
             }
@@ -166,11 +171,22 @@ function App() {
             path="/profile"
             element={
               <>
+                  <Navbar/>
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             }
           />
+            <Route
+                path="/my-campaigns"
+                element={
+                    <>
+                        <Navbar/>
+                     {accessToken && <MyCampaigns/>}
+                        {!accessToken && <Navigate to="/auth/signin" />}
+                    </>
+                }
+            />
           <Route
             path="/notification"
             element={
@@ -191,15 +207,7 @@ function App() {
           />
 
 
-          <Route
-            path="/admin-dashboard"
-            element={
-              <>
-                {tempAccessToken && <AdminDashboard />}
-                {!tempAccessToken && <Navigate to="/admin-login" />}
-              </>
-            }
-          />
+
 
           <Route
             path="/admin-login"
@@ -214,35 +222,44 @@ function App() {
             {!accessToken && <Navigate to="/auth/signin" />}
           </>}
           />
-
+            <Route
+                path="/admin"
+                element={
+               <SideBar />
+                }
+            >
+                <Route
+                    path="/admin"
+                    element={
+                        <>
+                           <AdminDashboardCampaigns />
+                        </>
+                    }
+                />
+            
           <Route
+                path="/admin/claim"
+                element={<AdminDashboardRequestPayment/>}
 
-
-                path="/test"
-                element={<AdminDashboard/>}
 
                 />
 
                 <Route
-                path="/test-campaign/:id"
+                path="/admin/test-campaign/:id"
             element={<AdminDashboardCampaignsSubmission />}
           />
 
 
           <Route
-            path="/tester"
-            element={<AdminDashboardCampaigns/>}
-          />
-          <Route
-            path="/AcceptedSubmissions"
+            path="/admin/acceptedsubmissions"
             element={<AcceptedSubmissions/>}
-          />                <Route path="/rejected-campaign"
+          />                <Route path="/admin/rejected-campaign"
                 element={<AdminDashboardRejectedCampaign/>}
                 />
           <Route
-                path="bumbum"
+                path="/admin/paid"
                 element={<AdminDashboardPaidRequest/>}/>
-
+            </Route>
 
           <Route
             path="/SideBarAdmin"

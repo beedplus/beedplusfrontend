@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../AdminDashboard/AdminDashboard.scss";
+import ".//AdminDashboard.scss";
 
 /*import { IoSearchOutline } from "react-icons/io5";
 import notificationIcon from "../../assets/iconoir_bell-notification.png";*/
@@ -15,7 +15,7 @@ import {usebackendStore} from "../../store/store.js";
 
 
 
-const AdminDashboard = () => {
+const AdminDashboardRequestPayment = () => {
   const [reason, setReason] = useState("");
   const [attemptId, setAttemptId] = useState("");
   const [currentSubmissionId, setCurrentSubmissionId] = useState("");
@@ -424,52 +424,52 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="submission-section">
-            <div className="submission-header">Submission info</div>
-            <div className="links-container">
-              <header className="link-header">LINKS</header>
-              {clickedSubmissionLinks.map((link, index) => (
-                <div className="links" key={index}>
-                  <p className="link">{link}</p>
-                  <div className="btn-container">
-                    <IoCheckboxSharp
-                      className="check"
-                      onClick={() => acceptLink(index + 1)}
-                    />
-                    <FaWindowClose
-                      className="cancel"
-                      onClick={() => rejectLink(index + 1)}
-                    />
-                  </div>
-                </div>
-              ))}
+          {/*<div className="submission-section">*/}
+          {/*  <div className="submission-header">Submission info</div>*/}
+          {/*  <div className="links-container">*/}
+          {/*    <header className="link-header">LINKS</header>*/}
+          {/*    {clickedSubmissionLinks.map((link, index) => (*/}
+          {/*      <div className="links" key={index}>*/}
+          {/*        <p className="link">{link}</p>*/}
+          {/*        <div className="btn-container">*/}
+          {/*          <IoCheckboxSharp*/}
+          {/*            className="check"*/}
+          {/*            onClick={() => acceptLink(index + 1)}*/}
+          {/*          />*/}
+          {/*          <FaWindowClose*/}
+          {/*            className="cancel"*/}
+          {/*            onClick={() => rejectLink(index + 1)}*/}
+          {/*          />*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    ))}*/}
 
-              {rejection ? (
-                <></>
-              ) : (
-                <div className="reject-message">
-                  <header>Rejection Reasons</header>
-                  <textarea
-                    placeholder="Write reasons here"
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                  ></textarea>
-                </div>
-              )}
-            </div>
-            <div>
-              <button
-                className="finish-button"
-                onClick={() => finishReview(submitSubmissionId)}
-              >
-                FINISH
-              </button>
-            </div>
-          </div>
+          {/*    {rejection ? (*/}
+          {/*      <></>*/}
+          {/*    ) : (*/}
+          {/*      <div className="reject-message">*/}
+          {/*        <header>Rejection Reasons</header>*/}
+          {/*        <textarea*/}
+          {/*          placeholder="Write reasons here"*/}
+          {/*          value={reason}*/}
+          {/*          onChange={(e) => setReason(e.target.value)}*/}
+          {/*        ></textarea>*/}
+          {/*      </div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
+          {/*  <div>*/}
+          {/*    <button*/}
+          {/*      className="finish-button"*/}
+          {/*      onClick={() => finishReview(submitSubmissionId)}*/}
+          {/*    >*/}
+          {/*      FINISH*/}
+          {/*    </button>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
     </section>
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboardRequestPayment;

@@ -9,8 +9,9 @@ function Bottompage() {
     <div className='bottom-page'>
       <ChallangeCardlist/>
       <img src={Beedlogo} alt="Beedlogo" className='beed-logo' />  
-      <img src={EnterWin} alt="EnterWin" className='enter-win' />
-      
+      {/*<img src={EnterWin} alt="EnterWin" className='enter-win' />*/}
+
+
     </div>
   )
 }

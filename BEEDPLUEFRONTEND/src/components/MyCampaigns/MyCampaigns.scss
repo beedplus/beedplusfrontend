@@ -1,0 +1,26 @@
+.mycampaigns-page-div{
+  .mycampaigns-page-header{
+    display: flex;
+    justify-content: center;
+  }
+}
+.mycampaigns-page-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.completed-compaigns-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ gap :15px;
+  width: 100%;
+}
+.completed-campaigns-bar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #c9c9c9;
+}

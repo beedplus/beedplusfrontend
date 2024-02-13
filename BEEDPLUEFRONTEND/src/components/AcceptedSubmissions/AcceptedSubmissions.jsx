@@ -21,7 +21,7 @@ export default function AcceptedSubmissions() {
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
-        setCampaignDetails(response.data.data.links);
+        setCampaignDetails(response.data.data.links.data);
         setCampaignName(response.data.data.campaignName);
         console.log({ response: response.data.data.links });
       } catch (error) {
@@ -65,29 +65,29 @@ export default function AcceptedSubmissions() {
         </div>
 
       </section>
-      <section className="admin-dashboard-campaign-info">
-        <div className="admin-dashboard-campaign-info-div">
-          <h3 className="admin-dashboard-campaign-info">
-            Accepted Info
-          </h3>
-          <div>
-            <p>
-            Number of submitted submissions
-            </p>
-          </div>  
-        </div>
-        <div className="admin-dashboard-campaign-info-div">
-          <h3 className="admin-dashboard-campaign-info">
+      {/*<section className="admin-dashboard-campaign-info">*/}
+      {/*  <div className="admin-dashboard-campaign-info-div">*/}
+      {/*    <h3 className="admin-dashboard-campaign-info">*/}
+      {/*      Accepted Info*/}
+      {/*    </h3>*/}
+      {/*    <div>*/}
+      {/*      <p>*/}
+      {/*      Number of submitted submissions*/}
+      {/*      </p>*/}
+      {/*    </div>  */}
+      {/*  </div>*/}
+      {/*  <div className="admin-dashboard-campaign-info-div">*/}
+      {/*    <h3 className="admin-dashboard-campaign-info">*/}
+      {/*    {campaignDetails.length}*/}
+      {/*    </h3>*/}
+      {/*    <div>*/}
+      {/*      <p>*/}
+      {/*      submitted links*/}
+      {/*      </p>*/}
+      {/*    </div>  */}
+      {/*  </div>*/}
+      {/*</section>*/}
 
-          {campaignDetails.length}
-          </h3>
-          <div>
-            <p>
-            submitted links
-            </p>
-          </div>  
-        </div>
-      </section>
     </div>
   )
 }

@@ -17,7 +17,15 @@ const NotificationPage = () => {
   return (
     <div style={{ width: "100%", display: "flex" }}>
       {isPending && (
-        <img src={loading} alt="Loading Animation" className="loaderanim" />
+        <img
+        style={{
+          width: "80px",
+          height: "70px",
+          margin: "250px auto"
+        }}
+         src={loading} 
+         alt="Loading Animation" 
+         className="loaderanim" />
       )}
       {error && <p>{error}</p>}
 

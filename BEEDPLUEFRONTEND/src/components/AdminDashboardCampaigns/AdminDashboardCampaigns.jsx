@@ -73,7 +73,6 @@ const AdminDashboardCampaigns = () => {
   return (
       <section className="admin-dashboard-campaign-container">
         <div className="admin-dashboard-campaign-sidebar">
-          <SideBarAdmin/>
         </div>
         <div className="admin-dashboard-campaign-whole-div">
           <div>
@@ -104,15 +103,15 @@ const AdminDashboardCampaigns = () => {
                   return (
 
                       <Link
-                          className="admin-dashboard-campaign-name"
-                          to={`/test-campaign/${submission._id}`}
+                          className="admin-dashboard-campaign-name-bar"
+                          to={`/admin/test-campaign/${submission._id}`}
                       >
                         <div
                             key={index}
                             className="admin-dashboard-campaigns-individual-campaign-div-bar"
                         >
                           <div>
-                            <p className="admin-dashboard-campaign-name">
+                            <p className="admin-dashboard-campaign-name-p">
 
                               {`#${submission.name}`}
 
