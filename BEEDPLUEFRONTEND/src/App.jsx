@@ -26,7 +26,6 @@ import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboard
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
 
-import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 import AdminDashboardRejectedCampaign
     from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
@@ -35,6 +34,7 @@ import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmis
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 import SideBar from "./layout/SideBar.jsx";
 import MyCampaigns from "./components/MyCampaigns/MyCampaigns.jsx";
+import Faqs from "./components/Faqs/Faqs.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -200,6 +200,7 @@ function App() {
             path="/check-challenge"
             element={
               <>
+
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -216,8 +217,10 @@ function App() {
               {!tempAccessToken && <AdminDashboardLogin />}
             </>}
           />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<>
 
+          <Route path="/challenge/:id" element={
+              <>
+            <Navbar/>
             {accessToken && <ChallengeLinks />}
             {!accessToken && <Navigate to="/auth/signin" />}
           </>}
