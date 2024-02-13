@@ -334,9 +334,9 @@ const ProfilePage = () => {
               onSubmit={handleSubmit2}
             >
               <div className="profile-page-edit-bank-selection">
-                {/*<div className="sign_LoginRiMailLine">*/}
-                {/*  <BsBank />*/}
-                {/*</div>*/}
+                <div className="sign_LoginRiMailLine">
+                  <BsBank />
+                </div>
                 <select
                   name="selectedBank"
                   className="select-list"
@@ -353,8 +353,9 @@ const ProfilePage = () => {
                   ))}
                 </select>
               </div>
-              <div className="profile-page-bank-details"
-              >{document?.data?.account_name}</div>
+              <div className="profile-page-bank-details">
+                {document?.data?.account_name}
+              </div>
               <div className="profile-page-account-number-div">
                 <input
                   className="profile-page-account-input"
@@ -369,8 +370,7 @@ const ProfilePage = () => {
                 <button type="submit">Add Account</button>
                 {isPend && <p>LOADING..</p>}
                 {err && <p  className="error">{err}</p>}
-              </div>
-
+              </section>
             </form>
           </div>
           <div
