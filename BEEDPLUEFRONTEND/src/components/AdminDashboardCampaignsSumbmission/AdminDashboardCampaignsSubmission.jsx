@@ -20,13 +20,13 @@ const AdminDashboardCampaignsSubmission = () => {
         const options = {
           method: "GET",
           url: url,
-          params: { linkStatus: "pending" },
+          params: { linkStatus: "submitted" },
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
         setCampaignName(response.data.data.campaign.name);
         setCampaignDetails(response.data.data.links.data);
-        console.log({"campaign" : response.data.data.campaign.name})
+        console.log({ campaign: response.data.data.campaign.name });
       } catch (error) {
         console.error("Error fetching data:", error);
       }

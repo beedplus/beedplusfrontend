@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const baseURL = "https://beedplus.onrender.com/campaigns/all/submission/links";
 const AdminDashboardRejectedCampaign = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
-  const [campaignName, setCampaignName] = useState("");
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +20,8 @@ const AdminDashboardRejectedCampaign = () => {
         };
         const response = await axios.request(options);
         setCampaignDetails(response.data.data.links.data);
-        setCampaignName(response.data.data.campaignName);
-        console.log({ response: response.data.data.links });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError(error.response.data)
       }
     };
 
@@ -46,28 +44,33 @@ const AdminDashboardRejectedCampaign = () => {
     <div className="admin-dashboard-campaign-submission-div">
       <section className="admin-dashboard-campaign-link-listed-div">
         <div className="admin-dashboard-campaign-link-listed-head-text">
-          <p>#{campaignName}</p>
+          <p>Rejected Submissions</p>
         </div>
         <div className="admin-dashboard-campaigns-individual-submission-div">
-          {campaignDetails.map((campaign, index) => {
-            return (
-              <div
-                key={index}
-                className="admin-dashboard-campaigns-individual-submission-div-bar"
-              >
-                <div className="admin-dashboard-campaign-submission-campaign-title">
-                  <p className="admin-dashboard-campaign-name">
-                    {campaign.url}
-                  </p>
+          {campaignDetails.length === 0 ? (
+            <b>No Rejected Submission yet</b>
+          ) : (
+            campaignDetails.map((campaign, index) => {
+              return (
+                <div
+                  key={index}
+                  className="admin-dashboard-campaigns-individual-submission-div-bar"
+                >
+                  <div className="admin-dashboard-campaign-submission-campaign-title">
+                    <p className="admin-dashboard-campaign-name">
+                      {campaign.url}
+                    </p>
+                  </div>
+                  <div className="admin-dashboard-submission-accept-reject-bar">
+                    <button className="admin-dashboard-reject-button">
+                      Rejected
+                    </button>
+                  </div>
                 </div>
-                <div className="admin-dashboard-submission-accept-reject-bar">
-                  <button className="admin-dashboard-reject-button">
-                    Rejected
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
+          {error && <p>{error}</p>}
         </div>
       </section>
       <section className="admin-dashboard-campaign-info">
