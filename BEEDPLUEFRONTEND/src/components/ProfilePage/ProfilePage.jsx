@@ -65,7 +65,7 @@ const ProfilePage = () => {
     success: succ,
     setSuccess: setSucc,
   } = useUpdateBankAccount();
-  const accountName = usebackendStore((state) => state.user.account.bankName);
+  const accountName = usebackendStore((state) => state.user.account?.bankName);
   // console.log(accountName)
   // console.log(accountName, tiktok);
   // console.log(tiktok);
@@ -297,7 +297,7 @@ const ProfilePage = () => {
             <button onClick={logout}>LOG OUT</button>
           </div>
           {isPending && <p>LOADING..</p>}
-          {Error && <p>{Error}</p>}
+          {Error && <p className="error">{Error}</p>}
         </section>
       </section>
       <div
@@ -323,7 +323,7 @@ const ProfilePage = () => {
           >
             <div className="profile-page-account-section-div-header">
               <p>
-                Add your correct bank account details to withdraw your earnings
+                Edit bank details
               </p>
               <p className="hex" onClick={toggleOverlay}>
                 <MdCancel className="cancel-button" />
@@ -334,9 +334,9 @@ const ProfilePage = () => {
               onSubmit={handleSubmit2}
             >
               <div className="profile-page-edit-bank-selection">
-                {/*<div className="sign_LoginRiMailLine">*/}
-                {/*  <BsBank />*/}
-                {/*</div>*/}
+                <div className="sign_LoginRiMailLine">
+                  <BsBank />
+                </div>
                 <select
                   name="selectedBank"
                   className="select-list"
@@ -353,8 +353,9 @@ const ProfilePage = () => {
                   ))}
                 </select>
               </div>
-              <div className="profile-page-bank-details"
-              >{document?.data?.account_name}</div>
+              <div className="profile-page-bank-details">
+                {document?.data?.account_name}
+              </div>
               <div className="profile-page-account-number-div">
                 <input
                   className="profile-page-account-input"
@@ -368,7 +369,7 @@ const ProfilePage = () => {
               <section className="edit-account-submit-button">
                 <button type="submit">Add Account</button>
                 {isPend && <p>LOADING..</p>}
-                {err && <p>{err}</p>}
+                {err && <p  className="error">{err}</p>}
               </section>
             </form>
           </div>

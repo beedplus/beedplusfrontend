@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss";
+
 import SideBarAdmin from "../SideBarAdmin/SideBarAdmin.jsx";
 import DashboardNavbar from "../DashboardNavbar/DashboardNavbar.jsx";
 const url = "https://beedplus.onrender.com/campaigns";
@@ -24,6 +25,7 @@ function formatDate(dateString) {
     "Nov",
     "Dec",
   ];
+
 
   const dayOfWeek = days[date.getDay()];
   const month = months[date.getMonth()];

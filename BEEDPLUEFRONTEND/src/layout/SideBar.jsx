@@ -6,7 +6,8 @@ export default function  SideBar() {
         <>
 
             <div className="bar">
-             <SideBarAdmin />
+
+             <SideBarAdmin  />
               <Outlet />
             </div>
 

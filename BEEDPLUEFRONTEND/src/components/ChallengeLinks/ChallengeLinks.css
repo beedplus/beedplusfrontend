@@ -741,6 +741,14 @@ body{
 
 
 @media screen and (min-width: 300px) and (max-width: 720px){
+
+    .challenge-page-desktop{
+        padding:  0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
     .challenge-info{
       width: 100%;
       position: relative;

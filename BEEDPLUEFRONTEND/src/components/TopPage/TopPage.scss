@@ -1,7 +1,9 @@
  *{
  position: relative;
- 
+ text-decoration: none;
 }
+
+
  @media only screen and (min-width:1000px){
      .top-page{
          height:700px;
@@ -11,10 +13,25 @@
          background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
          backdrop-filter: blur(8.285717964172363px);
          color: #FFF;
+
+  ;
          font-family: "Poppins", sans-serif;
          font-style: normal;
          font-style: normal;
+     
+     }
+     .play-icon-one{
         
+        top:60px;
+        width:80px
+     }
+     .right-side{
+        float: right;
+     }
+       
+     .money2{
+     
+       top:639px;
      }
      .money{
         left: -120px;
@@ -24,12 +41,12 @@
         float: right;
         top:630px
      }
-         .heading{
+         .top-page-heading{
+
          width:520px;
          margin:47.06px 0px 0px 0px;
          letter-spacing: 1px;
          height: 77.5px;
-         font-size:montserrat;
          font-weight:600;
          font-size:51.47px;
          line-height:34.27px;
@@ -41,14 +58,12 @@
              top: 19.07px;
              font-weight: 700;
              font-size: 47px;
-             font-weight: 700;
-             line-height: 20.036px;
+           line-height: 20.036px;
     
          }
          .header-thirdline-styling{
              font-weight: 400;
-             line-height: 20.036px; 
-             letter-spacing: -0.201px;
+           letter-spacing: -0.201px;
              font-size: 34.17px;
              line-height: 34.27px;
              top:25px;
@@ -56,11 +71,7 @@
              font-family:montserrat;
          }
      }
-     .play-icon-one{
-         float:right;
-         margin-top:30.12px;
-        
-     }
+   
      .faces{
          margin-top:20px;
          width: 261px;
@@ -129,14 +140,15 @@
         font-family: "Poppins", sans-serif;
         font-style: normal;
         font-style: normal;
-        width:100vw;
+        
         .money{
             display: none;
         }
         .money2{
             display: none;
         }
-        .heading{
+        .top-page-heading{
+
             margin:47.06px 0px 0px 0px;
             font-size: 30.09px;
             font-weight: 600;

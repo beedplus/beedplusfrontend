@@ -1,4 +1,4 @@
-// import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -25,7 +25,7 @@ import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
-import FAQ from "./components/FAQ/Faqs.jsx";
+
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 import AdminDashboardRejectedCampaign
     from "./components/AdminDashboardRejectedCampaign/AdminDashboardRejectedCampaign.jsx";
@@ -33,6 +33,8 @@ import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 import SideBar from "./layout/SideBar.jsx";
+import MyCampaigns from "./components/MyCampaigns/MyCampaigns.jsx";
+import Faqs from "./components/Faqs/Faqs.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -45,7 +47,6 @@ function App() {
 
   return (
     <div className="app">
-
       <Router>
         <Routes>
         <Route
@@ -59,8 +60,12 @@ function App() {
           <Route
             path="/home"
             element={
+
               <>
+                  <Navbar/>
                 <Home />
+                 <Footer/>
+
               </>
             }
           />
@@ -68,8 +73,20 @@ function App() {
             path="/FAQS"
             element={
               <>
-              {/*<Navbar />*/}
-              <FAQ />
+              <Navbar />
+              <Faqs />
+              <Footer /> 
+              </>    
+          }
+
+          />
+             <Route
+            path="/FAQS"
+            element={
+              <>
+              <Navbar />
+              <Faqs/>
+
               <Footer /> 
               </>    
           }
@@ -78,8 +95,11 @@ function App() {
             path="/"
             element={
               <>
+                <Navbar/>
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
+                <Footer/>
+
               </>
             }
 
@@ -151,11 +171,22 @@ function App() {
             path="/profile"
             element={
               <>
+                  <Navbar/>
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
             }
           />
+            <Route
+                path="/my-campaigns"
+                element={
+                    <>
+                        <Navbar/>
+                     {accessToken && <MyCampaigns/>}
+                        {!accessToken && <Navigate to="/auth/signin" />}
+                    </>
+                }
+            />
           <Route
             path="/notification"
             element={
@@ -169,6 +200,7 @@ function App() {
             path="/check-challenge"
             element={
               <>
+
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -185,8 +217,10 @@ function App() {
               {!tempAccessToken && <AdminDashboardLogin />}
             </>}
           />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<>
 
+          <Route path="/challenge/:id" element={
+              <>
+            <Navbar/>
             {accessToken && <ChallengeLinks />}
             {!accessToken && <Navigate to="/auth/signin" />}
           </>}
@@ -210,6 +244,7 @@ function App() {
                 path="/admin/claim"
                 element={<AdminDashboardRequestPayment/>}
 
+
                 />
 
                 <Route
@@ -229,6 +264,14 @@ function App() {
                 element={<AdminDashboardPaidRequest/>}/>
             </Route>
 
+          <Route
+            path="/SideBarAdmin"
+            element={<SideBarAdmin/>}
+          />
+          <Route
+            path="/AcceptedSubmissions"
+            element={<AcceptedSubmissions/>}
+          />
         </Routes>
 
 

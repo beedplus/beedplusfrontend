@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss";
 import { baseURL, patchURL } from "../../config.js";
+
+import { FaRegUser } from "react-icons/fa";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1cnRseS51cmxAZ21haWwuY29tIiwiaWQiOiI2NWMyMGE4Yzg0YjAxYzU2Nzg1MGVmMmYiLCJpYXQiOjE3MDc1MjM1OTEsImV4cCI6MTcwODEyODM5MX0.ZwmjEsfcoI9gj12CQ6o1T5kIVwYmh8aVX94tu00IDhw";
 const AdminDashboardCampaignsSubmission = () => {
@@ -18,13 +20,13 @@ const AdminDashboardCampaignsSubmission = () => {
         const options = {
           method: "GET",
           url: url,
-          params: { linkStatus: "pending" },
+          params: { linkStatus: "submitted" },
           headers: { "content-type": "application/json" },
         };
         const response = await axios.request(options);
         setCampaignName(response.data.data.campaign.name);
         setCampaignDetails(response.data.data.links.data);
-        console.log({"campaign" : response.data.data.campaign.name})
+        console.log({ campaign: response.data.data.campaign.name });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -94,18 +96,21 @@ const AdminDashboardCampaignsSubmission = () => {
   const requirement = [
     {
       rule: "Pick a challenge task you are interested in ",
+      number: "submission one",
     },
     {
       rule: "Pick a challenge task you are interested in ",
+      number: "submission one",
     },
     {
       rule: "Pick a challenge task you are interested in ",
+      number: "submission one",
     },
   ];
 
   return (
     <div className="admin-dashboard-campaign-submission-div">
-      <section className="admin-dashboard-campaign-link-listed-div">
+      <section className="admin-dashboard-campaign-link-listed-div-one">
         <div className="admin-dashboard-campaign-link-listed-head-text">
           <p>#{campaignName}</p>
         </div>
@@ -127,7 +132,7 @@ const AdminDashboardCampaignsSubmission = () => {
               </a>
               <div className="admin-dashboard-submission-accept-reject-bar">
                 <button className="admin-dashboard-preview-button">
-                  Preview
+                  Details
                 </button>
                 <button
                   className="admin-dashboard-accept-button"
@@ -150,21 +155,85 @@ const AdminDashboardCampaignsSubmission = () => {
           ))}
         </div>
       </section>
-      {/*<section className="admin-dashboard-campaign-info">*/}
-      {/*  <div className="admin-dashboard-campaign-info-div">*/}
-      {/*    <p className="admin-dashboard-campaign-info">Campaign Info</p>*/}
-      {/*    <div>*/}
-      {/*      <p>Requirements</p>*/}
-      {/*      {requirement.map((rule, index) => (*/}
-      {/*        <div key={index}>*/}
-      {/*          <ul>*/}
-      {/*            <li>{rule.rule}</li>*/}
-      {/*          </ul>*/}
-      {/*        </div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <section className="admin-dashboard-campaign-info">
+        <div>
+          <div className="admin-dashboard-campaign-info-div">
+            <p className="admin-dashboard-campaign-info-header">
+              User Profile
+            </p>
+            <div className="admin-dashboard-campaign-info-header-user-details" >
+              <div>
+
+              </div>
+              <div className="admin-dashboard-campaign-info-header-user-icon-div">
+                <p className="admin-dashboard-campaign-info-header-user-icon">
+                  <FaRegUser />
+                </p>
+              </div>
+              <div className="admin-dashboard-campaign-info-header-user-name-div" >
+                <p className="admin-dashboard-campaign-info-header-user-name">
+                  John Doe
+                </p>
+                <p>
+
+                  JohnDoe@gmail.com
+                </p>
+              </div>
+
+            </div>
+            <div className="admin-dashboard-campaign-info-submission-div">
+              {
+                requirement.map((submission, index) => {
+                  return(
+                      <div key={index}
+                           className="admin-dashboard-campaign-info-submission">
+                        <button>
+                          {submission.number}
+                        </button>
+                      </div>
+                  )
+                })
+              }
+            </div>
+            {/*<div>*/}
+            {/*  <p>Requirements</p>*/}
+            {/*  {requirement.map((rule, index) => (*/}
+            {/*    <div key={index}>*/}
+            {/*      <ul>*/}
+            {/*        <li>{rule.rule}</li>*/}
+            {/*      </ul>*/}
+            {/*    </div>*/}
+            {/*  ))}*/}
+            {/*</div>*/}
+          </div>
+        </div>
+        <div className="admin-dashboard-campaign-info-each-submission-preview">
+          <div className="admin-dashboard-campaign-info-each-submission-preview-header">
+            <p className="admin-dashboard-campaign-info-each-submission-preview-text">
+              Links
+            </p>
+            <p className="admin-dashboard-campaign-info-each-submission-preview-level-indicator">
+              <button>
+                  submission one
+              </button>
+            </p>
+          </div>
+          <div className="admin-dashboard-campaign-info-each-submission-preview-links-div" >
+            {
+              requirement.map((submission, index) => {
+                return(
+                    <div key={index}
+                         className="admin-dashboard-campaign-info-submission-link">
+                      <div>
+                        {submission.rule}
+                      </div>
+                    </div>
+                )
+              })
+            }
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
