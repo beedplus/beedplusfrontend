@@ -323,7 +323,7 @@ const ProfilePage = () => {
           >
             <div className="profile-page-account-section-div-header">
               <p>
-                Add your correct bank account details to withdraw your earnings
+                Edit bank details
               </p>
               <p className="hex" onClick={toggleOverlay}>
                 <MdCancel className="cancel-button" />
