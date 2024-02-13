@@ -1,10 +1,11 @@
 import React from 'react'
-
 import VerifyPageTikTok from '../../auth/VerifyPageTikTok/VerifyPageTikTok'
 import TopPage from '../../components/TopPage/TopPage'
 import Advert from '../../assets/Group 90.svg'
 import './Home.scss'
 import BottomPage from "../../components/BottomPage/Bottompage"
+
+
 
 // import newEnterWin from '../../assets/enter-win2.png'
 // import enterwin from '../../assets/Group 263.png'
@@ -20,6 +21,7 @@ function LandingPage(props) {
       {/*<div className='enter-win2-container'>*/}
       {/*/!* <img src={newEnterWin} alt="newEnterWin" className='enter-win2' />  *!/*/}
       {/*</div>*/}
+
     </div>
 
   )

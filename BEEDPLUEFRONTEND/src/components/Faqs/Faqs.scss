@@ -17,7 +17,7 @@ body{
 
 .faq-page-width{
 
-    width: auto;
+ 
     padding: 15px 20px;
     margin: 30px auto;
     display: flex;
@@ -28,8 +28,9 @@ body{
 }
 
 .faq-section{
+    width: 100%;
     display: flex;
-    flex-direction: column;
+
     padding: 15px 0;
     height: 100%;
 
@@ -79,7 +80,7 @@ body{
                 border-radius: 5px;
                 display: flex;
                 justify-content: space-between;
-                font-size: 12px;
+                font-size: 11px;
                 line-height: 18px;
                 font-weight: 500;
             }
@@ -116,19 +117,3 @@ body{
     }
    
  }
-
-
-.faq.active .faq-answer{
-    animation: fadeIn ease-in-out .1s;
-}
-
-.faq.active svg{
-    transform: rotate(90deg);
-    transition: ease-in-out .2s;
-}
-
-
-@keyframes fadeIn {
-    0%{ opacity: 0; transform: translateY(10px);}
-    100%{ opacity: 1; transform: translateY(0);}
-}

@@ -7,6 +7,7 @@ import PlayIconThree from '../../assets/Group 286.png'
 import Money from '../../assets/MONEY.svg'
 import money2 from '../../assets/MONEY2.svg'
 import { Link } from 'react-router-dom'
+import {motion} from "framer-motion"
 function TopPage() {
   return (
     <div className='top-page'>
@@ -14,6 +15,7 @@ function TopPage() {
         <img src={money2} alt="PlayIconOne" className='money2' /> 
         <img src={PlayIconOne} alt="PlayIconOne" className='play-icon-one' /> 
         <div className='top-page-heading'>
+
           <span>
             UPLOAD 5 VIDE
           </span>
@@ -31,9 +33,18 @@ function TopPage() {
         <div className='butt-para-spreadpics'>
         <div className='para-butt'>
           <p className='para'>Participate in Challenges to win quick cash</p>
-          <Link to='../../auth/Signup'><button className='sign-up-now' > SIGN UP NOW </button></Link>
+          <Link className="link"to='../../auth/Signup'><motion.button
+  initial={{ opacity: 0.6 }}
+  whileHover={{
+    scale: 1.1,
+    transition: { duration: .8 },
+  }}
+  whileTap={{ scale: 0.9 }}
+  whileInView={{ opacity: 1 }}
+  className='sign-up-now' > SIGN UP NOW </motion.button></Link>
           <img src={Faces} alt="Faces" className='faces' /> 
-          <img src={PlayIconThree} alt="play-icon-three" className='play-icon-three' /> 
+          <img src={PlayIconThree} alt="play-icon-three" className='play-icon-three' />
+          
         </div>
         <img src={spreadPics} alt="spreadPics" className='spread-pics' />
         </div>

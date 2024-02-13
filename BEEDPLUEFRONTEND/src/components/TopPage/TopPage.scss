@@ -1,7 +1,9 @@
  *{
  position: relative;
- 
+ text-decoration: none;
 }
+
+
  @media only screen and (min-width:1000px){
      .top-page{
          height:700px;
@@ -11,7 +13,25 @@
          background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
          backdrop-filter: blur(8.285717964172363px);
          color: #FFF;
-         font-family: "Montserrat", sans-serif;
+
+  ;
+         font-family: "Poppins", sans-serif;
+         font-style: normal;
+         font-style: normal;
+     
+     }
+     .play-icon-one{
+        
+        top:60px;
+        width:80px
+     }
+     .right-side{
+        float: right;
+     }
+       
+     .money2{
+     
+       top:639px;
      }
      .money{
         left: -120px;
@@ -22,6 +42,7 @@
         top:630px
      }
          .top-page-heading{
+
          width:520px;
          margin:47.06px 0px 0px 0px;
          letter-spacing: 1px;
@@ -50,11 +71,7 @@
              font-family:montserrat;
          }
      }
-     .play-icon-one{
-         float:right;
-         margin-top:30.12px;
-        
-     }
+   
      .faces{
          margin-top:20px;
          width: 261px;
@@ -123,7 +140,7 @@
         font-family: "Poppins", sans-serif;
         font-style: normal;
         font-style: normal;
-        width:100vw;
+        
         .money{
             display: none;
         }
@@ -131,6 +148,7 @@
             display: none;
         }
         .top-page-heading{
+
             margin:47.06px 0px 0px 0px;
             font-size: 30.09px;
             font-weight: 600;

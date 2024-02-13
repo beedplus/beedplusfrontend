@@ -1,5 +1,6 @@
 
 import "./AcceptedSubmissions.scss"
+
 import { FaChevronDown } from "react-icons/fa";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -46,6 +47,7 @@ export default function AcceptedSubmissions() {
                 <div key={index} className="admin-dashboard-campaigns-individual-submission-div-bar">
                   <div className="admin-dashboard-campaign-submission-campaign-title">
                     <p className="admin-dashboard-campaign-name">
+
                       {campaign.url}
                     </p>
                   </div>
@@ -85,6 +87,7 @@ export default function AcceptedSubmissions() {
       {/*    </div>  */}
       {/*  </div>*/}
       {/*</section>*/}
+
     </div>
   )
 }

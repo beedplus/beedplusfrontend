@@ -25,6 +25,7 @@ import ChallangeCard from "./components/ChallangeCard/challangeCard.jsx";
 import AdminDashboardLogin from "./components/AdminDashboardLogin/AdminDashboardLogin.jsx";
 import AdminDashboardCampaigns from "./components/AdminDashboardCampaigns/AdminDashboardCampaigns.jsx";
 import AdminDashboardCampaignsSubmission from "./components/AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.jsx";
+
 import FAQ from "./components/FAQ/Faqs.jsx";
 import DashboardNavbar from "./components/DashboardNavbar/DashboardNavbar.jsx";
 import AdminDashboardRejectedCampaign
@@ -46,7 +47,6 @@ function App() {
 
   return (
     <div className="app">
-
       <Router>
         <Routes>
         <Route
@@ -65,6 +65,7 @@ function App() {
                   <Navbar/>
                 <Home />
                  <Footer/>
+
               </>
             }
           />
@@ -72,8 +73,20 @@ function App() {
             path="/FAQS"
             element={
               <>
-              {/*<Navbar />*/}
-              <FAQ />
+              <Navbar />
+              <Faqs />
+              <Footer /> 
+              </>    
+          }
+
+          />
+             <Route
+            path="/FAQS"
+            element={
+              <>
+              <Navbar />
+              <Faqs/>
+
               <Footer /> 
               </>    
           }
@@ -86,6 +99,7 @@ function App() {
                 {accessToken && <LandingPageSignedIn />}
                 {!accessToken && <Navigate to='/home' />}
                 <Footer/>
+
               </>
             }
 
@@ -227,6 +241,7 @@ function App() {
                 path="/admin/claim"
                 element={<AdminDashboardRequestPayment/>}
 
+
                 />
 
                 <Route
@@ -246,6 +261,14 @@ function App() {
                 element={<AdminDashboardPaidRequest/>}/>
             </Route>
 
+          <Route
+            path="/SideBarAdmin"
+            element={<SideBarAdmin/>}
+          />
+          <Route
+            path="/AcceptedSubmissions"
+            element={<AcceptedSubmissions/>}
+          />
         </Routes>
 
 
