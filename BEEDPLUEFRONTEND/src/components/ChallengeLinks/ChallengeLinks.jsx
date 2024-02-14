@@ -102,6 +102,22 @@ const ChallengeLinks = () => {
   // }, [document, activeTab, isAllLinksVerified]);
 
   useEffect(() => {
+// <<<<<<< gori
+//     if (!activeTab) {
+//       // console.log("is empty", document?.data?.attempts?.length === 0);
+//       // console.log("all verified", isAllLinksVerified);
+//       // console.log(document);
+//     }
+//   }, [document, activeTab, isAllLinksVerified]);
+
+
+//   useEffect(() => {
+//     if (documents && document.data) {
+//       console.log(document, 'documents');
+//       // videoRef.current.src = documents.data.demo_video;
+//     }
+//   }, [document]);
+// =======
     console.log(doc, "hell");
   }, [doc]);
 
@@ -198,35 +214,58 @@ const ChallengeLinks = () => {
               </div>
             </div>
 
-            <div className="price-container">
-              <div className="fund-tracker">
-                <div className="fund-measure"></div>
-              </div>
-              <div className="fund-generated">
-                <span>
-                  $
-                  {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
-                </span>{" "}
-                remaining
-              </div>
-            </div>
+              <div className="button-section">
+                <div className="button-container">
+                  <button
+                      onClick={() => setActiveTab(true)}
+                      className={"black  clb" }
+                  >
+                    <p className="showered">
+                      INSTRUCTIONS
+                    </p>
+                  </button>
+                  <button
+                      onClick={() => setActiveTab(false)}
+                      className="grey cld"
+                  >
+                    <p className="showered">
+                      SUBMISSION
+                    </p>
 
-            <div className="button-section">
-              <div className="button-container">
-                <button
-                  onClick={() => setActiveTab(true)}
-                  className={`black ${activeTab ? "active" : "unactive"} clb`}
-                >
-                  INSTRUCTIONS
-                </button>
-                <button
-                  onClick={() => setActiveTab(false)}
-                  className={`grey ${!activeTab ? "active" : "unactive"} cld`}
-                >
-                  SUBMISSION
-                </button>
-              </div>
-            </div>
+                  </button>
+                  <div className={` ${!activeTab ? "hover-button-active" : "hover-button"}`}>
+
+                  </div>
+                </div>
+//             <div className="price-container">
+//               <div className="fund-tracker">
+//                 <div className="fund-measure"></div>
+//               </div>
+//               <div className="fund-generated">
+//                 <span>
+//                   $
+//                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
+//                 </span>{" "}
+//                 remaining
+//               </div>
+//             </div>
+
+//             <div className="button-section">
+//               <div className="button-container">
+//                 <button
+//                   onClick={() => setActiveTab(true)}
+//                   className={`black ${activeTab ? "active" : "unactive"} clb`}
+//                 >
+//                   INSTRUCTIONS
+//                 </button>
+//                 <button
+//                   onClick={() => setActiveTab(false)}
+//                   className={`grey ${!activeTab ? "active" : "unactive"} cld`}
+//                 >
+//                   SUBMISSION
+//                 </button>
+//               </div>
+//             </div>
 
             <div className="challenge-requirements">
               {activeTab ? (
