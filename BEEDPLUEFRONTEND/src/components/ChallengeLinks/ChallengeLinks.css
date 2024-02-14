@@ -8,6 +8,7 @@ body{
  border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 
+
 }
 .cld{
     border-top-right-radius:  30px ;
@@ -151,11 +152,40 @@ body{
     width: 100%;
     justify-content: center;
     display: flex;
-    padding: 0px 20px;
-}
+    padding: 30px 20px;
+    position: relative;
 
+}
+.hover-button{
+    position: absolute;
+    height: 100%;
+    border-radius: 30px;
+    background: black;
+    width: 50%;
+    justify-content: center;
+    display: flex;
+    transition: ease-in-out .5s;
+
+}
+.hover-button-active{
+    transform:translateX(172px);
+    position: absolute;
+    height: 100%;
+    border-radius: 30px;
+    background: black;
+    width: 50%;
+    justify-content: center;
+    display: flex;
+    transition: ease-in-out .5s;
+}
+.showered{
+    z-index: 10;
+    color: white;
+}
+.showered-active{
+}
 .button-section .button-container{
-    width: 350px;
+    width: 370px;
     display: flex;
 }
 
@@ -230,7 +260,11 @@ body{
     background: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
 }
-
+.button-section .button-container .black.active{
+    background: rgb(225, 7, 7);
+    color: rgba(255, 255, 255, 1);
+    border-top-left-radius: 30px;
+}
 .button-section .button-container .grey.active{
     background: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
@@ -507,7 +541,7 @@ body{
 }
 
 .button-section .button-container{
-    width: 350px;
+    width: 300px;
     display: flex;
 }
 
@@ -742,6 +776,8 @@ body{
 
 @media screen and (min-width: 300px) and (max-width: 720px){
 
+
+
     .challenge-page-desktop{
         padding:  0;
         display: flex;
@@ -871,7 +907,7 @@ body{
         width: 100%;
         justify-content: center;
         display: flex;
-        padding: 0px 20px;
+        padding: 30px 20px;
      }
 
      .button-section .button-container{
@@ -882,7 +918,6 @@ body{
      .button-section .button-container button{
         width: 50%;
         padding: 15px 15px ;
-        border-radius: 30px;
         cursor: pointer;
         border: none;
         outline: 0;
@@ -1101,5 +1136,15 @@ body{
           opacity: 1;
         }
       }
- 
+    .clb{
+        border-top-left-radius:  30px ;
+        border-bottom-left-radius: 30px;
+
+    }
+    .cld{
+        border-top-right-radius:  30px ;
+        border-bottom-right-radius: 30px;
+
+
+    }
 }

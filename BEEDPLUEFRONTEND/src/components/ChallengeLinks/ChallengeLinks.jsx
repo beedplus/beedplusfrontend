@@ -106,6 +106,7 @@ const ChallengeLinks = () => {
     }
   }, [document, activeTab, isAllLinksVerified]);
 
+
   useEffect(() => {
     if (documents && document.data) {
       console.log(document, 'documents');
@@ -211,16 +212,24 @@ const ChallengeLinks = () => {
                 <div className="button-container">
                   <button
                       onClick={() => setActiveTab(true)}
-                      className={`black ${activeTab ? "active" : "unactive"} clb` }
+                      className={"black  clb" }
                   >
-                    INSTRUCTIONS
+                    <p className="showered">
+                      INSTRUCTIONS
+                    </p>
                   </button>
                   <button
                       onClick={() => setActiveTab(false)}
-                      className={`grey ${!activeTab ? "active" : "unactive"} cld`}
+                      className="grey cld"
                   >
-                    SUBMISSION
+                    <p className="showered">
+                      SUBMISSION
+                    </p>
+
                   </button>
+                  <div className={` ${!activeTab ? "hover-button-active" : "hover-button"}`}>
+
+                  </div>
                 </div>
               </div>
 
