@@ -4,10 +4,10 @@ import "./SideBarAdmin.scss";
 import image1 from "../../assets/image 2.png";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import {useAdminLogout} from "../../hooks/useAdminLogout.jsx";
 export default function SideBarAdmin() {
   const [clickedDiv, setClickedDiv] = useState(null);
-
+    const {logout} = useAdminLogout()
   const handleClicked = (index) => {
     setClickedDiv(index);
   };
@@ -25,9 +25,9 @@ export default function SideBarAdmin() {
                   // isActive={(match, location) => location.pathname === "/admin"}
                   // style={{ color: "red" }}
                   className="side-links"
-                  style={({ isActive }) => ({
-                    color: isActive ? 'red' : 'blue',
-                  })}
+                  // style={({ isActive }) => ({
+                  //   color: isActive ? 'red' : 'blue',
+                  // })}
                   
               >
                   Campaigns
@@ -40,11 +40,11 @@ export default function SideBarAdmin() {
                   to="/admin/claim"
                   // isActive={(match, location) => location.pathname === "/"}
                   // style={{ color: "red" }}
+                  // className="side-links"
+                  // style={({ isActive }) => ({
+                  //   color: isActive ? 'red' : 'blue',
+                  // })}
                   className="side-links"
-                  style={({ isActive }) => ({
-                    color: isActive ? 'red' : 'blue',
-                  })}
-                  
               >
 
                   Claim Requests
@@ -58,9 +58,9 @@ export default function SideBarAdmin() {
                   //     location.pathname === "/admin/acceptedsubmissions"
                   // }
                   // style={{ color: "red" }}
-                  style={({ isActive }) => ({
-                    color: isActive ? 'red' : 'blue',
-                  })}
+                  // style={({ isActive }) => ({
+                  //   color: isActive ? 'red' : 'blue',
+                  // })}
                   
                   className="side-links"
               >
@@ -77,9 +77,9 @@ export default function SideBarAdmin() {
                   //     location.pathname === "/admin/rejected-campaign"
                   // }
                   // style={{ color: "red" }}
-                  style={({ isActive }) => ({
-                    color: isActive ? 'red' : 'blue',
-                  })}
+                  // style={({ isActive }) => ({
+                  //   color: isActive ? 'red' : 'blue',
+                  // })}
                   
                   className="side-links"
               >
@@ -96,9 +96,9 @@ export default function SideBarAdmin() {
                 //      location.pathname === "/admin/admindashboardrequest"
                 //  }
                 //  style={{ color: "red" }}
-              style={({ isActive }) => ({
-  color: isActive ? 'red' : 'blue',
-})}
+//               style={({ isActive }) => ({
+//   color: isActive ? 'red' : 'blue',
+// })}
 
                  className="side-links"
              >
@@ -110,7 +110,7 @@ export default function SideBarAdmin() {
 
         </div>
         <div className="Logout-Sidebaradmin-div">
-          <div className="Logout-Sidebaradmin">LOG OUT</div>
+          <div className="Logout-Sidebaradmin" onClick={() => logout()}>LOG OUT</div>
         </div>
       </div>
     </div>

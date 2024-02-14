@@ -6,8 +6,8 @@ import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.
 import { baseURL, patchURL } from "../../config.js";
 
 import { FaRegUser } from "react-icons/fa";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1cnRseS51cmxAZ21haWwuY29tIiwiaWQiOiI2NWMyMGE4Yzg0YjAxYzU2Nzg1MGVmMmYiLCJpYXQiOjE3MDc1MjM1OTEsImV4cCI6MTcwODEyODM5MX0.ZwmjEsfcoI9gj12CQ6o1T5kIVwYmh8aVX94tu00IDhw";
+import {usebackendStore} from "../../store/store.js";
+
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
   const [campaignName, setCampaignName] = useState("");
@@ -18,6 +18,7 @@ const AdminDashboardCampaignsSubmission = () => {
   const [submissionCount, setSubmissionCount] = useState("")
   const { id } = useParams();
   const url = `${baseURL}${id}/submission/links`;
+  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +27,7 @@ const AdminDashboardCampaignsSubmission = () => {
           method: "GET",
           url: url,
           params: { linkStatus: "submitted" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
         };
         const response = await axios.request(options);
         setCampaignId(response.data.data.campaign._id)
@@ -50,7 +51,7 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}`},
         data: { status: "verified" },
       };
 
@@ -75,7 +76,7 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" , Authorization : `Bearer ${tempAccessToken}`},
         data: { status: "rejected" },
       };
 
@@ -95,7 +96,7 @@ const AdminDashboardCampaignsSubmission = () => {
       method: "GET",
       url: `${baseURL}all/submission/link-details`,
       params: { userId: userId, campaignId: campaignId },
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
     };
     try {
       const response = await axios.request(options)
@@ -134,7 +135,7 @@ const AdminDashboardCampaignsSubmission = () => {
                 title={link.url.length > 40 ? link.url : null}
               >
                 {link.url.length > 40
-                  ? link.url.substring(0, 40) + "..."
+                  ? link.url.substring(0, 25) + "..."
                   : link.url}
               </a>
               <div className="admin-dashboard-submission-accept-reject-bar">

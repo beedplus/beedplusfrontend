@@ -4,12 +4,15 @@ import "./AcceptedSubmissions.scss"
 import { FaChevronDown } from "react-icons/fa";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import {usebackendStore} from "../../store/store.js";
 const baseURL = "https://beedplus.onrender.com/campaigns/all/submission/links";
 
 
 export default function AcceptedSubmissions() {
   const [campaignDetails, setCampaignDetails] = useState([]);
   const [campaignName, setCampaignName] = useState("");
+  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +21,7 @@ export default function AcceptedSubmissions() {
           method: "GET",
           url: baseURL,
           params: { linkStatus: "verified" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
         };
         const response = await axios.request(options);
         setCampaignDetails(response.data.data.links.data);

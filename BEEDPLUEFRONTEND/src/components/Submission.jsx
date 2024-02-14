@@ -177,13 +177,8 @@ export default function Submission({
             id="submit"
             disabled={isPending}
             style={{
-<<<<<<< Updated upstream
-              backgroundColor: claimStatus !== "pending" ? "gray" : "#228b22", // Example background color
-              color: claimStatus !== "pending" ? "white" : "black", // Example text color
-=======
               backgroundColor: isPending ? "gray" : "green", // Example background color
               color: isPending !== "pending" ? "white" : "black", // Example text color
->>>>>>> Stashed changes
               // Add any other styles you want to conditionally apply
             }}
           >

@@ -20,7 +20,7 @@
       position: absolute;
       margin-left: 40px;
       width: 85px;
-      height: 37px;
+      height: 67px;
       flex-shrink: 0;
     }
   }
@@ -39,15 +39,15 @@
     }
 
     .image {
-      height: 100px;
+      height: 50px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
 
       img {
-        width: 85px;
-        height: 37px;
+        width: 95px;
+        height: 47px;
       }
     }
 
@@ -241,7 +241,7 @@
       padding: 0;
 
       .image {
-        height: 100px;
+        height: 50px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -259,12 +259,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         h3 {
           color: #242424;
-          font-family: Montserrat;
-          font-size: 17px;
+          font-family: "Montserrat", sans-serif;
+          font-size: 15px;
           font-style: normal;
           font-weight: 500;
           line-height: normal;
@@ -403,6 +403,12 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        span{
+          a{
+            text-decoration: none;
+            color: #FFFFFF;
+          }
+        }
       }
 
     }

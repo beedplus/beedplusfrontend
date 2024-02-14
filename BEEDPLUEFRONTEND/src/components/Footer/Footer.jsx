@@ -1,4 +1,5 @@
-import Beed from "../../assets/image1.svg"
+import Beedfooter from "../../assets/beedplusfooter.jpg"
+
 
 import "./Footer.scss"
 import SocialComponents from "../SocialComponents/SocialComponents"
@@ -9,7 +10,7 @@ export default function Footer() {
    <footer className="footer">
         <div className="section-one">
            <div className="section-two">
-               <Link to="/"><img src={Beed} alt="beed logo" /></Link>
+               <Link to="/"><img className="beedplusfooterlogo" src={Beedfooter} alt="beed logo" /></Link>
            </div>
            <SocialComponents/>
         </div>

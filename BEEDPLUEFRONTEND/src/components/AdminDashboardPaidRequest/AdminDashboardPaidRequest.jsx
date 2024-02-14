@@ -24,7 +24,7 @@ const AdminDashboardPaidRequest = () => {
           method: "GET",
           url: `${baseURL}all/submission/attempts`,
           params: { claimStatus: "claimed" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
           data: {},
         };
         try {

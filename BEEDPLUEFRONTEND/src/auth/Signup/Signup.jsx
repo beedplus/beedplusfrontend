@@ -5,7 +5,7 @@ import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import { Link } from "react-router-dom";
 import "./Signup.scss";
-import image from "../../assets/beed.svg";
+import image from "../../assets/loginlogo.jpg";
 import { useSignUp } from "../../hooks/useSignup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -183,8 +183,7 @@ export default function Signup() {
       </div>
       <div className="agree">
         <div className="agreetoArtic">
-          Click “Next” to agree to Article's Terms of Service and acknowledge that
-          Beed+ Policy applies to you
+          Click <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >“Login”</a></span> to agree to Artic’s Terms of Service and acknowledge that Beed+ <span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Policy</a>  </span>applies to you
         </div>
       </div>
     </div>

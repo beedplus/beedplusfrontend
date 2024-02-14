@@ -76,11 +76,20 @@ const usebackendStore = create(
           },
           accessToken: null,
         }),
+        resetTempAuth: () => {
+          set({
+            user: {
+              tempUserId: null,
+            },
+            tempAccessToken: null
+          })
+        },
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({ ChallengeId: id }),
       setCompareStatus: (payload) =>
         set({ compareStatus: [...this.state.compareStatus, payload] }),
     }),
+
     {
       name: "usebackendStore", // name of the item in the storage (must be unique)
     }

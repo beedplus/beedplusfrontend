@@ -71,14 +71,14 @@
 
     .image {
       width: 100%;
-      padding: 20px;
+      padding: 20px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
 
       img {
-        width: 65.468px;
-        height: 28.498px;
+        width: 80px;
+        height: 50px;
         flex-shrink: 0;
       }
     }
@@ -164,6 +164,12 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    span{
+      a{
+        text-decoration: none;
+        color: #FFFFFF;
+      }
+    }
   }
   .sign_Loginnext {
     width: 100%;
