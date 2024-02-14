@@ -123,15 +123,17 @@ function App() {
 
               }
             />
-            <Route
-              path="bankaccount"
-              element={
-                <>
-                  {accessToken && <Navigate to="/profile" />}
-                  {!accessToken && <BankAcoount />}
-                </>
-              }
-            />
+            {/*<Route*/}
+            {/*  path="bankaccount"*/}
+            {/*  element={*/}
+            {/*    <>*/}
+
+            {/*        <Navbar/>*/}
+            {/*      {accessToken && <Navigate to="/profile" />}*/}
+            {/*      {!accessToken && <BankAcoount />}*/}
+            {/*    </>*/}
+            {/*  }*/}
+            {/*/>*/}
             <Route path="verify/:token" element={<Verify />} />
             <Route
               path="signin"
@@ -166,6 +168,7 @@ function App() {
             path="/profile"
             element={
               <>
+                  <Navbar/>
                 {accessToken && <ProfilePage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -184,6 +187,7 @@ function App() {
             path="/check-challenge"
             element={
               <>
+
                 {accessToken && <CheckChallenge />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
@@ -196,12 +200,13 @@ function App() {
           <Route
             path="/admin-login"
             element={<>
-              {tempAccessToken && <Navigate to="/admin-dashboard" />}
+              {tempAccessToken && <Navigate to="/admin" />}
               {!tempAccessToken && <AdminDashboardLogin />}
             </>}
           />
           {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}         <Route path="/challenge/:id" element={<>
 
+            <Navbar/>
             {accessToken && <ChallengeLinks />}
             {!accessToken && <Navigate to="/auth/signin" />}
           </>}

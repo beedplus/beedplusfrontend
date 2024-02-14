@@ -1,8 +1,8 @@
 import "./SocialComponents.scss"
-import facebook from "../../assets/Group 29.svg"
-import x from "../../assets/Group 30.svg"
-import instram from "../../assets/Group 31.png"
-import linkedin from "../../assets/Group 32.png"
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 
 export default function SocialComponents() {
     return (
@@ -10,10 +10,10 @@ export default function SocialComponents() {
             <div className="SocialComponents">
                 <h3>SOCIAL MEDIA</h3>
                <div className="image-list">
-                  <img src={facebook} alt="facebook" />
-                  <img src={x} alt="x" />
-                  <img src={instram} alt="instram" />
-                  <img src={linkedin} alt="linkedin" />
+                   <FaFacebookSquare className="social-component-icons" />
+                   <FaXTwitter className="social-component-icons" />
+                   <FaInstagram className="social-component-icons" />
+                   <FaTiktok className="social-component-icons" />
                </div>
             </div>
         </div>

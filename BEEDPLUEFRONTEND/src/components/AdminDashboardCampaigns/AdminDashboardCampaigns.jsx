@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss";
 
+
 import SideBarAdmin from "../SideBarAdmin/SideBarAdmin.jsx";
 import DashboardNavbar from "../DashboardNavbar/DashboardNavbar.jsx";
+import {usebackendStore} from "../../store/store.js";
 const url = "https://beedplus.onrender.com/campaigns";
 function formatDate(dateString) {
+
   const date = new Date(dateString);
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = [
@@ -35,6 +38,8 @@ function formatDate(dateString) {
 }
 
 const AdminDashboardCampaigns = () => {
+  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
+
   const [submissions, setSubmissions] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -43,6 +48,7 @@ const AdminDashboardCampaigns = () => {
         const response = await axios.get(url, {
           headers: {
             "Content-Type": "application/json",
+            Authorization : `Bearer ${tempAccessToken}`
           },
         });
         setSubmissions(response.data.data);

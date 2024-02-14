@@ -154,6 +154,7 @@
                 border: none;
                 background: none;
                 border-bottom: 1px solid #6B6B6B;
+                text-align: right;
               }
             }
           }
@@ -183,6 +184,7 @@
                 padding: 5px;
                 border: none;
                 background: none;
+                text-align: right;
                 border-bottom: 1px solid #6B6B6B;
               }
             }
@@ -243,6 +245,7 @@
                 padding: 5px;
                 border: none;
                 background: none;
+                text-align: right;
                 border-bottom: 1px solid #6B6B6B;
               }
             }
@@ -766,6 +769,7 @@
                   padding: 5px;
                   border: none;
                   background: none;
+                  text-align: right;
                   border-bottom: 1px solid #6B6B6B;
                 }
               }
@@ -796,6 +800,7 @@
                   padding: 5px;
                   border: none;
                   background: none;
+                  text-align: right;
                   border-bottom: 1px solid #6B6B6B;
                 }
               }
@@ -826,6 +831,7 @@
                   padding: 5px;
                   border: none;
                   background: none;
+                  text-align: right;
                   border-bottom: 1px solid #6B6B6B;
                 }
               }
@@ -947,11 +953,11 @@
         justify-content: center;
         align-items: center;
         margin-top: auto;
-        border-top-left-radius: 25px;
-        border-top-right-radius: 25px;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
         padding: 20px 15px;
         transform: translateY(10px);
-        transition: ease-in-out .3s;
+        transition: ease-in-out .5s;
 
         .profile-page-account-section-div{
           display: flex;

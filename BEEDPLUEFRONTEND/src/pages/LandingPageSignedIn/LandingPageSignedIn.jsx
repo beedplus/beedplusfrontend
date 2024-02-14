@@ -20,11 +20,11 @@ export default function LandingPageSignedIn() {
       </div>
       <ChallangeCardlist className="new" name="NEW"/>
        
-//       <ChallangeCardlist id="latest" />
-//       <div className="signed-in-landing-page-call-to-action">
+{/*//       <ChallangeCardlist id="latest" />*/}
+{/*//       <div className="signed-in-landing-page-call-to-action">*/}
 
-          {/*<img src={EnterWin} alt="EnterWin" className='enter-win2' />*/}
-      </div>
+{/*          /!*<img src={EnterWin} alt="EnterWin" className='enter-win2' />*!/*/}
+{/*      </div>*/}
       {/*<ChallangeCardlist className="new" campaign="new"/>*/}
        
 

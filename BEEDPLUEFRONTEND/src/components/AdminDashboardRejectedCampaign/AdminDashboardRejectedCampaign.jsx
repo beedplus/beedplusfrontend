@@ -4,10 +4,13 @@ import { FaChevronDown } from "react-icons/fa";
 import axios from "axios";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss";
 import { useState, useEffect } from "react";
+import {usebackendStore} from "../../store/store.js";
 const baseURL = "https://beedplus.onrender.com/campaigns/all/submission/links";
 const AdminDashboardRejectedCampaign = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
   const [error, setError] = useState(null)
+  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +19,7 @@ const AdminDashboardRejectedCampaign = () => {
           method: "GET",
           url: baseURL,
           params: { linkStatus: "rejected" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
         };
         const response = await axios.request(options);
         setCampaignDetails(response.data.data.links.data);
@@ -73,28 +76,28 @@ const AdminDashboardRejectedCampaign = () => {
           {error && <p>{error}</p>}
         </div>
       </section>
-      <section className="admin-dashboard-campaign-info">
-        <div className="admin-dashboard-campaign-info-div">
-          <p className="admin-dashboard-campaign-info-header">Campaign Info</p>
-          <div className="admin-dashboard-campaign-info-body">
-            <p className="admin-dashboard-campaign-info-body-requirement">
-              Requirements
-            </p>
-            {requirement.map((rule, index) => {
-              return (
-                <div
-                  className="admin-dashboard-campaign-info-body-requirement-list"
-                  key={index}
-                >
-                  <ul>
-                    <li>{rule.rule}</li>
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/*<section className="admin-dashboard-campaign-info">*/}
+      {/*  <div className="admin-dashboard-campaign-info-div">*/}
+      {/*    <p className="admin-dashboard-campaign-info-header">Campaign Info</p>*/}
+      {/*    <div className="admin-dashboard-campaign-info-body">*/}
+      {/*      <p className="admin-dashboard-campaign-info-body-requirement">*/}
+      {/*        Requirements*/}
+      {/*      </p>*/}
+      {/*      {requirement.map((rule, index) => {*/}
+      {/*        return (*/}
+      {/*          <div*/}
+      {/*            className="admin-dashboard-campaign-info-body-requirement-list"*/}
+      {/*            key={index}*/}
+      {/*          >*/}
+      {/*            <ul>*/}
+      {/*              <li>{rule.rule}</li>*/}
+      {/*            </ul>*/}
+      {/*          </div>*/}
+      {/*        );*/}
+      {/*      })}*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
     </div>
   );
 };

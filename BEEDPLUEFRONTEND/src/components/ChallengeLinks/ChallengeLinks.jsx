@@ -237,35 +237,21 @@ const ChallengeLinks = () => {
 
                   </div>
                 </div>
-//             <div className="price-container">
-//               <div className="fund-tracker">
-//                 <div className="fund-measure"></div>
-//               </div>
-//               <div className="fund-generated">
-//                 <span>
-//                   $
-//                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
-//                 </span>{" "}
-//                 remaining
-//               </div>
-//             </div>
+              </div>
+{/*//             <div className="price-container">*/}
+{/*//               <div className="fund-tracker">*/}
+{/*//                 <div className="fund-measure"></div>*/}
+{/*//               </div>*/}
+{/*//               <div className="fund-generated">*/}
+{/*//                 <span>*/}
+{/*//                   $*/}
+{/*//                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}*/}
+{/*//                 </span>{" "}*/}
+{/*//                 remaining*/}
+{/*//               </div>*/}
+{/*//             </div>*/}
 
-//             <div className="button-section">
-//               <div className="button-container">
-//                 <button
-//                   onClick={() => setActiveTab(true)}
-//                   className={`black ${activeTab ? "active" : "unactive"} clb`}
-//                 >
-//                   INSTRUCTIONS
-//                 </button>
-//                 <button
-//                   onClick={() => setActiveTab(false)}
-//                   className={`grey ${!activeTab ? "active" : "unactive"} cld`}
-//                 >
-//                   SUBMISSION
-//                 </button>
-//               </div>
-//             </div>
+
 
             <div className="challenge-requirements">
               {activeTab ? (
@@ -299,7 +285,7 @@ const ChallengeLinks = () => {
                       setShowButton(!showButton);
                     }}
                   >
-                    <video ref={videoRef}>
+                    <video ref={videoRef} className="challenge-video-container-video">
                       <source
                         src={doc.data.demo_video}
                         type="video/mp4"
