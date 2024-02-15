@@ -1,42 +1,43 @@
 import { useState, useEffect } from "react";
 
 export const useVerifyAccountNumber = (bankCode, accountNumber) => {
-    const [error, setError] = useState(null);
-    const [isPending, setIsPending] = useState(false);
-    const [document, setDocument] = useState([]);
-    const [isCancelled] = useState(false);
-    const apiUrl = `https://beedplus.onrender.com/user/verify-account?bankCode=${bankCode}&accountNumber=${accountNumber}`;
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const [document, setDocument] = useState([]);
+  const [isCancelled] = useState(false);
+  const apiUrl = `https://beedplus.onrender.com/user/verify-account?bankCode=${bankCode}&accountNumber=${accountNumber}`;
 
-    useEffect(() => {
-        const fetchData = async () => {
-          setIsPending(true);
-          setError(null);
-          try {
-            const res = await fetch(apiUrl, {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
-    
-            if (res.status !== 200) {
-              setIsPending(false);
-              setError(`Failed to get campaign. Status: ${res.status}`);
-            } else {
-              const result = await res.json();
-              setDocument(result);
-            }
-          } catch (error) {
-            if (!isCancelled) {
-              setError("Unknown error occurred");
-            }
-          } finally {
-            setIsPending(false);
-          }
-        };
-    
-        fetchData();
-      }, [apiUrl, isCancelled]);
-    
-      return { error, isPending, document };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsPending(true);
+      setError(null);
+      try {
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (res.status !== 200) {
+          setIsPending(false);
+          setError(`Failed to get campaign. Status: ${res.status}`);
+        } else {
+          const result = await res.json();
+          console.log(result);
+          setDocument(result);
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          setError("Unknown error occurred");
+        }
+      } finally {
+        setIsPending(false);
+      }
     };
+
+    fetchData();
+  }, [apiUrl, isCancelled]);
+
+  return { error, isPending, document, setDocument };
+};
