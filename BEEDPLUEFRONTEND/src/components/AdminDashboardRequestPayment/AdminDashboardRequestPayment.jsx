@@ -33,7 +33,7 @@ const AdminDashboard = () => {
           method: "GET",
           url: `${baseURL}all/submission/attempts`,
           params: { claimStatus: "submitted" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization: `Bearer ${tempAccessToken}` },
           data: { status: "verified" },
         };
         try {

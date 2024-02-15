@@ -6,13 +6,19 @@ import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.
 import { baseURL, patchURL } from "../../config.js";
 
 import { FaRegUser } from "react-icons/fa";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1cnRseS51cmxAZ21haWwuY29tIiwiaWQiOiI2NWMyMGE4Yzg0YjAxYzU2Nzg1MGVmMmYiLCJpYXQiOjE3MDc1MjM1OTEsImV4cCI6MTcwODEyODM5MX0.ZwmjEsfcoI9gj12CQ6o1T5kIVwYmh8aVX94tu00IDhw";
+import {usebackendStore} from "../../store/store.js";
+
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
   const [campaignName, setCampaignName] = useState("");
+  const [campaignId, setCampaignId] = useState("")
+  const [firstname, setFirstname] = useState("")
+  const [lastname, setLastname] = useState("")
+  const [email, setEmail] = useState("")
+  const [submissionCount, setSubmissionCount] = useState("")
   const { id } = useParams();
   const url = `${baseURL}${id}/submission/links`;
+  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,12 +27,12 @@ const AdminDashboardCampaignsSubmission = () => {
           method: "GET",
           url: url,
           params: { linkStatus: "submitted" },
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
         };
         const response = await axios.request(options);
+        setCampaignId(response.data.data.campaign._id)
         setCampaignName(response.data.data.campaign.name);
         setCampaignDetails(response.data.data.links.data);
-        console.log({ campaign: response.data.data.campaign.name });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -45,13 +51,12 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}`},
         data: { status: "verified" },
       };
 
       try {
         const { data } = await axios.request(options);
-        console.log(data);
         updateLinkStatus(linkId);
       } catch (error) {
         console.error(error);
@@ -71,17 +76,35 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" , Authorization : `Bearer ${tempAccessToken}`},
         data: { status: "rejected" },
       };
 
       try {
         const { data } = await axios.request(options);
-        console.log(data);
         updateLinkStatus(linkId);
       } catch (error) {
         console.error(error);
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const previewDetails = async (userId, campaignId) => {
+    const options = {
+      method: "GET",
+      url: `${baseURL}all/submission/link-details`,
+      params: { userId: userId, campaignId: campaignId },
+      headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
+    };
+    try {
+      const response = await axios.request(options)
+      console.log({"response" : response.data.data})
+      setFirstname(response.data.data.user.firstname)
+      setLastname(response.data.data.user.lastname)
+      setEmail(response.data.data.user.email)
+      setSubmissionCount(response.data.data.submissionCount)
     } catch (error) {
       console.error(error);
     }
@@ -92,21 +115,6 @@ const AdminDashboardCampaignsSubmission = () => {
       prevDetails.filter((link) => link.linkId !== linkId)
     );
   };
-
-  const requirement = [
-    {
-      rule: "Pick a challenge task you are interested in ",
-      number: "submission one",
-    },
-    {
-      rule: "Pick a challenge task you are interested in ",
-      number: "submission one",
-    },
-    {
-      rule: "Pick a challenge task you are interested in ",
-      number: "submission one",
-    },
-  ];
 
   return (
     <div className="admin-dashboard-campaign-submission-div">
@@ -127,11 +135,11 @@ const AdminDashboardCampaignsSubmission = () => {
                 title={link.url.length > 40 ? link.url : null}
               >
                 {link.url.length > 40
-                  ? link.url.substring(0, 40) + "..."
+                  ? link.url.substring(0, 25) + "..."
                   : link.url}
               </a>
               <div className="admin-dashboard-submission-accept-reject-bar">
-                <button className="admin-dashboard-preview-button">
+                <button className="admin-dashboard-preview-button" onClick={() => previewDetails(link.userId, campaignId)}>
                   Details
                 </button>
                 <button
@@ -158,79 +166,28 @@ const AdminDashboardCampaignsSubmission = () => {
       <section className="admin-dashboard-campaign-info">
         <div>
           <div className="admin-dashboard-campaign-info-div">
-            <p className="admin-dashboard-campaign-info-header">
-              User Profile
-            </p>
-            <div className="admin-dashboard-campaign-info-header-user-details" >
-              <div>
-
-              </div>
+            <p className="admin-dashboard-campaign-info-header">User Profile</p>
+            <div className="admin-dashboard-campaign-info-header-user-details">
+              <div></div>
               <div className="admin-dashboard-campaign-info-header-user-icon-div">
                 <p className="admin-dashboard-campaign-info-header-user-icon">
                   <FaRegUser />
                 </p>
               </div>
-              <div className="admin-dashboard-campaign-info-header-user-name-div" >
+              <div className="admin-dashboard-campaign-info-header-user-name-div">
                 <p className="admin-dashboard-campaign-info-header-user-name">
-                  John Doe
+                  {firstname} {lastname}
                 </p>
-                <p>
-
-                  JohnDoe@gmail.com
-                </p>
+                <p>{email}</p>
               </div>
-
             </div>
-            <div className="admin-dashboard-campaign-info-submission-div">
-              {
-                requirement.map((submission, index) => {
-                  return(
-                      <div key={index}
-                           className="admin-dashboard-campaign-info-submission">
-                        <button>
-                          {submission.number}
-                        </button>
-                      </div>
-                  )
-                })
-              }
-            </div>
-            {/*<div>*/}
-            {/*  <p>Requirements</p>*/}
-            {/*  {requirement.map((rule, index) => (*/}
-            {/*    <div key={index}>*/}
-            {/*      <ul>*/}
-            {/*        <li>{rule.rule}</li>*/}
-            {/*      </ul>*/}
-            {/*    </div>*/}
-            {/*  ))}*/}
-            {/*</div>*/}
           </div>
         </div>
         <div className="admin-dashboard-campaign-info-each-submission-preview">
           <div className="admin-dashboard-campaign-info-each-submission-preview-header">
             <p className="admin-dashboard-campaign-info-each-submission-preview-text">
-              Links
+              Submission Count: {submissionCount}
             </p>
-            <p className="admin-dashboard-campaign-info-each-submission-preview-level-indicator">
-              <button>
-                  submission one
-              </button>
-            </p>
-          </div>
-          <div className="admin-dashboard-campaign-info-each-submission-preview-links-div" >
-            {
-              requirement.map((submission, index) => {
-                return(
-                    <div key={index}
-                         className="admin-dashboard-campaign-info-submission-link">
-                      <div>
-                        {submission.rule}
-                      </div>
-                    </div>
-                )
-              })
-            }
           </div>
         </div>
       </section>

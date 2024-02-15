@@ -1,7 +1,7 @@
 import "./HowItWorks.scss"
 import adImage from '../../assets/Group 90.png'
 import FaqCopyRight from "../FaqCopyRight/FaqCopyRight"
-import Navbar from  "../../components/Navbar/Navbar"
+import {Link} from "react-router-dom";
 
 
 const dataList = [
@@ -34,38 +34,44 @@ const paraList = [
 export default function HowItWorks() {
   return (
     <div className="HowItWorks">
-      <Navbar/>
      <div className="HowItWorks-image-div">
         <img src={adImage} alt='advert' className='ad-image'/>
       </div>
       <div className="Faq-div-HowItWorks">
+          <Link to="/faq">
+              <div>
+              FAQ
+              </div>
+          </Link>
         <h3>HOW IT WORKS</h3>
-        <div>
-           FAQ
-        </div>
+
       </div>
       <div className="HowItWorks-contains-li">
-        <div >
-        {dataList.map((data,index)=>{
-            return (
-              <div key={index} className="contain-one">
-                <div>. {data.list}</div>
+          <div className=
+          ' HowItWorks-contains-li-div'>
+              <div >
+                  {dataList.map((data,index)=>{
+                      return (
+                          <div key={index} className="contain-one">
+                              <div> {data.list}</div>
+                          </div>
+                      )
+                  })}
               </div>
-            )
-          })}
-        </div>
 
-        <div>
-          {paraList.map((paras,index)=>{
-              return(
-                <div key={index} className="paras">
-                   <p>
-                    {paras.para}
-                   </p>
-                </div>
-              )
-          })}
-        </div>
+              <div className="paras-div">
+                  {paraList.map((paras,index)=>{
+                      return(
+                          <div key={index} className="paras">
+                              <p>
+                                  {paras.para}
+                              </p>
+                          </div>
+                      )
+                  })}
+              </div>
+          </div>
+
       </div>
       <FaqCopyRight/>
     </div>
