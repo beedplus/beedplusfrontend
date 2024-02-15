@@ -588,8 +588,17 @@ body{
 
 .challenge-requirements .instruction.active{
     animation: slideRight ease-in-out .5s;
+    position: relative;
 }
-
+.question-circle{
+    position: absolute;
+    top: 40%;
+    right: -10px;
+    font-size: 35px;
+    a{
+        color: #fe3f0f;
+    }
+}
 .challenge-requirements .submission.active{
     animation: slideDown ease-in-out .5s;
 }

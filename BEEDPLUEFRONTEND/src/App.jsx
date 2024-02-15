@@ -46,16 +46,17 @@ function App() {
       <Router>
         <Routes>
           <Route path="/Dashboard-Navbar" element={<DashboardNavbar />} />
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <LandingPageSignedIn />
-                <Footer />
-              </>
-            }
-          />
+          {/*<Route*/}
+          {/*  path="/"*/}
+          {/*  element={*/}
+          {/*    <>*/}
+          {/*    */}
+          {/*      <Navbar />*/}
+          {/*      <LandingPageSignedIn />*/}
+          {/*      <Footer />*/}
+          {/*    </>*/}
+          {/*  }*/}
+          {/*/>*/}
           <Route
             path="/home"
             element={

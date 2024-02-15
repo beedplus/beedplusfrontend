@@ -11,58 +11,55 @@ import { IoMdArrowDropup } from "react-icons/io";
 const Faqs = () => {
   const FAQ   = [
     {
-      question: 'What is the best time to workout?',
-      answer: "The best time to work out really depends on you and your schedule! Some people prefer morning workouts to kickstart their day,"
-        + " while others might find they have more energy in the afternoon or evening. The key is finding a time that fits best into your daily routine."
+      question: 'How do I know the status of my video?',
+      answer: "Once you submit your link and click submit links " +
+          "If the link box shows grey then your video is pending approval" +
+          "If the link box shows red then your video has been rejected" +
+          "If the link box shows green then your video has been approved or accepted."
     },
 
     {
-      question: 'How can i stay motivated?',
-      answer: "Setting achievable goals can be a great motivator. Celebrate small victories along the way."
-        + " Also, try finding a workout buddy. Having someone to share the journey with can make it more enjoyable and motivating."
+      question: 'How long does it take for me to be credited?',
+      answer: "Immediately after your 5 videos have been approved you should expect your payments."
     },
 
     {
-      question: "What should I do if I'm not seeing progress",
-      answer: "It could be helpful to vary your workouts. Trying new exercises can challenge your body in different ways and could lead to progress."
-        + " Also, remember to be patient with yourself. Fitness journeys take time."
+      question: "How do I know the status of my video?",
+      answer: "Once you submit your link and click submit links " +
+          "If the link box shows grey then your video is pending approval " +
+          "If the link box shows red then your video has been rejected" +
+          "If the link box shows green then your video has been approved or accepted."
     },
 
     {
-      question: 'How to balance workout with a busy schedule?',
-      answer: 'You should try to incorporate short workouts into your daily routine. Even 15 minutes of exercise can make a difference'
+      question: 'How long does it take for my video to be approved?',
+      answer: 'It can take 3-5 days for your videos to be approved '
     },
 
     {
-      question: 'Do i need to have any special equipment for home workouts?',
-      answer: "Not necessarily, many home workouts can be done using just your bodyweight."
-        + " Primefit provides a range of challenges that can be done at your level of comfortability"
+      question: "If I don't receive my payment 2 days after my 5videos are approved what do I do?",
+      answer: "You can email us with your complaints"
     },
 
     {
-      question: 'What is the difference between Yoga and Pilates?',
-      answer: 'Yoga is more focused on flexibility and mindfulness, while Pilates is about strength and muscle tone.'
+      question: 'What do I do if my video is rejected?',
+      answer: "You can recreate another video and submit the link under the same campaign "
     },
-
-    {
-      question: 'What are some ways to stay hydrated during a workout?',
-      answer: "Drink water before, during and after your workout. If it's a long or intense workout, a sports drink can help replace lost electrolytes "
-    },
-
-    {
-      question: "How can i stay fit while travelling?",
-      answer: "You can use hotel gyms, go for walks in new cities, or do bodyweight exercises in your hotel room?"
-    },
-
-    {
-      question: "What type of workout is best for weight loss?",
-      answer: "A mix of cardio and strength training is often recommended for weight loss."
-    },
-
-    {
-      question: "How important is diet in reaching my fitness goals?",
-      answer: "Very important! Exercise and diet go hand in hand when it comes to fitness."
-    }
+    //
+    // {
+    //   question: "How can i stay fit while travelling?",
+    //   answer: "You can use hotel gyms, go for walks in new cities, or do bodyweight exercises in your hotel room?"
+    // },
+    //
+    // {
+    //   question: "What type of workout is best for weight loss?",
+    //   answer: "A mix of cardio and strength training is often recommended for weight loss."
+    // },
+    //
+    // {
+    //   question: "How important is diet in reaching my fitness goals?",
+    //   answer: "Very important! Exercise and diet go hand in hand when it comes to fitness."
+    // }
 
 
   ]
