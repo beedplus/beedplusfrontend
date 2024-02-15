@@ -25,6 +25,7 @@ const ProfilePage = () => {
   const [User_username, setUser_username] = useState("");
   const [User_tiktokhandle, setUser_tiktokhandle] = useState("");
   const [User_bio, setUser_bio] = useState("");
+  const [showMessage, setShowMessage] = useState("");
 
   const [sortCode, setSortCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -198,6 +199,7 @@ const ProfilePage = () => {
                 : "profile-page-form-section-div-static-inactive"
             }
           >
+            {showMessage && <p>profile updated succesfully</p>}
             <form onSubmit={handleSubmit}>
               <div className="profile-page-form-div-line">
                 <p>Name</p>
