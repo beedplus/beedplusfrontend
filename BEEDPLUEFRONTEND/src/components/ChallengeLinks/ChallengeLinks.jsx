@@ -17,6 +17,7 @@ import { nanoid } from "nanoid";
 import { usebackendStore } from "../../store/store";
 import { toast } from "react-toastify";
 import { FaQuestionCircle } from "react-icons/fa";
+import {Link} from "react-router-dom";
 //import caretDown from '../../assets/Polygon 1.png';
 // const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
@@ -303,6 +304,9 @@ const ChallengeLinks = () => {
               <footer className="section-footer">
                 Copyright BEED+ 2024 Company. All rights reserved
               </footer> */}
+                  <div className="question-circle">
+                    <Link to="/faq" > <FaQuestionCircle /></Link>
+                  </div>
                 </div>
               ) : document.message !== "No existing submission" &&
                 document?.data?.attempts?.length > 0 ? (

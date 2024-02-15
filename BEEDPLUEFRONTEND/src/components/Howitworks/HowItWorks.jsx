@@ -1,6 +1,7 @@
 import "./HowItWorks.scss"
 import adImage from '../../assets/Group 90.png'
 import FaqCopyRight from "../FaqCopyRight/FaqCopyRight"
+import {Link} from "react-router-dom";
 
 
 const dataList = [
@@ -37,10 +38,13 @@ export default function HowItWorks() {
         <img src={adImage} alt='advert' className='ad-image'/>
       </div>
       <div className="Faq-div-HowItWorks">
+          <Link to="/faq">
+              <div>
+              FAQ
+              </div>
+          </Link>
         <h3>HOW IT WORKS</h3>
-        <div>
-           FAQ
-        </div>
+
       </div>
       <div className="HowItWorks-contains-li">
           <div className=

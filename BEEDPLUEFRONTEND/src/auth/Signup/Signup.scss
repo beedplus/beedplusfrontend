@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
 .Signup {
-  background: url(../../assets/MacBookAir.jpg) no-repeat center center;
-  background-size: cover;
+  background-image: url(../../assets/loginbackground.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;  background-size: cover;
   padding: 40px 40px;
   display: flex;
   justify-content: center;
@@ -87,10 +88,12 @@
         margin: 2px auto;
         border-radius: 120px;
         border: 2px solid black;
+        font-size: 16px;
 
         input {
           border: none;
           outline: none;
+          font-size: 16px;
         }
       }
     }
@@ -195,7 +198,7 @@
 
 @media screen and (min-width: 360px) and (max-width: 820px) {
   .Signup {
-    background: url(../../assets/MacBookAir.svg);
+    background: url(../../assets/loginbackground.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
