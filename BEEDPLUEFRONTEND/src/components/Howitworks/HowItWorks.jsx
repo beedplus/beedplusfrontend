@@ -1,7 +1,6 @@
 import "./HowItWorks.scss"
 import adImage from '../../assets/Group 90.png'
 import FaqCopyRight from "../FaqCopyRight/FaqCopyRight"
-import Navbar from  "../../components/Navbar/Navbar"
 
 
 const dataList = [
@@ -34,7 +33,6 @@ const paraList = [
 export default function HowItWorks() {
   return (
     <div className="HowItWorks">
-      <Navbar/>
      <div className="HowItWorks-image-div">
         <img src={adImage} alt='advert' className='ad-image'/>
       </div>
@@ -45,27 +43,31 @@ export default function HowItWorks() {
         </div>
       </div>
       <div className="HowItWorks-contains-li">
-        <div >
-        {dataList.map((data,index)=>{
-            return (
-              <div key={index} className="contain-one">
-                <div>. {data.list}</div>
+          <div className=
+          ' HowItWorks-contains-li-div'>
+              <div >
+                  {dataList.map((data,index)=>{
+                      return (
+                          <div key={index} className="contain-one">
+                              <div> {data.list}</div>
+                          </div>
+                      )
+                  })}
               </div>
-            )
-          })}
-        </div>
 
-        <div>
-          {paraList.map((paras,index)=>{
-              return(
-                <div key={index} className="paras">
-                   <p>
-                    {paras.para}
-                   </p>
-                </div>
-              )
-          })}
-        </div>
+              <div className="paras-div">
+                  {paraList.map((paras,index)=>{
+                      return(
+                          <div key={index} className="paras">
+                              <p>
+                                  {paras.para}
+                              </p>
+                          </div>
+                      )
+                  })}
+              </div>
+          </div>
+
       </div>
       <FaqCopyRight/>
     </div>

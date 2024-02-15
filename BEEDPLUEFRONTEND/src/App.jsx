@@ -33,6 +33,8 @@ import SideBarAdmin from "./components/SideBarAdmin/SideBarAdmin.jsx"
 import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmissions.jsx"
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 import SideBar from "./layout/SideBar.jsx";
+import Faqs from "./components/Faqs/Faqs.jsx";
+import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 
 
@@ -78,7 +80,7 @@ function App() {
             }
           />
           <Route
-            path="/FAQS"
+            path="/faq"
             element={
               <>
               <Navbar />
@@ -276,7 +278,16 @@ function App() {
                 </>
                 }/>
             </Route>
+            <Route
+                path="/how-it-works"
+                element={
+                <>
+                    <Navbar/>
+                    <HowItWorks/>
+                </>
 
+
+                }/>
         </Routes>
 
 
