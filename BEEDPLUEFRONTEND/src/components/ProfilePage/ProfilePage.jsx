@@ -161,9 +161,11 @@ const ProfilePage = () => {
       </section>
       <section className="profile-page-details">
         <section className="profile-page-details-header">
-          <div className="profile-page-user-initials"><FaUser /></div>
+          <div className="profile-page-user-initials">
+            <FaUser />
+          </div>
           <div className="profile-page-user-name">
-            <h4>{firstName}</h4>
+            <h4>{username || firstName}</h4>
             <p>
               <span>
                 {" "}
@@ -199,7 +201,7 @@ const ProfilePage = () => {
             <form onSubmit={handleSubmit}>
               <div className="profile-page-form-div-line">
                 <p>Name</p>
-                <div>{firstName + lastName}</div>
+                <div>{firstName + " " + lastName}</div>
               </div>
               <div className="profile-page-form-div-line">
                 <p>Username</p>
@@ -234,7 +236,7 @@ const ProfilePage = () => {
                 <div>
                   <input
                     className="user-name-input"
-                    placeholder={firstName + lastName}
+                    placeholder={firstName + " " + lastName}
                     value={User_name}
                     onChange={(e) => setUser_name(e.target.value)}
                   />
@@ -322,9 +324,7 @@ const ProfilePage = () => {
             }
           >
             <div className="profile-page-account-section-div-header">
-              <p>
-                Edit bank details
-              </p>
+              <p>Edit bank details</p>
               <p className="hex" onClick={toggleOverlay}>
                 <MdCancel className="cancel-button" />
               </p>
@@ -369,7 +369,7 @@ const ProfilePage = () => {
               <section className="edit-account-submit-button">
                 <button type="submit">Add Account</button>
                 {isPend && <p>LOADING..</p>}
-                {err && <p  className="error">{err}</p>}
+                {err && <p className="error">{err}</p>}
               </section>
             </form>
           </div>
