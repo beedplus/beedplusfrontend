@@ -15,7 +15,7 @@ const NotificationPage = () => {
     }*/
 
   return (
-    <div style={{ width: "100%", display: "flex" }}>
+    <div>
       {isPending && (
         <img
         style={{
@@ -41,6 +41,7 @@ const NotificationPage = () => {
                 const date = new Date(notification.updatedAt);
                 return (
                   <div
+                      className="individual-notification-div"
                     key={notificationIndex}
                     //   className={`notification ${
                     //     notificationStates[notificationIndex] ? "unread" : "read"

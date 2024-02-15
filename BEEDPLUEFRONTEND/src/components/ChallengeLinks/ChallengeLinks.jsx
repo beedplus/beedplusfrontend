@@ -216,42 +216,42 @@ const ChallengeLinks = () => {
               </div>
             </div>
 
-              <div className="button-section">
-                <div className="button-container">
-                  <button
-                      onClick={() => setActiveTab(true)}
-                      className={"black  clb" }
-                  >
-                    <p className="showered">
-                      INSTRUCTIONS
-                    </p>
-                  </button>
-                  <button
-                      onClick={() => setActiveTab(false)}
-                      className="grey cld"
-                  >
-                    <p className="showered">
-                      SUBMISSION
-                    </p>
 
-                  </button>
-                  <div className={` ${!activeTab ? "hover-button-active" : "hover-button"}`}>
+             <div className="price-container">
+               <div className="fund-tracker">
+                 <div className="fund-measure"></div>
+               </div>
+               <div className="fund-generated">
+                 <span>
+                   $
+                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
+                 </span>{" "}             remaining
+            </div>
+           </div>
+            <div className="button-section">
+              <div className="button-container">
+                <button
+                    onClick={() => setActiveTab(true)}
+                    className={"black  clb" }
+                >
+                  <p className="showered">
+                    INSTRUCTIONS
+                  </p>
+                </button>
+                <button
+                    onClick={() => setActiveTab(false)}
+                    className="grey cld"
+                >
+                  <p className="showered">
+                    SUBMISSION
+                  </p>
 
-                  </div>
+                </button>
+                <div className={` ${!activeTab ? "hover-button-active" : "hover-button"}`}>
+
                 </div>
               </div>
-{/*//             <div className="price-container">*/}
-{/*//               <div className="fund-tracker">*/}
-{/*//                 <div className="fund-measure"></div>*/}
-{/*//               </div>*/}
-{/*//               <div className="fund-generated">*/}
-{/*//                 <span>*/}
-{/*//                   $*/}
-{/*//                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}*/}
-{/*//                 </span>{" "}*/}
-{/*//                 remaining*/}
-{/*//               </div>*/}
-{/*//             </div>*/}
+            </div>
 
 
 
