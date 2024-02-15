@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsBank } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
+import { nanoid } from "nanoid";
 
 const ProfilePage = () => {
   const { logout } = useLogout();
@@ -27,9 +28,13 @@ const ProfilePage = () => {
   const [User_bio, setUser_bio] = useState("");
 
   const [sortCode, setSortCode] = useState("");
+  const [bankName, setBankName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const { documents } = useGetBankAccount();
-  const { document } = useVerifyAccountNumber(sortCode, accountNumber);
+  const { document, setDocument } = useVerifyAccountNumber(
+    sortCode,
+    accountNumber
+  );
   const validateInputs = () => {
     let isValid = true;
 
@@ -40,7 +45,7 @@ const ProfilePage = () => {
       toast.error("Account number is required and must be at least 10 digits");
       isValid = false;
     } else if (accountNumber.length === 10) {
-      console.log(document);
+      // console.log(document);
     } else if (!document) {
       toast.error("Please check your account number");
       isValid = false;
@@ -93,9 +98,10 @@ const ProfilePage = () => {
       setBankDetailsActive(false);
       setAccountNumber("");
       setSortCode("");
+      setDocument([]);
       setSucc(false);
     }
-  }, [succ, setSucc]);
+  }, [succ, setSucc, setDocument]);
   const toggleOverlayTwo = () => {
     if (overlayActive) {
       setOverlayActive(false);
@@ -141,12 +147,8 @@ const ProfilePage = () => {
 
   const handleSubmit2 = (e) => {
     e.preventDefault();
-    if (validateInputs() && document.data.Bank_name) {
-      updateBankAccount(
-        document.data.Bank_name,
-        document.data.account_name,
-        accountNumber
-      );
+    if (validateInputs() && bankName) {
+      updateBankAccount(bankName, document.data.account_name, accountNumber);
     }
 
     // updateProfile(User_name, User_username, User_tiktokhandle, User_bio);
@@ -341,14 +343,22 @@ const ProfilePage = () => {
                   name="selectedBank"
                   className="select-list"
                   value={sortCode}
-                  onChange={(e) => setSortCode(e.target.value)}
+                  onChange={(e) => {
+                    const selectedBank = documents.find(
+                      (bank) => bank.code === e.target.value
+                    );
+                    if (selectedBank) {
+                      setSortCode(e.target.value);
+                      setBankName(selectedBank.bank_name); // assuming setBankName is your state update function for bank name
+                    }
+                  }}
                 >
                   <option value="" disabled>
                     Select Your Bank
                   </option>
                   {documents.map((bank) => (
-                    <option className="" key={bank.id} value={bank.code}>
-                      {bank.name}
+                    <option className="" key={nanoid()} value={bank.code}>
+                      {bank.bank_name}
                     </option>
                   ))}
                 </select>

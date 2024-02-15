@@ -8,16 +8,22 @@ import image2 from "../../assets/image 1.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetBankAccount } from "../../hooks/useGetBankAccount";
-import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber"
+import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber";
 import { useSubmitBankAccount } from "../../hooks/useSubmitBankAccount";
 import { usebackendStore } from "../../store/store";
+import { nanoid } from "nanoid";
 export default function BankAcoount() {
   const [sortCode, setSortCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const { documents, error, isPending } = useGetBankAccount(); 
-  const {  submitbankAccount, error: err, ispending: ispend} = useSubmitBankAccount();
-  const id =  usebackendStore(state => state.user.userId) 
-  const {document} = useVerifyAccountNumber(sortCode, accountNumber);
+  const [bankName, setBankName] = useState("");
+  const { documents, error, isPending } = useGetBankAccount();
+  const {
+    submitbankAccount,
+    error: err,
+    ispending: ispend,
+  } = useSubmitBankAccount();
+  const id = usebackendStore((state) => state.user.userId);
+  const { document } = useVerifyAccountNumber(sortCode, accountNumber);
 
   const validateInputs = () => {
     let isValid = true;
@@ -28,29 +34,32 @@ export default function BankAcoount() {
     } else if (!accountNumber.trim() || accountNumber.length < 10) {
       toast.error("Account number is required and must be at least 10 digits");
       isValid = false;
-    } else if(accountNumber.length === 10) {
+    } else if (accountNumber.length === 10) {
       console.log(document);
-    }else if(!document){
+    } else if (!document) {
       toast.error("Please check your account number");
       isValid = false;
     }
 
     return isValid;
   };
- 
-   const handleSubmit = (e) =>  {
-    e.preventDefault()
-    if (validateInputs() && document.data.Bank_name) {
-     return  submitbankAccount(id, document.data.Bank_name  ,  document.data.account_name, accountNumber)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateInputs() && bankName) {
+      return submitbankAccount(
+        id,
+        bankName,
+        document.data.account_name,
+        accountNumber
+      );
     } else {
       return error;
     }
-    
-   }
-
+  };
 
   return (
-    document && document.data && (<div className="sign_Login">
+    <div className="sign_Login">
       <div className="beedlogo">
         <img src={image2} alt="beedlogo" />
       </div>
@@ -60,64 +69,66 @@ export default function BankAcoount() {
             <img src={image} alt="beed logo" />
           </div>
           <div className="sign_LoginLogin">
-            <h3>
-              Add your  bank account details.
-            </h3>
+            <h3>Add your bank account details.</h3>
           </div>
           <div className="bank-account-selection-div">
             <div className="select-bank">
               <div className="sign_LoginRiMailLine">
-                 <BsBank />
+                <BsBank />
               </div>
               <select
-               name="selectedBank"
-               className="select-list"
-               value={sortCode}
-               onChange={(e) => setSortCode(e.target.value)}
-               
+                name="selectedBank"
+                className="select-list"
+                value={sortCode}
+                onChange={(e) => {
+                  const selectedBank = documents.find(
+                    (bank) => bank.code === e.target.value
+                  );
+                  if (selectedBank) {
+                    setSortCode(e.target.value);
+                    setBankName(selectedBank.bank_name); // assuming setBankName is your state update function for bank name
+                  }
+                }}
               >
                 <option value="" disabled>
                   Select Your Bank
                 </option>
                 {documents.map((bank) => (
-                  <option  className="" key={bank.id} value={bank.code}>
-                    {bank.name}
+                  <option className="" key={nanoid()} value={bank.code}>
+                    {bank.bank_name}
                   </option>
                 ))}
               </select>
             </div>
             <div className="bank-account-number-input">
               <div className="sign_LoginGoEye">
-                  <BsBank />
+                <BsBank />
               </div>
               <input
-                 type="text"
-                 name="account_number"
-                 placeholder="Enter account number"
-                 className="account-number-input-field"
-                 maxLength="10"
-                 value={accountNumber}
-                 onChange={(e)  => setAccountNumber(e.target.value)}
+                type="text"
+                name="account_number"
+                placeholder="Enter account number"
+                className="account-number-input-field"
+                maxLength="10"
+                value={accountNumber}
+                onChange={(e) => setAccountNumber(e.target.value)}
               />
             </div>
             <div className="account-name-field">
               <div className="sign_LoginGoEye">
                 <BsBank />
               </div>
-              {document.data.account_name}
+              {document && document.data && document.data.account_name}
             </div>
           </div>
 
           <div className="sign_Loginnext">
             <button type="submit">Add Account Number</button>
-              {ispend&&<h4>Loading......</h4>}
-              {err&&<p>{err.message}</p>}
+            {ispend && <h4>Loading......</h4>}
+            {err && <p>{err.message}</p>}
           </div>
         </form>
       </div>
-    </div>)
+    </div>
   );
 }
-
-
-
