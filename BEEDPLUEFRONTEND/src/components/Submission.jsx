@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { BsCaretDownFill } from "react-icons/bs";
 import { FaClock } from "react-icons/fa6";
 import { useSubmit } from "../hooks/useSubmit";
+import { FaCheckCircle } from "react-icons/fa";
+import { GiCancel } from "react-icons/gi";
 
 export default function Submission({
   id,
@@ -79,9 +81,9 @@ export default function Submission({
             {li1?.status === "rejected" && <p>{li1?.reason}</p>}
 
             {li1?.status === "verified" ? (
-              <FaClock style={{ color: "green" }} />
+              <FaCheckCircle  style={{ color: "green" }} />
             ) : li1?.status === "rejected" ? (
-              <FaClock style={{ color: "red" }} />
+              <GiCancel style={{ color: "red" }} />
             ) : (
               <FaClock style={{ color: "gray" }} />
             )}
@@ -100,9 +102,9 @@ export default function Submission({
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
             {li2?.status === "verified" ? (
-              <FaClock style={{ color: "green" }} />
+              <FaCheckCircle  style={{ color: "green" }} />
             ) : li2?.status === "rejected" ? (
-              <FaClock style={{ color: "red" }} />
+              <GiCancel style={{ color: "red" }} />
             ) : (
               <FaClock style={{ color: "gray" }} />
             )}
@@ -121,9 +123,9 @@ export default function Submission({
             />
             {li3?.status === "rejected" && <p>{li3?.reason}</p>}
             {li3?.status === "verified" ? (
-              <FaClock style={{ color: "green" }} />
+              <FaCheckCircle style={{ color: "green" }} />
             ) : li3?.status === "rejected" ? (
-              <FaClock style={{ color: "red" }} />
+              <GiCancel style={{ color: "red" }} />
             ) : (
               <FaClock style={{ color: "gray" }} />
             )}
@@ -142,9 +144,9 @@ export default function Submission({
             />
             {li4?.status === "rejected" && <p>{li4?.reason}</p>}
             {li4?.status === "verified" ? (
-              <FaClock style={{ color: "green" }} />
+              <FaCheckCircle style={{ color: "green" }} />
             ) : li4?.status === "rejected" ? (
-              <FaClock style={{ color: "red" }} />
+              <GiCancel style={{ color: "red" }} />
             ) : (
               <FaClock style={{ color: "gray" }} />
             )}
@@ -163,9 +165,9 @@ export default function Submission({
             />
             {li5?.status === "rejected" && <p>{li5?.reason}</p>}
             {li5?.status === "verified" ? (
-              <FaClock style={{ color: "green" }} />
+              <FaCheckCircle style={{ color: "green" }} />
             ) : li5?.status === "rejected" ? (
-              <FaClock style={{ color: "red" }} />
+              <GiCancel style={{ color: "red" }} />
             ) : (
               <FaClock style={{ color: "gray" }} />
             )}
