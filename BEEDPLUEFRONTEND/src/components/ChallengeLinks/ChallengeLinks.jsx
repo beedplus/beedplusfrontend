@@ -19,12 +19,18 @@ import { toast } from "react-toastify";
 import { FaQuestionCircle } from "react-icons/fa";
 import {Link} from "react-router-dom";
 import howitworks from "../../assets/howitworks.png"
+
 //import caretDown from '../../assets/Polygon 1.png';
 // const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
   const [activeTab, setActiveTab] = useState(true);
   const id = usebackendStore((state) => state.ChallengeId);
-  const { updateClaim, isPend, success, error: err } = useUpdateClaimStatus();
+  const {
+    updateClaim,
+    isPending: isPend,
+    success,
+    error: err,
+  } = useUpdateClaimStatus();
   const { documents: doc } = useGetSinCampaign(id);
   // const [ID, setID] = useState(null);
   // const [loading, setLoading] = useState(false)
@@ -70,7 +76,15 @@ const ChallengeLinks = () => {
   //   }
   // }, [document, isAllLinksVerified]);
   const accessToken = usebackendStore((state) => state.accessToken);
-
+  useEffect(() => {
+    if (success) {
+      toast.success("request submitted");
+      window.location.reload();
+    }
+    if (err) {
+      toast.error(err);
+    }
+  }, [success, err]);
   useEffect(() => {
     if (
       document.message !== "No existing submission" &&
@@ -104,25 +118,24 @@ const ChallengeLinks = () => {
   //   }
   // }, [document, activeTab, isAllLinksVerified]);
 
-  useEffect(() => {
-// <<<<<<< gori
-//     if (!activeTab) {
-//       // console.log("is empty", document?.data?.attempts?.length === 0);
-//       // console.log("all verified", isAllLinksVerified);
-//       // console.log(document);
-//     }
-//   }, [document, activeTab, isAllLinksVerified]);
+  // useEffect(() => {
+  //   // <<<<<<< gori
+  //   //     if (!activeTab) {
+  //   //       // console.log("is empty", document?.data?.attempts?.length === 0);
+  //   //       // console.log("all verified", isAllLinksVerified);
+  //   //       // console.log(document);
+  //   //     }
+  //   //   }, [document, activeTab, isAllLinksVerified]);
 
-
-//   useEffect(() => {
-//     if (documents && document.data) {
-//       console.log(document, 'documents');
-//       // videoRef.current.src = documents.data.demo_video;
-//     }
-//   }, [document]);
-// =======
-    console.log(doc, "hell");
-  }, [doc]);
+  //   //   useEffect(() => {
+  //   //     if (documents && document.data) {
+  //   //       console.log(document, 'documents');
+  //   //       // videoRef.current.src = documents.data.demo_video;
+  //   //     }
+  //   //   }, [document]);
+  //   // =======
+  //   console.log(doc, "hell");
+  // }, [doc]);
 
   const togglePlayPause = () => {
     const video = videoRef.current;
@@ -155,6 +168,17 @@ const ChallengeLinks = () => {
     const allVerified = test.every((value) => value);
     return allVerified;
   };
+  const handleCheckActive = (l1, l2, l3, l4, l5) => {
+    const test = [
+      l1 !== "verified",
+      l2 !== "verified",
+      l3 !== "verified",
+      l4 !== "verified",
+      l5 !== "verified",
+    ];
+    const anyNotVerified = test.some((value) => value);
+    return anyNotVerified;
+  };
 
   const handleClaim = async () => {
     setIsClaimed(true);
@@ -162,12 +186,10 @@ const ChallengeLinks = () => {
     const lastItem = document.data.attempts[document.data.attempts.length - 1];
     // console.log(documents.);
     await updateClaim(id, "submitted", lastItem._id, documents.data._id);
-    if (success) {
-      toast.success("request submitted");
-    }
-    if (err) {
-      toast.error(err);
-    }
+    // if (success) {
+    //   toast.success("request submitted");
+    //   window.location.reload();
+    // }
   };
 
   return (
@@ -217,44 +239,39 @@ const ChallengeLinks = () => {
               </div>
             </div>
 
-
-             <div className="price-container">
-               <div className="fund-tracker">
-                 <div className="fund-measure"></div>
-               </div>
-               <div className="fund-generated">
-                 <span>
-                   $
-                   {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
-                 </span>{" "}             remaining
+            <div className="price-container">
+              <div className="fund-tracker">
+                <div className="fund-measure"></div>
+              </div>
+              <div className="fund-generated">
+                <span>
+                  $
+                  {doc.data.funds.startingAmount - doc.data.funds.currentAmount}
+                </span>{" "}
+                remaining
+              </div>
             </div>
-           </div>
             <div className="button-section">
               <div className="button-container">
                 <button
-                    onClick={() => setActiveTab(true)}
-                    className={"black  clb" }
+                  onClick={() => setActiveTab(true)}
+                  className={"black  clb"}
                 >
-                  <p className="showered">
-                    INSTRUCTIONS
-                  </p>
+                  <p className="showered">INSTRUCTIONS</p>
                 </button>
                 <button
-                    onClick={() => setActiveTab(false)}
-                    className="grey cld"
+                  onClick={() => setActiveTab(false)}
+                  className="grey cld"
                 >
-                  <p className="showered">
-                    SUBMISSION
-                  </p>
-
+                  <p className="showered">SUBMISSION</p>
                 </button>
-                <div className={` ${!activeTab ? "hover-button-active" : "hover-button"}`}>
-
-                </div>
+                <div
+                  className={` ${
+                    !activeTab ? "hover-button-active" : "hover-button"
+                  }`}
+                ></div>
               </div>
             </div>
-
-
 
             <div className="challenge-requirements">
               {activeTab ? (
@@ -288,7 +305,10 @@ const ChallengeLinks = () => {
                       setShowButton(!showButton);
                     }}
                   >
-                    <video ref={videoRef} className="challenge-video-container-video">
+                    <video
+                      ref={videoRef}
+                      className="challenge-video-container-video"
+                    >
                       <source
                         src={doc.data.demo_video}
                         type="video/mp4"
@@ -301,57 +321,88 @@ const ChallengeLinks = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <button className="claim-button">CLAIM</button>
-              <footer className="section-footer">
+                  <button
+                    className="claim-button"
+                    onClick={() => setActiveTab(false)}
+                  >
+                    Enter challenge
+                  </button>
+                  {/* <footer className="section-footer">
                 Copyright BEED+ 2024 Company. All rights reserved
-              </footer> */}
+              </footer>  */}
                   <div className="question-circle">
                     <Link to="/faq" > <img src={howitworks} alt="how it works image"/> </Link>
+
                   </div>
                 </div>
-              ) : document.message !== "No existing submission" &&
-                document?.data?.attempts?.length > 0 ? (
-                document.data.attempts.map((attempt, i) => (
-                  <Submission
-                    id={id}
-                    key={attempt._id}
-                    index={i}
-                    key2={attempt._id}
-                    link1={attempt.link1}
-                    link2={attempt.link2}
-                    link3={attempt.link3}
-                    link4={attempt.link4}
-                    link5={attempt.link5}
-                    claimStatus={attempt.claimStatus}
-                    isPending={handleCheckPend(
-                      attempt.link1.status,
-                      attempt.link2.status,
-                      attempt.link3.status,
-                      attempt.link4.status,
-                      attempt.link5.status
-                    )}
-                    SubmissionId={document.data._id}
-                  />
-                ))
               ) : (
-                <div>
-                  {/* Render your template for when document.data.length is 0 */}
-                  {/* <p>No attempts available.</p> */}
-                  {/* <Submission id={id} key={nanoid()} index={0} /> */}
-                </div>
+                <>
+                  {document.data.attempts.map((attempt, i) => (
+                    <Submission
+                      id={id}
+                      key={attempt._id}
+                      index={i}
+                      key2={attempt._id}
+                      link1={attempt.link1}
+                      link2={attempt.link2}
+                      link3={attempt.link3}
+                      link4={attempt.link4}
+                      link5={attempt.link5}
+                      claimStatus={attempt.claimStatus}
+                      isPending={handleCheckPend(
+                        attempt.link1.status,
+                        attempt.link2.status,
+                        attempt.link3.status,
+                        attempt.link4.status,
+                        attempt.link5.status
+                      )}
+                      SubmissionId={document.data._id}
+                      isActive={handleCheckActive(
+                        attempt.link1.status,
+                        attempt.link2.status,
+                        attempt.link3.status,
+                        attempt.link4.status,
+                        attempt.link5.status
+                      )}
+                    />
+                  ))}
+                  <button
+                    className="claim-button"
+                    disabled={
+                      document.data?.attempts[document.data.attempts.length - 1]
+                        .claimStatus === "submitted" || !isAllLinksVerified
+                    }
+                    style={{
+                      backgroundColor:
+                        document.data?.attempts[
+                          document.data.attempts.length - 1
+                        ].claimStatus === "submitted"
+                          ? "gray"
+                          : isAllLinksVerified
+                          ? "green"
+                          : "gray",
+                      color:
+                        document.data?.attempts[
+                          document.data.attempts.length - 1
+                        ].claimStatus === "submitted"
+                          ? "black"
+                          : isAllLinksVerified
+                          ? "white"
+                          : "black",
+                      // Add any other styles you want to conditionally apply
+                    }}
+                    onClick={() => handleClaim()}
+                  >
+                    {isPend
+                      ? "Loading"
+                      : document.data?.attempts[
+                          document.data.attempts.length - 1
+                        ].claimStatus === "submitted"
+                      ? "Claim has been requested"
+                      : "CLAIM"}
+                  </button>
+                </>
               )}
-              <button
-                className="claim-button"
-                disabled={isAllLinksVerified ? false : true}
-                style={{
-                  backgroundColor: isAllLinksVerified ? "green" : "gray", // Example background color
-                  color: isAllLinksVerified ? "white" : "black", // Example text color
-                  // Add any other styles you want to conditionally apply
-                }}
-                onClick={() => handleClaim()}
-              >
-                CLAIM
-              </button>
 
               <footer className="section-footer">
                 Copyright BEED+ 2024 Company. All rights reserved

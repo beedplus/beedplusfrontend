@@ -17,6 +17,7 @@ export default function Submission({
   claimStatus,
   isPending,
   SubmissionId,
+  isActive,
 }) {
   const [link1, setLink1] = useState(li1?.url || "");
   const [link2, setLink2] = useState(li2?.url || "");
@@ -25,10 +26,17 @@ export default function Submission({
   const [link5, setLink5] = useState(li5?.url || "");
   const [height, setHeight] = useState(false);
 
-  const { updateAttempts, isPend, error, success } = useSubmit();
+  const { updateAttempts, isPending: isPend, error, success } = useSubmit();
+
+  useEffect(() => {}, [isPend, success]);
   function adjustHeight() {
     setHeight(!height);
   }
+  useEffect(() => {
+    if (isActive) {
+      adjustHeight();
+    }
+  }, [isActive]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +89,7 @@ export default function Submission({
             {li1?.status === "rejected" && <p>{li1?.reason}</p>}
 
             {li1?.status === "verified" ? (
-              <FaCheckCircle  style={{ color: "green" }} />
+              <FaCheckCircle style={{ color: "green" }} />
             ) : li1?.status === "rejected" ? (
               <GiCancel style={{ color: "red" }} />
             ) : (
@@ -102,7 +110,7 @@ export default function Submission({
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
             {li2?.status === "verified" ? (
-              <FaCheckCircle  style={{ color: "green" }} />
+              <FaCheckCircle style={{ color: "green" }} />
             ) : li2?.status === "rejected" ? (
               <GiCancel style={{ color: "red" }} />
             ) : (
@@ -184,8 +192,8 @@ export default function Submission({
               // Add any other styles you want to conditionally apply
             }}
           >
-            {!success && !isPend && <p>SUBMIT LINKS</p>}
-            {isPend && <p>loading</p>}
+            {!isPend && !success && <p>SUBMIT LINKS</p>}
+            {isPend && !success && <p>loading</p>}
             {success && !isPend && <p>success</p>}
           </button>
           {/*{error && <p>{error}</p>}*/}

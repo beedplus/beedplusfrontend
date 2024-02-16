@@ -26,7 +26,7 @@ export const useUpdateClaimStatus = () => {
         setError(`Failed to get . Status: ${res.status}`);
       } else {
         const result = await res.json();
-        console.log(result);
+
         if (result.status == "success") {
           setSuccess(true);
         }
