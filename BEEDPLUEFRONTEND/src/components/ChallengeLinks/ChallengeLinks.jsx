@@ -17,8 +17,8 @@ import { nanoid } from "nanoid";
 import { usebackendStore } from "../../store/store";
 import { toast } from "react-toastify";
 import { FaQuestionCircle } from "react-icons/fa";
-import {Link} from "react-router-dom";
-import howitworks from "../../assets/howitworks.png"
+import { Link } from "react-router-dom";
+import howitworks from "../../assets/howitworks.png";
 
 //import caretDown from '../../assets/Polygon 1.png';
 // const id = "65bd61e95032a9f093b2d775";
@@ -331,41 +331,44 @@ const ChallengeLinks = () => {
                 Copyright BEED+ 2024 Company. All rights reserved
               </footer>  */}
                   <div className="question-circle">
-                    <Link to="/faq" > <img src={howitworks} alt="how it works image"/> </Link>
-
+                    <Link to="/faq">
+                      {" "}
+                      <img src={howitworks} alt="how it works image" />{" "}
+                    </Link>
                   </div>
                 </div>
               ) : (
                 <>
-                  {document.data.attempts.map((attempt, i) => (
-                    <Submission
-                      id={id}
-                      key={attempt._id}
-                      index={i}
-                      key2={attempt._id}
-                      link1={attempt.link1}
-                      link2={attempt.link2}
-                      link3={attempt.link3}
-                      link4={attempt.link4}
-                      link5={attempt.link5}
-                      claimStatus={attempt.claimStatus}
-                      isPending={handleCheckPend(
-                        attempt.link1.status,
-                        attempt.link2.status,
-                        attempt.link3.status,
-                        attempt.link4.status,
-                        attempt.link5.status
-                      )}
-                      SubmissionId={document.data._id}
-                      isActive={handleCheckActive(
-                        attempt.link1.status,
-                        attempt.link2.status,
-                        attempt.link3.status,
-                        attempt.link4.status,
-                        attempt.link5.status
-                      )}
-                    />
-                  ))}
+                  {document.data &&
+                    document.data.attempts.map((attempt, i) => (
+                      <Submission
+                        id={id}
+                        key={attempt._id}
+                        index={i}
+                        key2={attempt._id}
+                        link1={attempt.link1}
+                        link2={attempt.link2}
+                        link3={attempt.link3}
+                        link4={attempt.link4}
+                        link5={attempt.link5}
+                        claimStatus={attempt.claimStatus}
+                        isPending={handleCheckPend(
+                          attempt.link1.status,
+                          attempt.link2.status,
+                          attempt.link3.status,
+                          attempt.link4.status,
+                          attempt.link5.status
+                        )}
+                        SubmissionId={document.data._id}
+                        isActive={handleCheckActive(
+                          attempt.link1.status,
+                          attempt.link2.status,
+                          attempt.link3.status,
+                          attempt.link4.status,
+                          attempt.link5.status
+                        )}
+                      />
+                    ))}
                   <button
                     className="claim-button"
                     disabled={
