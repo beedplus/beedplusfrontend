@@ -19,11 +19,11 @@ export default function Submission({
   SubmissionId,
   isActive,
 }) {
-  const [link1, setLink1] = useState(li1?.url || "");
-  const [link2, setLink2] = useState(li2?.url || "");
-  const [link3, setLink3] = useState(li3?.url || "");
-  const [link4, setLink4] = useState(li4?.url || "");
-  const [link5, setLink5] = useState(li5?.url || "");
+  const [link1, setLink1] = useState(li1?.url);
+  const [link2, setLink2] = useState(li2?.url);
+  const [link3, setLink3] = useState(li3?.url);
+  const [link4, setLink4] = useState(li4?.url);
+  const [link5, setLink5] = useState(li5?.url);
   const [height, setHeight] = useState(false);
 
   const { updateAttempts, isPending: isPend, error, success } = useSubmit();
@@ -31,6 +31,7 @@ export default function Submission({
   useEffect(() => {}, [isPend, success]);
   function adjustHeight() {
     setHeight(!height);
+    2;
   }
   useEffect(() => {
     if (isActive) {
@@ -80,6 +81,11 @@ export default function Submission({
               type="text"
               value={link1}
               onChange={(e) => setLink1(e.target.value)}
+              onFocus={(e) => {
+                if (e.target.value === "Your video url") {
+                  setLink1("");
+                }
+              }}
               disabled={
                 li1?.status === "verified" || li1?.status === "submitted"
               }
@@ -107,6 +113,11 @@ export default function Submission({
                 li2?.status === "verified" || li2?.status === "submitted"
               }
               required={true}
+              onFocus={(e) => {
+                if (e.target.value === "Your video url") {
+                  setLink2("");
+                }
+              }}
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
             {li2?.status === "verified" ? (
@@ -128,6 +139,11 @@ export default function Submission({
                 li3?.status === "verified" || li3?.status === "submitted"
               }
               required={true}
+              onFocus={(e) => {
+                if (e.target.value === "Your video url") {
+                  setLink3("");
+                }
+              }}
             />
             {li3?.status === "rejected" && <p>{li3?.reason}</p>}
             {li3?.status === "verified" ? (
@@ -149,6 +165,11 @@ export default function Submission({
                 li4?.status === "verified" || li4?.status === "submitted"
               }
               required={true}
+              onFocus={(e) => {
+                if (e.target.value === "Your video url") {
+                  setLink4("");
+                }
+              }}
             />
             {li4?.status === "rejected" && <p>{li4?.reason}</p>}
             {li4?.status === "verified" ? (
@@ -170,6 +191,11 @@ export default function Submission({
                 li5?.status === "verified" || li5?.status === "submitted"
               }
               required={true}
+              onFocus={(e) => {
+                if (e.target.value === "Your video url") {
+                  setLink5("");
+                }
+              }}
             />
             {li5?.status === "rejected" && <p>{li5?.reason}</p>}
             {li5?.status === "verified" ? (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function FaqsHeading() {
   const goBack = () => {
-    window.history.back();
+    window.history.go(-1);
   };
 
   return (
