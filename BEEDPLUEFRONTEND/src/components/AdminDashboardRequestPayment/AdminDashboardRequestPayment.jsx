@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ".//AdminDashboard.scss";
 import { baseURL } from "../../config.js";
-// all/submission/attempts
+import { FaCheckSquare } from "react-icons/fa";
 import caretDown from "../../assets/Vector 1.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -171,7 +171,10 @@ const AdminDashboard = () => {
                               {campaign.user.firstname} {campaign.user.lastname}
                             </b>
                             <br />
-                            {campaign.user.email}
+                            <p className="fuck">
+                              {campaign.user.email}
+                            </p>
+
                           </div>
 
                           <p className="hashtag em">{campaign.campaign.name}</p>
@@ -219,13 +222,22 @@ const AdminDashboard = () => {
             <div className="submission-header">Submission info</div>
             <div className="links-container">
               <header className="link-header">LINKS</header>
-              <div>
+              <div className="link-barade">
                 {linkss.map((link, linkIndex) => (
-                  <p key={linkIndex} className="link">
-                    {link.url && link.url.length > 40
-                      ? link.url.substring(0, 28) + "..."
-                      : link.url}
-                  </p>
+                    <div>
+                      <p key={linkIndex} className="link-link">
+                        {link.url && link.url.length > 40
+                            ? link.url.substring(0, 28) + "..."
+                            : link.url}
+                        <span>
+                        <FaCheckSquare className="check-square" />
+                      </span>
+                      </p>
+
+                    </div>
+
+
+
                 ))}
               </div>
             </div>

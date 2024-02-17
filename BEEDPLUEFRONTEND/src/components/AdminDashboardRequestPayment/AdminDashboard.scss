@@ -127,7 +127,7 @@ body{
                 width: 100%;
         
             .campaign-section{
-                padding: 15px;
+                padding: 15px 5px;
                 width: 100%;
                 //background: blue;
     
@@ -307,7 +307,7 @@ body{
                 width: 30%;
                 //background: green;
                 //border-left: 1px solid grey;
-                padding: 50px 25px;
+                padding: 50px 5px;
 
                 .submission-header{
                     color: rgba(0, 0, 0, 1);
@@ -324,23 +324,35 @@ body{
                     background:rgba(237, 236, 236, 1);
                     border-radius: 5px;
                     width: 100%;
-                    padding: 30px 20px ;
+                    padding: 30px 15px ;
 
                     .link-header{
-                        font-size: 14px;
+                        font-size: 13px;
                         font-weight: 600;
                         color: rgba(0, 0, 0, 1);
                         letter-spacing: 0.01em;
                         margin: 0px 0px 20px 0px;
                     }
-
+                    .link-barade{
+                        display: flex;
+                        flex-direction: column;
+                        gap:10px;
+                        div{
+                            display: flex;
+                        }
+                        p{
+                        font-size: 10px;
+                            width: 100%;
+                            justify-content: space-between;
+                    }
+                    }
                     .links{
                         padding: 10px;
                         //border-radius: 5px;
                         margin: 0px 0px 5px 0px;
                         background: rgba(217, 217, 217, 1);
                         //font-family: Galvanizer;
-                        font-size: 12px;
+                        font-size: 8px;
                         font-weight: 400;
                         line-height: 16px;
                         letter-spacing: 0.02em;
@@ -423,4 +435,16 @@ body{
         }
       
     }
+}
+.fuck{
+    font-size: 10px;
+}
+.link-link{
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+}
+.check-square{
+    color: green;
+    margin-right: auto;
 }

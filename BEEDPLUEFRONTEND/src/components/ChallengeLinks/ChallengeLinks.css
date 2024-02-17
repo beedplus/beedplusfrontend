@@ -168,7 +168,7 @@ body{
 
 }
 .hover-button-active{
-    transform:translateX(172px);
+    transform:translateX(152px);
     position: absolute;
     height: 100%;
     border-radius: 30px;
@@ -187,6 +187,7 @@ body{
 .button-section .button-container{
     width: 370px;
     display: flex;
+    box-shadow: 1px 2px 3px #757272;
 }
 
 .button-section .button-container button{
@@ -547,7 +548,7 @@ body{
 .button-section .button-container{
     width: 300px;
     display: flex;
-    background: #6B6B6B;
+    background: #c9c8c8;
     border-radius: 30px;
 }
 
@@ -560,7 +561,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    background: #6B6B6B;
+    background: #b7b5b5;
     letter-spacing: 0em;
 
 }
@@ -793,7 +794,17 @@ body{
 
 @media screen and (min-width: 300px) and (max-width: 720px){
 
-
+    .hover-button-active{
+        transform:translateX(172px);
+        position: absolute;
+        height: 100%;
+        border-radius: 30px;
+        background: black;
+        width: 50%;
+        justify-content: center;
+        display: flex;
+        transition: ease-in-out .5s;
+    }
 
     .challenge-page-desktop{
         padding:  0;
@@ -1086,7 +1097,6 @@ body{
         position: absolute;
         top: 0;
         bottom: 0;
-        background: rgba(0,0,0,0.5);
         display: flex;
         justify-content: center;
         align-items: center;
