@@ -8,6 +8,7 @@
     font-weight: 700;
     font-size: 15px;
     margin-bottom: 20px;
+    padding-left: 20px;
   }
   .class-container {
     display: flex;
@@ -21,7 +22,6 @@
     margin-top: 50px;
     display: flex;
     flex-direction: column;
-    width: 85%;
     padding: 30px 0;
     .latest {
       color: #fd105b;

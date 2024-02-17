@@ -6,12 +6,16 @@ import ChallangeCardlist from '../ChallangeCardList/ChallangeCardlist'
 import enterWinTwo from '.././../assets/Group 175.svg'
 import {Link} from "react-router-dom";
 import {FaQuestionCircle} from "react-icons/fa";
+import howitworks from "../../assets/howitworks.png";
 function Bottompage() {
   return (
     <div className='bottom-page'>
       <ChallangeCardlist/>
         <div className="question-circle">
-            <Link to="/faq" > <FaQuestionCircle /></Link>
+            <Link to="/faq">
+                {" "}
+                <img src={howitworks} alt="how it works image" />{" "}
+            </Link>
         </div>
       <img src={Beedlogo} alt="Beedlogo" className='beed-logo' />
       {/*<img src={EnterWin} alt="EnterWin" className='enter-win' />*/}

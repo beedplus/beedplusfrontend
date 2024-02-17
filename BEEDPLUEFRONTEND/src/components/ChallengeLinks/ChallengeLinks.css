@@ -378,7 +378,7 @@ body{
 }
 
 .video-link-container .video-link{
-    border: 1.64px solid rgba(126, 126, 126, 1);
+    border: 1.64px solid rgb(86, 86, 86);
     color: rgba(126, 126, 126, 1);
     border-radius: 15px;
     padding: 15px 15px;
@@ -596,8 +596,8 @@ body{
     position: relative;
 }
 .question-circle{
-    position: absolute;
-    top: 40%;
+    position:fixed;
+    top: 80%;
     right: 10px;
     font-size: 35px;
 
@@ -690,6 +690,21 @@ body{
 
     margin: 20px 0px 30px 0px;
 }
+.enter-challenge{
+    width: 100%;
+    padding: 15px 15px ;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0em;
+    color: rgba(255, 255, 255, 1);
+    background: linear-gradient( to right, #EFDB27, #FF0000);
+    margin: 20px 0px 30px 0px;
+}
 
 .claim-button{
     background: rgba(217, 217, 217, 1);
@@ -743,7 +758,7 @@ body{
 }
 
 .video-link-container .video-link{
-    border: 1.64px solid rgba(126, 126, 126, 1);
+    border: 2px solid rgba(126, 126, 126, 1);
     color: rgba(126, 126, 126, 1);
     border-radius: 15px;
     padding: 15px 15px;
@@ -795,7 +810,7 @@ body{
 @media screen and (min-width: 300px) and (max-width: 720px){
 
     .hover-button-active{
-        transform:translateX(172px);
+        transform:translateX(175px);
         position: absolute;
         height: 100%;
         border-radius: 30px;
@@ -967,7 +982,7 @@ body{
     }
 
      .challenge-requirements{
-        padding: 0px 50px;
+        padding: 0px 20px;
         animation: slideRight ease-in-out .5s;
      }
 
@@ -1122,7 +1137,7 @@ body{
     }
 
     .video-link-container .video-link{
-        border: 1.64px solid rgba(126, 126, 126, 1);
+        border: 2px solid rgba(126, 126, 126, 1);
         color: rgba(126, 126, 126, 1);
         border-radius: 15px;
         padding: 15px 15px;
@@ -1173,5 +1188,8 @@ body{
         border-bottom-right-radius: 30px;
 
 
+    }
+    .submission-icons{
+        font-size: 25px;
     }
 }

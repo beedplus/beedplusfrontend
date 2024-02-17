@@ -162,6 +162,7 @@ function App() {
             path="/notification"
             element={
               <>
+                  <Navbar/>
                 {accessToken && <NotificationPage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>
