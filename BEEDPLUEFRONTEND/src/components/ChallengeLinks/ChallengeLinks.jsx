@@ -306,6 +306,7 @@ const ChallengeLinks = () => {
                     }}
                   >
                     <video
+                        autoPlay controls
                       ref={videoRef}
                       className="challenge-video-container-video"
                     >
