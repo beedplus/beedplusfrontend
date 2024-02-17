@@ -4,6 +4,9 @@ import { FaClock } from "react-icons/fa6";
 import { useSubmit } from "../hooks/useSubmit";
 import { FaCheckCircle } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
+import {Link} from "react-router-dom";
+import howitworks from "../assets/howitworks.png";
+import "../../src/components/ChallengeLinks/ChallengeLinks.css"
 
 export default function Submission({
   id,
@@ -95,11 +98,11 @@ export default function Submission({
             {li1?.status === "rejected" && <p>{li1?.reason}</p>}
 
             {li1?.status === "verified" ? (
-              <FaCheckCircle style={{ color: "green" }} />
+              <FaCheckCircle className="submission-icons" style={{ color: "green" }} />
             ) : li1?.status === "rejected" ? (
-              <GiCancel style={{ color: "red" }} />
+              <GiCancel className="submission-icons" style={{ color: "red" }} />
             ) : (
-              <FaClock style={{ color: "gray" }} />
+              <FaClock className="submission-icons" style={{ color: "gray" }} />
             )}
           </div>
 
@@ -121,11 +124,11 @@ export default function Submission({
             />
             {li2?.status === "rejected" && <p>{li2?.reason}</p>}
             {li2?.status === "verified" ? (
-              <FaCheckCircle style={{ color: "green" }} />
+              <FaCheckCircle className="submission-icons" style={{ color: "green" }} />
             ) : li2?.status === "rejected" ? (
-              <GiCancel style={{ color: "red" }} />
+              <GiCancel className="submission-icons" style={{ color: "red" }} />
             ) : (
-              <FaClock style={{ color: "gray" }} />
+              <FaClock className="submission-icons" style={{ color: "gray" }} />
             )}
           </div>
 
@@ -147,11 +150,11 @@ export default function Submission({
             />
             {li3?.status === "rejected" && <p>{li3?.reason}</p>}
             {li3?.status === "verified" ? (
-              <FaCheckCircle style={{ color: "green" }} />
+              <FaCheckCircle className="submission-icons" style={{ color: "green" }} />
             ) : li3?.status === "rejected" ? (
-              <GiCancel style={{ color: "red" }} />
+              <GiCancel className="submission-icons" style={{ color: "red" }} />
             ) : (
-              <FaClock style={{ color: "gray" }} />
+              <FaClock className="submission-icons" style={{ color: "gray" }} />
             )}
           </div>
 
@@ -173,11 +176,11 @@ export default function Submission({
             />
             {li4?.status === "rejected" && <p>{li4?.reason}</p>}
             {li4?.status === "verified" ? (
-              <FaCheckCircle style={{ color: "green" }} />
+              <FaCheckCircle className="submission-icons" style={{ color: "green" }} />
             ) : li4?.status === "rejected" ? (
-              <GiCancel style={{ color: "red" }} />
+              <GiCancel className="submission-icons" style={{ color: "red" }} />
             ) : (
-              <FaClock style={{ color: "gray" }} />
+              <FaClock className="submission-icons" style={{ color: "gray" }} />
             )}
           </div>
 
@@ -199,11 +202,11 @@ export default function Submission({
             />
             {li5?.status === "rejected" && <p>{li5?.reason}</p>}
             {li5?.status === "verified" ? (
-              <FaCheckCircle style={{ color: "green" }} />
+              <FaCheckCircle className="submission-icons" style={{ color: "green" }} />
             ) : li5?.status === "rejected" ? (
-              <GiCancel style={{ color: "red" }} />
+              <GiCancel className="submission-icons" style={{ color: "red" }} />
             ) : (
-              <FaClock style={{ color: "gray" }} />
+              <FaClock className="submission-icons" style={{ color: "gray" }} />
             )}
           </div>
 
@@ -224,6 +227,13 @@ export default function Submission({
           </button>
           {/*{error && <p>{error}</p>}*/}
         </form>
+
+      </div>
+      <div className="question-circle">
+        <Link to="/faq">
+          {" "}
+          <img src={howitworks} alt="how it works image" />{" "}
+        </Link>
       </div>
     </div>
   );

@@ -192,6 +192,9 @@ const ChallengeLinks = () => {
     // }
   };
 
+
+
+
   return (
     <div>
       {isPending && (
@@ -306,7 +309,6 @@ const ChallengeLinks = () => {
                     }}
                   >
                     <video
-                        autoPlay controls
                       ref={videoRef}
                       className="challenge-video-container-video"
                     >
@@ -323,7 +325,7 @@ const ChallengeLinks = () => {
                     </div>
                   </div>
                   <button
-                    className="claim-button"
+                    className="enter-challenge"
                     onClick={() => setActiveTab(false)}
                   >
                     Enter challenge

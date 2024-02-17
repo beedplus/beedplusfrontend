@@ -24,10 +24,14 @@ export default function SideBarAdmin() {
               to="/admin"
               isActive={(match, location) => location.pathname === "/admin"}
               style={({ isActive }) => ({
-                color: isActive ? "red" : "blue",
+                color: isActive ? "white" : "grey",
+                background: isActive ? "red" : "none",
+                padding: isActive ? "10px 10px" : "0",
+                borderRadius: isActive ? "10px" : "0"
               })}
               end
               // className="side-links"
+
             >
               Campaigns
             </NavLink>
@@ -37,7 +41,10 @@ export default function SideBarAdmin() {
               to="/admin/claim"
               // isActive={(match, location) => location.pathname === "/claim"}
               style={({ isActive }) => ({
-                color: isActive ? "red" : "blue",
+                color: isActive ? "white" : "grey",
+                background: isActive ? "red" : "none",
+                padding: isActive ? "10px 10px" : "0",
+                borderRadius: isActive ? "10px" : "0"
               })}
               className="side-links"
             >
@@ -51,8 +58,10 @@ export default function SideBarAdmin() {
                 location.pathname === "/admin/acceptedsubmissions"
               }
               style={({ isActive }) => ({
-                color: isActive ? "red" : "blue",
-              })}
+                color: isActive ? "white" : "grey",
+                background: isActive ? "red" : "none",
+                padding: isActive ? "10px 10px" : "0",
+                borderRadius: isActive ? "10px" : "0"              })}
               className="side-links"
             >
               Accepted
@@ -65,8 +74,10 @@ export default function SideBarAdmin() {
                 location.pathname === "/admin/rejected-campaign"
               }
               style={({ isActive }) => ({
-                color: isActive ? "red" : "blue",
-              })}
+                color: isActive ? "white" : "grey",
+                background: isActive ? "red" : "none",
+                padding: isActive ? "10px 10px" : "0",
+                borderRadius: isActive ? "10px" : "0"              })}
               className="side-links"
             >
               Rejected
@@ -79,8 +90,10 @@ export default function SideBarAdmin() {
                 location.pathname === "/admin/paid"
               }
               style={({ isActive }) => ({
-                color: isActive ? "red" : "blue",
-              })}
+                color: isActive ? "white" : "grey",
+                background: isActive ? "red" : "none",
+                padding: isActive ? "10px 10px" : "0",
+                borderRadius: isActive ? "10px" : "0"              })}
               className="side-links"
             >
               Paid

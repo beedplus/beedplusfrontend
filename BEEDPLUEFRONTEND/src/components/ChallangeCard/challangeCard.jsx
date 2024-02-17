@@ -58,8 +58,11 @@ const ChallangeCard = (props) => {
       <div className="top-info-holder">
         <img src={tiktokLogo} />
         <div className="amount-remaining-div">
-          <p className="amount">${props.currentAmount}</p>
-          <p>remaining</p>
+          <div>
+            <p className="amount">${props.currentAmount}</p>
+            <p>remaining</p>
+          </div>
+
         </div>
       </div>
       <div className="bottom-info-holder">
@@ -70,6 +73,9 @@ const ChallangeCard = (props) => {
             <></>
           </div>
         </div>
+      </div>
+      <div className="challange-card-overlay">
+
       </div>
     </motion.div>
   );
