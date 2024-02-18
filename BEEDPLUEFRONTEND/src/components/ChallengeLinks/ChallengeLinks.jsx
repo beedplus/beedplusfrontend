@@ -311,6 +311,7 @@ const ChallengeLinks = () => {
                     <video
                       ref={videoRef}
                       className="challenge-video-container-video"
+                      controls
                     >
                       <source
                         src={doc.data.demo_video}
