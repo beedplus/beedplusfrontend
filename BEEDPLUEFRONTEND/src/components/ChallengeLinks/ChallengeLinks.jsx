@@ -192,9 +192,6 @@ const ChallengeLinks = () => {
     // }
   };
 
-
-
-
   return (
     <div>
       {isPending && (
@@ -312,6 +309,8 @@ const ChallengeLinks = () => {
                       ref={videoRef}
                       className="challenge-video-container-video"
                       controls
+                      autoPlay
+                      playsInline
                     >
                       <source
                         src={doc.data.demo_video}
