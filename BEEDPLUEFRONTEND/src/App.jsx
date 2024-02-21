@@ -35,7 +35,7 @@ import SideBar from "./layout/SideBar.jsx";
 import Faqs from "./components/Faqs/Faqs.jsx";
 import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
-
+import { useEffect } from "react";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
@@ -162,7 +162,7 @@ function App() {
             path="/notification"
             element={
               <>
-                  <Navbar/>
+                <Navbar />
                 {accessToken && <NotificationPage />}
                 {!accessToken && <Navigate to="/auth/signin" />}
               </>

@@ -23,7 +23,14 @@ import howitworks from "../../assets/howitworks.png";
 //import caretDown from '../../assets/Polygon 1.png';
 // const id = "65bd61e95032a9f093b2d775";
 const ChallengeLinks = () => {
-  const [activeTab, setActiveTab] = useState(true);
+  const setActivetab = usebackendStore((state) => state.setActiveTab);
+  const activetab = usebackendStore((state) => state.activeTab);
+  const [activeTab, setActiveTab] = useState(activetab);
+  useEffect(() => {
+    // localStorage.setItem("activeTab", activeTab);
+    setActivetab(activeTab);
+  }, [activeTab, setActivetab]);
+
   const id = usebackendStore((state) => state.ChallengeId);
   const {
     updateClaim,
@@ -42,7 +49,7 @@ const ChallengeLinks = () => {
 
   let { error, isPending, documents } = useGetSingleCampaign(id);
 
-  let { document, refetch } = useGetSubmission(id);
+  let { document, isPending: isp } = useGetSubmission(id);
 
   //   const checkFullyVerified = [];
   //   if (document.data) {
@@ -342,6 +349,23 @@ const ChallengeLinks = () => {
                 </div>
               ) : (
                 <>
+                  {" "}
+                  {isp && (
+                    <img
+                      src={loading}
+                      alt="Loading Animation"
+                      style={{
+                        width: "80px",
+                        height: "70px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+                        marginTop: "20px",
+                        marginRight: "auto",
+                        marginLeft: "auto",
+                      }}
+                    />
+                  )}
                   {document.data &&
                     document.data.attempts.map((attempt, i) => (
                       <Submission
