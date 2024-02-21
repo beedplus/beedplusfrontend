@@ -45,5 +45,5 @@ export const useGetSubmission = (id) => {
     fetchData();
   }, [fetchData]);
 
-  return { error, isPending, document, setDocument, refetch };
+  return { error, isPending, document };
 };

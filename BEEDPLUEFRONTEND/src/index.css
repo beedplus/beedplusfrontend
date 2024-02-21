@@ -8,3 +8,8 @@ input:focus {
   /* Add your custom focus style here */
   /* Example: */
 }
+.error {
+  color: red;
+  text-align: center;
+  font-size: 1em;
+}

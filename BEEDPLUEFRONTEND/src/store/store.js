@@ -6,6 +6,7 @@ const usebackendStore = create(
     (set) => ({
       accessToken: null,
       tempAccessToken: null,
+      activeTab: null,
       user: {
         userId: null,
         email: "",
@@ -22,6 +23,10 @@ const usebackendStore = create(
         tempUserId: null,
       },
       ChallengeId: null,
+      setActiveTab: (tab) =>
+        set(() => ({
+          activeTab: tab,
+        })),
       setAuth: (id, token) =>
         set((state) => ({
           user: { ...state.user, userId: id },
@@ -76,14 +81,14 @@ const usebackendStore = create(
           },
           accessToken: null,
         }),
-        resetTempAuth: () => {
-          set({
-            user: {
-              tempUserId: null,
-            },
-            tempAccessToken: null
-          })
-        },
+      resetTempAuth: () => {
+        set({
+          user: {
+            tempUserId: null,
+          },
+          tempAccessToken: null,
+        });
+      },
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({ ChallengeId: id }),
       setCompareStatus: (payload) =>
