@@ -36,6 +36,7 @@ import Faqs from "./components/Faqs/Faqs.jsx";
 import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 import { useEffect } from "react";
+import ConnectTikTok from "./components/ConnectTikTok/ConnectTikTok.jsx";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
@@ -46,17 +47,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/Dashboard-Navbar" element={<DashboardNavbar />} />
-          {/*<Route*/}
-          {/*  path="/"*/}
-          {/*  element={*/}
-          {/*    <>*/}
-          {/*    */}
-          {/*      <Navbar />*/}
-          {/*      <LandingPageSignedIn />*/}
-          {/*      <Footer />*/}
-          {/*    </>*/}
-          {/*  }*/}
-          {/*/>*/}
+
           <Route
             path="/home"
             element={
@@ -128,15 +119,7 @@ function App() {
                 </>
               }
             />
-            {/* <Route
-              path="bank-account"
-              element={
-                <>
-                  {accessToken && <Navigate to="/profile" />}
-                  {!accessToken && <BankAcoount />}
-                </>
-              }
-            /> */}
+
             <Route path="Verification" element={<Verification />} />
           </Route>
           <Route
@@ -186,7 +169,6 @@ function App() {
               </>
             }
           />
-          {/* <Route path="/challenge-link" element={<ChallengeLinks/>} /> */}{" "}
           <Route
             path="/challenge/:id"
             element={
@@ -266,6 +248,11 @@ function App() {
               </>
             }
           />
+          <Route
+            path="tiktok"
+            element={<ConnectTikTok/>}>
+
+          </Route>
         </Routes>
       </Router>
 

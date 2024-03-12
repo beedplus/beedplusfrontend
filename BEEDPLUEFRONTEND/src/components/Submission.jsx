@@ -240,7 +240,10 @@ export default function Submission({
             {isPend && !success && <p>loading</p>}
             {success && !isPend && <p>success</p>}
           </button>
-          {error && <p className="error">Error: {error}</p>}
+          <div className="submission-error-message">
+            {error && <p>Error: {error}</p>}
+          </div>
+
         </form>
       </div>
       <div className="question-circle">

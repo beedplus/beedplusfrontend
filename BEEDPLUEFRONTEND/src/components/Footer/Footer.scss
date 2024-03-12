@@ -56,7 +56,19 @@
       align-items: center;
     }
     .copyright{
+      a{
+        color: rgb(255, 255, 255);
+        text-decoration: underline;
+      }
       padding: 15px 0;
+      display: flex;
+      gap: 5px;
+      color: #FFF;
+      font-family: "Montserrat", sans-serif;
+      font-size: 10.602px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
       h3{
         color: #FFF;
         font-family: "Montserrat", sans-serif;

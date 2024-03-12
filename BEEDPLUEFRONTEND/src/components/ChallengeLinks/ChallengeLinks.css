@@ -1192,4 +1192,13 @@ body{
     .submission-icons{
         font-size: 25px;
     }
+
+}
+.submission-error-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+    color: red;
+    font-size: 10px;
 }
