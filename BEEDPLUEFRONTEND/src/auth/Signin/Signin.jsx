@@ -120,7 +120,9 @@ export default function Signin() {
         </form>
       </div>
       <div className="sign-in-terms-and-condition">
-        Click <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >“Login”</a></span> to agree to Artic’s Terms of Service and acknowledge that Beed+ <span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Policy</a>  </span>applies to you
+        <div className="agreetoArtic">
+          By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a>< /span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
+        </div>
       </div>
     </div>
   );

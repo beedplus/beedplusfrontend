@@ -15,6 +15,7 @@ import { BsBank } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { nanoid } from "nanoid";
+import ConnectTikTok from "../ConnectTikTok/ConnectTikTok.jsx";
 
 const ProfilePage = () => {
   const { logout } = useLogout();
@@ -189,7 +190,7 @@ const ProfilePage = () => {
           </div>
           <div className="profile-page-about-you">
             <h2>About You</h2>
-            <h4>Total Rewards</h4>
+            <ConnectTikTok/>
           </div>
         </section>
         <section className="profile-page-form-section">
@@ -279,9 +280,11 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="profile-page-form-div-line">
-                <p>Bank Account</p>
+                <p>Bank Account </p>
                 <p>{accountName}</p>
               </div>
+
+
             </form>
           </div>
         </section>

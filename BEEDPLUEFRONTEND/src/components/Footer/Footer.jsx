@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
         <div className="line"></div>
         <div className="copyright">
-          <h3>@ Copyright BEED+ 2024 Company. All rights reserved</h3>
+          <h3>@ Copyright BEED+ 2024 Company. All rights reserved   <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >  "Terms of Service" </a>< /span>  and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">"Privacy Policy"</a>  </span></h3>
         </div>     
    </footer>
   )
