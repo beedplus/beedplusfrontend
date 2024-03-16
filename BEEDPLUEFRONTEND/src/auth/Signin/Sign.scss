@@ -25,7 +25,6 @@
     }
   }
 
-
   .sign-form-div {
     width: 50%;
     flex-shrink: 0;
@@ -34,7 +33,7 @@
     margin-left: auto;
     box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
     transform: translateY(10px);
-    form{
+    form {
       width: 100%;
     }
     .Already {
@@ -66,6 +65,10 @@
           letter-spacing: -0.15px;
           text-decoration: none;
         }
+      }
+      // to resize the isloading image gif
+      .isloading-signin-page {
+        height: 50px;
       }
     }
 
@@ -103,7 +106,6 @@
       margin-top: 10px;
       gap: 1.2em;
 
-
       .sign_Loginemail {
         display: flex;
         flex-direction: row;
@@ -139,7 +141,7 @@
         border-radius: 24.619px;
 
         .sign_LoginGoEye {
-          margin-right: 10px;  
+          margin-right: 10px;
         }
 
         input {
@@ -148,27 +150,26 @@
           margin-left: 10px;
           border: none;
           outline: none;
-          font-size:16px;
+          font-size: 16px;
         }
-
       }
     }
   }
-  .sign-in-terms-and-condition{
+  .sign-in-terms-and-condition {
     padding: 25px 0;
     margin-left: auto;
     width: 45%;
-    color: #FFF;
+    color: #fff;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 11.47px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    span{
-      a{
+    span {
+      a {
         text-decoration: none;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }
@@ -193,24 +194,15 @@
       line-height: normal;
       letter-spacing: 0.362px;
     }
-    .word{
+    .word {
       margin-top: 10px;
     }
-    .text-error-sign{
+    .text-error-sign {
       margin-bottom: 25px;
       margin-top: 25px;
     }
-
   }
 }
-
-
-
-
-
-
-
-
 
 @media screen and (min-width: 360px) and (max-width: 820px) {
   .sign_Login {
@@ -225,7 +217,6 @@
     flex-direction: column;
     padding: 20px 30px;
 
-
     .beedlogo {
       position: relative;
       width: 100%;
@@ -239,7 +230,6 @@
         flex-shrink: 0;
       }
     }
-
 
     .sign-form-div {
       margin-left: 0;
@@ -259,7 +249,7 @@
         padding: 10px 0;
         gap: 0.7em;
         flex-direction: column;
-       
+
         h3 {
           color: #000;
           font-family: "Montserrat", sans-serif;
@@ -281,15 +271,13 @@
             text-decoration: none;
           }
         }
-        .login-error-text{
+        .login-error-text {
           font-size: 11px;
           text-align: center;
-          color:  #FF0000;
+          color: #ff0000;
           margin-left: 0.5em;
           margin-bottom: 0.5em;
         }
-      
-
       }
 
       .image {
@@ -297,7 +285,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 25px ;
+        padding: 25px;
         img {
           width: 65.468px;
           height: 40px;
@@ -309,7 +297,7 @@
         color: #242424;
         width: 70%;
         text-align: center;
-        font-family: "Montserrat",sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -325,7 +313,6 @@
         margin-top: 0;
         gap: 1.2em;
         padding: 7px 0;
-
 
         .sign_Loginemail {
           display: flex;
@@ -370,7 +357,6 @@
             border: none;
             outline: none;
           }
-
         }
       }
       .sign_Login-next {
@@ -393,33 +379,25 @@
           line-height: normal;
           letter-spacing: 0.362px;
         }
-        .word{
+        .word {
           margin-top: 10px;
         }
-
       }
     }
-    .sign-in-terms-and-condition{
+    .sign-in-terms-and-condition {
       padding: 25px 0;
       margin-left: 0;
       width: 85%;
-      color: #FFF;
+      color: #fff;
       text-align: center;
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 13px;
       font-style: normal;
       font-weight: 500;
       line-height: normal;
     }
   }
-
 }
-
-
-
-
-
-
 
 /* desktop styling
 

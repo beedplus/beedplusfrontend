@@ -11,6 +11,7 @@ import { useGetBankAccount } from "../../hooks/useGetBankAccount";
 import { useVerifyAccountNumber } from "../../hooks/useVerifyAccountNumber";
 import { useSubmitBankAccount } from "../../hooks/useSubmitBankAccount";
 import { usebackendStore } from "../../store/store";
+import loading from "../../assets/loading.gif";
 import { nanoid } from "nanoid";
 export default function BankAcoount() {
   const [sortCode, setSortCode] = useState("");
@@ -124,7 +125,9 @@ export default function BankAcoount() {
 
           <div className="sign_Loginnext">
             <button type="submit">Add Account Number</button>
-            {ispend && <h4>Loading......</h4>}
+            {/* {ispend && <h4>Loading......</h4>} */}
+            {/* changing the loading word to the isloading image gif */}
+            {ispend && <img className="isloading-bankaccount-page" src={loading} alt='loading' />}
             {err && <p>{err.message}</p>}
           </div>
         </form>

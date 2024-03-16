@@ -1,5 +1,5 @@
-.sign_Login-admin{
-  background: #FFFFFF;
+.sign_Login-admin {
+  background: #ffffff;
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -22,16 +22,16 @@
     }
   }
 
- .sign-login-admin-header{
-   color: #242424;
-   text-align: center;
-   font-family: "Montserrat", sans-serif;
-   font-size: 20px;
-   font-style: normal;
-   font-weight: 700;
-   line-height: 127%; /* 25.4px */
-   padding: 20px;
- }
+  .sign-login-admin-header {
+    color: #242424;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 127%; /* 25.4px */
+    padding: 20px;
+  }
   .sign-form-div {
     width: 402px;
     height: 390px;
@@ -40,7 +40,6 @@
     background: #fff;
     box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
     transform: translateY(10px);
-
 
     .Already {
       width: 100%;
@@ -108,7 +107,6 @@
       margin-top: 20px;
       gap: 1.2em;
 
-
       .sign_Loginemail {
         display: flex;
         flex-direction: row;
@@ -153,7 +151,6 @@
           border: none;
           outline: none;
         }
-
       }
     }
   }
@@ -179,9 +176,12 @@
       letter-spacing: 0.362px;
       border: none;
     }
-    .word{
+    .word {
       margin-top: 10px;
     }
-
+    //resize/decrease the size of the loading image gif
+    .isloading-admindeshboardlogin-page {
+      height: 50px;
+    }
   }
 }

@@ -1,10 +1,10 @@
-
-.select-list{
+.select-list {
     width: 70%;
     padding: 10px;
     border-radius: 20px;
 }
-.bank-account-selection-div{
+
+.bank-account-selection-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@
     margin-top: 20px;
 }
 
-.select-bank{
+.select-bank {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,24 +21,29 @@
 
 
 }
-.bank-account-number-input{
+
+.bank-account-number-input {
     display: flex;
     align-items: center;
     gap: 15px;
     width: 80%;
 
 }
-.account-number-input-field{
+
+.account-number-input-field {
     width: 100%;
     padding: 10px;
 }
-.account-name-field{
+
+.account-name-field {
     display: flex;
     gap: 15px;
 }
 
 
-
+.isloading-bankaccount-page{
+    height: 50px;
+}
 
 
 
@@ -60,11 +65,12 @@
 
 
 @media screen and (min-width: 360px) and (max-width: 820px) {
-    .select-list{
+    .select-list {
         width: 70%;
         padding: 10px;
     }
-    .bank-account-selection-div{
+
+    .bank-account-selection-div {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -73,7 +79,7 @@
         margin-top: 20px;
     }
 
-    .select-bank{
+    .select-bank {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -81,22 +87,26 @@
         border-radius: 20px;
 
     }
-    .bank-account-number-input{
+
+    .bank-account-number-input {
         display: flex;
         align-items: center;
         gap: 15px;
         width: 80%;
 
     }
-    .account-number-input-field{
+
+    .account-number-input-field {
         width: 100%;
         padding: 10px;
     }
-    .account-name-field{
+
+    .account-name-field {
         display: flex;
         gap: 15px;
     }
 }
-.sign_Loginnext button{
+
+.sign_Loginnext button {
     font-size: 10px;
 }

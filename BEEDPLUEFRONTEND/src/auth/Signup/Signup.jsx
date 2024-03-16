@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import image2 from "../../assets/image 1.png";
 import { useNavigate } from "react-router-dom";
+import loading from "../../assets/loading.gif";
 
 export default function Signup() {
   const { signup, error, ispending } = useSignUp();
@@ -19,8 +20,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPaasword] =  useState(false)
-  const[seeConfirPassword, setSeeconfirPassword] = useState(false)
+  const [showPassword, setShowPaasword] = useState(false)
+  const [seeConfirPassword, setSeeconfirPassword] = useState(false)
 
   const navigate = useNavigate();
 
@@ -50,11 +51,11 @@ export default function Signup() {
     return isValid;
   };
 
-  const handleShowPassword = () =>{
+  const handleShowPassword = () => {
     setShowPaasword(!showPassword)
   }
 
-  const handleseeConfirPassword = ()=>{
+  const handleseeConfirPassword = () => {
     setSeeconfirPassword(!seeConfirPassword)
   }
 
@@ -81,7 +82,7 @@ export default function Signup() {
     }
   };
 
-  
+
 
 
   const handleSubmit = (e) => {
@@ -112,11 +113,11 @@ export default function Signup() {
                     <BsPerson />
                   </div>
                   <input
-                      type="text"
-                      name="firstName"
-                      placeholder="Enter First Name"
-                      value={firstName}
-                      onChange={handleInputChange}
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter First Name"
+                    value={firstName}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="LastName">
@@ -124,11 +125,11 @@ export default function Signup() {
                     <BsPerson />
                   </div>
                   <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Enter Last Name"
-                      value={lastName}
-                      onChange={handleInputChange}
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter Last Name"
+                    value={lastName}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="email">
@@ -136,31 +137,31 @@ export default function Signup() {
                     <RiMailLine />
                   </div>
                   <input
-                      type="email"
-                      name="email"
-                      placeholder="Enter Your Email"
-                      value={email}
-                      onChange={handleInputChange}
+                    type="email"
+                    name="email"
+                    placeholder="Enter Your Email"
+                    value={email}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="password">
-                  <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye />:<FaRegEyeSlash /> }</div>
+                  <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
                   <input
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      placeholder="Enter Your Password"
-                      value={password}
-                      onChange={handleInputChange}
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Enter Your Password"
+                    value={password}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="confirmPassword">
                   <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
                   <input
-                      type={seeConfirPassword ?  "text" :  "password"}
-                      name="confirmPassword"
-                      placeholder="Confirm Your Password"
-                      value={confirmPassword}
-                      onChange={handleInputChange}
+                    type={seeConfirPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    placeholder="Confirm Your Password"
+                    value={confirmPassword}
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -175,7 +176,8 @@ export default function Signup() {
                     Sign In
                   </Link>
                 </div>
-                {ispending && <p className="word">Loading.......</p>}
+                {/* changing the loading word to the isloading image gif */}
+                {ispending && <img className="isloading-signup-page" src={loading} alt='loading' />}
                 {error && <p className="text">{error}</p>}
               </div>
             </div>
@@ -184,7 +186,7 @@ export default function Signup() {
         </div>
         <div className="agree">
           <div className="agreetoArtic">
-           By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a></span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
+            By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a></span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
           </div>
         </div>
       </div>

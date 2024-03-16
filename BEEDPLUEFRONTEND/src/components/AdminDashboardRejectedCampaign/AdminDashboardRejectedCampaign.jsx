@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 import axios from "axios";
 import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.scss";
 import { useState, useEffect } from "react";
-import {usebackendStore} from "../../store/store.js";
+import { usebackendStore } from "../../store/store.js";
 const baseURL = "https://beedplus.onrender.com/campaigns/all/submission/links";
 const AdminDashboardRejectedCampaign = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
@@ -19,7 +19,7 @@ const AdminDashboardRejectedCampaign = () => {
           method: "GET",
           url: baseURL,
           params: { linkStatus: "rejected" },
-          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
+          headers: { "content-type": "application/json", Authorization: `Bearer ${tempAccessToken}` },
         };
         const response = await axios.request(options);
         setCampaignDetails(response.data.data.links.data);

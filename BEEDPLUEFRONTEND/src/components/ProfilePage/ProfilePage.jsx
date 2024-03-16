@@ -16,6 +16,7 @@ import { MdCancel } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { nanoid } from "nanoid";
 import ConnectTikTok from "../ConnectTikTok/ConnectTikTok.jsx";
+import loading from "../../assets/loading.gif";
 
 const ProfilePage = () => {
   const { logout } = useLogout();
@@ -190,7 +191,7 @@ const ProfilePage = () => {
           </div>
           <div className="profile-page-about-you">
             <h2>About You</h2>
-            <ConnectTikTok/>
+            <ConnectTikTok />
           </div>
         </section>
         <section className="profile-page-form-section">
@@ -381,7 +382,8 @@ const ProfilePage = () => {
               </div>
               <section className="edit-account-submit-button">
                 <button type="submit">Add Account</button>
-                {isPend && <p>LOADING..</p>}
+                {/* changing the loading word to the isloading image gif */}
+                {isPend && <img className="isloading-profilePage-page" src={loading} alt='loading' />}
                 {err && <p className="error">{err}</p>}
               </section>
             </form>

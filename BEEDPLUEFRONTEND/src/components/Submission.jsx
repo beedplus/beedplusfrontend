@@ -7,6 +7,8 @@ import { GiCancel } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import howitworks from "../assets/howitworks.png";
 import "../../src/components/ChallengeLinks/ChallengeLinks.css";
+import loading from "../assets/loading.gif";
+
 
 export default function Submission({
   id,
@@ -237,7 +239,7 @@ export default function Submission({
             }}
           >
             {!isPend && !success && <p>SUBMIT LINKS</p>}
-            {isPend && !success && <p>loading</p>}
+            {isPend && !success && <img style={{height: "60px",}} src={loading} alt='loading' />}
             {success && !isPend && <p>success</p>}
           </button>
           <div className="submission-error-message">

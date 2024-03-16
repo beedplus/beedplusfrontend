@@ -273,9 +273,8 @@ const ChallengeLinks = () => {
                   <p className="showered">SUBMISSION</p>
                 </button>
                 <div
-                  className={` ${
-                    !activeTab ? "hover-button-active" : "hover-button"
-                  }`}
+                  className={` ${!activeTab ? "hover-button-active" : "hover-button"
+                    }`}
                 ></div>
               </div>
             </div>
@@ -409,16 +408,16 @@ const ChallengeLinks = () => {
                         ].claimStatus === "submitted"
                           ? "gray"
                           : isAllLinksVerified
-                          ? "green"
-                          : "gray",
+                            ? "green"
+                            : "gray",
                       color:
                         document.data?.attempts[
                           document.data.attempts.length - 1
                         ].claimStatus === "submitted"
                           ? "black"
                           : isAllLinksVerified
-                          ? "white"
-                          : "black",
+                            ? "white"
+                            : "black",
                       // Add any other styles you want to conditionally apply
                     }}
                     onClick={() => handleClaim()}
@@ -426,10 +425,10 @@ const ChallengeLinks = () => {
                     {isPend
                       ? "Loading"
                       : document.data?.attempts[
-                          document.data.attempts.length - 1
-                        ].claimStatus === "submitted"
-                      ? "Claim has been requested"
-                      : "CLAIM"}
+                        document.data.attempts.length - 1
+                      ].claimStatus === "submitted"
+                        ? "Claim has been requested"
+                        : "CLAIM"}
                   </button>
                 </>
               )}

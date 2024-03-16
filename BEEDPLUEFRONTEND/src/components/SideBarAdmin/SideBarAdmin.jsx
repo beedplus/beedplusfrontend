@@ -30,7 +30,7 @@ export default function SideBarAdmin() {
                 borderRadius: isActive ? "10px" : "0"
               })}
               end
-              // className="side-links"
+            // className="side-links"
 
             >
               Campaigns
@@ -61,7 +61,8 @@ export default function SideBarAdmin() {
                 color: isActive ? "white" : "grey",
                 background: isActive ? "red" : "none",
                 padding: isActive ? "10px 10px" : "0",
-                borderRadius: isActive ? "10px" : "0"              })}
+                borderRadius: isActive ? "10px" : "0"
+              })}
               className="side-links"
             >
               Accepted
@@ -77,7 +78,8 @@ export default function SideBarAdmin() {
                 color: isActive ? "white" : "grey",
                 background: isActive ? "red" : "none",
                 padding: isActive ? "10px 10px" : "0",
-                borderRadius: isActive ? "10px" : "0"              })}
+                borderRadius: isActive ? "10px" : "0"
+              })}
               className="side-links"
             >
               Rejected
@@ -93,7 +95,8 @@ export default function SideBarAdmin() {
                 color: isActive ? "white" : "grey",
                 background: isActive ? "red" : "none",
                 padding: isActive ? "10px 10px" : "0",
-                borderRadius: isActive ? "10px" : "0"              })}
+                borderRadius: isActive ? "10px" : "0"
+              })}
               className="side-links"
             >
               Paid
