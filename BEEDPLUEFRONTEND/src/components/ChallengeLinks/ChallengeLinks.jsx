@@ -285,7 +285,7 @@ const ChallengeLinks = () => {
                 <div className="instruction active">
                   <header>Requirements</header>
                   <ul>
-                    {doc.data.requirements.length !== 0 &&
+                    {doc.data.requirements.length !==
                       doc.data.requirements.map((data) => (
                         <li key={nanoid()}>{data}</li>
                       ))}

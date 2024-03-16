@@ -376,7 +376,17 @@ body{
     justify-content: space-between;
     margin: 0px 0px 10px 0px;
 }
-
+.video-link-container-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.rejection-reason{
+    font-size: 10px;
+    color: #Ff0000;
+    padding-left: 20px;
+}
 .video-link-container .video-link{
     border: 1.64px solid rgb(86, 86, 86);
     color: rgba(126, 126, 126, 1);
