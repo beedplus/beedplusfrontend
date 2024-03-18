@@ -60,13 +60,13 @@ const ChallangeCard = (props) => {
         <div className="amount-remaining-div">
           <div>
             <p className="amount">${props.currentAmount}</p>
-            <p>remaining</p>
+            <p className="amount-remaining-text">remaining</p>
           </div>
 
         </div>
       </div>
       <div className="bottom-info-holder">
-        <p className="challange-name challange">#{props.name}</p>
+        <p className="challange-name challange">{props.name}</p>
         <p className="challange">{props.artiste}</p>
         <div className="progress-line" data-percent="10">
           <div className="percentage" style={{ width: { amountWidth } }}>
