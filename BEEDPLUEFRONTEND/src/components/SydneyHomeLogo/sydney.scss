@@ -1,0 +1,12 @@
+.sydney-homepage-component{
+  .sydney-homepage-component-div{
+    display: flex;
+    flex-direction: column;
+    .sydney-homepage-top-images{
+      display: flex;
+    }
+    .sydney-homepage-bottom-images{
+      display: flex;
+    }
+  }
+}

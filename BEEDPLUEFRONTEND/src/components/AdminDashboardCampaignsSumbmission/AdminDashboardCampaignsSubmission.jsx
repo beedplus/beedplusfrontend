@@ -7,6 +7,8 @@ import { baseURL, patchURL } from "../../config.js";
 
 import { FaRegUser } from "react-icons/fa";
 import {usebackendStore} from "../../store/store.js";
+import PaginationComponent from "../PaginationCOmponent/PaginationComponent.jsx";
+import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss"
 
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
@@ -119,48 +121,56 @@ const AdminDashboardCampaignsSubmission = () => {
   return (
     <div className="admin-dashboard-campaign-submission-div">
       <section className="admin-dashboard-campaign-link-listed-div-one">
-        <div className="admin-dashboard-campaign-link-listed-head-text">
-          <p>#{campaignName}</p>
+        <div>
+          <div className="admin-dashboard-campaign-link-listed-head-text">
+            <p>#{campaignName}</p>
+          </div>
+          <div className="admin-dashboard-campaigns-individual-submission-div">
+            {campaignDetails.map((link, idx) => (
+                <div
+                    key={idx}
+                    className="admin-dashboard-campaigns-individual-submission-div-bar"
+                >
+                  <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={link.url.length > 40 ? link.url : null}
+                  >
+                    {link.url.length > 40
+                        ? link.url.substring(0, 25) + "..."
+                        : link.url}
+                  </a>
+                  <div className="admin-dashboard-submission-accept-reject-bar">
+                    <button className="admin-dashboard-preview-button" onClick={() => previewDetails(link.userId, campaignId)}>
+                      Details
+                    </button>
+                    <button
+                        className="admin-dashboard-accept-button"
+                        onClick={() =>
+                            acceptLink(link.submissionId, link.attemptId, link.linkId)
+                        }
+                    >
+                      Accept
+                    </button>
+                    <button
+                        className="admin-dashboard-reject-button"
+                        onClick={() =>
+                            rejectLink(link.submissionId, link.attemptId, link.linkId)
+                        }
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </div>
+            ))}
+          </div>
         </div>
-        <div className="admin-dashboard-campaigns-individual-submission-div">
-          {campaignDetails.map((link, idx) => (
-            <div
-              key={idx}
-              className="admin-dashboard-campaigns-individual-submission-div-bar"
-            >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={link.url.length > 40 ? link.url : null}
-              >
-                {link.url.length > 40
-                  ? link.url.substring(0, 25) + "..."
-                  : link.url}
-              </a>
-              <div className="admin-dashboard-submission-accept-reject-bar">
-                <button className="admin-dashboard-preview-button" onClick={() => previewDetails(link.userId, campaignId)}>
-                  Details
-                </button>
-                <button
-                  className="admin-dashboard-accept-button"
-                  onClick={() =>
-                    acceptLink(link.submissionId, link.attemptId, link.linkId)
-                  }
-                >
-                  Accept
-                </button>
-                <button
-                  className="admin-dashboard-reject-button"
-                  onClick={() =>
-                    rejectLink(link.submissionId, link.attemptId, link.linkId)
-                  }
-                >
-                  Reject
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="pagination-button-div">
+          <p>
+            <PaginationComponent/>
+          </p>
+
         </div>
       </section>
       <section className="admin-dashboard-campaign-info">
