@@ -108,57 +108,62 @@ export default function Signup() {
                 <h3>Sign Up With Email</h3>
               </div>
               <div className="input-list">
-                <div className="FirstName">
-                  <div className="BsPerson">
+                <div>
+                  <div className="input-icons">
                     <BsPerson />
                   </div>
                   <input
-                    type="text"
-                    name="firstName"
-                    placeholder="Enter First Name"
-                    value={firstName}
-                    onChange={handleInputChange}
+                      className="FirstName"
+                      type="text"
+                      name="firstName"
+                      placeholder="Enter First Name"
+                      value={firstName}
+                      onChange={handleInputChange}
                   />
                 </div>
-                <div className="LastName">
-                  <div className="BsPerson">
+                <div>
+                  <div className="input-icons">
                     <BsPerson />
                   </div>
                   <input
                     type="text"
                     name="lastName"
+                    className="LastName"
                     placeholder="Enter Last Name"
                     value={lastName}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="email">
-                  <div className="RiMailLine">
+                <div >
+                  <div className="input-icons">
                     <RiMailLine />
                   </div>
                   <input
                     type="email"
+                    className="email"
                     name="email"
                     placeholder="Enter Your Email"
                     value={email}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="password">
-                  <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
+                <div >
+                  <div className="GoEye input-icons " onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    className="password"
                     placeholder="Enter Your Password"
                     value={password}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="confirmPassword">
-                  <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
+                <div >
+                  <div className="GoEye input-icons" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
                   <input
                     type={seeConfirPassword ? "text" : "password"}
                     name="confirmPassword"
+                    className="confirmPassword"
                     placeholder="Confirm Your Password"
                     value={confirmPassword}
                     onChange={handleInputChange}
