@@ -6,29 +6,30 @@ import "./Sign.scss";
 import image from "../../assets/loginlogo.jpg";
 import { useLogin } from "../../hooks/useLogin";
 import image2 from "../../assets/image 1.png";
+import loading from "../../assets/loading.gif";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [showPassword, setShowPaasword] =  useState(false)
-  
+  const [showPassword, setShowPaasword] = useState(false)
+
 
   const { login, error, ispending } = useLogin();
 
 
-  const handleShowPassword = () =>{
+  const handleShowPassword = () => {
     setShowPaasword(!showPassword)
   }
- 
+
 
   const validateInputs = () => {
     let isValid = true;
 
-   
+
     if (!email.trim() && !password.trim()) {
       toast.error("Email and password are required");
       isValid = false;
@@ -93,9 +94,9 @@ export default function Signin() {
               />
             </div>
             <div className="sign_Loginpassword">
-              <div className="sign_LoginGoEye" onClick={handleShowPassword}>{showPassword ?<GoEye /> : <FaRegEyeSlash />} </div>
+              <div className="sign_LoginGoEye" onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
               <input
-                 type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter Your Password"
                 value={password}
@@ -114,13 +115,16 @@ export default function Signin() {
                 Sign Up
               </Link>
             </div>
-             {ispending && <p className="login-error-text">Loading.......</p>}
-            {error && <p className="login-error-text"> {error}</p>}
+           {/* changing the loading word to the isloading image gif */}
+           {ispending && <img className="isloading-signin-page" src={loading} alt='loading' />}
+           {error && <p className="login-error-text"> {error}</p>}
           </div>
         </form>
       </div>
       <div className="sign-in-terms-and-condition">
-        Click <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >“Login”</a></span> to agree to Artic’s Terms of Service and acknowledge that Beed+ <span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Policy</a>  </span>applies to you
+        <div className="agreetoArtic">
+          By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a>< /span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
+        </div>
       </div>
     </div>
   );

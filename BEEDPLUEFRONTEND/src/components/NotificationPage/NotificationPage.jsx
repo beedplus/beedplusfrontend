@@ -18,14 +18,14 @@ const NotificationPage = () => {
     <div>
       {isPending && (
         <img
-        style={{
-          width: "80px",
-          height: "70px",
-          margin: "250px auto"
-        }}
-         src={loading} 
-         alt="Loading Animation" 
-         className="loaderanim" />
+          style={{
+            width: "80px",
+            height: "70px",
+            margin: "250px auto"
+          }}
+          src={loading}
+          alt="Loading Animation"
+          className="loaderanim" />
       )}
       {error && <p>{error}</p>}
 
@@ -41,11 +41,11 @@ const NotificationPage = () => {
                 const date = new Date(notification.updatedAt);
                 return (
                   <div
-                      className="individual-notification-div"
+                    className="individual-notification-div"
                     key={notificationIndex}
-                    //   className={`notification ${
-                    //     notificationStates[notificationIndex] ? "unread" : "read"
-                    //   }`}
+                  //   className={`notification ${
+                  //     notificationStates[notificationIndex] ? "unread" : "read"
+                  //   }`}
                   >
                     <header className="verification-title">
                       {notification.title}

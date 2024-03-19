@@ -1,0 +1,13 @@
+.connect-tiktok-button-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .connect-tiktok-button{
+    padding: 10px 15px;
+    font-size: 12px;
+    background: #eaeaea;
+    border-radius: 5px;
+    color: #000000;
+    border: none;
+  }
+}

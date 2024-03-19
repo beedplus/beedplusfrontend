@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import image2 from "../../assets/image 1.png";
 import { useNavigate } from "react-router-dom";
+import loading from "../../assets/loading.gif";
 
 export default function Signup() {
   const { signup, error, ispending } = useSignUp();
@@ -19,8 +20,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPaasword] =  useState(false)
-  const[seeConfirPassword, setSeeconfirPassword] = useState(false)
+  const [showPassword, setShowPaasword] = useState(false)
+  const [seeConfirPassword, setSeeconfirPassword] = useState(false)
 
   const navigate = useNavigate();
 
@@ -50,11 +51,11 @@ export default function Signup() {
     return isValid;
   };
 
-  const handleShowPassword = () =>{
+  const handleShowPassword = () => {
     setShowPaasword(!showPassword)
   }
 
-  const handleseeConfirPassword = ()=>{
+  const handleseeConfirPassword = () => {
     setSeeconfirPassword(!seeConfirPassword)
   }
 
@@ -81,7 +82,7 @@ export default function Signup() {
     }
   };
 
-  
+
 
 
   const handleSubmit = (e) => {
@@ -96,94 +97,97 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      <div className="form-div">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <div className="image">
-              <img src={image} alt="beed logo" />
-            </div>
-            <div className="SignUp">
-              <h3>Sign Up With Email</h3>
-            </div>
-            <div className="input-list">
-              <div className="FirstName">
-                <div className="BsPerson">
-                  <BsPerson />
-                </div>
-                <input
+      <div className="sign-up-div">
+        <div className="form-div">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <div className="image">
+                <img src={image} alt="beed logo" />
+              </div>
+              <div className="SignUp">
+                <h3>Sign Up With Email</h3>
+              </div>
+              <div className="input-list">
+                <div className="FirstName">
+                  <div className="BsPerson">
+                    <BsPerson />
+                  </div>
+                  <input
                     type="text"
                     name="firstName"
                     placeholder="Enter First Name"
                     value={firstName}
                     onChange={handleInputChange}
-                />
-              </div>
-              <div className="LastName">
-                <div className="BsPerson">
-                  <BsPerson />
+                  />
                 </div>
-                <input
+                <div className="LastName">
+                  <div className="BsPerson">
+                    <BsPerson />
+                  </div>
+                  <input
                     type="text"
                     name="lastName"
                     placeholder="Enter Last Name"
                     value={lastName}
                     onChange={handleInputChange}
-                />
-              </div>
-              <div className="email">
-                <div className="RiMailLine">
-                  <RiMailLine />
+                  />
                 </div>
-                <input
+                <div className="email">
+                  <div className="RiMailLine">
+                    <RiMailLine />
+                  </div>
+                  <input
                     type="email"
                     name="email"
                     placeholder="Enter Your Email"
                     value={email}
                     onChange={handleInputChange}
-                />
-              </div>
-              <div className="password">
-                <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye />:<FaRegEyeSlash /> }</div>
-                <input
-                     type={showPassword ? "text" : "password"}
+                  />
+                </div>
+                <div className="password">
+                  <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
+                  <input
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Enter Your Password"
                     value={password}
                     onChange={handleInputChange}
-                />
-              </div>
-              <div className="confirmPassword">
-                <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
-                <input
-                    type={seeConfirPassword ?  "text" :  "password"}
+                  />
+                </div>
+                <div className="confirmPassword">
+                  <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
+                  <input
+                    type={seeConfirPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder="Confirm Your Password"
                     value={confirmPassword}
                     onChange={handleInputChange}
-                />
+                  />
+                </div>
+              </div>
+
+              <div className="next">
+                <button type="submit">Next</button>
+              </div>
+              <div className="Already">
+                <h3>Already have an account? </h3>
+                <div className="Sign">
+                  <Link to="../../auth/Signin" className="link">
+                    Sign In
+                  </Link>
+                </div>
+                {/* changing the loading word to the isloading image gif */}
+                {ispending && <img className="isloading-signup-page" src={loading} alt='loading' />}
+                {error && <p className="text">{error}</p>}
               </div>
             </div>
 
-            <div className="next">
-              <button type="submit">Next</button>
-            </div>
-            <div className="Already">
-              <h3>Already have an account? </h3>
-              <div className="Sign">
-                <Link to="../../auth/Signin" className="link">
-                  Sign In
-                </Link>
-              </div>
-              {ispending && <p className="word">Loading.......</p>}
-              {error && <p className="text">{error}</p>}
-            </div>
+          </form>
+        </div>
+        <div className="agree">
+          <div className="agreetoArtic">
+            By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a></span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
           </div>
-
-        </form>
-      </div>
-      <div className="agree">
-        <div className="agreetoArtic">
-          Click <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >“Login”</a></span> to agree to Artic’s Terms of Service and acknowledge that Beed+ <span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Policy</a>  </span>applies to you
         </div>
       </div>
     </div>

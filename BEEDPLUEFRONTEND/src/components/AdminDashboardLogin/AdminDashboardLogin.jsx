@@ -3,9 +3,10 @@ import { useState } from "react";
 import { RiMailLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
 import image from "../../assets/beed.svg";
-import {useAdminLogin} from "../../hooks/useAdminLogin.jsx";
+import { useAdminLogin } from "../../hooks/useAdminLogin.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import loading from "../../assets/loading.gif";
 
 const AdminDashboardLogin = () => {
     const [email, setEmail] = useState("");
@@ -56,7 +57,7 @@ const AdminDashboardLogin = () => {
         }
     };
 
-    return(
+    return (
         <section>
             <div className="sign_Login-admin">
                 <div>
@@ -101,7 +102,8 @@ const AdminDashboardLogin = () => {
                             <div className="sign_Loginnext">
                                 <button type="submit">Login</button>
                             </div>
-                            {ispending && <p>loading..</p>}
+                            {/* changing the loading word to the isloading image gif */}
+                            {ispending && <img className="isloading-admindeshboardlogin-page" src={loading} alt='loading' />}
                         </form>
                     </div>
                 </div>

@@ -12,8 +12,6 @@ import { usebackendStore } from "../../store/store.js";
 import { useNavigate } from "react-router";
 // import FixedNavbar from "../FixedNavbar/FixedNavbar";
 // import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJlZWRwbHVzLmNvbSIsImlkIjoiNjViYzU3MzA3ZmNiNTZhNWExMjVhNjc1IiwiaWF0IjoxNzA3ODI3MzI2LCJleHAiOjE3MDg0MzIxMjZ9.WfSjk_b2ZXONJDSR7txaZWd8RzRfMuJGDCC3JUnkwG0";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -63,6 +61,7 @@ const AdminDashboard = () => {
     setLinks(campaignLinks);
   };
 
+  
   const paymentAccepted = async (campaignId, submissionId, attemptId) => {
     const options = {
       method: "PATCH",
@@ -70,7 +69,7 @@ const AdminDashboard = () => {
       params: { submissionId: `${submissionId}` },
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${tempAccessToken}`,
       },
       data: {
         claimStatus: "claimed",
@@ -183,7 +182,7 @@ const AdminDashboard = () => {
                             <button
                               onClick={() =>
                                 handleSubmissionLinks(
-                                  campaign._id,
+                                  campaign.campaign._id,
                                   campaign.submissionId,
                                   campaign.attemptId,
                                   campaign.links
