@@ -3,6 +3,7 @@ import money from "../../assets/pic-12-removebg-preview.png"
 import music from "../../assets/depositphotos_3376847-stock-photo-music.jpg"
 import reading from "/Users/josiah/Documents/beedplus/beedplusfrontend/BEEDPLUEFRONTEND/src/assets/reading2.jpg"
 import sydney from "/Users/josiah/Documents/beedplus/beedplusfrontend/BEEDPLUEFRONTEND/src/assets/WhatsApp Image 2024-02-07 at 12.46.00.jpeg"
+
 const Sydney = () =>{
     return(
         <section className="sydney-homepage-component">
