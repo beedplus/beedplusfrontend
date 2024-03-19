@@ -37,6 +37,7 @@ import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 import { useEffect } from "react";
 import ConnectTikTok from "./components/ConnectTikTok/ConnectTikTok.jsx";
+import Sydney from "./components/SydneyHomeLogo/Sydney.jsx";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
   const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
@@ -251,6 +252,11 @@ function App() {
           <Route
             path="tiktok"
             element={<ConnectTikTok/>}>
+
+          </Route>
+          <Route
+            path="sydney"
+            element={<Sydney/>}>
 
           </Route>
         </Routes>
