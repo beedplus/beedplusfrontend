@@ -4,7 +4,7 @@ import { AiOutlineCaretRight } from "react-icons/ai";
 //import _, { cloneDeep } from 'lodash';
 import advert from "../../assets/Group 90.svg"
 //import _, { cloneDeep } from 'lodash';
-import FaqsHeading from '../FaqsHeading/Faqsheading';
+import FaqsHeading from '../FaqsHeading/FaqsHeading';
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 
@@ -45,22 +45,6 @@ const Faqs = () => {
       question: 'What do I do if my video is rejected?',
       answer: "You can recreate another video and submit the link under the same campaign "
     },
-    //
-    // {
-    //   question: "How can i stay fit while travelling?",
-    //   answer: "You can use hotel gyms, go for walks in new cities, or do bodyweight exercises in your hotel room?"
-    // },
-    //
-    // {
-    //   question: "What type of workout is best for weight loss?",
-    //   answer: "A mix of cardio and strength training is often recommended for weight loss."
-    // },
-    //
-    // {
-    //   question: "How important is diet in reaching my fitness goals?",
-    //   answer: "Very important! Exercise and diet go hand in hand when it comes to fitness."
-    // }
-
 
   ]
 

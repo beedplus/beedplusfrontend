@@ -9,7 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useGetSingleCampaign } from "../../hooks/useGetSingleCampaign";
 import loading from "../../assets/loading.gif";
 // import { useGetAllCampaign } from "../../hooks/useGetAllCampaign";
-import { useGetSinCampaign } from "../../hooks/useGetsinCampaign";
+// import { useGetSinCampaign } from "../../hooks/useGetsinCampaign";
+import { useGetSinCampaign } from "../../hooks/useGetSinCampaign"
 import { useUpdateClaimStatus } from "../../hooks/useUpdateClaimStatus";
 import { useGetSubmission } from "../../hooks/useGetSubmission";
 import Submission from "../Submission";

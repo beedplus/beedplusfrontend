@@ -33,7 +33,9 @@ import AcceptedSubmissions from "./components/AcceptedSubmissions/AcceptedSubmis
 import AdminDashboardPaidRequest from "./components/AdminDashboardPaidRequest/AdminDashboardPaidRequest.jsx";
 import SideBar from "./layout/SideBar.jsx";
 import Faqs from "./components/Faqs/Faqs.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy"
 import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
+import TermsofServiceandPrivacyPolicy from "./components/TermsofServiceandPrivacyPolicy/TermsofServiceandPrivacyPolicy"
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 import { useEffect } from "react";
 import ConnectTikTok from "./components/ConnectTikTok/ConnectTikTok.jsx";
@@ -44,10 +46,13 @@ function App() {
 
   return (
     <div className="app">
+      
       <Router>
         <Routes>
           <Route path="/Dashboard-Navbar" element={<DashboardNavbar />} />
-
+          <Route path="/TermsofServiceandPrivacyPolicy" element={<TermsofServiceandPrivacyPolicy/>}/>
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
+ 
           <Route
             path="/home"
             element={

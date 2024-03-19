@@ -185,8 +185,11 @@ export default function Signup() {
           </form>
         </div>
         <div className="agree">
-          <div className="agreetoArtic">
+          {/* <div className="agreetoArtic">
             By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a></span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
+          </div> */}
+          <div className="agreetoArtic">
+            By continuing you agree to the Beedplus  <span><Link to="/TermsofServiceandPrivacyPolicy" target="_blank" >Terms of Service</Link></span> and<span> <Link to="/PrivacyPolicy" target="_blank">Privacy Policy</Link>  </span>
           </div>
         </div>
       </div>
