@@ -1,0 +1,56 @@
+.TermsofServices-parent-one{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    overflow: hidden;
+}
+.TermsofServices-parent-one h3{
+    margin: auto;
+}
+.TermsofServices-parent-one p{
+  margin: 2em;
+  word-spacing: 0.3em;
+  line-height: 2.2em;
+}
+.term{
+    width: 100%;
+    padding: 2em;
+
+    .term-title {
+        display: flex;
+        gap: 1em;
+    }
+    .term-title-two{
+        display: flex;
+        gap: 2em;
+        margin-top: 0.7em;
+        margin-bottom: 1em;
+    }
+    .para-term-one{
+        line-height: 2em;
+        margin-bottom: 1.7em;
+    }
+    .term-title-two{
+        margin-top: 1em;
+    }
+}
+.lastdatafromthepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3em;
+    margin-bottom: 2em;
+}
+
+@media screen and (max-width: 600px) {
+    .TermsofServices-parent-one h3{
+        padding-left: 3em;
+    }
+    .lastdatafromthepage{
+        padding-left: 2em;
+        gap: 2em;
+        margin-bottom: 2em;
+    }
+}
