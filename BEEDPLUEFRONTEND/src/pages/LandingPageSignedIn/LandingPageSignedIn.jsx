@@ -1,4 +1,4 @@
-import "./LandingPageSignedIn.scss";
+import "./LandingpageSignedIn.scss";
 import EnterWin from "../../assets/Group 263.png";
 import iconBall from "../../assets/iconoir_bell-notification.svg";
 import { useLogout } from "../../hooks/useLogout";

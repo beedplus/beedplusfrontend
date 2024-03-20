@@ -10,6 +10,9 @@ import { FaWindowClose } from "react-icons/fa";
 import { IoCheckboxSharp } from "react-icons/io5";
 import { usebackendStore } from "../../store/store.js";
 import { useNavigate } from "react-router";
+import PaginationComponent from "../PaginationCOmponent/PaginationComponent.jsx";
+import "../PaginationCOmponent/PaginationComponent.scss"
+import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss"
 // import FixedNavbar from "../FixedNavbar/FixedNavbar";
 // import SearchNavigationbar from "../SearchNavigationbar/SearchNavigationbar";
 
@@ -123,98 +126,107 @@ const AdminDashboard = () => {
           <div className="campaign-section">
             <header className="campaign-header">Campaigns</header>
             {/* start */}
-            <div className="dashboard-table">
-              <div className="table-info">
-                <div className="table-headers">
-                  <header
-                    className={headerStates.userInfo ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("userInfo")}
-                  >
-                    User Info <img src={caretDown} alt="caret-down" />
-                  </header>
+            <div>
+              <div className="dashboard-table">
+                <div className="table-info">
+                  <div className="table-headers">
+                    <header
+                        className={headerStates.userInfo ? "carat-rotate" : ""}
+                        onClick={() => toggleHeader("userInfo")}
+                    >
+                      User Info <img src={caretDown} alt="caret-down" />
+                    </header>
 
-                  <header
-                    className={headerStates.campaignName ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("campaignName")}
-                  >
-                    Campaign name <img src={caretDown} alt="caret-down" />
-                  </header>
+                    <header
+                        className={headerStates.campaignName ? "carat-rotate" : ""}
+                        onClick={() => toggleHeader("campaignName")}
+                    >
+                      Campaign name <img src={caretDown} alt="caret-down" />
+                    </header>
 
-                  <header
-                    className={headerStates.phoneNumber ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("phoneNumber")}
-                  >
-                    Level Request <img src={caretDown} alt="caret-down" />
-                  </header>
+                    <header
+                        className={headerStates.phoneNumber ? "carat-rotate" : ""}
+                        onClick={() => toggleHeader("phoneNumber")}
+                    >
+                      Level Request <img src={caretDown} alt="caret-down" />
+                    </header>
 
-                  <header
-                    className={headerStates.dateTime ? "carat-rotate" : ""}
-                    onClick={() => toggleHeader("dateTime")}
-                  >
-                    Account Details <img src={caretDown} alt="caret-down" />
-                  </header>
-                </div>
-                <div className="table-item">
-                  {campaignInfo.length === 0 ? (
-                    <b>No submitted request available</b>
-                  ) : (
-                    campaignInfo.map((campaign, submissionIndex) => (
-                      <div
-                        key={submissionIndex}
-                        className={`the-item`}
-                        onClick={() => toggleHeight(submissionIndex)}
-                      >
-                        <div className="item">
-                          <div className="user-info em">
-                            <b>
-                              {campaign.user.firstname} {campaign.user.lastname}
-                            </b>
-                            <br />
-                            <p className="fuck">
-                              {campaign.user.email}
-                            </p>
-
-                          </div>
-
-                          <p className="hashtag em">{campaign.campaign.name}</p>
-
-                          <p className="user-phone-number em">
-                            <button
-                              onClick={() =>
-                                handleSubmissionLinks(
-                                  campaign.campaign._id,
-                                  campaign.submissionId,
-                                  campaign.attemptId,
-                                  campaign.links
-                                )
-                              }
+                    <header
+                        className={headerStates.dateTime ? "carat-rotate" : ""}
+                        onClick={() => toggleHeader("dateTime")}
+                    >
+                      Account Details <img src={caretDown} alt="caret-down" />
+                    </header>
+                  </div>
+                  <div className="table-item">
+                    {campaignInfo.length === 0 ? (
+                        <b>No submitted request available</b>
+                    ) : (
+                        campaignInfo.map((campaign, submissionIndex) => (
+                            <div
+                                key={submissionIndex}
+                                className={`the-item`}
+                                onClick={() => toggleHeight(submissionIndex)}
                             >
-                              Submission {campaign.submissionNumber}
-                            </button>
-                          </p>
+                              <div className="item">
+                                <div className="user-info em">
+                                  <b>
+                                    {campaign.user.firstname} {campaign.user.lastname}
+                                  </b>
+                                  <br />
+                                  <p className="fuck">
+                                    {campaign.user.email}
+                                  </p>
 
-                          <div className="date-and-time em">
-                            {campaign.user.account ? (
-                              <p className="time">
-                                <br />
-                                {campaign.user.account.bankName} <br /> {""}
-                                {
-                                  campaign.user.account.accountNumber
-                                } <br /> {campaign.user.account.accountName}
-                              </p>
-                            ) : (
-                              <p className="error-message">
-                                Not account details set
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
+                                </div>
+
+                                <p className="hashtag em">{campaign.campaign.name}</p>
+
+                                <p className="user-phone-number em">
+                                  <button
+                                      onClick={() =>
+                                          handleSubmissionLinks(
+                                              campaign.campaign._id,
+                                              campaign.submissionId,
+                                              campaign.attemptId,
+                                              campaign.links
+                                          )
+                                      }
+                                  >
+                                    Submission {campaign.submissionNumber}
+                                  </button>
+                                </p>
+
+                                <div className="date-and-time em">
+                                  {campaign.user.account ? (
+                                      <p className="time">
+                                        <br />
+                                        {campaign.user.account.bankName} <br /> {""}
+                                        {
+                                          campaign.user.account.accountNumber
+                                        } <br /> {campaign.user.account.accountName}
+                                      </p>
+                                  ) : (
+                                      <p className="error-message">
+                                        Not account details set
+                                      </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                        ))
+                    )}
+                  </div>
                 </div>
               </div>
+              <div className="pagination-button-div">
+                <p>
+                  <PaginationComponent/>
+                </p>
+
+              </div>
             </div>
+
           </div>
 
           <div className="submission-section">

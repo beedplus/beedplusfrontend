@@ -108,57 +108,62 @@ export default function Signup() {
                 <h3>Sign Up With Email</h3>
               </div>
               <div className="input-list">
-                <div className="FirstName">
-                  <div className="BsPerson">
+                <div>
+                  <div className="input-icons">
                     <BsPerson />
                   </div>
                   <input
-                    type="text"
-                    name="firstName"
-                    placeholder="Enter First Name"
-                    value={firstName}
-                    onChange={handleInputChange}
+                      className="FirstName"
+                      type="text"
+                      name="firstName"
+                      placeholder="Enter First Name"
+                      value={firstName}
+                      onChange={handleInputChange}
                   />
                 </div>
-                <div className="LastName">
-                  <div className="BsPerson">
+                <div>
+                  <div className="input-icons">
                     <BsPerson />
                   </div>
                   <input
                     type="text"
                     name="lastName"
+                    className="LastName"
                     placeholder="Enter Last Name"
                     value={lastName}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="email">
-                  <div className="RiMailLine">
+                <div >
+                  <div className="input-icons">
                     <RiMailLine />
                   </div>
                   <input
                     type="email"
+                    className="email"
                     name="email"
                     placeholder="Enter Your Email"
                     value={email}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="password">
-                  <div className="GoEye" onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
+                <div >
+                  <div className="GoEye input-icons " onClick={handleShowPassword}>{showPassword ? <GoEye /> : <FaRegEyeSlash />}</div>
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    className="password"
                     placeholder="Enter Your Password"
                     value={password}
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="confirmPassword">
-                  <div className="GoEye" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
+                <div >
+                  <div className="GoEye input-icons" onClick={handleseeConfirPassword}>{seeConfirPassword ? <GoEye /> : <FaRegEyeSlash />} </div>
                   <input
                     type={seeConfirPassword ? "text" : "password"}
                     name="confirmPassword"
+                    className="confirmPassword"
                     placeholder="Confirm Your Password"
                     value={confirmPassword}
                     onChange={handleInputChange}
@@ -185,8 +190,11 @@ export default function Signup() {
           </form>
         </div>
         <div className="agree">
-          <div className="agreetoArtic">
+          {/* <div className="agreetoArtic">
             By continuing you agree to the Beedplus  <span><a href="https://docs.google.com/document/d/1V3_-SoFNeLzz6XtE_cNDcvLuGvC8s7V3Axy4Y9A75rM/edit?usp=sharing" >Terms of Service</a></span> and<span> <a href="https://docs.google.com/document/d/1B86o236rNcMtmkixEW7YtwJHxakLZbJ1Zq9PSAMZdXo/edit?usp=sharing">Privacy Policy</a>  </span>
+          </div> */}
+          <div className="agreetoArtic">
+            By continuing you agree to the Beedplus  <span><Link to="/TermsofServiceandPrivacyPolicy" target="_blank" >Terms of Service</Link></span> and<span> <Link to="/PrivacyPolicy" target="_blank">Privacy Policy</Link>  </span>
           </div>
         </div>
       </div>

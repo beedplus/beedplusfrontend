@@ -2,13 +2,15 @@
  position: relative;
  text-decoration: none;
 }
-
+.para-butt{
+  display: flex;
+  justify-content: space-between;
+}
 
  @media only screen and (min-width:1000px){
      .top-page{
          height:700px;
-         padding-left:120px;
-         padding-top: .01px;    
+         padding: 0 50px ;
          border:none;
          background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
          backdrop-filter: blur(8.285717964172363px);
@@ -17,8 +19,6 @@
   ;
          font-family: "Poppins", sans-serif;
          font-style: normal;
-         font-style: normal;
-     
      }
      .play-icon-one{
         
@@ -130,17 +130,15 @@
 
 @media only screen and (max-width:1000px){
     .top-page{
-        height: 472px;
-        padding-left:28px;
-        padding-top: .01px;
+      padding: 30px 20px;
+        height: 430px;
         border:none;
         background: linear-gradient(143deg, #FD105B 41.56%, #EE724B 81.73%);
         backdrop-filter: blur(8.285717964172363px);
         color: #FFF;
         font-family: "Poppins", sans-serif;
         font-style: normal;
-        font-style: normal;
-        
+
         .money{
             display: none;
         }
@@ -149,12 +147,13 @@
         }
         .top-page-heading{
 
-            margin:47.06px 0px 0px 0px;
             font-size: 30.09px;
             font-weight: 600;
             line-height: 20.036px; 
             letter-spacing: -0.301px;
-            height: 77.5px;
+            height: 60px;
+            display: flex;
+            align-items: center;
             img{
                 width: 28px;
                 top:2px;
@@ -173,15 +172,15 @@
                 font-size: 20.06px;
                 top:10px;
                 color: #FFF;
-                font-family:Poppins;
+                font-family:"Poppins";
             }
                     
         }
         
         .play-icon-one{
             float:right;
-            margin-top:20px;
-            
+            width: 30px;
+          height: 30px;
         }
         .para{
             top:10px;

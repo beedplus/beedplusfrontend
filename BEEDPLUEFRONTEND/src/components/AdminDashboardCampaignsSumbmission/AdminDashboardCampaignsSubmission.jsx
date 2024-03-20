@@ -6,19 +6,23 @@ import "../AdminDashboardCampaignsSumbmission/AdminDashboardCampaignsSubmission.
 import { baseURL, patchURL } from "../../config.js";
 
 import { FaRegUser } from "react-icons/fa";
-import {usebackendStore} from "../../store/store.js";
+import { usebackendStore } from "../../store/store.js";
+import PaginationComponent from "../PaginationCOmponent/PaginationComponent.jsx";
+import "../AdminDashboardCampaigns/AdminDashboardCampaigns.scss";
 
 const AdminDashboardCampaignsSubmission = () => {
   const [campaignDetails, setCampaignDetails] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [campaignName, setCampaignName] = useState("");
-  const [campaignId, setCampaignId] = useState("")
-  const [firstname, setFirstname] = useState("")
-  const [lastname, setLastname] = useState("")
-  const [email, setEmail] = useState("")
-  const [submissionCount, setSubmissionCount] = useState("")
+  const [campaignId, setCampaignId] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [submissionCount, setSubmissionCount] = useState("");
   const { id } = useParams();
   const url = `${baseURL}${id}/submission/links`;
-  const tempAccessToken = usebackendStore(state => state.tempAccessToken)
+  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,12 +30,17 @@ const AdminDashboardCampaignsSubmission = () => {
         const options = {
           method: "GET",
           url: url,
-          params: { linkStatus: "submitted" },
-          headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
+          params: { linkStatus: "submitted", page: currentPage },
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${tempAccessToken}`,
+          },
         };
         const response = await axios.request(options);
-        setCampaignId(response.data.data.campaign._id)
+        setTotalPages(response.data.data.links.metadata.page);
+        setCampaignId(response.data.data.campaign._id);
         setCampaignName(response.data.data.campaign.name);
+
         setCampaignDetails(response.data.data.links.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -39,7 +48,19 @@ const AdminDashboardCampaignsSubmission = () => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, currentPage]);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const acceptLink = async (submissionId, attemptId, linkId) => {
     try {
@@ -51,7 +72,10 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}`},
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${tempAccessToken}`,
+        },
         data: { status: "verified" },
       };
 
@@ -76,7 +100,10 @@ const AdminDashboardCampaignsSubmission = () => {
           attemptId: attemptId,
           linkId: linkId,
         },
-        headers: { "content-type": "application/json" , Authorization : `Bearer ${tempAccessToken}`},
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${tempAccessToken}`,
+        },
         data: { status: "rejected" },
       };
 
@@ -96,15 +123,17 @@ const AdminDashboardCampaignsSubmission = () => {
       method: "GET",
       url: `${baseURL}all/submission/link-details`,
       params: { userId: userId, campaignId: campaignId },
-      headers: { "content-type": "application/json", Authorization : `Bearer ${tempAccessToken}` },
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${tempAccessToken}`,
+      },
     };
     try {
-      const response = await axios.request(options)
-      console.log({"response" : response.data.data})
-      setFirstname(response.data.data.user.firstname)
-      setLastname(response.data.data.user.lastname)
-      setEmail(response.data.data.user.email)
-      setSubmissionCount(response.data.data.submissionCount)
+      const response = await axios.request(options);
+      setFirstname(response.data.data.user.firstname);
+      setLastname(response.data.data.user.lastname);
+      setEmail(response.data.data.user.email);
+      setSubmissionCount(response.data.data.submissionCount);
     } catch (error) {
       console.error(error);
     }
@@ -119,48 +148,63 @@ const AdminDashboardCampaignsSubmission = () => {
   return (
     <div className="admin-dashboard-campaign-submission-div">
       <section className="admin-dashboard-campaign-link-listed-div-one">
-        <div className="admin-dashboard-campaign-link-listed-head-text">
-          <p>#{campaignName}</p>
-        </div>
-        <div className="admin-dashboard-campaigns-individual-submission-div">
-          {campaignDetails.map((link, idx) => (
-            <div
-              key={idx}
-              className="admin-dashboard-campaigns-individual-submission-div-bar"
-            >
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={link.url.length > 40 ? link.url : null}
+        <div>
+          <div className="admin-dashboard-campaign-link-listed-head-text">
+            <p>#{campaignName}</p>
+          </div>
+          <div className="admin-dashboard-campaigns-individual-submission-div">
+            {campaignDetails.map((link, idx) => (
+              <div
+                key={idx}
+                className="admin-dashboard-campaigns-individual-submission-div-bar"
               >
-                {link.url.length > 40
-                  ? link.url.substring(0, 25) + "..."
-                  : link.url}
-              </a>
-              <div className="admin-dashboard-submission-accept-reject-bar">
-                <button className="admin-dashboard-preview-button" onClick={() => previewDetails(link.userId, campaignId)}>
-                  Details
-                </button>
-                <button
-                  className="admin-dashboard-accept-button"
-                  onClick={() =>
-                    acceptLink(link.submissionId, link.attemptId, link.linkId)
-                  }
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={link.url.length > 40 ? link.url : null}
                 >
-                  Accept
-                </button>
-                <button
-                  className="admin-dashboard-reject-button"
-                  onClick={() =>
-                    rejectLink(link.submissionId, link.attemptId, link.linkId)
-                  }
-                >
-                  Reject
-                </button>
+                  {link.url.length > 40
+                    ? link.url.substring(0, 25) + "..."
+                    : link.url}
+                </a>
+                <div className="admin-dashboard-submission-accept-reject-bar">
+                  <button
+                    className="admin-dashboard-preview-button"
+                    onClick={() => previewDetails(link.userId, campaignId)}
+                  >
+                    Details
+                  </button>
+                  <button
+                    className="admin-dashboard-accept-button"
+                    onClick={() =>
+                      acceptLink(link.submissionId, link.attemptId, link.linkId)
+                    }
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="admin-dashboard-reject-button"
+                    onClick={() =>
+                      rejectLink(link.submissionId, link.attemptId, link.linkId)
+                    }
+                  >
+                    Reject
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+        <div className="pagination-button-div">
+          <p>
+            <PaginationComponent
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onNext={handleNextPage}
+              onPrev={handlePrevPage}
+            />
+          </p>
         </div>
       </section>
       <section className="admin-dashboard-campaign-info">
