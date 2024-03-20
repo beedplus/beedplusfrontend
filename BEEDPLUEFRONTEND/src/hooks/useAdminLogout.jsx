@@ -1,10 +1,10 @@
-import { usebackendStore } from "../store/store";
+import { useTempAuthStore } from "../store/store";
 export const useAdminLogout = () => {
-    const resetTempAuth = usebackendStore((state) => state.resetTempAuth);
-    const logout = async () => {
-        console.log('hello')
-        resetTempAuth();
-    };
+  const resetTempAuth = useTempAuthStore((state) => state.resetTempAuth);
+  const logout = async () => {
+    console.log("hello");
+    resetTempAuth();
+  };
 
-    return { logout };
+  return { logout };
 };

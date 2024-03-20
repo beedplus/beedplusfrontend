@@ -36,10 +36,11 @@ import Faqs from "./components/Faqs/Faqs.jsx";
 import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 import { useEffect } from "react";
+import { useTempAuthStore } from "./store/store.js";
 import ConnectTikTok from "./components/ConnectTikTok/ConnectTikTok.jsx";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
-  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
+  const tempAccessToken = useTempAuthStore((state) => state.tempAccessToken);
   const [currentId, setcurrentId] = useState("");
 
   return (
@@ -248,11 +249,7 @@ function App() {
               </>
             }
           />
-          <Route
-            path="tiktok"
-            element={<ConnectTikTok/>}>
-
-          </Route>
+          <Route path="tiktok" element={<ConnectTikTok />}></Route>
         </Routes>
       </Router>
 

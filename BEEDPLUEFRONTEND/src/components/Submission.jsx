@@ -11,8 +11,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loading from "../assets/loading.gif";
 
-
-
 export default function Submission({
   id,
   index,
@@ -35,7 +33,8 @@ export default function Submission({
   const [height, setHeight] = useState(false);
   const [message, setMessage] = useState("");
   const checkEligibility = (links) => {
-    const regex = /^https:\/\/www\.tiktok\.com\/@(?:\w+\/)?video\/\d+/;
+    const regex =
+      /^https:\/\/(www\.tiktok\.com\/@.*?\/video\/\d{19}\/?$|vm\.tiktok\.com\/\w+\/?$)/;
 
     const invalidLinks = [];
 
@@ -107,24 +106,23 @@ export default function Submission({
           <div className="video-link-container">
             <div className="video-link-container-div">
               <input
-                  className="video-link"
-                  type="text"
-                  value={link1}
-                  onChange={(e) => setLink1(e.target.value)}
-                  onFocus={(e) => {
-                    if (e.target.value === "Your video url") {
-                      setLink1("");
-                    }
-                  }}
-                  disabled={
-                      li1?.status === "verified" || li1?.status === "submitted"
+                className="video-link"
+                type="text"
+                value={link1}
+                onChange={(e) => setLink1(e.target.value)}
+                onFocus={(e) => {
+                  if (e.target.value === "Your video url") {
+                    setLink1("");
                   }
-                  required={true}
+                }}
+                disabled={
+                  li1?.status === "verified" || li1?.status === "submitted"
+                }
+                required={true}
               />
 
               {li1?.status === "rejected" && <p>{li1?.reason}</p>}
             </div>
-
 
             {li1?.status === "verified" ? (
               <FaCheckCircle
@@ -141,21 +139,23 @@ export default function Submission({
           <div className="video-link-container">
             <div className="video-link-container-div">
               <input
-                  className="video-link"
-                  type="text"
-                  value={link2}
-                  onChange={(e) => setLink2(e.target.value)}
-                  disabled={
-                      li2?.status === "verified" || li2?.status === "submitted"
+                className="video-link"
+                type="text"
+                value={link2}
+                onChange={(e) => setLink2(e.target.value)}
+                disabled={
+                  li2?.status === "verified" || li2?.status === "submitted"
+                }
+                required={true}
+                onFocus={(e) => {
+                  if (e.target.value === "Your video url") {
+                    setLink2("");
                   }
-                  required={true}
-                  onFocus={(e) => {
-                    if (e.target.value === "Your video url") {
-                      setLink2("");
-                    }
-                  }}
+                }}
               />
-              {li2?.status === "rejected" && <p className="rejection-reason">{li2?.reason}</p>}
+              {li2?.status === "rejected" && (
+                <p className="rejection-reason">{li2?.reason}</p>
+              )}
             </div>
 
             {li2?.status === "verified" ? (
@@ -173,21 +173,23 @@ export default function Submission({
           <div className="video-link-container">
             <div className="video-link-container-div">
               <input
-                  className="video-link"
-                  type="text"
-                  value={link3}
-                  onChange={(e) => setLink3(e.target.value)}
-                  disabled={
-                      li3?.status === "verified" || li3?.status === "submitted"
+                className="video-link"
+                type="text"
+                value={link3}
+                onChange={(e) => setLink3(e.target.value)}
+                disabled={
+                  li3?.status === "verified" || li3?.status === "submitted"
+                }
+                required={true}
+                onFocus={(e) => {
+                  if (e.target.value === "Your video url") {
+                    setLink3("");
                   }
-                  required={true}
-                  onFocus={(e) => {
-                    if (e.target.value === "Your video url") {
-                      setLink3("");
-                    }
-                  }}
+                }}
               />
-              {li3?.status === "rejected" && <p className="rejection-reason">{li3?.reason}</p>}
+              {li3?.status === "rejected" && (
+                <p className="rejection-reason">{li3?.reason}</p>
+              )}
             </div>
 
             {li3?.status === "verified" ? (
@@ -205,21 +207,23 @@ export default function Submission({
           <div className="video-link-container">
             <div className="video-link-container-div">
               <input
-                  className="video-link"
-                  type="text"
-                  value={link4}
-                  onChange={(e) => setLink4(e.target.value)}
-                  disabled={
-                      li4?.status === "verified" || li4?.status === "submitted"
+                className="video-link"
+                type="text"
+                value={link4}
+                onChange={(e) => setLink4(e.target.value)}
+                disabled={
+                  li4?.status === "verified" || li4?.status === "submitted"
+                }
+                required={true}
+                onFocus={(e) => {
+                  if (e.target.value === "Your video url") {
+                    setLink4("");
                   }
-                  required={true}
-                  onFocus={(e) => {
-                    if (e.target.value === "Your video url") {
-                      setLink4("");
-                    }
-                  }}
+                }}
               />
-              {li4?.status === "rejected" && <p className="rejection-reason">{li4?.reason}</p>}
+              {li4?.status === "rejected" && (
+                <p className="rejection-reason">{li4?.reason}</p>
+              )}
             </div>
 
             {li4?.status === "verified" ? (
@@ -237,21 +241,23 @@ export default function Submission({
           <div className="video-link-container">
             <div className="video-link-container-div">
               <input
-                  className="video-link"
-                  type="text"
-                  value={link5}
-                  onChange={(e) => setLink5(e.target.value)}
-                  disabled={
-                      li5?.status === "verified" || li5?.status === "submitted"
+                className="video-link"
+                type="text"
+                value={link5}
+                onChange={(e) => setLink5(e.target.value)}
+                disabled={
+                  li5?.status === "verified" || li5?.status === "submitted"
+                }
+                required={true}
+                onFocus={(e) => {
+                  if (e.target.value === "Your video url") {
+                    setLink5("");
                   }
-                  required={true}
-                  onFocus={(e) => {
-                    if (e.target.value === "Your video url") {
-                      setLink5("");
-                    }
-                  }}
+                }}
               />
-              {li5?.status === "rejected" && <p className="rejection-reason">{li5?.reason}</p>}
+              {li5?.status === "rejected" && (
+                <p className="rejection-reason">{li5?.reason}</p>
+              )}
             </div>
 
             {li5?.status === "verified" ? (
@@ -278,13 +284,14 @@ export default function Submission({
             }}
           >
             {!isPend && !success && <p>SUBMIT LINKS</p>}
-            {isPend && !success && <img style={{height: "60px",}} src={loading} alt='loading' />}
+            {isPend && !success && (
+              <img style={{ height: "60px" }} src={loading} alt="loading" />
+            )}
             {success && !isPend && <p>success</p>}
           </button>
           <div className="submission-error-message">
             {error && <p>Error: {error}</p>}
           </div>
-
         </form>
       </div>
       <div className="question-circle">
