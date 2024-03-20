@@ -7,7 +7,10 @@ import { GiCancel } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import howitworks from "../assets/howitworks.png";
 import "../../src/components/ChallengeLinks/ChallengeLinks.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import loading from "../assets/loading.gif";
+
 
 
 export default function Submission({
@@ -30,7 +33,20 @@ export default function Submission({
   const [link4, setLink4] = useState(li4?.url);
   const [link5, setLink5] = useState(li5?.url);
   const [height, setHeight] = useState(false);
+  const [message, setMessage] = useState("");
+  const checkEligibility = (links) => {
+    const regex = /^https:\/\/www\.tiktok\.com\/@(?:\w+\/)?video\/\d+/;
 
+    const invalidLinks = [];
+
+    links.forEach((link, index) => {
+      if (!regex.test(link)) {
+        invalidLinks.push({ position: index + 1, link });
+      }
+    });
+
+    return invalidLinks;
+  };
   const { updateAttempts, isPending: isPend, error, success } = useSubmit();
 
   useEffect(() => {}, [isPend, success]);
@@ -43,23 +59,31 @@ export default function Submission({
       adjustHeight();
     }
   }, [isActive]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const invalidLinks = checkEligibility([link1, link2, link3, link4, link5]);
+
     if (claimStatus === "pending") {
-      await updateAttempts(
-        id,
-        link1,
-        link2,
-        link3,
-        link4,
-        link5,
-        key2,
-        SubmissionId
-      );
-      // Success state is now handled inside the useSubmit hook
+      if (invalidLinks.length === 0) {
+        await updateAttempts(
+          id,
+          link1,
+          link2,
+          link3,
+          link4,
+          link5,
+          key2,
+          SubmissionId
+        );
+        // Success state is now handled inside the useSubmit hook
+      } else {
+        invalidLinks.forEach(({ position }) => {
+          toast.error(`Link ${position} is invalid`);
+        });
+      }
     }
   };
+
   useEffect(() => {
     if (success) {
       window.location.reload();
