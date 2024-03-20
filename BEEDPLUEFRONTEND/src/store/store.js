@@ -5,7 +5,6 @@ const usebackendStore = create(
   persist(
     (set) => ({
       accessToken: null,
-      tempAccessToken: null,
       activeTab: null,
       user: {
         userId: null,
@@ -77,18 +76,10 @@ const usebackendStore = create(
             accessToken: null,
             bio: "",
             userName: "",
-            tempUserId: null,
           },
           accessToken: null,
         }),
-      resetTempAuth: () => {
-        set({
-          user: {
-            tempUserId: null,
-          },
-          tempAccessToken: null,
-        });
-      },
+
       setModal: (payload) => set({ modal: payload }),
       setChallengeId: (id) => set({ ChallengeId: id }),
       setCompareStatus: (payload) =>
@@ -102,3 +93,21 @@ const usebackendStore = create(
 );
 
 export { usebackendStore };
+
+const useTempAuthStore = create((set) => ({
+  tempAccessToken: null,
+  tempUserId: null,
+  setTempAuth: (id, token) =>
+    set(() => ({
+      tempUserId: id,
+      tempAccessToken: token,
+    })),
+  resetTempAuth: () => {
+    set({
+      tempUserId: null,
+      tempAccessToken: null,
+    });
+  },
+}));
+
+export { useTempAuthStore };

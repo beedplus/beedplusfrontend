@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { usebackendStore } from "../store/store";
+import { useTempAuthStore } from "../store/store";
 export const useAdminLogin = () => {
   const [error, setError] = useState(null);
   const [ispending, setIspending] = useState(false);
   const [iscancelled, setisCancelled] = useState(false);
-  const setTempAuth = usebackendStore((state) => state.setTempAuth);
+  const setTempAuth = useTempAuthStore((state) => state.setTempAuth);
 
   const apiUrl = "https://beedplus.onrender.com/admin";
 
@@ -26,10 +26,10 @@ export const useAdminLogin = () => {
         },
         body: JSON.stringify(postData),
       });
-      console.log({ "res1": res });
+      console.log({ res1: res });
 
       const data = await res.json();
-      console.log({ "1": data.token });
+      console.log({ 1: data.token });
       if (data.status === "success") {
         setTempAuth(data.data._id, data.token);
       }

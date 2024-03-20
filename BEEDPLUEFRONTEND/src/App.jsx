@@ -38,11 +38,12 @@ import HowItWorks from "./components/Howitworks/HowItWorks.jsx";
 import TermsofServiceandPrivacyPolicy from "./components/TermsofServiceandPrivacyPolicy/TermsofServiceandPrivacyPolicy"
 // import SideBarAdmin  from "./components/SideBarAdmin/SideBarAdmin"
 import { useEffect } from "react";
+import { useTempAuthStore } from "./store/store.js";
 import ConnectTikTok from "./components/ConnectTikTok/ConnectTikTok.jsx";
 import Sydney from "./components/SydneyHomeLogo/Sydney.jsx";
 function App() {
   const accessToken = usebackendStore((state) => state.accessToken);
-  const tempAccessToken = usebackendStore((state) => state.tempAccessToken);
+  const tempAccessToken = useTempAuthStore((state) => state.tempAccessToken);
   const [currentId, setcurrentId] = useState("");
 
   return (
@@ -254,16 +255,8 @@ function App() {
               </>
             }
           />
-          <Route
-            path="tiktok"
-            element={<ConnectTikTok/>}>
+          <Route path="tiktok" element={<ConnectTikTok />}></Route>
 
-          </Route>
-          <Route
-            path="sydney"
-            element={<Sydney/>}>
-
-          </Route>
         </Routes>
       </Router>
 
